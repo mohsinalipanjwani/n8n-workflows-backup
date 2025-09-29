@@ -1,0 +1,210 @@
+{
+  "active": true,
+  "connections": {
+    "Receive newsignup from Ezycourse": {
+      "main": [
+        [
+          {
+            "node": "Add user in supabase DB",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "New Product Enrollment": {
+      "main": [
+        [
+          {
+            "node": "If match with specific product sales",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If match with specific product sales": {
+      "main": [
+        [
+          {
+            "node": "Update User quota",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-09-03T13:27:06.083Z",
+  "id": "X1RYybk5qmMB4inK",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "User Registration Webhook",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "get-new-signup",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        96,
+        96
+      ],
+      "id": "7f2dfdad-25e9-43e2-b6eb-eb7b182a70a7",
+      "name": "Receive newsignup from Ezycourse",
+      "webhookId": "fff3dc85-3ba8-4454-b7fa-b80194e410cd"
+    },
+    {
+      "parameters": {
+        "tableId": "users",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "name",
+              "fieldValue": "={{ $json.body.parseJson().name }}"
+            },
+            {
+              "fieldId": "email",
+              "fieldValue": "={{ $json.body.parseJson().email }}"
+            },
+            {
+              "fieldId": "role",
+              "fieldValue": "user"
+            },
+            {
+              "fieldId": "role_level",
+              "fieldValue": "20"
+            },
+            {
+              "fieldId": "ezycourse_id",
+              "fieldValue": "={{ $json.body.parseJson().id }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        416,
+        96
+      ],
+      "id": "fba0cdd1-110c-4a82-8379-b266846d3cb5",
+      "name": "Add user in supabase DB",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "new-product-enrollment",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        64,
+        304
+      ],
+      "id": "92c0887d-c1a1-41b5-a4cd-7b983e7be598",
+      "name": "New Product Enrollment",
+      "webhookId": "233cf683-8785-4399-b2cf-e034463d129a"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "users",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "ezycourse_id",
+              "condition": "eq",
+              "keyValue": "={{ $json.body.parseJson().id }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "quota",
+              "fieldValue": "100"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        736,
+        288
+      ],
+      "id": "7201e894-030c-4931-9841-e4b77591ea88",
+      "name": "Update User quota",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "5f1e0533-517f-49dc-b517-2055952f28c0",
+              "leftValue": "={{ $json.body.parseJson().product_id }}",
+              "rightValue": 1234,
+              "operator": {
+                "type": "number",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        416,
+        304
+      ],
+      "id": "b46f498c-6815-490d-a116-6320e138524e",
+      "name": "If match with specific product sales"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-09-03T13:27:06.093Z",
+      "updatedAt": "2025-09-03T13:27:06.093Z",
+      "role": "workflow:owner",
+      "workflowId": "X1RYybk5qmMB4inK",
+      "projectId": "POhXKLALTFDZhVtj"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 2,
+  "updatedAt": "2025-09-05T15:24:38.000Z",
+  "versionId": "3771134b-d382-434e-8e95-e2f5a7db6722"
+}
