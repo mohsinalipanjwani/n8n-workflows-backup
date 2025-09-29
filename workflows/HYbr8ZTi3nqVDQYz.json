@@ -1,0 +1,202 @@
+{
+  "active": false,
+  "connections": {
+    "Clean the markdown into text": {
+      "main": [
+        [
+          {
+            "node": "Log the question and answer into the sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When Executed by Parent workflow": {
+      "main": [
+        [
+          {
+            "node": "Clean the markdown into text",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-09-12T11:03:13.694Z",
+  "id": "HYbr8ZTi3nqVDQYz",
+  "isArchived": false,
+  "meta": null,
+  "name": "Log Question and Answers into Sheet",
+  "nodes": [
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -176,
+        -16
+      ],
+      "id": "11e58149-d437-4b11-b5b8-6a1a2f2e6fd4",
+      "name": "When Executed by Parent workflow"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4O-MINI"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "={{ $json.output }}"
+            },
+            {
+              "content": "Convert the input into clean plain text. Remove all line breaks, emojis, icons, markdown formatting, and extra spaces. Return a single continuous paragraph suitable for saving in Google Sheets",
+              "role": "system"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        48,
+        -16
+      ],
+      "id": "91d6e567-70e7-40a8-8935-1be3056c46fc",
+      "name": "Clean the markdown into text",
+      "credentials": {
+        "openAiApi": {
+          "id": "Xfd0MFwxSjT9x3PY",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1jry6bmxvGSBZYH6YfDDGlozefRaXQzT2s1csvQZHaN0",
+          "mode": "list",
+          "cachedResultName": "Praxisinstitut Naturmedizin Logs",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1jry6bmxvGSBZYH6YfDDGlozefRaXQzT2s1csvQZHaN0/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1jry6bmxvGSBZYH6YfDDGlozefRaXQzT2s1csvQZHaN0/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "User ID": "={{ $('When Executed by Parent workflow').item.json.userId }}",
+            "Question": "={{ $('When Executed by Parent workflow').item.json.question }}",
+            "Answer": "={{ $json.message.content }}",
+            "Source": "=Document Name: {{ $('When Executed by Parent workflow').item.json.outputSource.document_name }} - {{ $('When Executed by Parent workflow').item.json.outputSource.document_type }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "User ID",
+              "displayName": "User ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Question",
+              "displayName": "Question",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Answer",
+              "displayName": "Answer",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Source",
+              "displayName": "Source",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        464,
+        -16
+      ],
+      "id": "190dd9df-67e6-459a-ac57-3998322cc031",
+      "name": "Log the question and answer into the sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "3YNoMfmlOszexkpL",
+          "name": "Google Sheets account 2"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "When Executed by Parent workflow": [
+      {
+        "json": {
+          "output": "Dr. Hartmut Fischer is an acclaimed figure in the sphere of Dimethyl sulfoxide (DMSO) research. He has dedicated a significant portion of his career to enhancing our understanding of DMSO and its multitude of potential applications. His contributions to the field extend across diverse mediums, incorporating videos, e-books, webinars, and seminars to provide comprehensive information on the practical application, handling, and effects of DMSO.\n\n&nbsp;\n\n#### 🔍 **Key Findings:**\n\n&nbsp;\n\n• **Dr. Fischer and DMSO:** For over two decades, Fischer has been immersed in research and applications of DMSO, attributing therapeutic successes largely to this compound's versatility.\n\n&nbsp;\n\n• **Educational Initiatives:** Fischer is renowned for his efforts in widening the breadth of DMSO's recognition. His book detailing the intricacies of DMSO has been published in six languages and has amassed over 150,000 purchases.\n\n&nbsp;\n\n• **Advocacy and Promotion:** Dr. Fischer has facilitated thousands of positive experiences with DMSO through bespoke seminars and freely available educational materials on DMSO usage.\n\n&nbsp;\n\n#### 📚 **Additional Details:**\n\n&nbsp;\n\nDr. Fischer's journey began with the observation that cells flourished in nutrient solutions containing DMSO. This discovery originated in the early 1960s and marked the start of a revolutionary period of study into DMSO's unique properties. Furthermore, Fischer's innovative use of DMSO as an extraction fluid for plants and herbs has expanded its potential applications. His ceaseless dedication has undoubtedly paved the way for substantial progress in DMSO research and usage.\n\n&nbsp;\n\n**💡 Need more information?** I can search for more specific details!",
+          "outputSource": {
+            "document_id": 0,
+            "original_id": "0_0",
+            "document_type": "transcription",
+            "document_name": "Hartmut Fischer DMSO research",
+            "created_at": "2025-08-19 11:36:42.771014"
+          },
+          "userId": "123",
+          "question": "Who is Dr. Hartmut Fischer and what is his contribution to DMSO research?"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-09-12T11:03:13.706Z",
+      "updatedAt": "2025-09-12T11:03:13.706Z",
+      "role": "workflow:owner",
+      "workflowId": "HYbr8ZTi3nqVDQYz",
+      "projectId": "POhXKLALTFDZhVtj"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-09-12T11:21:13.000Z",
+  "versionId": "75ab7515-41e7-42e0-a658-1b5c65cf9c99"
+}
