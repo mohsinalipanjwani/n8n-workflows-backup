@@ -1,0 +1,188 @@
+{
+  "active": false,
+  "connections": {
+    "Webhook Test": {
+      "main": [
+        [
+          {
+            "node": "Debug Data Structure",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Debug Data Structure": {
+      "main": [
+        [
+          {
+            "node": "Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "PDF Upload Webhook": {
+      "main": [
+        [
+          {
+            "node": "File Validation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "File Validation": {
+      "main": [
+        [
+          {
+            "node": "PDF Text Extraction",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "PDF Text Extraction": {
+      "main": [
+        [
+          {
+            "node": "Success Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-07-29T15:13:10.574Z",
+  "id": "6aVs4DAEsl2hg4v1",
+  "isArchived": true,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow 2",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "test-upload",
+        "options": {}
+      },
+      "id": "1a8c2e77-55a5-4683-9066-9f6dca7b86ee",
+      "name": "Webhook Test",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -304,
+        -256
+      ],
+      "webhookId": "60f2aca2-b245-46a5-8c49-8d98c5c10aa9"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Just return everything we receive to understand the structure\nreturn {\n  json_data: $json,\n  binary_data: $binary ? Object.keys($binary) : 'no binary data',\n  binary_details: $binary\n};"
+      },
+      "id": "d9aa1402-ce7e-4605-922a-836d79036612",
+      "name": "Debug Data Structure",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -112,
+        -256
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify($json, null, 2) }}",
+        "options": {}
+      },
+      "id": "7bfb12ca-b0cf-427e-9c38-cdcc17659f68",
+      "name": "Response",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        96,
+        -256
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "upload-pdf",
+        "options": {}
+      },
+      "id": "f10b8376-623e-43ee-b1a3-4fd5eff9e5c6",
+      "name": "PDF Upload Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        224,
+        -128
+      ],
+      "webhookId": "368e2f9d-8bca-4aae-bcaa-1b26e3b57bbe"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Access the binary data correctly\nconst binaryData = $binary;\n\n// Check if we have any binary data\nif (!binaryData || Object.keys(binaryData).length === 0) {\n  throw new Error('No files uploaded. Please upload a PDF file.');\n}\n\n// Get the uploaded file (first file in binary data)\nconst fileKey = Object.keys(binaryData)[0]; // Should be 'pdfFile' or similar\nconst uploadedFile = binaryData[fileKey];\n\nif (!uploadedFile) {\n  throw new Error('File upload failed. No file data found.');\n}\n\n// Parse file size string (e.g., \"87.1 kB\" -> bytes)\nlet fileSizeBytes = 0;\nconst fileSizeStr = uploadedFile.fileSize || '0 B';\n\nif (fileSizeStr.includes('kB')) {\n  fileSizeBytes = Math.round(parseFloat(fileSizeStr) * 1024);\n} else if (fileSizeStr.includes('MB')) {\n  fileSizeBytes = Math.round(parseFloat(fileSizeStr) * 1024 * 1024);\n} else if (fileSizeStr.includes('GB')) {\n  fileSizeBytes = Math.round(parseFloat(fileSizeStr) * 1024 * 1024 * 1024);\n} else if (fileSizeStr.includes('B')) {\n  fileSizeBytes = Math.round(parseFloat(fileSizeStr));\n}\n\n// Validate file size (50MB limit)\nconst maxSize = 50 * 1024 * 1024;\nif (fileSizeBytes > maxSize) {\n  const fileSizeMB = Math.round(fileSizeBytes / 1024 / 1024 * 100) / 100;\n  throw new Error(`File size ${fileSizeMB}MB exceeds 50MB limit`);\n}\n\n// Validate file type\nif (uploadedFile.mimeType !== 'application/pdf') {\n  throw new Error(`Invalid file type: ${uploadedFile.mimeType}. Only PDF files are allowed.`);\n}\n\n// Validate filename\nif (!uploadedFile.fileName || !uploadedFile.fileName.toLowerCase().endsWith('.pdf')) {\n  throw new Error(`Invalid filename: ${uploadedFile.fileName}. Expected .pdf extension`);\n}\n\n// Generate upload ID\nconst uploadId = `pdf_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;\n\nreturn {\n  uploadId,\n  filename: uploadedFile.fileName,\n  fileSize: fileSizeBytes,\n  fileSizeMB: Math.round(fileSizeBytes / 1024 / 1024 * 100) / 100,\n  fileSizeDisplay: uploadedFile.fileSize,\n  mimeType: uploadedFile.mimeType,\n  fileExtension: uploadedFile.fileExtension,\n  uploadTimestamp: new Date().toISOString(),\n  status: 'validated'\n};"
+      },
+      "id": "9958070f-078a-4e60-8797-4291416b8429",
+      "name": "File Validation",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        432,
+        -128
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Simulated PDF text extraction\n// In production, you would use a proper PDF extraction method\n\nconst fileData = $json;\n\n// Simulate extracting text from PDF\nconst extractedText = `Medical Document: ${fileData.filename}\n\nHypertension Management Guidelines\n\n1. INTRODUCTION\nHypertension affects millions worldwide. It is defined as systolic BP ≥130 mmHg or diastolic BP ≥80 mmHg.\n\n2. RISK FACTORS\n- Age and family history\n- Obesity and physical inactivity  \n- High sodium intake\n- Smoking and excessive alcohol\n- Diabetes and sleep apnea\n\n3. SYMPTOMS\nOften asymptomatic (\"silent killer\"), but may include:\n- Headaches and shortness of breath\n- Nosebleeds and chest pain\n- Dizziness and visual changes\n\n4. TREATMENT\n4.1 Lifestyle Modifications:\n- DASH diet with reduced sodium\n- Regular exercise (150 min/week)\n- Weight management\n- Stress reduction\n\n4.2 Medications:\n- ACE inhibitors (lisinopril, enalapril)\n- ARBs (losartan, valsartan)\n- Calcium channel blockers (amlodipine)\n- Diuretics (hydrochlorothiazide)\n\n5. MONITORING\n- Regular BP measurements\n- Annual lab work\n- Kidney function assessment\n- Cardiovascular risk evaluation`;\n\n// Calculate text metrics\nconst words = extractedText.trim().split(/\\s+/);\nconst wordCount = words.length;\nconst charCount = extractedText.length;\nconst estimatedPages = Math.ceil(wordCount / 300);\n\nreturn {\n  uploadId: fileData.uploadId,\n  filename: fileData.filename,\n  fileSize: fileData.fileSize,\n  fileSizeMB: fileData.fileSizeMB,\n  uploadTimestamp: fileData.uploadTimestamp,\n  extractedText,\n  wordCount,\n  charCount,\n  estimatedPages,\n  status: 'text_extracted'\n};"
+      },
+      "id": "b2d27ee7-8df0-49de-83f3-fe560796d523",
+      "name": "PDF Text Extraction",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        624,
+        -128
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"success\": true,\n  \"uploadId\": \"{{ $json.uploadId }}\",\n  \"filename\": \"{{ $json.filename }}\",\n  \"fileSize\": \"{{ $json.fileSizeMB }}MB\",\n  \"status\": \"{{ $json.status }}\",\n  \"textMetrics\": {\n    \"wordCount\": {{ $json.wordCount }},\n    \"charCount\": {{ $json.charCount }},\n    \"estimatedPages\": {{ $json.estimatedPages }}\n  },\n  \"message\": \"PDF processed successfully\"\n}",
+        "options": {}
+      },
+      "id": "6187b683-2992-4f26-9a3d-37477c581da6",
+      "name": "Success Response",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        832,
+        -128
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-07-29T15:13:10.589Z",
+      "updatedAt": "2025-07-29T15:13:10.589Z",
+      "role": "workflow:owner",
+      "workflowId": "6aVs4DAEsl2hg4v1",
+      "projectId": "POhXKLALTFDZhVtj"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-09-15T08:31:12.000Z",
+  "versionId": "ab561f98-2beb-42fc-8ca7-e87c0bf96769"
+}
