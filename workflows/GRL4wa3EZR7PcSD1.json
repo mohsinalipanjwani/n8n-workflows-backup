@@ -1,0 +1,421 @@
+{
+  "active": false,
+  "connections": {
+    "Merge1": {
+      "main": [
+        [
+          {
+            "node": "Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Response": {
+      "main": [
+        [
+          {
+            "node": "Output",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "chatInput": {
+      "main": [
+        [
+          {
+            "node": "Question and Answer Chain",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Retrive sources",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Retrive sources": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Qdrant Vector Store-Retreive",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI4": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Retrive sources",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Vector Store Retriever": {
+      "ai_retriever": [
+        [
+          {
+            "node": "Question and Answer Chain",
+            "type": "ai_retriever",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Question and Answer Chain": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "chatInput",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Question and Answer Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Qdrant Vector Store-Retreive": {
+      "ai_vectorStore": [
+        [
+          {
+            "node": "Vector Store Retriever",
+            "type": "ai_vectorStore",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-08-12T13:48:01.053Z",
+  "id": "GRL4wa3EZR7PcSD1",
+  "isArchived": true,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow 4",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "b9387756-7091-4627-9bff-be1d18a56335",
+      "name": "When chat message received",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "position": [
+        -1360,
+        -704
+      ],
+      "webhookId": "c9460030-9e23-41c4-9fcd-6c4c7fadf784",
+      "typeVersion": 1.1
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "39164daf-eb3e-4c1a-a456-ff6b3e820195",
+      "name": "Question and Answer Chain",
+      "type": "@n8n/n8n-nodes-langchain.chainRetrievalQa",
+      "position": [
+        -784,
+        -512
+      ],
+      "typeVersion": 1.5
+    },
+    {
+      "parameters": {
+        "topK": 5
+      },
+      "id": "5a60e9af-6d51-4bb8-846a-eab8c6a36b65",
+      "name": "Vector Store Retriever",
+      "type": "@n8n/n8n-nodes-langchain.retrieverVectorStore",
+      "position": [
+        -752,
+        -288
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "b8cfd462-0ce4-4c3b-b7ed-a67565b9296c",
+      "name": "Embeddings OpenAI",
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "position": [
+        -880,
+        96
+      ],
+      "typeVersion": 1.2,
+      "credentials": {
+        "openAiApi": {
+          "id": "Xfd0MFwxSjT9x3PY",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "240f83ab-b6bd-4419-b3d0-b67e3c664c87",
+      "name": "Embeddings OpenAI4",
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "position": [
+        -752,
+        -656
+      ],
+      "typeVersion": 1.2,
+      "credentials": {
+        "openAiApi": {
+          "id": "Xfd0MFwxSjT9x3PY",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineAll",
+        "options": {}
+      },
+      "id": "e4ed9349-9f15-4a32-8146-6b2a95c12b50",
+      "name": "Merge1",
+      "type": "n8n-nodes-base.merge",
+      "position": [
+        -272,
+        -640
+      ],
+      "typeVersion": 3.1
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "document.metadata.file_id"
+            },
+            {
+              "fieldToAggregate": "document.metadata.file_name"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "4999dc24-cd8c-40da-b39c-0f2d3d827d47",
+      "name": "Aggregate",
+      "type": "n8n-nodes-base.aggregate",
+      "position": [
+        -448,
+        -848
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "282b9bed-e5fd-4edb-95d5-682bcc08e070",
+              "name": "chatInput",
+              "type": "string",
+              "value": "={{ $json.chatInput }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "a2f72678-fda3-4147-a225-5a4aa5fdcb59",
+      "name": "chatInput",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        -1104,
+        -704
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "mode": "load",
+        "qdrantCollection": {
+          "__rl": true,
+          "value": "dmso",
+          "mode": "list",
+          "cachedResultName": "dmso"
+        },
+        "prompt": "={{ $json.chatInput }}",
+        "topK": 5,
+        "options": {}
+      },
+      "id": "8c3804a9-bdda-45a4-9900-3fd88a4dcc5c",
+      "name": "Retrive sources",
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreQdrant",
+      "position": [
+        -768,
+        -848
+      ],
+      "typeVersion": 1.1,
+      "credentials": {
+        "qdrantApi": {
+          "id": "Zt0fgW0XUcHXkstn",
+          "name": "QdrantApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b296c92b-d9ee-4322-b972-d1069d01feb8",
+              "name": "output",
+              "type": "string",
+              "value": "={{ $('Question and Answer Chain').item.json.response }}\n\nSources: {{ (JSON.stringify($json.unique_file_names)) }},"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "af166faf-e210-431f-a2bb-978651665e1f",
+      "name": "Output",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        160,
+        -640
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "jsCode": "const item = $input.item.json;\n\n// Creiamo Set per rimuovere duplicati\nconst uniqueFileIds = Array.from(new Set(item.file_id));\nconst uniqueFileNames = Array.from(new Set(item.file_name));\n\n// Ritorniamo un item con i valori univoci\nreturn [\n  {\n    json: {\n      unique_file_ids: uniqueFileIds,\n      unique_file_names: uniqueFileNames\n    }\n  }\n];\n"
+      },
+      "id": "c18406d5-6682-4e94-8c0d-c29daf73b6e4",
+      "name": "Response",
+      "type": "n8n-nodes-base.code",
+      "position": [
+        -32,
+        -640
+      ],
+      "typeVersion": 2
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -1040,
+        -304
+      ],
+      "id": "9343dd84-b015-4e84-ad1b-8eb8631f012d",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "Xfd0MFwxSjT9x3PY",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "qdrantCollection": {
+          "__rl": true,
+          "mode": "list",
+          "value": "negozio-emporio-verde",
+          "cachedResultName": "negozio-emporio-verde"
+        },
+        "options": {}
+      },
+      "id": "41c89ed4-3b1b-4232-be6e-21a79b8502fb",
+      "name": "Qdrant Vector Store-Retreive",
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreQdrant",
+      "position": [
+        -864,
+        -112
+      ],
+      "typeVersion": 1.1,
+      "credentials": {
+        "qdrantApi": {
+          "id": "Zt0fgW0XUcHXkstn",
+          "name": "QdrantApi account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-08-12T13:48:01.064Z",
+      "updatedAt": "2025-08-12T13:48:01.064Z",
+      "role": "workflow:owner",
+      "workflowId": "GRL4wa3EZR7PcSD1",
+      "projectId": "POhXKLALTFDZhVtj"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-08-12T16:02:19.000Z",
+  "versionId": "81fad61b-2ffe-4db6-a0f7-043b9911dc0f"
+}
