@@ -1,0 +1,123 @@
+{
+  "active": false,
+  "connections": {
+    "Check the count of total message": {
+      "main": [
+        [
+          {
+            "node": "Update total count of message in chat",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Check the count of total message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-09-12T11:23:38.381Z",
+  "id": "w0dB34qZZ432RjUI",
+  "isArchived": false,
+  "meta": null,
+  "name": "Update message count in chat",
+  "nodes": [
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "8340f9a0-5221-4c4d-94a1-4e90b10f6dcf",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "chats",
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        384,
+        0
+      ],
+      "id": "b20ecfef-011f-4c59-a668-0fefd17fb669",
+      "name": "Check the count of total message",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "chats",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "={{ $json.id }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "total_messages",
+              "fieldValue": "={{ $json.total_messages + 2 }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        800,
+        0
+      ],
+      "id": "021d5e89-4538-4235-a6af-3810a5d0043b",
+      "name": "Update total count of message in chat",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-09-12T11:23:38.390Z",
+      "updatedAt": "2025-09-12T11:23:38.390Z",
+      "role": "workflow:owner",
+      "workflowId": "w0dB34qZZ432RjUI",
+      "projectId": "POhXKLALTFDZhVtj"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-09-12T11:38:59.000Z",
+  "versionId": "dbd94784-ce8e-4b62-9a41-7447ca4148dd"
+}
