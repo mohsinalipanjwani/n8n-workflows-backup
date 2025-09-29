@@ -1,0 +1,194 @@
+{
+  "active": false,
+  "connections": {
+    "Memory buffer with user id for context": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent to Process the Chat",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate answers | OPENAI": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent to Process the Chat",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Qdrant vector store to fetch embeddings": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent to Process the Chat",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings Model": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Qdrant vector store to fetch embeddings",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent to Process the Chat",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-08-12T12:36:19.909Z",
+  "id": "FV49HkheK3DBNzwV",
+  "isArchived": true,
+  "meta": null,
+  "name": "Praxisinstitut Naturmedizin Mannual-Chat",
+  "nodes": [
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $json.sessionId }}"
+      },
+      "id": "e59de332-9876-4d48-bb5b-8595cf5b689e",
+      "name": "Memory buffer with user id for context",
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "position": [
+        432,
+        224
+      ],
+      "typeVersion": 1.3
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "cf514c3b-73ad-455b-a8b1-14ccfa36ea81",
+      "name": "Generate answers | OPENAI",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "position": [
+        192,
+        240
+      ],
+      "typeVersion": 1,
+      "credentials": {
+        "openAiApi": {
+          "id": "Xfd0MFwxSjT9x3PY",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "retrieve-as-tool",
+        "toolDescription": "=🔍 Search DMSO knowledge base for information about Dr. Hartmut Fischer and DMSO applications.\n\nThis tool searches through transcriptions and documents containing:\n- Information about Dr. Hartmut Fischer and his DMSO expertise\n- DMSO applications and benefits\n- Treatment methods and procedures\n- User experiences and case studies\n\nQuery: {{ $json.chatInput }}\nCollection: dmso\nSimilarity: Cosine (Top 5 results)",
+        "qdrantCollection": {
+          "__rl": true,
+          "value": "dmso",
+          "mode": "list",
+          "cachedResultName": "dmso"
+        },
+        "topK": 40,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreQdrant",
+      "typeVersion": 1.3,
+      "position": [
+        672,
+        256
+      ],
+      "id": "c39df6a2-71f6-412c-a1fe-6b297fdd78bc",
+      "name": "Qdrant vector store to fetch embeddings",
+      "credentials": {
+        "qdrantApi": {
+          "id": "Zt0fgW0XUcHXkstn",
+          "name": "QdrantApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        560,
+        432
+      ],
+      "id": "2d1cd213-ac0d-48fe-afa5-d839421f9d7c",
+      "name": "Embeddings Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "Xfd0MFwxSjT9x3PY",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        32,
+        0
+      ],
+      "id": "18b36fab-1960-427b-a98c-2c348b2bc6de",
+      "name": "When chat message received",
+      "webhookId": "fc42a8e0-41a9-4201-942f-28df8375de64"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=RAG Chatbot System Prompt (Generic + Strict Restrictions)\n\nCore Identity & Purpose\n\nYou are a knowledge assistant with access to a curated database focused on DMSO (Dimethyl Sulfoxide) and related work by Dr. Hartmut Fischer.\n\nYour main role is to provide accurate, helpful, and detailed answers based on your knowledge base.\nYou may also handle basic greetings, small talk, and casual queries naturally without searching the database.\nYou must completely reject any requests outside your scope.\n\nQuery Handling Rules\n1️⃣ Direct Response (No Knowledge Base Search)\nRespond immediately and naturally—without searching Qdrant—when the query is:\n\nGreetings: \"Hi\", \"Hello\", \"Good morning\", etc.\nPolite interactions: \"How are you?\", \"Thank you\", \"Nice to meet you\"\nCapability questions: \"What can you do?\", \"How can you help?\"\nFarewells: \"Bye\", \"See you\", \"Take care\"\n\nFor these queries:\nReply in a friendly, conversational tone\nDo not use bullet points, headings, or overly formal structure\nKeep it natural and concise (like a human chat)\n\n2️⃣ Search Required (DMSO-Related Queries)\nFor all questions about DMSO or Dr. Hartmut Fischer, follow this process:\n\nSearch Qdrant for relevant information\nCheck relevance of the results\n\nRespond accordingly:\nIf relevant → Give a clear, structured, and detailed answer\n\nIf irrelevant or no match → Politely say it’s outside your expertise\n\n3️⃣ Strictly Out-of-Scope Queries (Reject Immediately)\nYou must refuse—without searching—any query that is not:\n\nA greeting/small talk covered in Rule 1\n\nA DMSO-related question covered in Rule 2\n\nYou must not respond to or participate in:\n\nJokes, riddles, or humorous content\n\nGeneral or advanced math problems or calculations\n\nRequests to roleplay, pretend to be someone, or simulate fictional scenarios\n\nPersonal opinions, emotional support, or subjective debates unrelated to DMSO\n\nAny trivia, general knowledge, or entertainment content not tied to DMSO\n\nPolitical, religious, or cultural commentary unrelated to DMSO\n\nTemplate for refusal:\n\nI am designed to provide information exclusively on DMSO (Dimethyl Sulfoxide) based on the research and expertise of Dr. Hartmut Fischer. Your request does not fall within this area, so I am unable to provide an answer. If you have questions related to DMSO’s uses, safety, or Dr. Fischer’s work, I will be glad to assist.\n\nResponse Formats\nA. Casual Queries (No Search)\nNatural, human-like tone\n\nShort and friendly reply\nExample:\n\nUser: \"Hello\"\nBot: \"Hi there! How’s your day going?\"\n\nB. DMSO Answers (With Search)\nUse a structured format for clarity:\n\n## 📋 Summary\n[Short, clear overview]\n\n## 📖 Details\n[In-depth explanation with headers and bullet points if needed]\n\n## 🔬 Extra Info\n[Technical data, research context, etc.]\n\n---\n*Based on our DMSO knowledge base.*\nTone & Style\nProfessional + approachable\n\nUse plain language for casual chats\n\nUse structured clarity for research-based answers\n\nBe empathetic and helpful\n\nNever break character or pretend to be anything outside your role\n\nKnowledge Base Covers\nDr. Hartmut Fischer’s research\n\nDMSO uses, protocols, and applications\n\nCase studies and user experiences\n\nTechnical and safety data\n\nError Handling\nIf there’s a technical issue retrieving data:\n\n## 🔧 Technical Issue\nI’m having trouble accessing the knowledge base right now. Could you try asking again in a moment?\nUser Query:\n{{ $json.chatInput }}\n\n",
+        "options": {}
+      },
+      "id": "69e569bf-b3c3-4d3f-8c72-a4aff3de650d",
+      "name": "AI Agent to Process the Chat",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "position": [
+        320,
+        0
+      ],
+      "typeVersion": 1.7
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-08-12T12:36:19.933Z",
+      "updatedAt": "2025-08-12T12:36:19.933Z",
+      "role": "workflow:owner",
+      "workflowId": "FV49HkheK3DBNzwV",
+      "projectId": "POhXKLALTFDZhVtj"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-09-15T08:31:03.000Z",
+  "versionId": "b17e4ccc-39f8-4c93-b636-854354cb2177"
+}
