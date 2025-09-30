@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "On clicking 'execute'": {
       "main": [
@@ -713,7 +713,7 @@
       "parameters": {
         "workflowId": {
           "__rl": true,
-          "value": "=",
+          "value": "={{ $workflow.id }}",
           "mode": "id"
         },
         "workflowInputs": {
@@ -839,9 +839,13 @@
       "projectId": "POhXKLALTFDZhVtj"
     }
   ],
-  "staticData": null,
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    }
+  },
   "tags": [],
-  "triggerCount": 0,
-  "updatedAt": "2025-09-29T08:21:05.000Z",
-  "versionId": "96982585-2053-4ebe-b802-644435064ca2"
+  "triggerCount": 1,
+  "updatedAt": "2025-09-29T08:23:22.000Z",
+  "versionId": "97e665bb-018b-4f49-b9dd-bb98a40282e0"
 }
