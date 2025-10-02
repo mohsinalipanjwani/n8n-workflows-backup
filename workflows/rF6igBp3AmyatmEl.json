@@ -1,0 +1,158 @@
+{
+  "active": false,
+  "connections": {
+    "Webhook - Voice Interface": {
+      "main": [
+        [
+          {
+            "node": "Setup OpenAI Realtime Session",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Setup OpenAI Realtime Session": {
+      "main": [
+        [
+          {
+            "node": "Voice Assistant UI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Voice Assistant UI": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-10-01T09:24:15.330Z",
+  "id": "rF6igBp3AmyatmEl",
+  "isArchived": false,
+  "meta": null,
+  "name": "Real-Time Voice Conversation Agent with Qdrant",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "voice-agent",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "74cffaac-44ca-46ba-9ed1-caf8f511989a",
+      "name": "Webhook - Voice Interface",
+      "type": "n8n-nodes-base.webhook",
+      "position": [
+        -528,
+        -64
+      ],
+      "typeVersion": 2.1,
+      "webhookId": "cb38f015-cc94-4c97-a491-2b508fa62a74"
+    },
+    {
+      "parameters": {
+        "url": "https://api.openai.com/v1/realtime/sessions",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openAiApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"gpt-4o-realtime-preview-2024-12-17\",\n  \"modalities\": [\"text\", \"audio\"],\n  \"instructions\": \"You are a helpful AI assistant with access to a knowledge base. When users ask questions, provide accurate and conversational responses. If you need information from the knowledge base, say so clearly. Speak naturally and maintain context throughout the conversation.\",\n  \"voice\": \"alloy\",\n  \"input_audio_format\": \"pcm16\",\n  \"output_audio_format\": \"pcm16\",\n  \"input_audio_transcription\": {\n    \"model\": \"whisper-1\"\n  },\n  \"turn_detection\": {\n    \"type\": \"server_vad\",\n    \"threshold\": 0.5,\n    \"prefix_padding_ms\": 300,\n    \"silence_duration_ms\": 500\n  },\n  \"tools\": [\n    {\n      \"type\": \"function\",\n      \"name\": \"search_knowledge_base\",\n      \"description\": \"Search the Qdrant knowledge base for relevant information\",\n      \"parameters\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"query\": {\n            \"type\": \"string\",\n            \"description\": \"The search query\"\n          }\n        },\n        \"required\": [\"query\"]\n      }\n    }\n  ],\n  \"temperature\": 0.8,\n  \"max_response_output_tokens\": 4096\n}",
+        "options": {}
+      },
+      "id": "452ef0ad-31b8-49a4-b579-96892ec84611",
+      "name": "Setup OpenAI Realtime Session",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        -320,
+        -64
+      ],
+      "typeVersion": 4.2,
+      "credentials": {
+        "openAiApi": {
+          "id": "Xfd0MFwxSjT9x3PY",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://YOUR-QDRANT-CLUSTER.cloud.qdrant.io/collections/YOUR_COLLECTION/points/search",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"vector\": {{ $json.embedding }},\n  \"limit\": 5,\n  \"with_payload\": true\n}",
+        "options": {}
+      },
+      "id": "3fd38b97-d3e8-4efb-9b68-7178af4a33b6",
+      "name": "Search Qdrant Knowledge Base",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        448,
+        16
+      ],
+      "typeVersion": 4.2
+    },
+    {
+      "parameters": {
+        "html": "=<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>AI Voice Assistant</title>\n    <style>\n        * {\n            margin: 0;\n            padding: 0;\n            box-sizing: border-box;\n        }\n        body {\n            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;\n            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);\n            min-height: 100vh;\n            display: flex;\n            flex-direction: column;\n            align-items: center;\n            justify-content: center;\n            color: white;\n            padding: 20px;\n        }\n        .container {\n            max-width: 800px;\n            width: 100%;\n            background: rgba(255, 255, 255, 0.1);\n            backdrop-filter: blur(10px);\n            border-radius: 20px;\n            padding: 40px;\n            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);\n        }\n        h1 {\n            text-align: center;\n            margin-bottom: 30px;\n            font-size: 2.5em;\n        }\n        .voice-orb {\n            width: 150px;\n            height: 150px;\n            border-radius: 50%;\n            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);\n            margin: 0 auto 30px;\n            display: flex;\n            align-items: center;\n            justify-content: center;\n            cursor: pointer;\n            transition: transform 0.3s ease, box-shadow 0.3s ease;\n            box-shadow: 0 0 30px rgba(102, 126, 234, 0.5);\n        }\n        .voice-orb:hover {\n            transform: scale(1.05);\n            box-shadow: 0 0 50px rgba(102, 126, 234, 0.8);\n        }\n        .voice-orb.active {\n            animation: pulse 1.5s infinite;\n        }\n        @keyframes pulse {\n            0%, 100% { transform: scale(1); box-shadow: 0 0 30px rgba(102, 126, 234, 0.5); }\n            50% { transform: scale(1.1); box-shadow: 0 0 60px rgba(102, 126, 234, 1); }\n        }\n        .mic-icon {\n            font-size: 60px;\n        }\n        .status {\n            text-align: center;\n            margin-bottom: 30px;\n            font-size: 1.2em;\n            min-height: 30px;\n        }\n        .transcript-container {\n            background: rgba(255, 255, 255, 0.1);\n            border-radius: 15px;\n            padding: 20px;\n            max-height: 400px;\n            overflow-y: auto;\n            margin-bottom: 20px;\n        }\n        .message {\n            margin: 10px 0;\n            padding: 15px;\n            border-radius: 10px;\n            animation: fadeIn 0.3s ease;\n        }\n        @keyframes fadeIn {\n            from { opacity: 0; transform: translateY(10px); }\n            to { opacity: 1; transform: translateY(0); }\n        }\n        .user-message {\n            background: rgba(102, 126, 234, 0.3);\n            text-align: right;\n        }\n        .ai-message {\n            background: rgba(118, 75, 162, 0.3);\n            text-align: left;\n        }\n        .current-message {\n            opacity: 0.7;\n            font-style: italic;\n        }\n        .speaker {\n            font-weight: bold;\n            margin-bottom: 5px;\n        }\n    </style>\n</head>\n<body>\n    <div class=\"container\">\n        <h1>🎙️ Voice AI Assistant</h1>\n        <div class=\"voice-orb\" id=\"voiceOrb\" onclick=\"toggleConnection()\">\n            <div class=\"mic-icon\">🎤</div>\n        </div>\n        <div class=\"status\" id=\"status\">Click the microphone to start</div>\n        <div class=\"transcript-container\" id=\"transcriptContainer\">\n            <div id=\"messages\"></div>\n            <div id=\"currentUser\" class=\"message user-message current-message\" style=\"display:none;\"></div>\n            <div id=\"currentAI\" class=\"message ai-message current-message\" style=\"display:none;\"></div>\n        </div>\n    </div>\n\n    <script>\n        const EPHEMERAL_KEY = '{{ $json.client_secret.value }}';\n        let peerConnection = null;\n        let dataChannel = null;\n        let audioElement = null;\n        let isConnected = false;\n\n        async function toggleConnection() {\n            if (isConnected) {\n                disconnect();\n            } else {\n                await connect();\n            }\n        }\n\n        async function connect() {\n            try {\n                document.getElementById('status').textContent = 'Connecting...';\n                document.getElementById('voiceOrb').classList.add('active');\n\n                // Setup WebRTC\n                peerConnection = new RTCPeerConnection();\n\n                // Setup audio output\n                audioElement = document.createElement('audio');\n                audioElement.autoplay = true;\n                peerConnection.ontrack = (e) => {\n                    audioElement.srcObject = e.streams[0];\n                };\n\n                // Get microphone access\n                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });\n                stream.getTracks().forEach(track => {\n                    peerConnection.addTrack(track, stream);\n                });\n\n                // Setup data channel for transcripts\n                dataChannel = peerConnection.createDataChannel('oai-events');\n                dataChannel.onmessage = handleResponse;\n\n                // Create SDP offer\n                const offer = await peerConnection.createOffer();\n                await peerConnection.setLocalDescription(offer);\n\n                // Send offer to OpenAI\n                const model = 'gpt-4o-realtime-preview-2024-12-17';\n                const response = await fetch(\n                    `https://api.openai.com/v1/realtime?model=${model}`,\n                    {\n                        method: 'POST',\n                        headers: {\n                            'Authorization': `Bearer ${EPHEMERAL_KEY}`,\n                            'Content-Type': 'application/sdp'\n                        },\n                        body: offer.sdp\n                    }\n                );\n\n                const answer = await response.text();\n                await peerConnection.setRemoteDescription({\n                    type: 'answer',\n                    sdp: answer\n                });\n\n                isConnected = true;\n                document.getElementById('status').textContent = '🎧 Connected - Speak now!';\n                document.getElementById('voiceOrb').classList.add('active');\n            } catch (error) {\n                console.error('Connection error:', error);\n                document.getElementById('status').textContent = 'Connection failed. Please try again.';\n                document.getElementById('voiceOrb').classList.remove('active');\n            }\n        }\n\n        function disconnect() {\n            if (peerConnection) {\n                peerConnection.close();\n                peerConnection = null;\n            }\n            if (audioElement) {\n                audioElement.srcObject = null;\n            }\n            isConnected = false;\n            document.getElementById('status').textContent = 'Disconnected. Click to reconnect.';\n            document.getElementById('voiceOrb').classList.remove('active');\n        }\n\n        function handleResponse(event) {\n            try {\n                const data = JSON.parse(event.data);\n                const messagesDiv = document.getElementById('messages');\n\n                // Handle AI transcript deltas\n                if (data.type === 'response.audio_transcript.delta') {\n                    const currentAI = document.getElementById('currentAI');\n                    currentAI.style.display = 'block';\n                    currentAI.innerHTML = `<div class=\"speaker\">🤖 AI:</div>${currentAI.textContent + data.delta}`;\n                }\n\n                // Handle completed AI transcript\n                if (data.type === 'response.audio_transcript.done') {\n                    const currentAI = document.getElementById('currentAI');\n                    const newMessage = document.createElement('div');\n                    newMessage.className = 'message ai-message';\n                    newMessage.innerHTML = `<div class=\"speaker\">🤖 AI:</div>${data.transcript}`;\n                    messagesDiv.appendChild(newMessage);\n                    currentAI.style.display = 'none';\n                    currentAI.textContent = '';\n                    scrollToBottom();\n                }\n\n                // Handle user transcript deltas\n                if (data.type === 'conversation.item.input_audio_transcription.delta') {\n                    const currentUser = document.getElementById('currentUser');\n                    currentUser.style.display = 'block';\n                    currentUser.innerHTML = `<div class=\"speaker\">👤 You:</div>${currentUser.textContent + data.delta}`;\n                }\n\n                // Handle completed user transcript\n                if (data.type === 'conversation.item.input_audio_transcription.completed') {\n                    const currentUser = document.getElementById('currentUser');\n                    const newMessage = document.createElement('div');\n                    newMessage.className = 'message user-message';\n                    newMessage.innerHTML = `<div class=\"speaker\">👤 You:</div>${data.transcript}`;\n                    messagesDiv.appendChild(newMessage);\n                    currentUser.style.display = 'none';\n                    currentUser.textContent = '';\n                    scrollToBottom();\n                }\n            } catch (error) {\n                console.error('Error handling response:', error);\n            }\n        }\n\n        function scrollToBottom() {\n            const container = document.getElementById('transcriptContainer');\n            container.scrollTop = container.scrollHeight;\n        }\n    </script>\n</body>\n</html>"
+      },
+      "id": "cb0e0a0f-3e55-4333-bd0a-0b4d8b77b75d",
+      "name": "Voice Assistant UI",
+      "type": "n8n-nodes-base.html",
+      "position": [
+        -128,
+        -64
+      ],
+      "typeVersion": 1.2
+    },
+    {
+      "parameters": {
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Content-Type",
+                "value": "text/html"
+              }
+            ]
+          }
+        }
+      },
+      "id": "d398749f-619c-4429-81b8-a82dd8139659",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "position": [
+        80,
+        -64
+      ],
+      "typeVersion": 1.4
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-10-01T09:24:15.345Z",
+      "updatedAt": "2025-10-01T09:24:15.345Z",
+      "role": "workflow:owner",
+      "workflowId": "rF6igBp3AmyatmEl",
+      "projectId": "POhXKLALTFDZhVtj"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-10-01T09:24:15.330Z",
+  "versionId": "9171e0ce-c738-40a5-a4b8-a2856a9afcc0"
+}
