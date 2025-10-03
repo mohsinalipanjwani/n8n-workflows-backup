@@ -402,7 +402,7 @@
             {
               "id": "55872be0-e603-4dfc-b1ab-68729fd07300",
               "name": "source",
-              "value": "={{ $json.output.source }}",
+              "value": "={{ $json.source}}",
               "type": "object"
             },
             {
@@ -424,7 +424,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        3648,
+        4064,
         -32
       ],
       "id": "ae2da4cb-0116-463d-96fc-96df2f4a412c",
@@ -453,7 +453,7 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1.2,
       "position": [
-        4064,
+        4480,
         -32
       ],
       "id": "4108d338-eaea-4518-a5d7-06742d7d89f5",
@@ -482,7 +482,7 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1.2,
       "position": [
-        7968,
+        8384,
         -80
       ],
       "id": "c2389ad6-4184-4142-908d-321b39d66ae6",
@@ -610,7 +610,7 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.4,
       "position": [
-        9424,
+        9840,
         272
       ],
       "id": "4b3a72a8-4470-4b48-837f-45ee26a1d793",
@@ -643,7 +643,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        4000,
+        4416,
         256
       ],
       "id": "1ae50f3d-5ec6-4bef-9c7b-02ffa0838ac6",
@@ -670,7 +670,7 @@
       "type": "@elevenlabs/n8n-nodes-elevenlabs.elevenLabs",
       "typeVersion": 1,
       "position": [
-        4672,
+        5088,
         -96
       ],
       "id": "07285bf5-ecd4-4deb-9440-da3402602cf2",
@@ -743,7 +743,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        5104,
+        5520,
         -96
       ],
       "id": "05ce0a84-077b-4530-8dd2-be27df72ed60",
@@ -761,7 +761,7 @@
       "type": "n8n-nodes-base.s3",
       "typeVersion": 1,
       "position": [
-        5488,
+        5904,
         -96
       ],
       "id": "a000b1f0-5f9d-427f-9b60-1cca6b16f5d9",
@@ -792,7 +792,7 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        6032,
+        6448,
         -96
       ],
       "id": "93884452-f823-4379-acd4-d2866e0800ae",
@@ -811,7 +811,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        6336,
+        6752,
         272
       ],
       "id": "10976896-531b-4297-98a4-1f78e759768c",
@@ -856,7 +856,7 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        6880,
+        7296,
         272
       ],
       "id": "a4f31cc5-3fa2-449f-b5c3-14119eae39ec",
@@ -875,7 +875,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        9120,
+        9536,
         272
       ],
       "id": "6b2eb857-3b0f-4806-9184-65e67aa5cb2b",
@@ -897,7 +897,7 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        7296,
+        7712,
         272
       ],
       "id": "0ece3b62-5447-4606-a53e-0db02c56cc08",
@@ -934,7 +934,7 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        8800,
+        9216,
         272
       ],
       "id": "a82a39ee-1731-410d-9264-d22309dc9598",
@@ -975,7 +975,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        6624,
+        7040,
         32
       ],
       "id": "c43a292b-3e83-4e17-aa2c-66aa668ed3bf",
@@ -1014,7 +1014,7 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        6928,
+        7344,
         -192
       ],
       "id": "10f7b2c0-5339-4fdd-a299-3a1006bd8dd8",
@@ -1072,7 +1072,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        8160,
+        8576,
         272
       ],
       "id": "47402490-b90b-47aa-b55c-2d8b65c0ce1f",
@@ -1298,7 +1298,52 @@
       "name": "Check if the request is for regenerate answer1"
     }
   ],
-  "pinData": {},
+  "pinData": {
+    "Received user query from chatbot1": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.app.medizinzumselbermachen.de",
+            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+            "content-length": "267",
+            "accept": "*/*",
+            "accept-encoding": "gzip, deflate, br, zstd",
+            "accept-language": "en-US,en;q=0.9",
+            "content-type": "application/json",
+            "origin": "https://dominik-ai-chatbot.vercel.app",
+            "priority": "u=1, i",
+            "referer": "https://dominik-ai-chatbot.vercel.app/",
+            "sec-ch-ua": "\"Chromium\";v=\"140\", \"Not=A?Brand\";v=\"24\", \"Google Chrome\";v=\"140\"",
+            "sec-ch-ua-mobile": "?0",
+            "sec-ch-ua-platform": "\"Windows\"",
+            "sec-fetch-dest": "empty",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-site": "cross-site",
+            "x-forwarded-for": "119.63.128.115",
+            "x-forwarded-host": "n8n.app.medizinzumselbermachen.de",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "caf3c9da6002",
+            "x-real-ip": "119.63.128.115"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "message": "What is the dilution series for DMSO and what are the applications for each concentration?\n",
+            "requestType": "text",
+            "responseType": "text",
+            "language": "en",
+            "chatId": "50329f94-8da5-4935-8ce1-30ff9d7277db",
+            "userId": "9876",
+            "messageId": null,
+            "isRegenerate": false
+          },
+          "webhookUrl": "https://n8n.app.medizinzumselbermachen.de/webhook/ask-query",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
   "settings": {
     "executionOrder": "v1"
   },
@@ -1314,6 +1359,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-09-30T07:04:19.000Z",
-  "versionId": "12d9deea-dcab-4bcf-839e-885d89526ed5"
+  "updatedAt": "2025-10-02T14:25:25.000Z",
+  "versionId": "7c18c87e-e5e5-40c9-b065-a6d7abbbcf07"
 }
