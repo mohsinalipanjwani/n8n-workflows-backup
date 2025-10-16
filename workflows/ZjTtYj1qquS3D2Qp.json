@@ -479,8 +479,8 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1.2,
       "position": [
-        8592,
-        -80
+        8816,
+        -128
       ],
       "id": "c2389ad6-4184-4142-908d-321b39d66ae6",
       "name": "Execute Message count subworkflow"
@@ -1367,6 +1367,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-10-14T14:09:51.000Z",
-  "versionId": "78938308-e867-4834-903d-ba8ca6474c08"
+  "updatedAt": "2025-10-15T11:03:07.000Z",
+  "versionId": "4ce660c7-e1ca-42af-8a4a-3c35eb9c14e9"
 }
