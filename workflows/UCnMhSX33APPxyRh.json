@@ -1,0 +1,81 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Download file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-10-20T15:16:52.010Z",
+  "id": "UCnMhSX33APPxyRh",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow 11",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "128165cb-71a6-47b5-b3f0-b379e6211b9e",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "1OmgCTvQgujf0BtqaAfYh1apRdQy4ia0M",
+          "mode": "list",
+          "cachedResultName": "22. Parasitenkongress Dr.  Hartmut FIscher über Einläufe.mp4",
+          "cachedResultUrl": "https://drive.google.com/file/d/1OmgCTvQgujf0BtqaAfYh1apRdQy4ia0M/view?usp=drivesdk"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        208,
+        0
+      ],
+      "id": "8e7b5225-0efe-4794-93c9-78c1a4128435",
+      "name": "Download file",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "h2quNjn8K9F4Yvxt",
+          "name": "Google Drive account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-10-20T15:16:52.023Z",
+      "updatedAt": "2025-10-20T15:16:52.023Z",
+      "role": "workflow:owner",
+      "workflowId": "UCnMhSX33APPxyRh",
+      "projectId": "POhXKLALTFDZhVtj"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-10-20T15:16:52.010Z",
+  "versionId": "b703b4fa-fe27-4447-93fa-7896a1d80e12"
+}
