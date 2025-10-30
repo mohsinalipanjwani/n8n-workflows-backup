@@ -767,7 +767,7 @@
       "credentials": {
         "s3": {
           "id": "0UkKllRcxcio2ACz",
-          "name": "S3 account 2"
+          "name": "MINIO-Bucket"
         }
       }
     },
@@ -1096,8 +1096,8 @@
       "name": "Upload generated audio file in MINIO",
       "credentials": {
         "s3": {
-          "id": "0UkKllRcxcio2ACz",
-          "name": "S3 account 2"
+          "id": "g2Xa09x46M36aVXf",
+          "name": "Hetzner S3"
         }
       }
     },
@@ -1177,8 +1177,8 @@
       "name": "Download a file",
       "credentials": {
         "s3": {
-          "id": "0UkKllRcxcio2ACz",
-          "name": "S3 account 2"
+          "id": "g2Xa09x46M36aVXf",
+          "name": "Hetzner S3"
         }
       }
     },
@@ -1303,11 +1303,11 @@
           "headers": {
             "host": "n8n.app.medizinzumselbermachen.de",
             "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36",
-            "content-length": "130672",
+            "content-length": "63052",
             "accept": "*/*",
             "accept-encoding": "gzip, deflate, br, zstd",
             "accept-language": "en-US,en;q=0.9",
-            "content-type": "multipart/form-data; boundary=----WebKitFormBoundaryAdZ895iThgbrcIHH",
+            "content-type": "multipart/form-data; boundary=----WebKitFormBoundaryG3nj1goIhfWjtJVB",
             "origin": "https://dominik-ai-chatbot.vercel.app",
             "priority": "u=1, i",
             "referer": "https://dominik-ai-chatbot.vercel.app/",
@@ -1329,10 +1329,10 @@
           "body": {
             "message": "audio",
             "requestType": "audio",
-            "responseType": "audio",
+            "responseType": "text",
             "language": "de",
-            "chatId": "c82486bc-3bd5-44b1-b589-6234032cc7f2",
-            "userId": "123",
+            "chatId": "a3339e1d-5f42-4adf-9066-775fd549c95f",
+            "userId": "9876",
             "isRegenerate": "false"
           },
           "webhookUrl": "https://n8n.app.medizinzumselbermachen.de/webhook/ask-query",
@@ -1344,9 +1344,9 @@
             "fileType": "audio",
             "fileExtension": "wav",
             "data": "filesystem-v2",
-            "fileName": "recording-1760450800777.wav",
-            "id": "filesystem-v2:workflows/ZjTtYj1qquS3D2Qp/executions/temp/binary_data/8c6fb18b-6871-4398-8b1a-bac91a6273c9",
-            "fileSize": "130 kB"
+            "fileName": "recording-1761740170317.wav",
+            "id": "filesystem-v2:workflows/ZjTtYj1qquS3D2Qp/executions/temp/binary_data/e545a7cf-68b1-410b-81cd-c8edc6bf0b6d",
+            "fileSize": "62.1 kB"
           }
         }
       }
@@ -1367,6 +1367,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-10-27T08:05:08.000Z",
-  "versionId": "93ad44dc-f6e1-4436-a443-238bf26532c0"
+  "updatedAt": "2025-10-29T12:16:41.000Z",
+  "versionId": "1e87aa56-b72d-4802-a9dd-a1929494467a"
 }
