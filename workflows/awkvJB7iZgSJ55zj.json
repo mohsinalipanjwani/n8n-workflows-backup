@@ -1,0 +1,899 @@
+{
+  "active": false,
+  "connections": {
+    "Route by Content Type": {
+      "main": [
+        [
+          {
+            "node": "Generate Image (Nano Banana)4",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Generate Video",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Poll Video Status": {
+      "main": [
+        [
+          {
+            "node": "Check Video Complete",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Video Complete": {
+      "main": [
+        [
+          {
+            "node": "Get Video Response",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait 10s",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 10s": {
+      "main": [
+        [
+          {
+            "node": "Poll Video Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Video Response": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload Video to Drive": {
+      "main": [
+        [
+          {
+            "node": "Share Video Publicly",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload Image to Drive": {
+      "main": [
+        [
+          {
+            "node": "Share Image Publicly",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Share Image Publicly": {
+      "main": [
+        []
+      ]
+    },
+    "Generate Image (Nano Banana)4": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Poll Image Status1": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Image Complete1": {
+      "main": [
+        [
+          {
+            "node": "Download Image1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait 5s1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 5s1": {
+      "main": [
+        [
+          {
+            "node": "Poll Image Status1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download Image1": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook_",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Poll Image Status1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Check Image Complete1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait1": {
+      "main": [
+        [
+          {
+            "node": "Poll Video Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Receive Webhook Data": {
+      "main": [
+        [
+          {
+            "node": "Upload file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Optimize Prompt for UGC Content": {
+      "main": [
+        [
+          {
+            "node": "Route by Content Type",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload file": {
+      "main": [
+        [
+          {
+            "node": "Share file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Share file": {
+      "main": [
+        [
+          {
+            "node": "Optimize Prompt for UGC Content",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Video": {
+      "main": [
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-05T12:17:16.302Z",
+  "id": "awkvJB7iZgSJ55zj",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow 13",
+  "nodes": [
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('Receive Webhook Data').item.json.body.mediaType }}",
+                    "rightValue": "image",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "e869a8e8-1030-411c-ac5c-3f1f3d503757"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "92af69cd-f558-4de1-9a39-a4b8af928dfe",
+                    "leftValue": "={{ $('Receive Webhook Data').item.json.body.mediaType }}",
+                    "rightValue": "video",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        240,
+        1040
+      ],
+      "id": "59d9d9ad-7247-4b94-a03e-218ebcb5cabd",
+      "name": "Route by Content Type"
+    },
+    {
+      "parameters": {
+        "url": "=https://api.kie.ai/api/v1/veo/record-info?taskId={{ $json.data.taskId }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1696,
+        1312
+      ],
+      "id": "7cc01e8a-f5b4-4842-9b0f-8cda5435691b",
+      "name": "Poll Video Status",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "banU6GeHDxhjXvH5",
+          "name": "KIE Account Header Auth"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "leftValue": "={{ $json.data.successFlag }}",
+              "rightValue": 1,
+              "operator": {
+                "type": "number",
+                "operation": "equals"
+              },
+              "id": "f5176d39-36ff-4661-b417-bab2e87847bc"
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2000,
+        1312
+      ],
+      "id": "dda102fb-fbd8-450a-8511-4b64a6ee3e9a",
+      "name": "Check Video Complete"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        2000,
+        1568
+      ],
+      "id": "d8a76e5f-aa4b-4cfc-97bc-ad53b895886b",
+      "name": "Wait 10s",
+      "webhookId": "wait-video-webhook"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.data.response.resultUrls[0] }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2464,
+        1296
+      ],
+      "id": "f91101f0-31f4-44f5-8cfb-8de478d045ec",
+      "name": "Get Video Response",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "banU6GeHDxhjXvH5",
+          "name": "KIE Account Header Auth"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "name": "={{ $('Route by Content Type').item.json.product_name }} | {{ $('Route by Content Type').item.json.id }}",
+        "driveId": {
+          "__rl": true,
+          "value": "My Drive",
+          "mode": "list"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "1GsxMvxxO1GFngAWi7abngWH8fpzpqoaL",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        2464,
+        592
+      ],
+      "id": "ef6d10f6-c398-4c26-8e8a-750413f067e1",
+      "name": "Upload Video to Drive",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "h2quNjn8K9F4Yvxt",
+          "name": "Google Drive account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "operation": "share",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $json.id }}",
+          "mode": "id"
+        },
+        "permissionsUi": {
+          "permissionsValues": {
+            "role": "reader",
+            "type": "anyone"
+          }
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        2976,
+        592
+      ],
+      "id": "1e71d0c2-a89e-4b23-8ea5-8fa33152d87c",
+      "name": "Share Video Publicly",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "h2quNjn8K9F4Yvxt",
+          "name": "Google Drive account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "name": "={{ $('Route by Content Type').item.json.product_name }} | {{ $('Route by Content Type').item.json.client_id }}",
+        "driveId": {
+          "__rl": true,
+          "value": "My Drive",
+          "mode": "list"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "=1H-MFIJBwEORWyroXAizQtShBnDdEUI2v",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        2464,
+        864
+      ],
+      "id": "0192cc0c-3615-489c-b868-f6efc5c68e96",
+      "name": "Upload Image to Drive",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "h2quNjn8K9F4Yvxt",
+          "name": "Google Drive account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "operation": "share",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $json.id }}",
+          "mode": "id"
+        },
+        "permissionsUi": {
+          "permissionsValues": {
+            "role": "reader",
+            "type": "anyone"
+          }
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        2992,
+        864
+      ],
+      "id": "904b08db-a964-4d16-a832-739788e64a87",
+      "name": "Share Image Publicly",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "h2quNjn8K9F4Yvxt",
+          "name": "Google Drive account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.kie.ai/api/v1/jobs/createTask",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ {\n  \"model\": \"google/nano-banana-edit\",\n  \"callBackUrl\": \"https://your-domain.com/api/callback\",\n  \"input\": {\n    \"prompt\": $json.improved_prompt,\n    \"image_urls\": [ $json.product_image ],\n    \"output_format\": \"png\",\n    \"image_size\": \"1:1\"\n  }\n} }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1040,
+        208
+      ],
+      "id": "45063e9e-8641-404a-9377-e260fedeaaf6",
+      "name": "Generate Image (Nano Banana)4",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "banU6GeHDxhjXvH5",
+          "name": "KIE Account Header Auth"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "=https://api.kie.ai/api/v1/jobs/recordInfo?taskId={{ $json.data.taskId }}\n",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1600,
+        208
+      ],
+      "id": "d0799775-509b-4d4a-9e60-6f89d78bbf85",
+      "name": "Poll Image Status1",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "banU6GeHDxhjXvH5",
+          "name": "KIE Account Header Auth"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "leftValue": "={{ $json.data.state }}",
+              "rightValue": "=success",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              },
+              "id": "f739beb6-0348-4eee-acad-622201790eb8"
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2288,
+        208
+      ],
+      "id": "88755eae-be4c-4d39-8bb5-9041c789ac15",
+      "name": "Check Image Complete1"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1888,
+        448
+      ],
+      "id": "a44e569b-08b2-451c-89b7-b6ea53de6caa",
+      "name": "Wait 5s1",
+      "webhookId": "wait-image-webhook"
+    },
+    {
+      "parameters": {
+        "url": "={{ JSON.parse($('Poll Image Status1').item.json.data.resultJson).resultUrls[0] }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2560,
+        192
+      ],
+      "id": "94a4315a-0235-4505-9f94-bbe774af0ec6",
+      "name": "Download Image1",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "banU6GeHDxhjXvH5",
+          "name": "KIE Account Header Auth"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 35
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1328,
+        208
+      ],
+      "id": "1d68d273-3679-4feb-a4a9-2150c08117f0",
+      "name": "Wait",
+      "webhookId": "52ff9408-e850-4d9c-8295-d03417f8d184"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "76f1993c-afd0-4aba-b3fe-6fc550029677",
+              "name": "data.state",
+              "value": "={{ $json.data.state }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1984,
+        208
+      ],
+      "id": "300119e5-4289-46a1-9086-c71c55fc93c5",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "amount": 1,
+        "unit": "minutes"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1440,
+        1312
+      ],
+      "id": "c156db8c-c298-402d-919a-78c073287e2a",
+      "name": "Wait1",
+      "webhookId": "fe3fe46c-bd65-43c2-a93c-52e67577930c"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "generate-media",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -1312,
+        1040
+      ],
+      "id": "1cd58606-e14d-4e71-9954-9c869519a30a",
+      "name": "Receive Webhook Data",
+      "webhookId": "88723238-e500-46a3-82fa-318168ad3cf5"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4O-MINI"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "You are a creative AI prompt optimizer for realistic UGC-style media generation using SORA-2 or NanoBanana models. Your task is to take the provided form data and generate an optimized, natural-language generation prompt suitable for either image or video output. ### Requirements: - If Media Type = “Video”, create a cinematic, selfie-style, handheld feel. - If Media Type = “Image”, generate a still-frame scene prompt with the same realism and tone. - Ensure language, gender, and tone are consistent — if conflicts exist between Product Description, Brand Guidelines, or Gender Type, prioritize the **Gender Type** and separate conflicting details clearly. - Never include unrealistic or AI-sounding phrases. - Always produce a natural, authentic, influencer-style prompt. ### If video → SORA-2/NanoBanana: Include: - Scene setup (lighting, environment) - Actor’s description (gender, tone, outfit) - Camera style (handheld, selfie, cinematic) - Dialogue (in selected language) - Ambient sound / lighting / mood - Duration (default: 5–7 seconds) - Style & emotion tone based on Brand Guidelines and Mood ### If image → SORA-2: Include: - Detailed composition, lighting, and environment - Subject (gender, pose, attire) - Mood / tone consistent with brand - Style matching “Desired Mood” ### Conflict Handling: If “Product Description” mentions an actor type conflicting with “AI Actor Gender / Type,” clearly separate with phrasing such as: > “Despite earlier description suggesting a female character, this version features a male actor aligned with the brand’s tone.” ### Output Format: Return only the **final optimized prompt** in plain text without JSON or markdown formatting. --- ### Example Input (from n8n): { \"productDescription\": \"A nourishing hair oil for women with long black hair.\", \"brandGuidelines\": \"Natural golden tones, minimal luxury, warm lighting.\", \"mediaType\": \"Video\", \"desiredStyle\": \"Lifestyle\", \"languageTone\": \"Arabic\", \"ctaText\": \"Discover your glow\", \"genderType\": \"Male\", \"environment\": \"Indoor bathroom mirror\", \"duration\": \"6 seconds\", \"additionalInstructions\": \"Make it realistic and feel like a casual selfie.\" } csharp Copy code ### Example Output: Generate a short UGC-style video of a **confident Middle Eastern man** with neatly styled dark hair, standing in front of a bathroom mirror, holding a small bottle of hair oil. The scene feels natural and handheld, as if he’s filming himself with his smartphone. He smiles and speaks the Arabic line: \"جربت هذا الزيت وفعلاً فرق معي كثير.\" Soft warm lighting and golden reflections match the luxurious tone of the brand. Keep it casual, authentic, and realistic\n\n### Output Safety Instructions for n8n Integration:\n- Return only the final optimized prompt in plain text.\n- The text must be safe for direct use inside a JSON string.\n- Escape all inner double quotes as (\\\") to avoid breaking JSON.\n- Avoid line breaks, markdown, or code blocks.\n",
+              "role": "system"
+            },
+            {
+              "content": "=Description : {{ $('Receive Webhook Data').item.json.body.productDescription }} ,\nBrand Guidelines: {{ $('Receive Webhook Data').item.json.body.brandGuidelines }},\nMedia Type: {{ $('Receive Webhook Data').item.json.body.mediaType }},\nDesired Style: {{ $('Receive Webhook Data').item.json.body.desiredStyle }},\nLanguage: {{ $('Receive Webhook Data').item.json.body.languageTone }},\nText: {{ $('Receive Webhook Data').item.json.body.overlayText.replace(/\"/g, '') }},\nActor Type: {{ $('Receive Webhook Data').item.json.body.actorType }}"
+            }
+          ]
+        },
+        "jsonOutput": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        -160,
+        1040
+      ],
+      "id": "e0edf82a-1eea-4af7-bc9b-6cf7b62bffef",
+      "name": "Optimize Prompt for UGC Content",
+      "credentials": {
+        "openAiApi": {
+          "id": "Xfd0MFwxSjT9x3PY",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        2800,
+        1296
+      ],
+      "id": "2dbcb14a-dbba-4ce3-87f8-b0381ced721d",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        2912,
+        192
+      ],
+      "id": "7e1b6d3f-abd7-461e-8fc0-9a9d78058cc4",
+      "name": "Respond to Webhook_"
+    },
+    {
+      "parameters": {
+        "inputDataFieldName": "productImages",
+        "name": "Reference Image",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "root",
+          "cachedResultName": "/ (Root folder)"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -1104,
+        1040
+      ],
+      "id": "ef55d705-cd26-423b-ac66-c071352b985d",
+      "name": "Upload file",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "kxNQu76R5B6e3VyM",
+          "name": "Google Drive account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "share",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $json.id }}",
+          "mode": "id"
+        },
+        "permissionsUi": {
+          "permissionsValues": {
+            "role": "reader",
+            "type": "anyone",
+            "allowFileDiscovery": true
+          }
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -528,
+        1040
+      ],
+      "id": "ee4453e9-4e6d-4134-819f-ac2afd9097c3",
+      "name": "Share file",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "h2quNjn8K9F4Yvxt",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.kie.ai/api/v1/jobs/createTask",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"sora-2-pro-storyboard\",\n  \"callBackUrl\": \"https://your-callback-url.com/complete\",\n  \"input\": {\n    \"prompt\": \"{{ $json.message.content.prompt.replace(/\"/g, '\\\\\"') }}\",\n    \"aspect_ratio\": \"portrait\",\n    \"n_frames\": \"10\",\n    \"remove_watermark\": true\n  }\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1168,
+        1312
+      ],
+      "id": "335564b7-6765-4f39-bc32-6e0f730f340d",
+      "name": "Generate Video",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "banU6GeHDxhjXvH5",
+          "name": "KIE Account Header Auth"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-11-05T12:17:16.316Z",
+      "updatedAt": "2025-11-05T12:17:16.316Z",
+      "role": "workflow:owner",
+      "workflowId": "awkvJB7iZgSJ55zj",
+      "projectId": "POhXKLALTFDZhVtj"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-11-05T15:40:40.000Z",
+  "versionId": "f23dd86d-6030-4c70-91e1-0fb038888263"
+}
