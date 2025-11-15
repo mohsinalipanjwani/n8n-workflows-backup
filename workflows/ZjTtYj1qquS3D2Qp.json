@@ -766,8 +766,8 @@
       "name": "Upload generated audio file in MINIO1",
       "credentials": {
         "s3": {
-          "id": "0UkKllRcxcio2ACz",
-          "name": "MINIO-Bucket"
+          "id": "FLyHvCi3bChXox0u",
+          "name": "IDRIVEE2"
         }
       }
     },
@@ -1096,8 +1096,8 @@
       "name": "Upload generated audio file in MINIO",
       "credentials": {
         "s3": {
-          "id": "g2Xa09x46M36aVXf",
-          "name": "Hetzner S3"
+          "id": "FLyHvCi3bChXox0u",
+          "name": "IDRIVEE2"
         }
       }
     },
@@ -1177,8 +1177,8 @@
       "name": "Download a file",
       "credentials": {
         "s3": {
-          "id": "g2Xa09x46M36aVXf",
-          "name": "Hetzner S3"
+          "id": "FLyHvCi3bChXox0u",
+          "name": "IDRIVEE2"
         }
       }
     },
@@ -1302,16 +1302,16 @@
         "json": {
           "headers": {
             "host": "n8n.app.medizinzumselbermachen.de",
-            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36",
-            "content-length": "63052",
+            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36",
+            "content-length": "73678",
             "accept": "*/*",
             "accept-encoding": "gzip, deflate, br, zstd",
             "accept-language": "en-US,en;q=0.9",
-            "content-type": "multipart/form-data; boundary=----WebKitFormBoundaryG3nj1goIhfWjtJVB",
+            "content-type": "multipart/form-data; boundary=----WebKitFormBoundaryLIT8T8kPReVQawtp",
             "origin": "https://dominik-ai-chatbot.vercel.app",
             "priority": "u=1, i",
             "referer": "https://dominik-ai-chatbot.vercel.app/",
-            "sec-ch-ua": "\"Google Chrome\";v=\"141\", \"Not?A_Brand\";v=\"8\", \"Chromium\";v=\"141\"",
+            "sec-ch-ua": "\"Chromium\";v=\"142\", \"Google Chrome\";v=\"142\", \"Not_A Brand\";v=\"99\"",
             "sec-ch-ua-mobile": "?0",
             "sec-ch-ua-platform": "\"Windows\"",
             "sec-fetch-dest": "empty",
@@ -1331,7 +1331,7 @@
             "requestType": "audio",
             "responseType": "text",
             "language": "de",
-            "chatId": "a3339e1d-5f42-4adf-9066-775fd549c95f",
+            "chatId": "6f51ae76-607f-4bf3-a038-eb28e9da60a1",
             "userId": "9876",
             "isRegenerate": "false"
           },
@@ -1344,9 +1344,9 @@
             "fileType": "audio",
             "fileExtension": "wav",
             "data": "filesystem-v2",
-            "fileName": "recording-1761740170317.wav",
-            "id": "filesystem-v2:workflows/ZjTtYj1qquS3D2Qp/executions/temp/binary_data/e545a7cf-68b1-410b-81cd-c8edc6bf0b6d",
-            "fileSize": "62.1 kB"
+            "fileName": "recording-1763115386198.wav",
+            "id": "filesystem-v2:workflows/ZjTtYj1qquS3D2Qp/executions/temp/binary_data/3e61fe8a-1e4b-4d97-be4b-fe2feb6e864f",
+            "fileSize": "72.7 kB"
           }
         }
       }
@@ -1367,6 +1367,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-11-13T16:30:48.000Z",
-  "versionId": "8191338c-dac6-4539-b489-995e867499c6"
+  "updatedAt": "2025-11-14T10:16:58.000Z",
+  "versionId": "2eadb452-10fe-4a6f-9efa-af2e83835069"
 }
