@@ -341,7 +341,13 @@
     },
     "If the request is in Audio": {
       "main": [
-        [],
+        [
+          {
+            "node": "Set FileKey Field",
+            "type": "main",
+            "index": 0
+          }
+        ],
         [
           {
             "node": "Check if the request is for regenerate answer1",
@@ -382,13 +388,7 @@
     },
     "Structured Output Parser1": {
       "ai_outputParser": [
-        [
-          {
-            "node": "AI Agent to Process the Chat1",
-            "type": "ai_outputParser",
-            "index": 0
-          }
-        ]
+        []
       ]
     }
   },
@@ -545,7 +545,7 @@
       "name": "Memory buffer with user id for context1",
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "position": [
-        3152,
+        3008,
         640
       ],
       "typeVersion": 1.3
@@ -561,8 +561,8 @@
       "name": "Generate answers | OPENAI1",
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "position": [
-        2944,
-        512
+        2784,
+        560
       ],
       "typeVersion": 1,
       "credentials": {
@@ -589,8 +589,8 @@
       "type": "@n8n/n8n-nodes-langchain.vectorStoreQdrant",
       "typeVersion": 1.3,
       "position": [
-        3456,
-        512
+        3392,
+        416
       ],
       "id": "1adbd6a3-6778-40e5-8324-c5efa8f1b37f",
       "name": "Qdrant vector store to fetch embeddings1",
@@ -609,8 +609,8 @@
       "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
       "typeVersion": 1.2,
       "position": [
-        3424,
-        752
+        3296,
+        688
       ],
       "id": "77730ce1-0908-43c5-932b-e6dfb54d6183",
       "name": "Embeddings Model1",
@@ -787,8 +787,8 @@
       "name": "Upload generated audio file in MINIO1",
       "credentials": {
         "s3": {
-          "id": "0UkKllRcxcio2ACz",
-          "name": "MINIO-Bucket"
+          "id": "FLyHvCi3bChXox0u",
+          "name": "IDRIVEE2"
         }
       }
     },
@@ -1047,13 +1047,12 @@
     },
     {
       "parameters": {
-        "jsonSchemaExample": "{\n  \"output\": \"Willkommen zum DMSO und Co. Basiswissen... (formatted with bullets, headings, spacing, as per rules)\",\n  \"source\": {\n    \"document_id\": 0,\n    \"original_id\": \"0_0\",\n    \"document_type\": \"mp4/pdf\",\n    \"document_name\": \"name of document\",\n    \"created_at\": \"2025-08-19 11:36:42.771014\"\n  }\n}\n",
         "autoFix": true
       },
       "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
       "typeVersion": 1.3,
       "position": [
-        3840,
+        4208,
         672
       ],
       "id": "440ec4df-9499-4e9c-a1d2-68ac40733b84",
@@ -1117,8 +1116,8 @@
       "name": "Upload generated audio file in MINIO",
       "credentials": {
         "s3": {
-          "id": "g2Xa09x46M36aVXf",
-          "name": "Hetzner S3"
+          "id": "FLyHvCi3bChXox0u",
+          "name": "IDRIVEE2"
         }
       }
     },
@@ -1198,8 +1197,8 @@
       "name": "Download a file",
       "credentials": {
         "s3": {
-          "id": "g2Xa09x46M36aVXf",
-          "name": "Hetzner S3"
+          "id": "FLyHvCi3bChXox0u",
+          "name": "IDRIVEE2"
         }
       }
     },
@@ -1323,8 +1322,8 @@
       "type": "@n8n/n8n-nodes-langchain.rerankerCohere",
       "typeVersion": 1,
       "position": [
-        3648,
-        736
+        3696,
+        720
       ],
       "id": "24301b9b-d7c7-42eb-9b4c-15f9428220b9",
       "name": "Reranker Cohere1",
@@ -1352,6 +1351,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-11-13T21:31:51.000Z",
-  "versionId": "dfcf15e6-f60d-4d29-a8bd-5bc40f527980"
+  "updatedAt": "2025-11-14T15:06:10.000Z",
+  "versionId": "2b4fd631-f469-4476-9e7f-d2fe09a35697"
 }
