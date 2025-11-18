@@ -1,0 +1,114 @@
+{
+  "active": true,
+  "connections": {
+    "Transcribe a recording": {
+      "main": [
+        [
+          {
+            "node": "Respond",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Audio": {
+      "main": [
+        [
+          {
+            "node": "Transcribe a recording",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-17T10:43:06.889Z",
+  "id": "ltUzXbtSVInwPLN3",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Whisper Transcription",
+  "nodes": [
+    {
+      "parameters": {
+        "resource": "audio",
+        "operation": "transcribe",
+        "binaryPropertyName": "audio",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2,
+      "position": [
+        240,
+        0
+      ],
+      "id": "b106b83c-8259-430a-89d7-e5f071d4ddcd",
+      "name": "Transcribe a recording",
+      "credentials": {
+        "openAiApi": {
+          "id": "Xfd0MFwxSjT9x3PY",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "text-transcription",
+        "authentication": "headerAuth",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "381094fd-19a3-46ab-92a7-f8cea604e597",
+      "name": "Get Audio",
+      "webhookId": "6d36a4c9-373b-4aa7-9d68-dcff2947f8a9",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "waaAwfOZusltfsER",
+          "name": "Whisper Auth"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "allIncomingItems",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        528,
+        0
+      ],
+      "id": "83827e4f-b098-4739-b499-7bd8a23c63ea",
+      "name": "Respond"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-11-17T10:43:06.904Z",
+      "createdAt": "2025-11-17T10:43:06.904Z",
+      "role": "workflow:owner",
+      "workflowId": "ltUzXbtSVInwPLN3",
+      "projectId": "POhXKLALTFDZhVtj"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-11-17T16:20:14.000Z",
+  "versionId": "22e77c7a-9b49-459f-826b-f847e46c6bbb"
+}
