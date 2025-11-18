@@ -1,0 +1,115 @@
+{
+  "active": false,
+  "connections": {
+    "Get Call Msgs": {
+      "main": [
+        [
+          {
+            "node": "Create Call Overview",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Call Overview": {
+      "main": [
+        [
+          {
+            "node": "Respond",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-17T15:04:54.586Z",
+  "id": "Rl5N0Pqm1oBo56tu",
+  "isArchived": false,
+  "meta": null,
+  "name": "My workflow 14",
+  "nodes": [
+    {
+      "parameters": {
+        "respondWith": "allIncomingItems",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        288,
+        -16
+      ],
+      "id": "f8b8f761-e182-4381-a25c-faa0c15af012",
+      "name": "Respond"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "get-call-msgs",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -240,
+        -16
+      ],
+      "id": "3b9b5ed3-3c11-4404-8280-903bb7a3cd02",
+      "name": "Get Call Msgs",
+      "webhookId": "6d36a4c9-373b-4aa7-9d68-dcff2947f8a9"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "chatgpt-4o-latest",
+          "mode": "list",
+          "cachedResultName": "CHATGPT-4O-LATEST"
+        },
+        "responses": {
+          "values": [
+            {
+              "content": "=You are a helpful assistant that creates brief, humanized summaries of conversations or message threads.\n\nYour task:\n1. Read through all the messages provided\n2. Create a concise summary that captures the key points and main ideas\n3. Write in a natural, conversational tone as if explaining to a colleague\n4. Use paragraphs to organize different topics or themes\n5. Keep it brief - aim for clarity over length\n6. Use line breaks between paragraphs for readability\n\nFormat requirements:\n- Return only plain text (no markdown, no bullet points, no special formatting)\n- Use natural language and complete sentences\n- Separate distinct ideas or topics with a blank line\n- Make it sound human and approachable, not robotic or overly formal\n\nFocus on: What was discussed, what decisions were made, what actions were mentioned, and any important outcomes or next steps.\n\nNow, please summarize the following messages:\n\n{{$json.messages}}"
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2,
+      "position": [
+        0,
+        -16
+      ],
+      "id": "a972949f-dc2a-40ee-a199-53df75614eec",
+      "name": "Create Call Overview",
+      "credentials": {
+        "openAiApi": {
+          "id": "Xfd0MFwxSjT9x3PY",
+          "name": "OpenAi account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-11-17T15:04:54.594Z",
+      "createdAt": "2025-11-17T15:04:54.594Z",
+      "role": "workflow:owner",
+      "workflowId": "Rl5N0Pqm1oBo56tu",
+      "projectId": "POhXKLALTFDZhVtj"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-11-17T15:04:54.586Z",
+  "versionId": "21b87645-2dcc-495e-8c0f-acaa09067871"
+}
