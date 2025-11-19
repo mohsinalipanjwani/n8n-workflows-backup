@@ -1,7 +1,40 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "Get Call Msgs": {
+      "main": [
+        [
+          {
+            "node": "Get many rows",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Call Overview": {
+      "main": [
+        [
+          {
+            "node": "Add Call Summary to Message Table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get many rows": {
+      "main": [
+        [
+          {
+            "node": "Get prettified respose",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get prettified respose": {
       "main": [
         [
           {
@@ -12,7 +45,52 @@
         ]
       ]
     },
-    "Create Call Overview": {
+    "Respond": {
+      "main": [
+        []
+      ]
+    },
+    "Add Call Summary to Message Table": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Update Call Summary Status (Failed)",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Update Call Summary (Completed)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Call Summary Status (Failed)": {
+      "main": [
+        [
+          {
+            "node": "Respond",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Call Summary (Completed)": {
       "main": [
         [
           {
@@ -27,8 +105,10 @@
   "createdAt": "2025-11-17T15:04:54.586Z",
   "id": "Rl5N0Pqm1oBo56tu",
   "isArchived": false,
-  "meta": null,
-  "name": "My workflow 14",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Generate Call Overview Summary",
   "nodes": [
     {
       "parameters": {
@@ -38,8 +118,8 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.4,
       "position": [
-        288,
-        -16
+        1200,
+        -80
       ],
       "id": "f8b8f761-e182-4381-a25c-faa0c15af012",
       "name": "Respond"
@@ -48,13 +128,14 @@
       "parameters": {
         "httpMethod": "POST",
         "path": "get-call-msgs",
+        "responseMode": "responseNode",
         "options": {}
       },
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2.1,
       "position": [
-        -240,
-        -16
+        -752,
+        -80
       ],
       "id": "3b9b5ed3-3c11-4404-8280-903bb7a3cd02",
       "name": "Get Call Msgs",
@@ -71,7 +152,7 @@
         "responses": {
           "values": [
             {
-              "content": "=You are a helpful assistant that creates brief, humanized summaries of conversations or message threads.\n\nYour task:\n1. Read through all the messages provided\n2. Create a concise summary that captures the key points and main ideas\n3. Write in a natural, conversational tone as if explaining to a colleague\n4. Use paragraphs to organize different topics or themes\n5. Keep it brief - aim for clarity over length\n6. Use line breaks between paragraphs for readability\n\nFormat requirements:\n- Return only plain text (no markdown, no bullet points, no special formatting)\n- Use natural language and complete sentences\n- Separate distinct ideas or topics with a blank line\n- Make it sound human and approachable, not robotic or overly formal\n\nFocus on: What was discussed, what decisions were made, what actions were mentioned, and any important outcomes or next steps.\n\nNow, please summarize the following messages:\n\n{{$json.messages}}"
+              "content": "=You are a helpful assistant that creates brief, humanized summaries of conversations or message threads.\n\nYour task:\n1. Read through all the messages provided\n2. Create a concise summary that captures the key points and main ideas\n3. Write in a natural, conversational tone as if explaining to a colleague\n4. Use paragraphs to organize different topics or themes\n5. Keep it brief - aim for clarity over length\n6. Use line breaks between paragraphs for readability\n7. Also always consider this language for the summaru generation = {{ $json.language }}\n7. Always try to use those words which are correct, like any spelling mistake happns or any pronunciation anything happens correct it reading th responses from sender 'ai'\n\nFormat requirements:\n\n- Return only plain text (no markdown, no bullet points, no special formatting)\n- Use natural language and complete sentences\n- Separate distinct ideas or topics with a blank line\n- Make it sound human and approachable, not robotic or overly formal\n\nFocus on: What was discussed, what questions were asked, what information was provided, and the overall flow of the conversation.\n\nNow, please summarize the following messages:\n\n{{JSON.stringify($json.messages)}}"
             }
           ]
         },
@@ -81,8 +162,8 @@
       "type": "@n8n/n8n-nodes-langchain.openAi",
       "typeVersion": 2,
       "position": [
-        0,
-        -16
+        32,
+        -80
       ],
       "id": "a972949f-dc2a-40ee-a199-53df75614eec",
       "name": "Create Call Overview",
@@ -90,6 +171,209 @@
         "openAiApi": {
           "id": "Xfd0MFwxSjT9x3PY",
           "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "call_messages",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "call_id",
+              "condition": "eq",
+              "keyValue": "={{ $json.body.call_id }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -480,
+        -80
+      ],
+      "id": "12521670-798c-472d-8cb5-644304a5ddbb",
+      "name": "Get many rows",
+      "alwaysOutputData": false,
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Get all incoming items from supbase\nconst items = $input.all();\n\n// Building a single object\nreturn [\n  {\n    json: {\n      call_id: items[0].json.call_id,\n      chat_id: items[0].json.chat_id,\n      language: $('Get Call Msgs').first().json.body.language,\n      messages: items.map(i => ({\n        msg: i.json.message || \"\",\n        sender: i.json.sender || \"\"\n      }))\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -224,
+        -80
+      ],
+      "id": "e12eb0d8-7fa3-4885-805f-fab6f1cc24a5",
+      "name": "Get prettified respose"
+    },
+    {
+      "parameters": {
+        "tableId": "messages",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "chat_id",
+              "fieldValue": "={{ $('Get prettified respose').item.json.chat_id }}"
+            },
+            {
+              "fieldId": "message_type",
+              "fieldValue": "text"
+            },
+            {
+              "fieldId": "response_request",
+              "fieldValue": "text"
+            },
+            {
+              "fieldId": "message",
+              "fieldValue": "={{ $json.output[0].content[0].text }}"
+            },
+            {
+              "fieldId": "language",
+              "fieldValue": "={{ $('Get prettified respose').item.json.language }}"
+            },
+            {
+              "fieldId": "sender",
+              "fieldValue": "ai"
+            },
+            {
+              "fieldId": "is_summary",
+              "fieldValue": "TRUE"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        400,
+        -80
+      ],
+      "id": "af7f6cd2-975e-4595-8119-ef8264552323",
+      "name": "Add Call Summary to Message Table",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "594ff0f5-dfa5-4f50-b3f5-71c54e61f3c7",
+              "leftValue": "={{ $json.error }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        624,
+        -80
+      ],
+      "id": "49a1867e-ff88-4305-8f06-529b95577fe6",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "calls",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "call_id",
+              "condition": "eq",
+              "keyValue": "={{ $('Get prettified respose').item.json.call_id }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "status",
+              "fieldValue": "30"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        912,
+        -240
+      ],
+      "id": "6c2bbe1a-f0d6-4edb-94a9-ee54987d8e89",
+      "name": "Update Call Summary Status (Failed)",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "calls",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "call_id",
+              "condition": "eq",
+              "keyValue": "={{ $('Get prettified respose').item.json.call_id }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "status",
+              "fieldValue": "20"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        912,
+        48
+      ],
+      "id": "9b32bb04-d049-4f89-a676-00c4fd083298",
+      "name": "Update Call Summary (Completed)",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
         }
       }
     }
@@ -109,7 +393,7 @@
   ],
   "staticData": null,
   "tags": [],
-  "triggerCount": 0,
-  "updatedAt": "2025-11-17T15:04:54.586Z",
-  "versionId": "21b87645-2dcc-495e-8c0f-acaa09067871"
+  "triggerCount": 1,
+  "updatedAt": "2025-11-18T17:42:58.000Z",
+  "versionId": "73333520-ca16-4b95-861b-f83c32ba98d6"
 }
