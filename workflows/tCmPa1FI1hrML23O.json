@@ -1,0 +1,587 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Get Call Messages",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get Chat Messages",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Call Messages": {
+      "main": [
+        [
+          {
+            "node": "Prettify Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Chat Messages": {
+      "main": [
+        [
+          {
+            "node": "Prettify Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prettify Response": {
+      "main": [
+        [
+          {
+            "node": "Generate Summary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Summary": {
+      "main": [
+        [
+          {
+            "node": "Configure Google Drive Folder",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Configure Google Drive Folder": {
+      "main": [
+        [
+          {
+            "node": "Create document file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create document file": {
+      "main": [
+        [
+          {
+            "node": "Convert document to PDF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert document to PDF": {
+      "main": [
+        [
+          {
+            "node": "Archiving PDF File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Archiving PDF File": {
+      "main": [
+        [
+          {
+            "node": "Make PDF File Public",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Make PDF File Public": {
+      "main": [
+        [
+          {
+            "node": "Add PDF Link in Detailed Summary Table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Add PDF Link in Detailed Summary Table": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-19T08:59:04.738Z",
+  "id": "tCmPa1FI1hrML23O",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Generate Detailed Summary PDF",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "generate-summary-pdf",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        1056,
+        -656
+      ],
+      "id": "7b62bd0f-ab6e-4dd8-9392-2c59056da441",
+      "name": "Webhook",
+      "webhookId": "b4968d44-164a-4b23-bb5b-d63c8bd26c31"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "7f039f08-cd17-492e-82b8-6500b5b44a89",
+              "leftValue": "={{ $json.body.call_id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1264,
+        -656
+      ],
+      "id": "b1584ddf-865e-46f2-a44a-0008a1f9bd1e",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "call_messages",
+        "limit": 100,
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "call_id",
+              "condition": "eq",
+              "keyValue": "={{ $json.body.call_id }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1600,
+        -816
+      ],
+      "id": "a2f23eb2-caaf-46da-a652-425b776993ef",
+      "name": "Get Call Messages",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "messages",
+        "limit": 100,
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "chat_id",
+              "condition": "eq",
+              "keyValue": "={{ $json.body.chat_id }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1600,
+        -576
+      ],
+      "id": "a4a2bf2e-fbee-462f-891a-1432eb696136",
+      "name": "Get Chat Messages",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Get all incoming items from supbase\nconst items = $input.all();\n\n// Building a single object\nreturn [\n  {\n    json: {\n      id: items[0].json?.call_id || items[0].json?.chat_id,\n      messages: items.map(i => ({\n        msg: i.json.message || \"\",\n        sender: i.json.sender || \"\"\n      }))\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1952,
+        -688
+      ],
+      "id": "e979eec7-bdec-4e2b-b9f7-67db038a526e",
+      "name": "Prettify Response"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4O-MINI"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=Analyze the following messages and generate a detailed PDF-ready summary document:\n\n{{JSON.stringify($json.messages)}}\n\nStructure your output as follows:\n\n# [Generate appropriate title based on content]\n\n## Executive Summary\n[2-3 paragraph overview of the entire conversation/content]\n\n## Detailed Analysis\n[Break down the messages into logical sections with clear headings]\n\n## Key Points\n[Bullet-pointed list of main takeaways]\n\n## Timeline/Chronology\n[If applicable, provide chronological overview of events or discussion]\n\n## Conclusions & Next Steps\n[Summarize outcomes and any action items]\n\nEnsure all content is professional, well-formatted, and ready for immediate PDF conversion."
+            },
+            {
+              "content": "You are a professional document generator that creates well-structured, formatted summaries for PDF conversion. Your output must be clean, organized, and ready for direct PDF rendering.\n\nFORMATTING RULES:\n- Use clear hierarchical headings (# for main title, ## for sections, ### for subsections)\n- Write in professional, concise language\n- Use proper paragraph spacing\n- Include bullet points or numbered lists where appropriate for clarity\n- Maintain consistent formatting throughout\n- Do not use excessive styling or unnecessary decorations\n\nOUTPUT STRUCTURE:\nYour summary should always include:\n1. A clear document title\n2. Executive summary or overview section\n3. Main content organized by logical sections\n4. Key takeaways or conclusions (if applicable)\n\nWrite content that is:\n- Clear and scannable\n- Well-organized with logical flow\n- Professional in tone\n- Ready for immediate PDF conversion without additional formatting",
+              "role": "system"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        2208,
+        -688
+      ],
+      "id": "56065d65-df67-4b19-9739-8c8824029acf",
+      "name": "Generate Summary",
+      "credentials": {
+        "openAiApi": {
+          "id": "Xfd0MFwxSjT9x3PY",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "folder",
+        "name": "Chat Summary PDFs",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "root",
+          "cachedResultName": "/ (Root folder)"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        2944,
+        -192
+      ],
+      "id": "28c33edd-5f73-4dd6-aa31-c0bf7e1d4a78",
+      "name": "Create folder",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "kxNQu76R5B6e3VyM",
+          "name": "Google Drive account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "1ff0b9a4-7d60-44ec-b047-e49252f1ace9",
+              "name": "Drive Folder ID",
+              "type": "string",
+              "value": "19mDoefi-nFelAwdYWwJNJRSuPDsVNyVb"
+            },
+            {
+              "id": "d64a1ac4-15db-4c84-a1db-fbd6b48084f5",
+              "name": "name",
+              "type": "string",
+              "value": "=Chat Detailed Summary"
+            },
+            {
+              "id": "d8354394-63f0-4fdb-be0e-f0322db0c52c",
+              "name": "content",
+              "value": "={{ $json.message.content }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "307ed521-1122-4068-9e6e-d3b67d454435",
+      "name": "Configure Google Drive Folder",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        2608,
+        -688
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&supportsAllDrives=true",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "googleDriveOAuth2Api",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "uploadType",
+              "value": "multipart"
+            },
+            {
+              "name": "supportsAllDrives",
+              "value": "true"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "boundary",
+              "value": "foo_bar_baz"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "multipart/related; boundary=foo_bar_baz",
+        "body": "=--foo_bar_baz\nContent-Type: application/json; charset=UTF-8\n\n{\n  \"name\": \"{{ $json.name }}\",\n  \"mimeType\": \"application/vnd.google-apps.document\"\n}\n\n--foo_bar_baz\nContent-Type: text/markdown; charset=UTF-8\n\n{{ $json.content }}\n\n--foo_bar_baz--\n",
+        "options": {}
+      },
+      "id": "38309f6b-bd9d-4b43-9bec-20b7f5abd481",
+      "name": "Create document file",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        2832,
+        -688
+      ],
+      "typeVersion": 4.2,
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "kxNQu76R5B6e3VyM",
+          "name": "Google Drive account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "={{ $json.id }}"
+        },
+        "options": {
+          "googleFileConversion": {
+            "conversion": {
+              "docsToFormat": "application/pdf"
+            }
+          }
+        }
+      },
+      "id": "2216d9dc-8058-406d-a8da-36abffd4e27d",
+      "name": "Convert document to PDF",
+      "type": "n8n-nodes-base.googleDrive",
+      "position": [
+        3120,
+        -688
+      ],
+      "typeVersion": 3,
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "kxNQu76R5B6e3VyM",
+          "name": "Google Drive account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "name": "={{ $json.name }}.pdf",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "19mDoefi-nFelAwdYWwJNJRSuPDsVNyVb",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "id": "7c7e1a81-c719-4940-983c-8123da09dc2e",
+      "name": "Archiving PDF File",
+      "type": "n8n-nodes-base.googleDrive",
+      "position": [
+        3392,
+        -688
+      ],
+      "typeVersion": 3,
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "kxNQu76R5B6e3VyM",
+          "name": "Google Drive account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "share",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $json.id }}",
+          "mode": "id"
+        },
+        "permissionsUi": {
+          "permissionsValues": {
+            "role": "reader",
+            "type": "anyone"
+          }
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        3648,
+        -688
+      ],
+      "id": "cf625cff-6d75-4bed-ad76-0cf855932509",
+      "name": "Make PDF File Public",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "kxNQu76R5B6e3VyM",
+          "name": "Google Drive account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "detailed_summary_pdf",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "pdf_link",
+              "fieldValue": "={{ $('Archiving PDF File').item.json.webContentLink }}"
+            },
+            {
+              "fieldId": "type_id",
+              "fieldValue": "={{ $('Prettify Response').item.json.id }}"
+            },
+            {
+              "fieldId": "type",
+              "fieldValue": "={{ $json[\"IF\"] === true ? \"Call\" : \"Chat\" }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        3952,
+        -688
+      ],
+      "id": "eecdfec7-cd3e-4bdf-930b-7fc8ee9e7e82",
+      "name": "Add PDF Link in Detailed Summary Table",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        4160,
+        -688
+      ],
+      "id": "8a0c2600-ea67-46fe-b436-627fc72d450a",
+      "name": "Respond to Webhook"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-11-19T08:59:04.749Z",
+      "createdAt": "2025-11-19T08:59:04.749Z",
+      "role": "workflow:owner",
+      "workflowId": "tCmPa1FI1hrML23O",
+      "projectId": "POhXKLALTFDZhVtj"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-11-19T14:51:15.000Z",
+  "versionId": "4c89aa98-9262-40ff-96b7-a448a650dd77"
+}
