@@ -100,7 +100,7 @@
       "main": [
         [
           {
-            "node": "Archiving PDF File",
+            "node": "Extract from File",
             "type": "main",
             "index": 0
           }
@@ -120,13 +120,7 @@
     },
     "Make PDF File Public": {
       "main": [
-        [
-          {
-            "node": "Add PDF Link in Detailed Summary Table",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "Add PDF Link in Detailed Summary Table": {
@@ -134,6 +128,17 @@
         [
           {
             "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "Add PDF Link in Detailed Summary Table",
             "type": "main",
             "index": 0
           }
@@ -329,8 +334,8 @@
       "type": "n8n-nodes-base.googleDrive",
       "typeVersion": 3,
       "position": [
-        2944,
-        -192
+        1056,
+        -144
       ],
       "id": "28c33edd-5f73-4dd6-aa31-c0bf7e1d4a78",
       "name": "Create folder",
@@ -475,8 +480,8 @@
       "name": "Archiving PDF File",
       "type": "n8n-nodes-base.googleDrive",
       "position": [
-        3392,
-        -688
+        1024,
+        -1120
       ],
       "typeVersion": 3,
       "credentials": {
@@ -505,8 +510,8 @@
       "type": "n8n-nodes-base.googleDrive",
       "typeVersion": 3,
       "position": [
-        3648,
-        -688
+        1200,
+        -1120
       ],
       "id": "cf625cff-6d75-4bed-ad76-0cf855932509",
       "name": "Make PDF File Public",
@@ -523,8 +528,8 @@
         "fieldsUi": {
           "fieldValues": [
             {
-              "fieldId": "pdf_link",
-              "fieldValue": "={{ $('Archiving PDF File').item.json.webContentLink }}"
+              "fieldId": "pdf_link_base64",
+              "fieldValue": "={{ $json.data }}"
             },
             {
               "fieldId": "type_id",
@@ -540,7 +545,7 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        3952,
+        3712,
         -688
       ],
       "id": "eecdfec7-cd3e-4bdf-930b-7fc8ee9e7e82",
@@ -559,11 +564,26 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.4,
       "position": [
-        4160,
+        4000,
         -688
       ],
       "id": "8a0c2600-ea67-46fe-b436-627fc72d450a",
       "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "operation": "binaryToPropery",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        3424,
+        -688
+      ],
+      "id": "8f46d50d-c82f-46a3-af6d-60ec29579b4a",
+      "name": "Extract from File",
+      "alwaysOutputData": false
     }
   ],
   "pinData": {},
@@ -582,6 +602,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-11-19T14:51:15.000Z",
-  "versionId": "4c89aa98-9262-40ff-96b7-a448a650dd77"
+  "updatedAt": "2025-11-20T11:00:03.000Z",
+  "versionId": "aa874da1-10ef-48f7-bfea-2103b2f330bb"
 }
