@@ -374,6 +374,17 @@
           }
         ]
       ]
+    },
+    "Reranker Cohere": {
+      "ai_reranker": [
+        [
+          {
+            "node": "Qdrant vector store to fetch embeddings1",
+            "type": "ai_reranker",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-08-12T07:48:57.317Z",
@@ -563,6 +574,7 @@
           "mode": "list",
           "cachedResultName": "medizin-zum-selbermachen"
         },
+        "useReranker": true,
         "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.vectorStoreQdrant",
@@ -1294,6 +1306,25 @@
       ],
       "id": "fcaadaf7-fd84-40cd-83dd-b6270dff685c",
       "name": "Check if the request is for regenerate answer1"
+    },
+    {
+      "parameters": {
+        "topN": 4
+      },
+      "type": "@n8n/n8n-nodes-langchain.rerankerCohere",
+      "typeVersion": 1,
+      "position": [
+        3088,
+        928
+      ],
+      "id": "8e994a80-496b-4a05-8861-8861fa8c385d",
+      "name": "Reranker Cohere",
+      "credentials": {
+        "cohereApi": {
+          "id": "kUe5kiAMdhqGE3yV",
+          "name": "CohereApi account 2"
+        }
+      }
     }
   ],
   "pinData": {
@@ -1367,6 +1398,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-11-14T10:16:58.000Z",
-  "versionId": "2eadb452-10fe-4a6f-9efa-af2e83835069"
+  "updatedAt": "2025-11-20T13:11:07.000Z",
+  "versionId": "9b22ebe5-552a-4e07-8d95-d4cfe389bee0"
 }
