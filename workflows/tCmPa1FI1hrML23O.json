@@ -289,7 +289,7 @@
         "messages": {
           "values": [
             {
-              "content": "=Analyze the following messages and generate a detailed PDF-ready summary document:\n\n{{JSON.stringify($json.messages)}}\n\nStructure your output as follows:\n\n# [Generate appropriate title based on content]\n\n## Executive Summary\n[2-3 paragraph overview of the entire conversation/content]\n\n## Detailed Analysis\n[Break down the messages into logical sections with clear headings]\n\n## Key Points\n[Bullet-pointed list of main takeaways]\n\n## Timeline/Chronology\n[If applicable, provide chronological overview of events or discussion]\n\n## Conclusions & Next Steps\n[Summarize outcomes and any action items]\n\nEnsure all content is professional, well-formatted, and ready for immediate PDF conversion."
+              "content": "=Analyze the following messages and generate a detailed PDF-ready summary document:\\n\\n{{JSON.stringify($json.messages)}}\\n\\nStructure your output as follows:\\n\\n# [Generate appropriate title based on content]\\n\\n## Executive Summary\\n[2-3 paragraph overview of the entire conversation/content]\\n\\n## Detailed Analysis\\n[Break down the messages into logical sections with clear headings]\\n\\n## Key Points\\n[Bullet-pointed list of main takeaways]\\n\\n## Timeline/Chronology\\n[If applicable, provide chronological overview of events or discussion]\\n\\n## Conclusions & Next Steps\\n[Summarize outcomes and any action items]\\n\\nEnsure all content is professional, well-formatted, and ready for immediate PDF conversion."
             },
             {
               "content": "You are a professional document generator that creates well-structured, formatted summaries for PDF conversion. Your output must be clean, organized, and ready for direct PDF rendering.\n\nFORMATTING RULES:\n- Use clear hierarchical headings (# for main title, ## for sections, ### for subsections)\n- Write in professional, concise language\n- Use proper paragraph spacing\n- Include bullet points or numbered lists where appropriate for clarity\n- Maintain consistent formatting throughout\n- Do not use excessive styling or unnecessary decorations\n\nOUTPUT STRUCTURE:\nYour summary should always include:\n1. A clear document title\n2. Executive summary or overview section\n3. Main content organized by logical sections\n4. Key takeaways or conclusions (if applicable)\n\nWrite content that is:\n- Clear and scannable\n- Well-organized with logical flow\n- Professional in tone\n- Ready for immediate PDF conversion without additional formatting",
@@ -602,6 +602,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-11-20T11:00:03.000Z",
-  "versionId": "aa874da1-10ef-48f7-bfea-2103b2f330bb"
+  "updatedAt": "2025-11-21T12:09:07.000Z",
+  "versionId": "c654fbba-12fc-486c-be8e-57c1fdb1c90c"
 }
