@@ -501,7 +501,9 @@
         "httpMethod": "POST",
         "path": "ask-query",
         "responseMode": "responseNode",
-        "options": {}
+        "options": {
+          "allowedOrigins": "*"
+        }
       },
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
@@ -1398,6 +1400,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-11-20T13:11:07.000Z",
-  "versionId": "9b22ebe5-552a-4e07-8d95-d4cfe389bee0"
+  "updatedAt": "2025-11-21T14:28:40.000Z",
+  "versionId": "526587c8-6d14-4388-9045-453bdfb4fce0"
 }
