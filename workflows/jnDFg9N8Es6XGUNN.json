@@ -582,7 +582,7 @@
           "mode": "list",
           "cachedResultName": "medizin-zum-selbermachen"
         },
-        "topK": 9,
+        "topK": 15,
         "useReranker": true,
         "options": {}
       },
@@ -1317,7 +1317,7 @@
     },
     {
       "parameters": {
-        "topN": 9
+        "topN": 14
       },
       "type": "@n8n/n8n-nodes-langchain.rerankerCohere",
       "typeVersion": 1,
@@ -1351,6 +1351,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-11-18T14:26:55.000Z",
-  "versionId": "b58eadbe-8196-407a-aa38-d1226805b835"
+  "updatedAt": "2025-11-21T09:23:07.000Z",
+  "versionId": "a7f52b44-8434-49a1-b348-18f3e81dbc03"
 }
