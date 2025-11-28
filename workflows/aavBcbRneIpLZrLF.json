@@ -1,0 +1,650 @@
+{
+  "active": false,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Get Call Messages",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get Chat Messages",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Call Messages": {
+      "main": [
+        [
+          {
+            "node": "Prettify Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Chat Messages": {
+      "main": [
+        [
+          {
+            "node": "Prettify Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prettify Response": {
+      "main": [
+        [
+          {
+            "node": "Generate Summary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Summary": {
+      "main": [
+        [
+          {
+            "node": "Configure Google Drive Folder",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Configure Google Drive Folder": {
+      "main": [
+        [
+          {
+            "node": "Message a model",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create document file": {
+      "main": [
+        [
+          {
+            "node": "Convert document to PDF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert document to PDF": {
+      "main": [
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Archiving PDF File": {
+      "main": [
+        [
+          {
+            "node": "Make PDF File Public",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Add PDF Link in Detailed Summary Table": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "Add PDF Link in Detailed Summary Table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message a model": {
+      "main": [
+        [
+          {
+            "node": "Create document file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-27T15:10:12.483Z",
+  "id": "aavBcbRneIpLZrLF",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Generate Detailed Summary PDF Temp",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "generate-summary-pdf",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        32,
+        464
+      ],
+      "id": "13d95357-1ddc-403b-bf20-3b2867e3b46d",
+      "name": "Webhook",
+      "webhookId": "b4968d44-164a-4b23-bb5b-d63c8bd26c31"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "7f039f08-cd17-492e-82b8-6500b5b44a89",
+              "leftValue": "={{ $json.body.call_id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        240,
+        464
+      ],
+      "id": "62c500bb-e0c3-4cea-92af-74c0d1acc8e0",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "call_messages",
+        "limit": 100,
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "call_id",
+              "condition": "eq",
+              "keyValue": "={{ $json.body.call_id }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        576,
+        304
+      ],
+      "id": "d369c3e7-5d08-4f2a-8973-254a42dbe2e4",
+      "name": "Get Call Messages",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "messages",
+        "limit": 100,
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "chat_id",
+              "condition": "eq",
+              "keyValue": "={{ $json.body.chat_id }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        576,
+        544
+      ],
+      "id": "0772a0f7-385c-486c-93de-bbd16ceeaf2f",
+      "name": "Get Chat Messages",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Get all incoming items from supbase\nconst items = $input.all();\n\n// Building a single object\nreturn [\n  {\n    json: {\n      id: items[0].json?.call_id || items[0].json?.chat_id,\n      messages: items.map(i => ({\n        msg: i.json.message || \"\",\n        sender: i.json.sender || \"\"\n      }))\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        848,
+        256
+      ],
+      "id": "3772091e-8336-416c-afdc-1ee4de0156b0",
+      "name": "Prettify Response"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4O-MINI"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=Analyze the following messages and generate a detailed PDF-ready summary document:\\n\\n{{JSON.stringify($json.messages)}}\\n\\nStructure your output as follows:\\n\\n# [Generate appropriate title based on content]\\n\\n## Executive Summary\\n[2-3 paragraph overview of the entire conversation/content]\\n\\n## Detailed Analysis\\n[Break down the messages into logical sections with clear headings]\\n\\n## Key Points\\n[Bullet-pointed list of main takeaways]\\n\\n## Timeline/Chronology\\n[If applicable, provide chronological overview of events or discussion]\\n\\n## Conclusions & Next Steps\\n[Summarize outcomes and any action items]\\n\\nEnsure all content is professional, well-formatted, and ready for immediate PDF conversion."
+            },
+            {
+              "content": "You are a professional document generator that creates well-structured, formatted summaries for PDF conversion. Your output must be clean, organized, and ready for direct PDF rendering.\n\nFORMATTING RULES:\n- Use clear hierarchical headings (# for main title, ## for sections, ### for subsections)\n- Write in professional, concise language\n- Use proper paragraph spacing\n- Include bullet points or numbered lists where appropriate for clarity\n- Maintain consistent formatting throughout\n- Do not use excessive styling or unnecessary decorations\n\nOUTPUT STRUCTURE:\nYour summary should always include:\n1. A clear document title\n2. Executive summary or overview section\n3. Main content organized by logical sections\n4. Key takeaways or conclusions (if applicable)\n\nWrite content that is:\n- Clear and scannable\n- Well-organized with logical flow\n- Professional in tone\n- Ready for immediate PDF conversion without additional formatting\n",
+              "role": "system"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        1056,
+        256
+      ],
+      "id": "70632e6b-1fe3-45ec-b1de-bbc535ecad79",
+      "name": "Generate Summary",
+      "credentials": {
+        "openAiApi": {
+          "id": "Xfd0MFwxSjT9x3PY",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "folder",
+        "name": "Chat Summary PDFs",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "root",
+          "cachedResultName": "/ (Root folder)"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        32,
+        976
+      ],
+      "id": "5cb11499-14d7-460d-924b-75a4640996ff",
+      "name": "Create folder",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "kxNQu76R5B6e3VyM",
+          "name": "Google Drive account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "1ff0b9a4-7d60-44ec-b047-e49252f1ace9",
+              "name": "Drive Folder ID",
+              "type": "string",
+              "value": "19mDoefi-nFelAwdYWwJNJRSuPDsVNyVb"
+            },
+            {
+              "id": "d64a1ac4-15db-4c84-a1db-fbd6b48084f5",
+              "name": "name",
+              "type": "string",
+              "value": "=Chat Detailed Summary"
+            },
+            {
+              "id": "d8354394-63f0-4fdb-be0e-f0322db0c52c",
+              "name": "content",
+              "value": "={{ $json.message.content }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "5607d8c4-fbc0-41c0-8744-b03fa4450e4d",
+      "name": "Configure Google Drive Folder",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        1392,
+        256
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&supportsAllDrives=true",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "googleDriveOAuth2Api",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "uploadType",
+              "value": "multipart"
+            },
+            {
+              "name": "supportsAllDrives",
+              "value": "true"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "boundary",
+              "value": "foo_bar_baz"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "multipart/related; boundary=foo_bar_baz",
+        "body": "=--foo_bar_baz\nContent-Type: application/json; charset=UTF-8\n\n{\n  \"name\": \"{{ $('Configure Google Drive Folder').item.json.name }}\",\n  \"mimeType\": \"application/vnd.google-apps.document\"\n}\n\n--foo_bar_baz\nContent-Type: text/html; charset=UTF-8\n\n{{ $json.output[0].content[0].text }}\n\n--foo_bar_baz--",
+        "options": {}
+      },
+      "id": "6cff41f2-b4eb-4363-b04c-469f22831e24",
+      "name": "Create document file",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        1872,
+        256
+      ],
+      "typeVersion": 4.2,
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "kxNQu76R5B6e3VyM",
+          "name": "Google Drive account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "={{ $json.id }}"
+        },
+        "options": {
+          "googleFileConversion": {
+            "conversion": {
+              "docsToFormat": "application/pdf"
+            }
+          }
+        }
+      },
+      "id": "483af52b-5397-4494-8a90-7c061f6f380d",
+      "name": "Convert document to PDF",
+      "type": "n8n-nodes-base.googleDrive",
+      "position": [
+        2176,
+        256
+      ],
+      "typeVersion": 3,
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "kxNQu76R5B6e3VyM",
+          "name": "Google Drive account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "name": "={{ $json.name }}.pdf",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "19mDoefi-nFelAwdYWwJNJRSuPDsVNyVb",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "id": "1fa88d66-34df-4ca5-af39-a62503c29dae",
+      "name": "Archiving PDF File",
+      "type": "n8n-nodes-base.googleDrive",
+      "position": [
+        0,
+        0
+      ],
+      "typeVersion": 3,
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "kxNQu76R5B6e3VyM",
+          "name": "Google Drive account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "share",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $json.id }}",
+          "mode": "id"
+        },
+        "permissionsUi": {
+          "permissionsValues": {
+            "role": "reader",
+            "type": "anyone"
+          }
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        176,
+        0
+      ],
+      "id": "b44d7e18-b23e-4afc-b81a-49cdae990a78",
+      "name": "Make PDF File Public",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "kxNQu76R5B6e3VyM",
+          "name": "Google Drive account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "detailed_summary_pdf",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "pdf_link_base64",
+              "fieldValue": "={{ $json.data }}"
+            },
+            {
+              "fieldId": "type_id",
+              "fieldValue": "={{ $('Prettify Response').item.json.id }}"
+            },
+            {
+              "fieldId": "type",
+              "fieldValue": "={{ $json[\"IF\"] === true ? \"Call\" : \"Chat\" }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        2896,
+        432
+      ],
+      "id": "152b9992-7880-4c07-b43b-39b1a22dc49f",
+      "name": "Add PDF Link in Detailed Summary Table",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        3184,
+        432
+      ],
+      "id": "3c9f98ec-5df9-4e2b-9b54-c389ceefecc9",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "operation": "binaryToPropery",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        2608,
+        432
+      ],
+      "id": "de6b83b8-87da-42c1-8619-5c0d824b3721",
+      "name": "Extract from File",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4O-MINI"
+        },
+        "responses": {
+          "values": [
+            {
+              "role": "system",
+              "content": "You are an expert Markdown-to-HTML conversion engine. Your task is to take any Markdown input, convert it into clean, standards-compliant HTML, and prepare it in a format suitable for generating documents using the Google Docs API.\n\nBefore converting the Markdown, you must prepend a predefined HTML cover page. This cover page must appear as the first page of the final output. After the cover page, append the fully converted HTML produced from the provided Markdown.\n\nYour output must follow these strict rules:\n\nOutput only raw HTML.\nNo explanations, no markdown formatting, no comments, no JSON — only pure HTML.\n\nPreserve structure and semantics.\nUse proper HTML tags (<h1>, <p>, <ul>, <table>, etc.) that accurately represent the Markdown input.\n\nEnsure compatibility with Google Docs API.\nProduce clean, minimal, valid HTML without inline scripts or unsupported elements.\n\nAlways include the provided cover page HTML exactly as given, placed at the top.\n\nYour sole function is to return the final combined HTML document.\n\n\nCover Page HTML:\n\n<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Praxisinstitut Naturmedizin</title>\n  <style>\n    * {\n      margin: 0;\n      padding: 0;\n      box-sizing: border-box;\n    }\n\n    body {\n      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;\n      overflow: hidden;\n    }\n\n    .cover-page {\n      width: 100%;\n      height: 100vh;\n      background: linear-gradient(135deg, #e8f5e3 0%, #f5f9f3 100%);\n      position: relative;\n      overflow: hidden;\n    }\n\n    /* Geometric shapes background */\n    .shape {\n      position: absolute;\n      background: linear-gradient(135deg, #6b9e3e 0%, #5a8934 100%);\n      opacity: 0.9;\n    }\n\n    .shape-1 {\n      width: 50%;\n      height: 60%;\n      top: -10%;\n      left: -15%;\n      transform: rotate(45deg);\n      clip-path: polygon(0 0, 100% 0, 100% 100%);\n    }\n\n    .shape-2 {\n      width: 60%;\n      height: 70%;\n      bottom: -20%;\n      right: -20%;\n      transform: rotate(45deg);\n      clip-path: polygon(100% 0, 100% 100%, 0 100%);\n    }\n\n    .shape-3 {\n      width: 40%;\n      height: 50%;\n      top: 30%;\n      right: -10%;\n      background: rgba(107, 158, 62, 0.15);\n      transform: rotate(-30deg);\n      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);\n    }\n\n    /* Content container */\n    .content {\n      position: relative;\n      z-index: 10;\n      height: 100%;\n      display: flex;\n      flex-direction: column;\n      justify-content: space-between;\n      padding: 60px 80px;\n    }\n\n    /* Logo section */\n    .logo-section {\n      display: flex;\n      align-items: center;\n      gap: 15px;\n    }\n\n    .logo-icon {\n      width: 80px;\n      height: 80px;\n      background: white;\n      border-radius: 50%;\n      display: flex;\n      align-items: center;\n      justify-content: center;\n      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);\n    }\n\n    .logo-icon svg {\n      width: 50px;\n      height: 50px;\n      fill: #6b9e3e;\n    }\n\n    .logo-text {\n      color: #2d5016;\n    }\n\n    .logo-text h1 {\n      font-size: 28px;\n      font-weight: 700;\n      margin-bottom: 5px;\n      letter-spacing: -0.5px;\n    }\n\n    .logo-text p {\n      font-size: 14px;\n      font-weight: 400;\n      color: #5a8934;\n    }\n\n    /* Main title section */\n    .title-section {\n      text-align: center;\n      padding: 80px 0;\n    }\n\n    .title-section h2 {\n      font-size: 56px;\n      font-weight: 700;\n      color: #2d5016;\n      margin-bottom: 20px;\n      line-height: 1.2;\n    }\n\n    .title-section p {\n      font-size: 22px;\n      color: #5a8934;\n      font-weight: 400;\n    }\n\n    /* Footer section */\n    .footer-section {\n      display: flex;\n      justify-content: space-between;\n      align-items: flex-end;\n      color: #5a8934;\n      font-size: 14px;\n    }\n\n    .footer-left {\n      flex: 1;\n    }\n\n    .footer-right {\n      text-align: right;\n    }\n\n    /* White accent line */\n    .accent-line {\n      position: absolute;\n      background: white;\n      opacity: 0.3;\n      z-index: 5;\n    }\n\n    .line-1 {\n      width: 3px;\n      height: 40%;\n      top: 20%;\n      right: 35%;\n      transform: rotate(30deg);\n    }\n\n    .line-2 {\n      width: 3px;\n      height: 50%;\n      bottom: 10%;\n      left: 30%;\n      transform: rotate(-35deg);\n    }\n\n    @media (max-width: 768px) {\n      .content {\n        padding: 40px 30px;\n      }\n\n      .title-section h2 {\n        font-size: 36px;\n      }\n\n      .title-section p {\n        font-size: 18px;\n      }\n\n      .logo-text h1 {\n        font-size: 22px;\n      }\n\n      .footer-section {\n        flex-direction: column;\n        gap: 20px;\n        align-items: flex-start;\n      }\n    }\n  </style>\n</head>\n\n<body>\n  <div class=\"cover-page\">\n    <!-- Geometric shapes -->\n    <div class=\"shape shape-1\"></div>\n    <div class=\"shape shape-2\"></div>\n    <div class=\"shape shape-3\"></div>\n\n    <!-- Accent lines -->\n    <div class=\"accent-line line-1\"></div>\n    <div class=\"accent-line line-2\"></div>\n\n    <!-- Main content -->\n    <div class=\"content\">\n      <!-- Logo header -->\n      <div class=\"logo-section\">\n        <div class=\"logo-icon\">\n          <svg viewBox=\"0 0 64 64\" xmlns=\"http://www.w3.org/2000/svg\">\n            <!-- Mortar bowl -->\n            <path\n              d=\"M32 45 C20 45, 15 40, 15 35 L15 30 C15 28, 16 27, 18 27 L46 27 C48 27, 49 28, 49 30 L49 35 C49 40, 44 45, 32 45 Z\" />\n\n            <!-- Pestle -->\n            <path d=\"M28 27 L28 15 C28 13, 29 12, 31 12 L33 12 C35 12, 36 13, 36 15 L36 27\" />\n\n            <!-- Leaves -->\n            <ellipse cx=\"25\" cy=\"15\" rx=\"6\" ry=\"3\" transform=\"rotate(-30 25 15)\" />\n            <ellipse cx=\"39\" cy=\"15\" rx=\"6\" ry=\"3\" transform=\"rotate(30 39 15)\" />\n            <ellipse cx=\"32\" cy=\"10\" rx=\"6\" ry=\"3\" />\n          </svg>\n        </div>\n        <div class=\"logo-text\">\n          <h1>Praxisinstitut</h1>\n          <h1>Naturmedizin</h1>\n          <p>Medizin zum Selbermachen</p>\n        </div>\n      </div>\n\n      <!-- Main title -->\n      <div class=\"title-section\">\n        <h2>Your Document Title</h2>\n        <p>Subtitle or Description</p>\n      </div>\n\n      <!-- Footer -->\n      <div class=\"footer-section\">\n        <div class=\"footer-left\">\n          <p>© 2024 Praxisinstitut Naturmedizin</p>\n        </div>\n        <div class=\"footer-right\">\n          <p>www.praxisinstitut-naturmedizin.com</p>\n        </div>\n      </div>\n    </div>\n  </div>\n</body>\n\n</html>\n"
+            },
+            {
+              "content": "=Markdown:  {{ $json.content }}"
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2,
+      "position": [
+        1552,
+        256
+      ],
+      "id": "7f72c036-1956-432b-8636-d24529cc4e03",
+      "name": "Message a model",
+      "credentials": {
+        "openAiApi": {
+          "id": "Xfd0MFwxSjT9x3PY",
+          "name": "OpenAi account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-11-27T15:10:12.492Z",
+      "createdAt": "2025-11-27T15:10:12.492Z",
+      "role": "workflow:owner",
+      "workflowId": "aavBcbRneIpLZrLF",
+      "projectId": "POhXKLALTFDZhVtj"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-11-27T16:57:11.000Z",
+  "versionId": "88407ff2-3944-4900-b9c8-b582af5ac513"
+}
