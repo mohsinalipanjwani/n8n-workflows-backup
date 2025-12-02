@@ -1,0 +1,483 @@
+{
+  "active": false,
+  "connections": {
+    "Set Configuration": {
+      "main": [
+        [
+          {
+            "node": "Get Root Folder Info",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Root Folder Info": {
+      "main": [
+        [
+          {
+            "node": "Initialize Queue",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Initialize Queue": {
+      "main": [
+        [
+          {
+            "node": "Process Folders Loop",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Process Folders Loop": {
+      "main": [
+        [
+          {
+            "node": "List Folder Contents",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Merge Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "List Folder Contents": {
+      "main": [
+        [
+          {
+            "node": "Filter Files Only",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Filter Folders Only",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter Files Only": {
+      "main": [
+        [
+          {
+            "node": "Split Files Batch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter Folders Only": {
+      "main": [
+        [
+          {
+            "node": "Process Subfolders",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Files Batch": {
+      "main": [
+        [
+          {
+            "node": "Prepare File Metadata",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Process Folders Loop",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare File Metadata": {
+      "main": [
+        [
+          {
+            "node": "Download File from Drive",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download File from Drive": {
+      "main": [
+        [
+          {
+            "node": "Upload to S3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload to S3": {
+      "main": [
+        [
+          {
+            "node": "Merge Results",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Process Subfolders": {
+      "main": [
+        [
+          {
+            "node": "Check Max Depth",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Max Depth": {
+      "main": [
+        [
+          {
+            "node": "Process Folders Loop",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge Results": {
+      "main": [
+        [
+          {
+            "node": "Generate Summary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-12-01T15:00:00.584Z",
+  "id": "6BCheH4FstubtHAu",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Google Drive to S3 Bulk Migration",
+  "nodes": [
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "source_folder_id",
+              "value": "YOUR_GOOGLE_DRIVE_FOLDER_ID"
+            },
+            {
+              "name": "s3_bucket",
+              "value": "your-s3-bucket-name"
+            },
+            {
+              "name": "s3_prefix",
+              "value": "knowledge-base/"
+            },
+            {
+              "name": "max_depth",
+              "value": "10"
+            }
+          ],
+          "boolean": [
+            {
+              "name": "preserve_structure",
+              "value": true
+            },
+            {
+              "name": "skip_duplicates",
+              "value": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "ceb9cfb8-cf68-450c-bf8c-33e932d35a64",
+      "name": "Set Configuration",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        -832,
+        144
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "folder",
+        "operation": "search"
+      },
+      "id": "bbeb100d-ece3-402b-a7d4-db9795992e38",
+      "name": "Get Root Folder Info",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -624,
+        144
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "kxNQu76R5B6e3VyM",
+          "name": "Google Drive account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Initialize the processing queue with root folder\nconst config = $input.first().json;\nconst rootFolder = $input.last().json;\n\nconst processingQueue = [\n  {\n    folder_id: config.source_folder_id,\n    folder_name: rootFolder.name || 'root',\n    s3_path: config.s3_prefix,\n    depth: 0\n  }\n];\n\nreturn processingQueue.map(item => ({ json: item }));"
+      },
+      "id": "9fdb85ee-1d38-44d4-8731-318d95e61637",
+      "name": "Initialize Queue",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -432,
+        144
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "f945dcef-4039-4590-8e60-6d66d0776708",
+      "name": "Process Folders Loop",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -144,
+        -32
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "search"
+      },
+      "id": "4345f222-0147-4256-b703-c4bcb779a46c",
+      "name": "List Folder Contents",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        80,
+        -192
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "kxNQu76R5B6e3VyM",
+          "name": "Google Drive account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.mimeType }}",
+              "operation": "notEqual",
+              "value2": "application/vnd.google-apps.folder"
+            }
+          ]
+        }
+      },
+      "id": "3afe8881-aa30-45f9-b637-6401f4b4bd9e",
+      "name": "Filter Files Only",
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 1,
+      "position": [
+        288,
+        -208
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.mimeType }}",
+              "value2": "application/vnd.google-apps.folder"
+            }
+          ]
+        }
+      },
+      "id": "d719ff3d-3717-4e43-bc27-0bc5999fe7f5",
+      "name": "Filter Folders Only",
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 1,
+      "position": [
+        176,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "batchSize": 5,
+        "options": {}
+      },
+      "id": "217047ff-6932-4c42-8ed3-33af2c3f2ba0",
+      "name": "Split Files Batch",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        544,
+        -240
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Check if file already exists in S3 to skip duplicates\nconst config = $('Set Configuration').first().json;\nconst currentFolder = $('Process Folders Loop').item.json;\nconst file = $json;\n\n// Build S3 key path\nconst s3Key = currentFolder.s3_path + file.name;\n\n// Add metadata for processing\nreturn {\n  json: {\n    ...file,\n    s3_bucket: config.s3_bucket,\n    s3_key: s3Key,\n    current_folder_path: currentFolder.s3_path,\n    should_skip: false // Will implement duplicate check later if needed\n  }\n};"
+      },
+      "id": "cf4ec667-c65e-45eb-9e49-3ad0ebd2e887",
+      "name": "Prepare File Metadata",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        576,
+        32
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": "={{ $json.id }}",
+        "options": {}
+      },
+      "id": "a67dce80-1711-4e0e-a62c-adb20073dd64",
+      "name": "Download File from Drive",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        784,
+        32
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "kxNQu76R5B6e3VyM",
+          "name": "Google Drive account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "upload",
+        "bucketName": "={{ $json.s3_bucket }}",
+        "fileName": "={{ $json.s3_key }}",
+        "additionalFields": {}
+      },
+      "id": "ef57a438-18ba-4490-a1e3-a3f93e10f49d",
+      "name": "Upload to S3",
+      "type": "n8n-nodes-base.awsS3",
+      "typeVersion": 1,
+      "position": [
+        976,
+        32
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Process subfolders and add them to the queue\nconst config = $('Set Configuration').first().json;\nconst currentFolder = $('Process Folders Loop').item.json;\nconst folders = $input.all().map(item => item.json);\n\n// Create new queue items for subfolders\nconst newQueueItems = folders.map(folder => {\n  const newS3Path = currentFolder.s3_path + folder.name + '/';\n  return {\n    folder_id: folder.id,\n    folder_name: folder.name,\n    s3_path: newS3Path,\n    depth: currentFolder.depth + 1\n  };\n}).filter(item => item.depth < parseInt(config.max_depth));\n\nif (newQueueItems.length === 0) {\n  return [{ json: { message: 'No more subfolders to process' } }];\n}\n\nreturn newQueueItems.map(item => ({ json: item }));"
+      },
+      "id": "086a1f60-f101-4795-899a-f098d27daf59",
+      "name": "Process Subfolders",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        384,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $json.depth }}",
+              "value2": "={{ $('Set Configuration').first().json.max_depth }}"
+            }
+          ]
+        }
+      },
+      "id": "65aef5dd-ca45-4201-a69d-1fbd651a067d",
+      "name": "Check Max Depth",
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 1,
+      "position": [
+        576,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "mergeByFields": {
+          "values": [
+            {}
+          ]
+        },
+        "options": {}
+      },
+      "id": "aa5ae594-b255-4d1e-97d9-5ef6c71ab9bd",
+      "name": "Merge Results",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        1184,
+        144
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Generate migration summary report\nconst allResults = $input.all();\nconst fileUploads = allResults.filter(item => item.json.ETag); // S3 upload results have ETag\nconst errors = allResults.filter(item => item.json.error);\n\nconst summary = {\n  migration_completed: true,\n  total_files_processed: fileUploads.length,\n  total_errors: errors.length,\n  migration_timestamp: new Date().toISOString(),\n  s3_bucket: $('Set Configuration').first().json.s3_bucket,\n  source_folder: $('Set Configuration').first().json.source_folder_id\n};\n\nif (errors.length > 0) {\n  summary.errors = errors.map(e => ({\n    file: e.json.name || 'unknown',\n    error: e.json.error || e.json.message\n  }));\n}\n\nreturn { json: summary };"
+      },
+      "id": "7bd0bed3-2e4f-4f7c-bcfc-5fc366c1269c",
+      "name": "Generate Summary",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1376,
+        144
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-12-01T15:00:00.590Z",
+      "createdAt": "2025-12-01T15:00:00.590Z",
+      "role": "workflow:owner",
+      "workflowId": "6BCheH4FstubtHAu",
+      "projectId": "POhXKLALTFDZhVtj"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-12-01T15:00:00.584Z",
+  "versionId": "607e605e-313c-42b3-9e03-68eb0f0d5ebb"
+}
