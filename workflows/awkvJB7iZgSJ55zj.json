@@ -1,6 +1,279 @@
 {
   "active": false,
-  "connections": {},
+  "connections": {
+    "If NODE": {
+      "main": [
+        [
+          {
+            "node": "based file name it assign differ metadata",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Loop Over each file in gdrive folder",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Web Search ": {
+      "ai_tool": [
+        [
+          {
+            "node": "ai chat agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Drive": {
+      "main": [
+        [
+          {
+            "node": "Loop Over each file in gdrive folder",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "add metadata": {
+      "main": [
+        [
+          {
+            "node": "Google Drive1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "clean output": {
+      "main": [
+        [
+          {
+            "node": "convert data into smaller chunks",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Drive1": {
+      "main": [
+        [
+          {
+            "node": "Mistral Upload",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mistral Upload": {
+      "main": [
+        [
+          {
+            "node": "Mistral Signed URL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory1": {
+      "ai_memory": [
+        [
+          {
+            "node": "ai chat agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mistral DOC OCR": {
+      "main": [
+        [
+          {
+            "node": "If NODE",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "set all metadata": {
+      "main": [
+        [
+          {
+            "node": "clean output",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Qdrant Vector Store1",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI1": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Qdrant Vector Store",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mistral Signed URL": {
+      "main": [
+        [
+          {
+            "node": "Mistral DOC OCR",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "ai chat agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Default Data Loader": {
+      "ai_document": [
+        [
+          {
+            "node": "Qdrant Vector Store1",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Qdrant Vector Store": {
+      "ai_tool": [
+        [
+          {
+            "node": "ai chat agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Qdrant Vector Store1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over each file in gdrive folder",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Character Text Splitter": {
+      "ai_textSplitter": [
+        [
+          {
+            "node": "Default Data Loader",
+            "type": "ai_textSplitter",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mistral Cloud Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "based file name it assign differ metadata",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "ai chat agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "convert data into smaller chunks": {
+      "main": [
+        [
+          {
+            "node": "Qdrant Vector Store1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Google Drive",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over each file in gdrive folder": {
+      "main": [
+        [],
+        [
+          {
+            "node": "add metadata",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "based file name it assign differ metadata": {
+      "main": [
+        [
+          {
+            "node": "set all metadata",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
   "createdAt": "2025-11-05T12:17:16.302Z",
   "id": "awkvJB7iZgSJ55zj",
   "isArchived": false,
@@ -8,7 +281,850 @@
     "templateCredsSetupCompleted": true
   },
   "name": "My workflow 13",
-  "nodes": [],
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "cddc6d47-60a9-4e30-9e10-ea5e6cf03022",
+      "name": "Embeddings OpenAI1",
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "position": [
+        2656,
+        464
+      ],
+      "typeVersion": 1.2
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini",
+          "cachedResultName": "gpt-4.1-mini"
+        },
+        "options": {
+          "temperature": 0.5
+        }
+      },
+      "id": "bb5ff2a1-25b3-420a-b607-668bf1a21c34",
+      "name": "OpenAI Chat Model1",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "position": [
+        1696,
+        464
+      ],
+      "typeVersion": 1.2
+    },
+    {
+      "parameters": {
+        "toolDescription": "Web Search tool ",
+        "method": "POST",
+        "url": "https://api.tavily.com/search",
+        "sendHeaders": true,
+        "parametersHeaders": {
+          "values": [
+            {
+              "name": "Authorization",
+              "valueProvider": "fieldValue",
+              "value": "add tavily token"
+            },
+            {
+              "name": "Content-Type",
+              "valueProvider": "fieldValue",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"query\": \"{query}\",\n  \"topic\": \"general\",\n  \"search_depth\": \"advanced\",\n  \"max_results\": 20,\n  \"include_answer\": true,\n  \"include_raw_content\": false,\n  \"include_images\": false,\n  \"include_image_descriptions\": false,\n  \"include_domains\": [],\n  \"exclude_domains\": [\"\"]\n}",
+        "placeholderDefinitions": {
+          "values": [
+            {
+              "name": "query",
+              "description": "Search Querry",
+              "type": "string"
+            }
+          ]
+        },
+        "optimizeResponse": true
+      },
+      "id": "f866c5c9-8320-44fc-8293-92d31c0c000a",
+      "name": "Web Search ",
+      "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
+      "position": [
+        2368,
+        512
+      ],
+      "typeVersion": 1.1
+    },
+    {
+      "parameters": {},
+      "id": "60f29bf5-69d3-47c9-a197-55bcbc4ff574",
+      "name": "Simple Memory1",
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "position": [
+        1856,
+        464
+      ],
+      "typeVersion": 1.3
+    },
+    {
+      "parameters": {
+        "mode": "retrieve-as-tool",
+        "toolName": "add_name",
+        "toolDescription": "Use RAG to look up information in the knowledgebase.",
+        "qdrantCollection": {
+          "__rl": true,
+          "mode": "list",
+          "value": "docaiauto",
+          "cachedResultName": "docaiauto"
+        },
+        "topK": 3,
+        "options": {}
+      },
+      "id": "e823984d-ef7b-4102-8b47-5f1581afd530",
+      "name": "Qdrant Vector Store",
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreQdrant",
+      "position": [
+        2656,
+        336
+      ],
+      "typeVersion": 1.1
+    },
+    {
+      "parameters": {
+        "public": true,
+        "options": {}
+      },
+      "id": "780b04c1-530f-45e1-9e39-d596423cc0d2",
+      "name": "When chat message received",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "position": [
+        1664,
+        144
+      ],
+      "webhookId": "9c27865f-526c-490f-80a2-645bc919e9de",
+      "typeVersion": 1.1
+    },
+    {
+      "parameters": {
+        "jsonMode": "expressionData",
+        "jsonData": "={{ $json.content }}",
+        "options": {
+          "metadata": {
+            "metadataValues": [
+              {
+                "name": "source",
+                "value": "={{ $('set all metadata').item.json[\"Document name\"] }}"
+              },
+              {
+                "name": "blobType",
+                "value": "application/jsonb"
+              },
+              {
+                "name": "loc",
+                "value": "={{ $('Mistral DOC OCR').item.json.usage_info }}"
+              },
+              {
+                "name": "source_metadata_id",
+                "value": "={{ $('Google Drive1').item.json.file_url }}"
+              },
+              {
+                "name": "department",
+                "value": "ai_automation"
+              },
+              {
+                "name": "PROJECT",
+                "value": "={{ $('set all metadata').item.json.PROJECT }}"
+              },
+              {
+                "name": "=DOCUMNENT_TYPE",
+                "value": "={{ $('set all metadata').item.json.DOCUMENT_TYPE }}"
+              },
+              {
+                "name": "ASSIGNED_TO",
+                "value": "={{ $('set all metadata').item.json.ASSIGNEDTO }}"
+              }
+            ]
+          }
+        }
+      },
+      "id": "c1d68424-b0e2-4262-914c-8620b363a53e",
+      "name": "Default Data Loader",
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "position": [
+        4512,
+        1360
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {},
+      "id": "e097164e-208f-412c-b0f6-e907ef5059d7",
+      "name": "Character Text Splitter",
+      "type": "@n8n/n8n-nodes-langchain.textSplitterCharacterTextSplitter",
+      "position": [
+        4576,
+        1472
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "resource": "fileFolder",
+        "searchMethod": "query",
+        "filter": {
+          "folderId": {
+            "__rl": true,
+            "value": "=https://drive.google.com/drive/folders/17J58nDFuiHWqs2e4VFbfzX9bCREeAy_r",
+            "mode": "url"
+          }
+        },
+        "options": {
+          "fields": [
+            "id",
+            "name",
+            "webViewLink",
+            "mimeType",
+            "*"
+          ]
+        }
+      },
+      "id": "e5a8b2fb-a6b5-4739-ac3d-97f2465eff07",
+      "name": "Google Drive",
+      "type": "n8n-nodes-base.googleDrive",
+      "position": [
+        1536,
+        1168
+      ],
+      "typeVersion": 3,
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "kxNQu76R5B6e3VyM",
+          "name": "Google Drive account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "mode": "url",
+          "value": "={{ $('add metadata').item.json.file_url }}"
+        },
+        "options": {}
+      },
+      "id": "e5c23723-3d46-4995-a80f-0cf134cb2af3",
+      "name": "Google Drive1",
+      "type": "n8n-nodes-base.googleDrive",
+      "position": [
+        2256,
+        1184
+      ],
+      "typeVersion": 3,
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "kxNQu76R5B6e3VyM",
+          "name": "Google Drive account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.mistral.ai/v1/files",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "mistralCloudApi",
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "purpose",
+              "value": "ocr"
+            },
+            {
+              "parameterType": "formBinaryData",
+              "name": "file",
+              "inputDataFieldName": "data"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "f484bc59-6ca4-442d-96fd-73b8845e838f",
+      "name": "Mistral Upload",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        2496,
+        1184
+      ],
+      "typeVersion": 4.2
+    },
+    {
+      "parameters": {
+        "url": "=https://api.mistral.ai/v1/files/{{ $json.id }}/url",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "mistralCloudApi",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "expiry",
+              "value": "24"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/json"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "fce3d44d-821a-4fa9-82d1-f82fa2e3dd94",
+      "name": "Mistral Signed URL",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        2720,
+        1184
+      ],
+      "typeVersion": 4.2
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.mistral.ai/v1/ocr",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "mistralCloudApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"mistral-ocr-latest\",\n  \"document\": {\n    \"type\": \"document_url\",\n    \"document_url\": \"{{ $json.url }}\"\n  },\n  \"include_image_base64\": true\n}",
+        "options": {}
+      },
+      "id": "1235d9a0-b78b-43af-a2c3-d48ab99de341",
+      "name": "Mistral DOC OCR",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        2944,
+        1184
+      ],
+      "typeVersion": 4.2
+    },
+    {
+      "parameters": {},
+      "id": "12781e30-3e0c-4e7d-bdc9-ca4c7db48d72",
+      "name": "When clicking ‘Test workflow’",
+      "type": "n8n-nodes-base.manualTrigger",
+      "position": [
+        1264,
+        1168
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "model": "text-embedding-3-small",
+        "options": {}
+      },
+      "id": "bb80d20a-5681-45f1-9f0c-902800ef8fe0",
+      "name": "Embeddings OpenAI",
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "position": [
+        4336,
+        1488
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "qdrantCollection": {
+          "__rl": true,
+          "mode": "list",
+          "value": "docaiauto",
+          "cachedResultName": "docaiauto"
+        },
+        "embeddingBatchSize": "=200",
+        "options": {}
+      },
+      "id": "57f073ea-ddb4-40ce-81a3-259cab61ec5b",
+      "name": "Qdrant Vector Store1",
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreQdrant",
+      "position": [
+        4352,
+        1184
+      ],
+      "typeVersion": 1.1
+    },
+    {
+      "parameters": {
+        "model": "mistral-small-latest",
+        "options": {}
+      },
+      "id": "0193fce4-5beb-469c-9f0b-45374448c8fc",
+      "name": "Mistral Cloud Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatMistralCloud",
+      "position": [
+        3376,
+        1488
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "=You are a helpful, intelligent AI Knowledge Bot and proactive chat agent.  \nLead conversations by asking open-ended questions and offering suggestions.  \nAnticipate needs, follow up thoughtfully, and make the user feel supported throughout.\n\n---\n\n## **Knowledge Access Workflow**\n\n1. **Primary Source: qdrant vector store (`add_table_name` table)**  \n   - For **every** user query, first search **only** in qdrant.  \n   - If relevant information is found:\n     - Respond in a **clear, structured, and informative** manner.  \n     - **Always include multiple images** if available — aim for **maximum number of relevant images**, not just one.  \n       - Place each image **inline**, immediately after the sentence/section it illustrates.  \n       - Never group all images at the end.\n     - Always **cite the internal document name** and **provide a clickable URL** to the source document.\n       - Use `list doc` tool with `source_metadata_id` to retrieve the document URL.\n     \n     **Example Citation:**  \n     > This information is based on the internal AI documentation related to automation projects (Automation Timesheet Blogs).  \n     > [View Full Document](document_url_here)\n\n2. **If No  Match Found:**  \n   - Reply:  \n     `\"The information you requested is not available in our internal documentation. Would you like me to do a Web search?\"`\n\n3. **Web Search Rules:**  \n   - Only search if user explicitly agrees (e.g., \"Yes\", \"Okay\").  \n  - use 'web search 1'tool\n   - Clearly label as **External Source** and provide clickable URLs.  \n     Example:  \n     > This information comes from an external source ([website_name](source_url)).\n\n4. **If No Data in Qdrant or Web:**  \n   - Reply:  \n     `\"At the moment, there is no information available to fully address this request based on current internal and external sources.\"`\n\n---\n\n## **Formatting & Style**\n- **Language:** All qdrant queries in English; all responses in English.  \n- **Tone:** Professional, clear, structured, and helpful.  \n- **Image Usage:**  \n  - Always include **all available relevant images** MARKDOWN  — even if it means showing several per section.  \n  - Place images **exactly after the point they illustrate**.  \n  - Use different images for different subtopics, comparisons, or examples.  \n  - Do **not** skip images if they exist in the source.\n- **For Guide/Instruction Responses:**  \n  1. **Step-by-Step Guide** (detailed instructions)  \n  2. **Things to Consider** (common pitfalls, important details)  \n  3. **Further Understanding**  \n     - Suggest 2 related topics the user might explore next, relevant to their query.\n- Never skip key details. Always check if more images can be added to improve clarity.\n\n---\n\n## **Core Principles**\n- Be proactive — never wait for the user to guide the entire conversation.  \n- Ask open-ended follow-ups.  \n- Anticipate related needs based on the query.  \n- Maintain accuracy, cite sources, and **use as many relevant images as possible**.  \n-  ALWAYS SHOW  IMAGE AND Keep images inline and contextually placed.\n",
+          "returnIntermediateSteps": false
+        }
+      },
+      "id": "eb73d6b0-76c2-436e-9725-1f22142f8624",
+      "name": "ai chat agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "position": [
+        2160,
+        144
+      ],
+      "typeVersion": 1.7
+    },
+    {
+      "parameters": {
+        "content": "## WEB SEARCH using tavily (http node)\n [Tavily setup Guide](https://docs.tavily.com/welcome)",
+        "height": 208,
+        "width": 400,
+        "color": 5
+      },
+      "id": "1320213f-86f7-46f1-8b53-1d15ada369a8",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        2176,
+        448
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## GET ALL FILE DATA FROM SELECTED GOOGLE DRIVE FOLDER",
+        "height": 400,
+        "width": 224,
+        "color": 5
+      },
+      "id": "34f63985-b4ec-4c64-891b-3124e57de4dd",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1488,
+        960
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## Remove  empty data fields  ",
+        "height": 256,
+        "width": 192,
+        "color": 5
+      },
+      "id": "d2b8e198-59b1-4c8e-9857-e425bd728bd0",
+      "name": "Sticky Note2",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        3104,
+        1072
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## GET  individual files from selected gdrive",
+        "height": 320,
+        "width": 208,
+        "color": 5
+      },
+      "id": "8890170a-90b4-4c2c-8f7d-3bbb17709ed9",
+      "name": "Sticky Note3",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        2192,
+        1008
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## MISTRAL OCR\n [OCR Guide](https://mistral.ai/news/mistral-ocr)\n1. UPLOAD FILE\n2. GET SIGNED URL\n3. GET EXTRACT DATA AFTER USING MISTRAL OCR",
+        "height": 272,
+        "width": 608,
+        "color": 5
+      },
+      "id": "ddb4d4c3-667b-4a1a-a000-cf261259ba7d",
+      "name": "Sticky Note4",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        2448,
+        1040
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## Hosted Chat interface  \n",
+        "height": 288,
+        "width": 368,
+        "color": 5
+      },
+      "id": "d3dde943-7d6c-4cbe-bbec-15b453496f43",
+      "name": "Sticky Note5",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1520,
+        48
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## QDRANT VCETOR AND OPEN API EMBEDDING \n [QDRANT Guide](https://qdrant.tech/documentation/)",
+        "height": 496,
+        "width": 272,
+        "color": 5
+      },
+      "id": "54cb3751-ce0b-4a52-b11b-13368d9182dd",
+      "name": "Sticky Note6",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        2640,
+        128
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## AI chat agent\n interact with user and process user input and provide appropriate response using different tools. ",
+        "height": 304,
+        "width": 432,
+        "color": 5
+      },
+      "id": "d9a0e6f8-e3d9-4f97-9ab8-6937687207f4",
+      "name": "Sticky Note7",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        2096,
+        32
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## clean all extracted data and convert them to smaller chunks",
+        "height": 288,
+        "width": 320,
+        "color": 5
+      },
+      "id": "08cc59f7-56de-4063-a331-a456d77b523e",
+      "name": "Sticky Note10",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        3840,
+        1040
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## assignment agent\n\nfor any given file this node assign which type documents it is ,which project its related too and who are working on it",
+        "height": 368,
+        "width": 288,
+        "color": 5
+      },
+      "id": "daf5bb42-128d-4e07-a516-f140b8598099",
+      "name": "Sticky Note11",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        3344,
+        960
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## load all chunks into qdrant vector database",
+        "height": 608,
+        "width": 512,
+        "color": 5
+      },
+      "id": "c8baef39-0b9a-4b3f-9e57-ed6d720f1e09",
+      "name": "Sticky Note12",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        4256,
+        1008
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## loop over google drive folder items",
+        "height": 320,
+        "width": 256,
+        "color": 5
+      },
+      "id": "0dbdcf41-2d1f-4f11-878b-698395c0b5a9",
+      "name": "Sticky Note9",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1744,
+        1024
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "411e5954-1d36-44dc-b4bd-1604a511f113",
+      "name": "Loop Over each file in gdrive folder",
+      "type": "n8n-nodes-base.splitInBatches",
+      "position": [
+        1776,
+        1168
+      ],
+      "typeVersion": 3
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "10646eae-ae46-4327-a4dc-9987c2d76173",
+              "name": "file_id",
+              "type": "string",
+              "value": "={{ $json.id }}"
+            },
+            {
+              "id": "f4536df5-d0b1-4392-bf17-b8137fb31a44",
+              "name": "file_type",
+              "type": "string",
+              "value": "={{ $json.mimeType }}"
+            },
+            {
+              "id": "77d782de-169d-4a46-8a8e-a3831c04d90f",
+              "name": "file_title",
+              "type": "string",
+              "value": "={{ $json.name }}"
+            },
+            {
+              "id": "9bde4d7f-e4f3-4ebd-9338-dce1350f9eab",
+              "name": "file_url",
+              "type": "string",
+              "value": "={{ $json.webViewLink }}"
+            },
+            {
+              "id": "fae402c8-c486-4b57-8d28-bf669db6b442",
+              "name": "last_modified_date",
+              "type": "string",
+              "value": "={{ $json.modifiedTime }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "9fa5fa09-9367-4824-b377-98aee3aad591",
+      "name": "add metadata",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        2064,
+        1184
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "version": 2,
+            "leftValue": "",
+            "caseSensitive": true,
+            "typeValidation": "loose"
+          },
+          "combinator": "and",
+          "conditions": [
+            {
+              "id": "d15e917b-43d2-40b8-8b49-af467ff63961",
+              "operator": {
+                "type": "string",
+                "operation": "notExists",
+                "singleValue": true
+              },
+              "leftValue": "={{ $json.data[0].parseJson().skipped }}",
+              "rightValue": ""
+            }
+          ]
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "id": "49c488b1-1e41-4daf-91a4-5a5366138ee9",
+      "name": "If NODE",
+      "type": "n8n-nodes-base.if",
+      "position": [
+        3152,
+        1184
+      ],
+      "typeVersion": 2.2
+    },
+    {
+      "parameters": {
+        "text": "=\n{{ $json.pages[0].markdown }}",
+        "attributes": {
+          "attributes": [
+            {
+              "name": "document_type",
+              "description": "type of document this can be blog, user documentation, technical documentation, manual/guide, educational"
+            },
+            {
+              "name": "project",
+              "description": " from give project this can any one ,social/digimarketing ,  chatbot, knowledge bot if nothing that its default"
+            },
+            {
+              "name": "assigned_to",
+              "description": "who are handling give projects mention all name given for a give project\n\nif project LINKED/DIGIMARRKETING/SOCIAL = [employee name]\nif project KB BOT = [employee name]\nif project CHAT BOT = [employee name]\nif project TIMESHEET = [employee name]"
+            }
+          ]
+        },
+        "options": {
+          "systemPromptTemplate": "You are an expert extraction algorithm.\nOnly extract relevant information from the text.\ngive data is "
+        }
+      },
+      "id": "fb9b9521-abc3-4dcd-b20b-ca0c403e4107",
+      "name": "based file name it assign differ metadata",
+      "type": "@n8n/n8n-nodes-langchain.informationExtractor",
+      "position": [
+        3376,
+        1184
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "5132d92c-41da-4a55-ad79-0c329ca7e626",
+              "name": "Document name",
+              "type": "string",
+              "value": "={{ $('Google Drive1').item.json.file_title }}"
+            },
+            {
+              "id": "c8160701-2be7-43c6-bcfa-295fbebe0e23",
+              "name": "Document data",
+              "type": "string",
+              "value": "={{ $('If NODE').item.json.pages[0].markdown }}"
+            },
+            {
+              "id": "1087ab34-5643-4755-b545-cf34d0ae2cd2",
+              "name": " source",
+              "type": "string",
+              "value": "={{ $('Google Drive1').item.json.file_id }}"
+            },
+            {
+              "id": "4317aa31-d9fd-4adc-ab26-b48c208041b3",
+              "name": "ASSIGNEDTO",
+              "type": "string",
+              "value": "={{ $json.output.assigned_to.split(\",\") }}"
+            },
+            {
+              "id": "7a61d775-06b1-42e2-a82a-d8e756fa5586",
+              "name": "PROJECT",
+              "type": "string",
+              "value": "={{ $json.output.project }}"
+            },
+            {
+              "id": "300f49d6-8851-458d-a296-8ceb68ebdd5f",
+              "name": "DOCUMENT_TYPE",
+              "type": "string",
+              "value": "={{ $json.output.document_type }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "7ed9174d-aede-4422-ae35-5f89e057c497",
+      "name": "set all metadata",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        3680,
+        1184
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "jsCode": "// Get incoming data (first item)\nconst data = items[0].json;\n\n// If wrapped in an array, unwrap it\nconst input = Array.isArray(data) ? data[0] : data;\n\nlet output = [\n  {\n    content: input[\"Document data\"], // main text for embedding\n    metadata: {\n      document_name: input[\"Document name\"],\n      source_id: input[\" source\"], // note: there is a space before \"source\" in your key\n    }\n  }\n];\n\nreturn output.map(o => ({ json: o }));\n"
+      },
+      "id": "15855621-330e-4b94-8a8a-b71e576a06bf",
+      "name": "clean output",
+      "type": "n8n-nodes-base.code",
+      "position": [
+        3872,
+        1184
+      ],
+      "typeVersion": 2
+    },
+    {
+      "parameters": {
+        "jsCode": "const chunkSize = 1000; // characters\nconst chunkOverlap = 100; // characters\n\n\nlet newItems = [];\n\nfor (const item of items) {\n    let text = item.json.content; // <-- use item.json\n    if (!text || typeof text !== \"string\") continue;\n\n    const sourceId = item.json.metadata.source_id;\n\n   \n    // Chunking\n    for (let i = 0; i < updatedText.length; i += chunkSize - chunkOverlap) {\n        let chunk = updatedText.slice(i, i + chunkSize);\n        newItems.push({\n            json: {\n                content: chunk,\n                metadata: item.json.metadata\n            }\n        });\n    }\n}\n\nreturn newItems;\n"
+      },
+      "id": "50e4b92e-9ffd-4d12-acc5-47caf6aea091",
+      "name": "convert data into smaller chunks",
+      "type": "n8n-nodes-base.code",
+      "position": [
+        4032,
+        1184
+      ],
+      "typeVersion": 2
+    },
+    {
+      "parameters": {
+        "content": "### **Node List & Descriptions**\n\n1. **Manual Trigger**  \n   - **What:** Kicks off the workflow when the user clicks **“Test workflow.”**  \n   - **Why:** Allows for on-demand execution and testing of the data pipeline.  \n\n2. **Google Drive (List Files)**  \n   - **What:** Lists all files within a predefined Google Drive folder (`knowledgebaseforaibot`).  \n   - **Why:** To retrieve the initial list of all documents that need to be processed.  \n\n3. **Loop Over Files**  \n   - **What:** Iterates through each file retrieved from Google Drive, processing them one by one.  \n   - **Why:** Ensures each document is handled individually in the following steps.  \n\n4. **Google Drive (Download File)**  \n   - **What:** Downloads the binary content of the current file being processed in the loop.  \n   - **Why:** Provides the actual file data needed for OCR processing.  \n\n5. **Mistral OCR (via HTTP Requests)**  \n   - **What:**  \n     - Uploads the file to the Mistral API.  \n     - Retrieves a temporary signed URL for access.  \n     - Calls the Mistral OCR endpoint to extract all text content from the document.  \n   - **Why:** Converts scanned or image-based documents (like PDFs, JPGs) into machine-readable text.  \n\n6. **If Node (Check for Success)**  \n   - **What:** Verifies that the Mistral OCR operation completed successfully without errors.  \n   - **Why:** Ensures only valid, readable documents continue in the workflow, avoiding process failures.  \n\n7. **Information Extractor (LangChain)**  \n   - **What:** Uses the Mistral AI chat model to analyze the extracted text and assign metadata such as:  \n     - `document_type`  \n     - `project`  \n     - `assigned_to`  \n   - **Why:** Automatically categorizes and tags documents based on their content for better organization and searchability.  \n\n8. **Code Node (Clean & Chunk Data)**  \n   - **What:**  \n     - Formats the extracted text and metadata into a clean JSON structure.  \n     - Splits the document text into smaller, overlapping chunks (≈1000 characters each).  \n   - **Why:** Prepares data for embedding and ensures compatibility with language model context limits.  \n\n9. **OpenAI Embeddings (LangChain)**  \n   - **What:** Converts each text chunk into a numerical vector using OpenAI’s `text-embedding-3-small` model.  \n   - **Why:** Encodes the semantic meaning of the text for similarity-based search and retrieval.  \n\n10. **Qdrant Vector Store (LangChain)**  \n    - **What:** Inserts the text chunks and their corresponding embeddings into a Qdrant vector database collection named `docaiauto`.  \n    - **Why:** Creates a searchable, semantic knowledge base for AI-driven document retrieval.  \n\n---\n\n### **flow of data**\n\n**Trigger → List Files (Google Drive) → Loop → Download File → OCR (Mistral) → Validate → Categorize (AI) → Clean & Chunk → Embed (OpenAI) → Store (Qdrant)**\n",
+        "height": 1248,
+        "width": 800,
+        "color": 5
+      },
+      "id": "051f6769-55bf-426a-9cf2-41520e559899",
+      "name": "Sticky Note8",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        4864,
+        768
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "# Konowledge RAG and AI chat agent  \n## by DIGITAL BIZ TECH\n\n## **Overview**\n\nThis workflow automates the process of transforming all files stored in Google Drive into a **searchable, intelligent knowledge base** — fully integrated with a **chat-enabled AI assistant**.  \nIt also supports **web search augmentation**, allowing the agent to explain, compare, or enrich document insights using the latest online data.\n\n---\n\n## **Key Objectives**\n\n1. **Ingest and Process All Files**\n   - Retrieve all files from a specific Google Drive folder.\n   - Automatically extract their text content using OCR and AI-based parsing.\n   - Generate structured metadata for each document (e.g., project, assignment, employee, and category).\n   - Convert the text into **vector embeddings** and store them in a **Qdrant vector database** for semantic retrieval.\n\n2. **Enrich Metadata Intelligence**\n   - Enhance each document with contextual metadata fields:\n     - `project` — identifies which project the document belongs to.\n     - `assignment` — links the file to a specific task or deliverable.\n     - `employee` — indicates the team member responsible or related to the document.\n   - Improves the **contextual accuracy** of RAG (Retrieval-Augmented Generation) queries by enabling more targeted retrieval.\n\n3. **Integrate with Chat-Based AI Agent**\n   - The agent uses a **ai agent with different tools** to:\n     - Query internal knowledge (Qdrant collection) for relevant chunks.\n     - Optionally trigger a **web search (Tavily API)** when internal data is insufficient.\n     - Combine results intelligently to deliver accurate and explainable answers.\n   - Users can interact naturally through a chat interface to explore, summarize, or cross-reference different documents.\n\n4. **Maintain a Robust RAG Pipeline for Unstructured Data**\n   - Designed to handle **unclean, inconsistent, or multi-format data sources** (PDFs, DOCX, images, etc.).\n   - The cleaning and chunking logic ensures uniform embeddings, even from noisy input.\n   - The RAG system automatically improves over time as new documents are added or updated in Google Drive.\n\n---\n\n## **Functional Flow**\n\n**Google Drive → File Extraction → Metadata Enrichment → Text Chunking → Embedding (OpenAI) → Storage (Qdrant) → AI Chat Agent → Web Search (Optional)**\n\n---\n\n## **Use Cases**\n\n- 📁 **Automated Knowledge Management:** Build a live, self-updating internal document knowledge base.  \n- 🧠 **Smart AI Assistance:** Enable employees to query project or task documents conversationally.  \n- 🌐 **Hybrid Knowledge Retrieval:** Combine private document insights with external web data.  \n- 🧩 **Flexible Integration:** Can be connected to any folder or department for scalable RAG deployment.\n\n---\n\n## **Benefits**\n\n- Fully automated ingestion from Google Drive.  \n- Rich, context-aware metadata for intelligent document relationships.  \n- Chat interface for easy access to organizational knowledge.  \n- Optional web search for real-time, external context expansion.  \n- Maintains a clean, high-quality **RAG (Retrieval-Augmented Generation)** pipeline even from unclean data sources.\n\n---\n\n### **Quick Reference: Flow Logic**\n\n**Google Drive → OCR/Text Extraction → Metadata Enrichment → Embeddings → Qdrant (RAG Store) → Chat AI Agent → Optional Web Search**",
+        "height": 2096,
+        "width": 864,
+        "color": 5
+      },
+      "id": "72ab3419-5b2e-4510-b79d-cdd2f61733fd",
+      "name": "Sticky Note14",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -64,
+        -384
+      ],
+      "typeVersion": 1
+    }
+  ],
   "pinData": {},
   "settings": {
     "executionOrder": "v1"
@@ -25,6 +1141,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-11-06T13:37:47.000Z",
-  "versionId": "4525032c-2c89-4e5d-bfe0-c9d290ac2c89"
+  "updatedAt": "2025-12-02T15:36:10.000Z",
+  "versionId": "1824ab99-cbad-4910-845f-d1dc02170ab6"
 }
