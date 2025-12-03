@@ -1,174 +1,221 @@
 {
   "active": false,
   "connections": {
-    "Set Configuration": {
+    "Wait": {
       "main": [
         [
           {
-            "node": "Get Root Folder Info",
+            "node": "Loop Over Items",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Get Root Folder Info": {
+    "Get files": {
       "main": [
         [
           {
-            "node": "Initialize Queue",
+            "node": "Loop Over Items",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Initialize Queue": {
+    "Edit Fields3": {
       "main": [
         [
           {
-            "node": "Process Folders Loop",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Process Folders Loop": {
-      "main": [
-        [
-          {
-            "node": "List Folder Contents",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Merge Results",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "List Folder Contents": {
-      "main": [
-        [
-          {
-            "node": "Filter Files Only",
+            "node": "Download file",
             "type": "main",
             "index": 0
           },
           {
-            "node": "Filter Folders Only",
+            "node": "Delete single file",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Filter Files Only": {
+    "Download file": {
       "main": [
         [
           {
-            "node": "Split Files Batch",
+            "node": "Update single file",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Filter Folders Only": {
+    "Download files": {
       "main": [
         [
           {
-            "node": "Process Subfolders",
+            "node": "Qdrant Vector Store",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Split Files Batch": {
+    "Loop Over Items": {
       "main": [
+        [],
         [
           {
-            "node": "Prepare File Metadata",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Process Folders Loop",
+            "node": "Download files",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Prepare File Metadata": {
+    "Clear collection": {
+      "main": [
+        []
+      ]
+    },
+    "Embeddings OpenAI": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Qdrant Vector Store1",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI1": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Qdrant Vector Store",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI2": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Update single file",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Default Data Loader": {
+      "ai_document": [
+        [
+          {
+            "node": "Update single file",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Qdrant Vector Store": {
       "main": [
         [
           {
-            "node": "Download File from Drive",
+            "node": "Wait",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Download File from Drive": {
+    "Default Data Loader1": {
+      "ai_document": [
+        [
+          {
+            "node": "Qdrant Vector Store",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Qdrant Vector Store1": {
+      "ai_vectorStore": [
+        [
+          {
+            "node": "Vector Store Retriever",
+            "type": "ai_vectorStore",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Vector Store Retriever": {
+      "ai_retriever": [
+        [
+          {
+            "node": "Question and Answer Chain",
+            "type": "ai_retriever",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Question and Answer Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When chat message received": {
       "main": [
         [
           {
-            "node": "Upload to S3",
+            "node": "Question and Answer Chain",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Upload to S3": {
-      "main": [
+    "Recursive Character Text Splitter": {
+      "ai_textSplitter": [
         [
           {
-            "node": "Merge Results",
-            "type": "main",
-            "index": 1
+            "node": "Default Data Loader1",
+            "type": "ai_textSplitter",
+            "index": 0
           }
         ]
       ]
     },
-    "Process Subfolders": {
+    "When clicking ‘Test workflow’": {
       "main": [
         [
           {
-            "node": "Check Max Depth",
+            "node": "Get files",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Check Max Depth": {
-      "main": [
+    "Recursive Character Text Splitter1": {
+      "ai_textSplitter": [
         [
           {
-            "node": "Process Folders Loop",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Merge Results": {
-      "main": [
-        [
-          {
-            "node": "Generate Summary",
-            "type": "main",
+            "node": "Default Data Loader",
+            "type": "ai_textSplitter",
             "index": 0
           }
         ]
@@ -181,198 +228,358 @@
   "meta": {
     "templateCredsSetupCompleted": true
   },
-  "name": "Google Drive to S3 Bulk Migration",
+  "name": "Enables updates to documents in RAG",
   "nodes": [
     {
+      "parameters": {},
+      "id": "a736a9f2-f31a-40c1-aa89-a27669a1d27e",
+      "name": "When clicking ‘Test workflow’",
+      "type": "n8n-nodes-base.manualTrigger",
+      "position": [
+        -960,
+        464
+      ],
+      "typeVersion": 1
+    },
+    {
       "parameters": {
-        "values": {
-          "string": [
-            {
-              "name": "source_folder_id",
-              "value": "YOUR_GOOGLE_DRIVE_FOLDER_ID"
-            },
-            {
-              "name": "s3_bucket",
-              "value": "your-s3-bucket-name"
-            },
-            {
-              "name": "s3_prefix",
-              "value": "knowledge-base/"
-            },
-            {
-              "name": "max_depth",
-              "value": "10"
-            }
-          ],
-          "boolean": [
-            {
-              "name": "preserve_structure",
-              "value": true
-            },
-            {
-              "name": "skip_duplicates",
-              "value": true
-            }
-          ]
+        "options": {}
+      },
+      "id": "af7a8dae-6b9f-4dec-8c0f-c2c9c609e1e8",
+      "name": "Embeddings OpenAI1",
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "position": [
+        384,
+        720
+      ],
+      "typeVersion": 1.1
+    },
+    {
+      "parameters": {
+        "dataType": "binary",
+        "binaryMode": "specificField",
+        "options": {
+          "metadata": {
+            "metadataValues": [
+              {
+                "name": "file_id",
+                "value": "={{ $('Download files').item.json.id }}"
+              },
+              {
+                "name": "file_name",
+                "value": "={{ $('Download files').item.json.name }}"
+              }
+            ]
+          }
+        }
+      },
+      "id": "6a343c5c-213f-4cdd-97c5-3c46bf34329d",
+      "name": "Default Data Loader1",
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "position": [
+        528,
+        720
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "qdrantCollection": {
+          "__rl": true,
+          "mode": "list",
+          "value": "negozio-emporio-verde",
+          "cachedResultName": "negozio-emporio-verde"
         },
         "options": {}
       },
-      "id": "ceb9cfb8-cf68-450c-bf8c-33e932d35a64",
-      "name": "Set Configuration",
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 1,
+      "id": "0080b8c3-7afc-4d08-8f21-3b4d8e486c4f",
+      "name": "Qdrant Vector Store",
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreQdrant",
       "position": [
-        -832,
-        144
-      ]
-    },
-    {
-      "parameters": {
-        "resource": "folder",
-        "operation": "search"
-      },
-      "id": "bbeb100d-ece3-402b-a7d4-db9795992e38",
-      "name": "Get Root Folder Info",
-      "type": "n8n-nodes-base.googleDrive",
-      "typeVersion": 3,
-      "position": [
-        -624,
-        144
+        448,
+        480
       ],
-      "credentials": {
-        "googleDriveOAuth2Api": {
-          "id": "kxNQu76R5B6e3VyM",
-          "name": "Google Drive account 2"
-        }
-      }
+      "typeVersion": 1
     },
     {
       "parameters": {
-        "jsCode": "// Initialize the processing queue with root folder\nconst config = $input.first().json;\nconst rootFolder = $input.last().json;\n\nconst processingQueue = [\n  {\n    folder_id: config.source_folder_id,\n    folder_name: rootFolder.name || 'root',\n    s3_path: config.s3_prefix,\n    depth: 0\n  }\n];\n\nreturn processingQueue.map(item => ({ json: item }));"
+        "method": "PUT",
+        "url": "http://QDRANTURL/collections/COLLECTION",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"vectors\": {\n    \"size\": 1536,\n    \"distance\": \"Cosine\"  \n  },\n  \"shard_number\": 1,  \n  \"replication_factor\": 1,  \n  \"write_consistency_factor\": 1 \n}",
+        "options": {}
       },
-      "id": "9fdb85ee-1d38-44d4-8731-318d95e61637",
-      "name": "Initialize Queue",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
+      "id": "c8286615-17ee-4039-bb3a-33f58400b807",
+      "name": "Create collection",
+      "type": "n8n-nodes-base.httpRequest",
       "position": [
-        -432,
-        144
-      ]
+        -704,
+        32
+      ],
+      "typeVersion": 4.2
+    },
+    {
+      "parameters": {
+        "chunkSize": 500,
+        "chunkOverlap": 50,
+        "options": {}
+      },
+      "id": "da3a0a98-9815-4753-8d0a-f4abdda570b8",
+      "name": "Recursive Character Text Splitter",
+      "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
+      "position": [
+        512,
+        912
+      ],
+      "typeVersion": 1
     },
     {
       "parameters": {
         "options": {}
       },
-      "id": "f945dcef-4039-4590-8e60-6d66d0776708",
-      "name": "Process Folders Loop",
+      "id": "5db0b485-a8c7-4450-a47f-1888b7cd8922",
+      "name": "Loop Over Items",
       "type": "n8n-nodes-base.splitInBatches",
-      "typeVersion": 3,
       "position": [
         -144,
-        -32
-      ]
+        464
+      ],
+      "typeVersion": 3
+    },
+    {
+      "parameters": {},
+      "id": "62ffb805-5771-4767-ae50-300965c484b6",
+      "name": "Wait",
+      "type": "n8n-nodes-base.wait",
+      "position": [
+        832,
+        480
+      ],
+      "webhookId": "3d477cc3-8182-43e9-ae61-23e8ce308887",
+      "typeVersion": 1.1
     },
     {
       "parameters": {
-        "operation": "search"
+        "options": {}
       },
-      "id": "4345f222-0147-4256-b703-c4bcb779a46c",
-      "name": "List Folder Contents",
-      "type": "n8n-nodes-base.googleDrive",
-      "typeVersion": 3,
+      "id": "5b0da434-0223-48b9-9e64-9cff3d7f6a18",
+      "name": "Embeddings OpenAI2",
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
       "position": [
-        80,
-        -192
+        64,
+        1456
       ],
+      "typeVersion": 1.1
+    },
+    {
+      "parameters": {
+        "dataType": "binary",
+        "binaryMode": "specificField",
+        "options": {
+          "metadata": {
+            "metadataValues": [
+              {
+                "name": "file_id",
+                "value": "={{ $('Download file').item.json.file_id }}"
+              },
+              {
+                "name": "file_name",
+                "value": "={{ $binary.data.fileName}}"
+              }
+            ]
+          }
+        }
+      },
+      "id": "533c4840-b4c6-4f2c-9c47-004e0d0d3468",
+      "name": "Default Data Loader",
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "position": [
+        272,
+        1504
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "chunkSize": 500,
+        "chunkOverlap": 50,
+        "options": {}
+      },
+      "id": "982422c8-877a-4946-b8e5-cc3c7c822e10",
+      "name": "Recursive Character Text Splitter1",
+      "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
+      "position": [
+        304,
+        1696
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://QDRANTURL/collections/COLLECTION/points/delete",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"filter\": {\n    \"must\": [\n      {\n          \"key\": \"metadata.file_id\",\n          \"match\": { \"value\": \"{{$json.file_id}}\" }\n        }\n    ]\n  }\n}",
+        "options": {}
+      },
+      "id": "2a10835a-ea74-43b1-b1cf-e1fae2727b0e",
+      "name": "Delete single file",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        -208,
+        960
+      ],
+      "typeVersion": 4.2
+    },
+    {
+      "parameters": {
+        "content": "# STEP 1\n\n## Create Qdrant Collection\nChange:\n- QDRANTURL\n- COLLECTION",
+        "height": 220,
+        "width": 880,
+        "color": 6
+      },
+      "id": "4cd34eb7-2ec9-4561-b1ed-474d61110d37",
+      "name": "Sticky Note3",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -416,
+        -48
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "# STEP 3\n\n## FILE ID\nSet Google Drive File ID to update\n",
+        "height": 360
+      },
+      "id": "d29e9542-cf3d-4ed4-aeef-4476ba141f6e",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -720,
+        944
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://QDRANTURL/collections/COLLECTION/points/delete",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"filter\": {}\n}",
+        "options": {}
+      },
+      "id": "a319cf60-37ee-4636-9af4-2afcdbeeb4e7",
+      "name": "Clear collection",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        -960,
+        128
+      ],
+      "typeVersion": 4.2,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "waaAwfOZusltfsER",
+          "name": "Whisper Auth"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "fileFolder",
+        "searchMethod": "query",
+        "filter": {
+          "folderId": {
+            "__rl": true,
+            "mode": "url",
+            "value": "https://drive.google.com/drive/folders/17J58nDFuiHWqs2e4VFbfzX9bCREeAy_r"
+          }
+        },
+        "options": {
+          "fields": [
+            "id",
+            "mimeType",
+            "name",
+            "*"
+          ]
+        }
+      },
+      "id": "7038deeb-6f86-4d6c-8847-d1df945bb784",
+      "name": "Get files",
+      "type": "n8n-nodes-base.googleDrive",
+      "position": [
+        -448,
+        464
+      ],
+      "typeVersion": 3,
       "credentials": {
         "googleDriveOAuth2Api": {
           "id": "kxNQu76R5B6e3VyM",
           "name": "Google Drive account 2"
         }
       }
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "string": [
-            {
-              "value1": "={{ $json.mimeType }}",
-              "operation": "notEqual",
-              "value2": "application/vnd.google-apps.folder"
-            }
-          ]
-        }
-      },
-      "id": "3afe8881-aa30-45f9-b637-6401f4b4bd9e",
-      "name": "Filter Files Only",
-      "type": "n8n-nodes-base.filter",
-      "typeVersion": 1,
-      "position": [
-        288,
-        -208
-      ]
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "string": [
-            {
-              "value1": "={{ $json.mimeType }}",
-              "value2": "application/vnd.google-apps.folder"
-            }
-          ]
-        }
-      },
-      "id": "d719ff3d-3717-4e43-bc27-0bc5999fe7f5",
-      "name": "Filter Folders Only",
-      "type": "n8n-nodes-base.filter",
-      "typeVersion": 1,
-      "position": [
-        176,
-        240
-      ]
-    },
-    {
-      "parameters": {
-        "batchSize": 5,
-        "options": {}
-      },
-      "id": "217047ff-6932-4c42-8ed3-33af2c3f2ba0",
-      "name": "Split Files Batch",
-      "type": "n8n-nodes-base.splitInBatches",
-      "typeVersion": 3,
-      "position": [
-        544,
-        -240
-      ]
-    },
-    {
-      "parameters": {
-        "jsCode": "// Check if file already exists in S3 to skip duplicates\nconst config = $('Set Configuration').first().json;\nconst currentFolder = $('Process Folders Loop').item.json;\nconst file = $json;\n\n// Build S3 key path\nconst s3Key = currentFolder.s3_path + file.name;\n\n// Add metadata for processing\nreturn {\n  json: {\n    ...file,\n    s3_bucket: config.s3_bucket,\n    s3_key: s3Key,\n    current_folder_path: currentFolder.s3_path,\n    should_skip: false // Will implement duplicate check later if needed\n  }\n};"
-      },
-      "id": "cf4ec667-c65e-45eb-9e49-3ad0ebd2e887",
-      "name": "Prepare File Metadata",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        576,
-        32
-      ]
     },
     {
       "parameters": {
         "operation": "download",
-        "fileId": "={{ $json.id }}",
-        "options": {}
+        "fileId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "={{ $json.id }}"
+        },
+        "options": {
+          "googleFileConversion": {
+            "conversion": {
+              "docsToFormat": "text/plain"
+            }
+          }
+        }
       },
-      "id": "a67dce80-1711-4e0e-a62c-adb20073dd64",
-      "name": "Download File from Drive",
+      "id": "3d6ebce9-fc90-4380-bca1-750b5b07cd0a",
+      "name": "Download files",
       "type": "n8n-nodes-base.googleDrive",
-      "typeVersion": 3,
       "position": [
-        784,
-        32
+        144,
+        480
       ],
+      "typeVersion": 3,
       "credentials": {
         "googleDriveOAuth2Api": {
           "id": "kxNQu76R5B6e3VyM",
@@ -382,84 +589,208 @@
     },
     {
       "parameters": {
-        "operation": "upload",
-        "bucketName": "={{ $json.s3_bucket }}",
-        "fileName": "={{ $json.s3_key }}",
-        "additionalFields": {}
-      },
-      "id": "ef57a438-18ba-4490-a1e3-a3f93e10f49d",
-      "name": "Upload to S3",
-      "type": "n8n-nodes-base.awsS3",
-      "typeVersion": 1,
-      "position": [
-        976,
-        32
-      ]
-    },
-    {
-      "parameters": {
-        "jsCode": "// Process subfolders and add them to the queue\nconst config = $('Set Configuration').first().json;\nconst currentFolder = $('Process Folders Loop').item.json;\nconst folders = $input.all().map(item => item.json);\n\n// Create new queue items for subfolders\nconst newQueueItems = folders.map(folder => {\n  const newS3Path = currentFolder.s3_path + folder.name + '/';\n  return {\n    folder_id: folder.id,\n    folder_name: folder.name,\n    s3_path: newS3Path,\n    depth: currentFolder.depth + 1\n  };\n}).filter(item => item.depth < parseInt(config.max_depth));\n\nif (newQueueItems.length === 0) {\n  return [{ json: { message: 'No more subfolders to process' } }];\n}\n\nreturn newQueueItems.map(item => ({ json: item }));"
-      },
-      "id": "086a1f60-f101-4795-899a-f098d27daf59",
-      "name": "Process Subfolders",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        384,
-        240
-      ]
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "number": [
-            {
-              "value1": "={{ $json.depth }}",
-              "value2": "={{ $('Set Configuration').first().json.max_depth }}"
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "={{ $json.file_id }}"
+        },
+        "options": {
+          "googleFileConversion": {
+            "conversion": {
+              "docsToFormat": "text/plain"
             }
-          ]
+          }
         }
       },
-      "id": "65aef5dd-ca45-4201-a69d-1fbd651a067d",
-      "name": "Check Max Depth",
-      "type": "n8n-nodes-base.filter",
-      "typeVersion": 1,
+      "id": "2e81b141-cb1d-4ac2-a645-e1885b9cb26d",
+      "name": "Download file",
+      "type": "n8n-nodes-base.googleDrive",
       "position": [
-        576,
-        240
-      ]
+        -208,
+        1216
+      ],
+      "typeVersion": 3,
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "kxNQu76R5B6e3VyM",
+          "name": "Google Drive account 2"
+        }
+      }
     },
     {
       "parameters": {
-        "mode": "combine",
-        "mergeByFields": {
-          "values": [
-            {}
+        "options": {}
+      },
+      "id": "7d885d73-9728-4f49-a418-26aa3c6e0d88",
+      "name": "When chat message received",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "position": [
+        -1120,
+        1840
+      ],
+      "webhookId": "97d60090-1717-4195-bf27-2e3c3105b7f8",
+      "typeVersion": 1.1
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "49cbaed3-c624-418e-bbe2-be5d0df9ae90",
+      "name": "Question and Answer Chain",
+      "type": "@n8n/n8n-nodes-langchain.chainRetrievalQa",
+      "position": [
+        -800,
+        1840
+      ],
+      "typeVersion": 1.5
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-1.5-flash",
+        "options": {}
+      },
+      "id": "15390259-51b7-48b4-90aa-3f708787fbcb",
+      "name": "Google Gemini Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "position": [
+        -864,
+        2032
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {},
+      "id": "09665fe4-c83b-41ec-a26f-9bf99da004ef",
+      "name": "Vector Store Retriever",
+      "type": "@n8n/n8n-nodes-langchain.retrieverVectorStore",
+      "position": [
+        -640,
+        2064
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "qdrantCollection": {
+          "__rl": true,
+          "mode": "list",
+          "value": "ocr_mistral_test",
+          "cachedResultName": "ocr_mistral_test"
+        },
+        "options": {}
+      },
+      "id": "f0466296-792f-484d-affa-ee6fb3677546",
+      "name": "Qdrant Vector Store1",
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreQdrant",
+      "position": [
+        -624,
+        2256
+      ],
+      "typeVersion": 1.1
+    },
+    {
+      "parameters": {
+        "content": "## STEP 4\nTest the RAG",
+        "height": 120,
+        "width": 500
+      },
+      "id": "3dbf7f6f-eb2c-4dab-8c0d-382f3d374946",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -320,
+        1840
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "70c4be4f-3e31-41fd-b56b-1db65e79cd33",
+      "name": "Embeddings OpenAI",
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "position": [
+        -736,
+        2400
+      ],
+      "typeVersion": 1.2
+    },
+    {
+      "parameters": {
+        "content": "# STEP 2\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n## Documents vectorization with Qdrant and Google Drive\nChange:\n- QDRANTURL\n- COLLECTION",
+        "height": 520,
+        "width": 620,
+        "color": 4
+      },
+      "id": "6410ae85-0852-4e63-90ab-c224c90d5307",
+      "name": "Sticky Note4",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1040,
+        336
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b413a226-0641-4ed8-9951-d17b6a6a9a4b",
+              "name": "file_id",
+              "type": "string",
+              "value": "DRIVEFILE_ID"
+            }
           ]
         },
         "options": {}
       },
-      "id": "aa5ae594-b255-4d1e-97d9-5ef6c71ab9bd",
-      "name": "Merge Results",
-      "type": "n8n-nodes-base.merge",
-      "typeVersion": 2.1,
+      "id": "35b1c783-20da-4166-9151-9fb903a56b1c",
+      "name": "Edit Fields3",
+      "type": "n8n-nodes-base.set",
       "position": [
-        1184,
-        144
-      ]
+        -656,
+        1120
+      ],
+      "typeVersion": 3.4
     },
     {
       "parameters": {
-        "jsCode": "// Generate migration summary report\nconst allResults = $input.all();\nconst fileUploads = allResults.filter(item => item.json.ETag); // S3 upload results have ETag\nconst errors = allResults.filter(item => item.json.error);\n\nconst summary = {\n  migration_completed: true,\n  total_files_processed: fileUploads.length,\n  total_errors: errors.length,\n  migration_timestamp: new Date().toISOString(),\n  s3_bucket: $('Set Configuration').first().json.s3_bucket,\n  source_folder: $('Set Configuration').first().json.source_folder_id\n};\n\nif (errors.length > 0) {\n  summary.errors = errors.map(e => ({\n    file: e.json.name || 'unknown',\n    error: e.json.error || e.json.message\n  }));\n}\n\nreturn { json: summary };"
+        "mode": "insert",
+        "qdrantCollection": {
+          "__rl": true,
+          "mode": "list",
+          "value": "negozio-emporio-verde",
+          "cachedResultName": "negozio-emporio-verde"
+        },
+        "options": {}
       },
-      "id": "7bd0bed3-2e4f-4f7c-bcfc-5fc366c1269c",
-      "name": "Generate Summary",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
+      "id": "79002a21-4d81-4637-b262-7db2fb23ac70",
+      "name": "Update single file",
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreQdrant",
       "position": [
-        1376,
-        144
-      ]
+        144,
+        1216
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "# Enables full or incremental updates to documents in RAG system using Qdrant \nThis workflow automates the creation and management of a Retrieval-Augmented Generation (RAG) system using Qdrant as a vector store and Google Drive as the document source. It **enables full or incremental updates to documents** in the Qdrant vector database and integrates with a chatbot using Google Gemini for question answering.",
+        "height": 220,
+        "width": 840,
+        "color": 3
+      },
+      "id": "20dcbc2a-64b6-4f11-bed6-8380f658db49",
+      "name": "Sticky Note2",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -768,
+        -352
+      ],
+      "typeVersion": 1
     }
   ],
   "pinData": {},
@@ -478,6 +809,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-12-01T15:00:00.584Z",
-  "versionId": "607e605e-313c-42b3-9e03-68eb0f0d5ebb"
+  "updatedAt": "2025-12-02T15:36:07.000Z",
+  "versionId": "c5095a8b-ba3b-4cb1-bda4-e985bc0c0adc"
 }
