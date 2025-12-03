@@ -67,7 +67,7 @@
       "main": [
         [
           {
-            "node": "Configure Google Drive Folder",
+            "node": "Markdown",
             "type": "main",
             "index": 0
           }
@@ -76,13 +76,7 @@
     },
     "Configure Google Drive Folder": {
       "main": [
-        [
-          {
-            "node": "Message a model",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "Create document file": {
@@ -141,6 +135,22 @@
       ]
     },
     "Message a model": {
+      "main": [
+        []
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Configure Google Drive Folder",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Markdown": {
       "main": [
         [
           {
@@ -278,8 +288,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        848,
-        256
+        816,
+        448
       ],
       "id": "3772091e-8336-416c-afdc-1ee4de0156b0",
       "name": "Prettify Response"
@@ -308,8 +318,8 @@
       "type": "@n8n/n8n-nodes-langchain.openAi",
       "typeVersion": 1.8,
       "position": [
-        1056,
-        256
+        1024,
+        448
       ],
       "id": "70632e6b-1fe3-45ec-b1de-bbc535ecad79",
       "name": "Generate Summary",
@@ -382,8 +392,8 @@
       "name": "Configure Google Drive Folder",
       "type": "n8n-nodes-base.set",
       "position": [
-        1392,
-        256
+        1280,
+        848
       ],
       "typeVersion": 3.4
     },
@@ -418,15 +428,15 @@
         "sendBody": true,
         "contentType": "raw",
         "rawContentType": "multipart/related; boundary=foo_bar_baz",
-        "body": "=--foo_bar_baz\nContent-Type: application/json; charset=UTF-8\n\n{\n  \"name\": \"{{ $('Configure Google Drive Folder').item.json.name }}\",\n  \"mimeType\": \"application/vnd.google-apps.document\"\n}\n\n--foo_bar_baz\nContent-Type: text/html; charset=UTF-8\n\n{{ $json.output[0].content[0].text }}\n\n--foo_bar_baz--",
+        "body": "=--foo_bar_baz\nContent-Type: application/json; charset=UTF-8\n\n{\n  \"name\": \"Detail Chat Summary\",\n  \"mimeType\": \"application/vnd.google-apps.document\"\n}\n\n--foo_bar_baz\nContent-Type: text/html; charset=UTF-8\n\n<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Praxisinstitut Naturmedizin</title>\n  <style>\n    /* COVER PAGE STYLES ONLY */\n    .cover-page {\n      width: 100%;\n      height: 100vh;\n      background: \"green\";\n      position: relative;\n      overflow: hidden;\n      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;\n    }\n\n    .cover-page .shape {\n      position: absolute;\n      background: linear-gradient(135deg, #6b9e3e 0%, #5a8934 100%);\n      opacity: 0.9;\n    }\n\n    .shape-1 {\n      width: 50%;\n      height: 60%;\n      top: -10%;\n      left: -15%;\n      transform: rotate(45deg);\n      clip-path: polygon(0 0, 100% 0, 100% 100%);\n    }\n\n    .shape-2 {\n      width: 60%;\n      height: 70%;\n      bottom: -20%;\n      right: -20%;\n      transform: rotate(45deg);\n      clip-path: polygon(100% 0, 100% 100%, 0 100%);\n    }\n\n    .shape-3 {\n      width: 40%;\n      height: 50%;\n      top: 30%;\n      right: -10%;\n      background: rgba(107, 158, 62, 0.15);\n      transform: rotate(-30deg);\n      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);\n    }\n\n    .cover-page .content {\n      position: relative;\n      z-index: 10;\n      height: 100%;\n      display: flex;\n      flex-direction: column;\n      justify-content: space-between;\n      padding: 60px 80px;\n    }\n\n    .logo-section {\n      display: flex;\n      align-items: center;\n      gap: 15px;\n    }\n\n    .logo-icon {\n      width: 80px;\n      height: 80px;\n      background: white;\n      border-radius: 50%;\n      display: flex;\n      align-items: center;\n      justify-content: center;\n      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);\n    }\n\n    .logo-icon svg {\n      width: 50px;\n      height: 50px;\n      fill: #6b9e3e;\n    }\n\n    .logo-text {\n      color: #2d5016;\n    }\n\n    .logo-text h1 {\n      font-size: 28px;\n      font-weight: 700;\n      margin-bottom: 5px;\n      letter-spacing: -0.5px;\n    }\n\n    .logo-text p {\n      font-size: 14px;\n      font-weight: 400;\n      color: #5a8934;\n    }\n\n    .title-section {\n      text-align: center;\n      padding: 80px 0;\n    }\n\n    .title-section h2 {\n      font-size: 56px;\n      font-weight: 700;\n      color: #2d5016;\n      margin-bottom: 20px;\n      line-height: 1.2;\n    }\n\n    .title-section p {\n      font-size: 22px;\n      color: #5a8934;\n      font-weight: 400;\n    }\n\n    .footer-section {\n      display: flex;\n      justify-content: space-between;\n      align-items: flex-end;\n      color: #5a8934;\n      font-size: 14px;\n    }\n\n    .footer-left {\n      flex: 1;\n    }\n\n    .footer-right {\n      text-align: right;\n    }\n\n    .accent-line {\n      position: absolute;\n      background: white;\n      opacity: 0.3;\n      z-index: 5;\n    }\n\n    .line-1 {\n      width: 3px;\n      height: 40%;\n      top: 20%;\n      right: 35%;\n      transform: rotate(30deg);\n    }\n\n    .line-2 {\n      width: 3px;\n      height: 50%;\n      bottom: 10%;\n      left: 30%;\n      transform: rotate(-35deg);\n    }\n\n    /* RESPONSIVE */\n    @media (max-width: 768px) {\n      .cover-page .content {\n        padding: 40px 30px;\n      }\n\n      .title-section h2 {\n        font-size: 36px;\n      }\n\n      .title-section p {\n        font-size: 18px;\n      }\n\n      .logo-text h1 {\n        font-size: 22px;\n      }\n\n      .footer-section {\n        flex-direction: column;\n        gap: 20px;\n        align-items: flex-start;\n      }\n    }\n\n    /* MARKDOWN/CONTENT STYLES */\n    .doc-content {\n      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;\n      padding: 40px 60px;\n      color: #222;\n      line-height: 1.6;\n    }\n\n    .doc-content h1,\n    .doc-content h2,\n    .doc-content h3 {\n      color: #2d5016;\n    }\n\n    .doc-content h1 {\n      font-size: 28px;\n      margin-bottom: 20px;\n    }\n\n    .doc-content h2 {\n      font-size: 24px;\n      margin-bottom: 18px;\n    }\n\n    .doc-content h3 {\n      font-size: 20px;\n      margin-bottom: 16px;\n    }\n\n    .doc-content p {\n      margin-bottom: 14px;\n    }\n\n    .doc-content ul,\n    .doc-content ol {\n      margin-left: 20px;\n      margin-bottom: 14px;\n    }\n  </style>\n</head>\n\n<body>\n  <!-- COVER PAGE -->\n  <div class=\"cover-page\">\n    <div class=\"shape shape-1\"></div>\n    <div class=\"shape shape-2\"></div>\n    <div class=\"shape shape-3\"></div>\n    <div class=\"accent-line line-1\"></div>\n    <div class=\"accent-line line-2\"></div>\n\n    <div class=\"content\">\n      <div class=\"logo-section\">\n        <div class=\"logo-icon\">\n          <svg viewBox=\"0 0 64 64\" xmlns=\"http://www.w3.org/2000/svg\">\n            <path d=\"M32 45 C20 45, 15 40, 15 35 L15 30 C15 28, 16 27, 18 27 L46 27 C48 27, 49 28, 49 30 L49 35 C49 40, 44 45, 32 45 Z\" />\n            <path d=\"M28 27 L28 15 C28 13, 29 12, 31 12 L33 12 C35 12, 36 13, 36 15 L36 27\" />\n            <ellipse cx=\"25\" cy=\"15\" rx=\"6\" ry=\"3\" transform=\"rotate(-30 25 15)\" />\n            <ellipse cx=\"39\" cy=\"15\" rx=\"6\" ry=\"3\" transform=\"rotate(30 39 15)\" />\n            <ellipse cx=\"32\" cy=\"10\" rx=\"6\" ry=\"3\" />\n          </svg>\n        </div>\n        <div class=\"logo-text\">\n          <h1>Praxisinstitut</h1>\n          <h1>Naturmedizin</h1>\n          <p>Medizin zum Selbermachen</p>\n        </div>\n      </div>\n\n      <div class=\"title-section\">\n        <h2>Your Document Title</h2>\n        <p>Subtitle or Description</p>\n      </div>\n\n      <div class=\"footer-section\">\n        <div class=\"footer-left\">\n          <p>© 2024 Praxisinstitut Naturmedizin</p>\n        </div>\n        <div class=\"footer-right\">\n          <p>www.praxisinstitut-naturmedizin.com</p>\n        </div>\n      </div>\n    </div>\n  </div>\n\n  <!-- DOCUMENT CONTENT -->\n  <div class=\"doc-content\">\n    {{ $json.data }}\n  </div>\n</body>\n\n</html>\n\n\n--foo_bar_baz--\n",
         "options": {}
       },
       "id": "6cff41f2-b4eb-4363-b04c-469f22831e24",
       "name": "Create document file",
       "type": "n8n-nodes-base.httpRequest",
       "position": [
-        1872,
-        256
+        1680,
+        448
       ],
       "typeVersion": 4.2,
       "credentials": {
@@ -456,8 +466,8 @@
       "name": "Convert document to PDF",
       "type": "n8n-nodes-base.googleDrive",
       "position": [
-        2176,
-        256
+        1952,
+        448
       ],
       "typeVersion": 3,
       "credentials": {
@@ -551,8 +561,8 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        2896,
-        432
+        2688,
+        448
       ],
       "id": "152b9992-7880-4c07-b43b-39b1a22dc49f",
       "name": "Add PDF Link in Detailed Summary Table",
@@ -570,8 +580,8 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.4,
       "position": [
-        3184,
-        432
+        2960,
+        448
       ],
       "id": "3c9f98ec-5df9-4e2b-9b54-c389ceefecc9",
       "name": "Respond to Webhook"
@@ -584,8 +594,8 @@
       "type": "n8n-nodes-base.extractFromFile",
       "typeVersion": 1,
       "position": [
-        2608,
-        432
+        2288,
+        448
       ],
       "id": "de6b83b8-87da-42c1-8619-5c0d824b3721",
       "name": "Extract from File",
@@ -603,7 +613,7 @@
           "values": [
             {
               "role": "system",
-              "content": "You are an expert Markdown-to-HTML conversion engine. Your task is to take any Markdown input, convert it into clean, standards-compliant HTML, and prepare it in a format suitable for generating documents using the Google Docs API.\n\nBefore converting the Markdown, you must prepend a predefined HTML cover page. This cover page must appear as the first page of the final output. After the cover page, append the fully converted HTML produced from the provided Markdown.\n\nYour output must follow these strict rules:\n\nOutput only raw HTML.\nNo explanations, no markdown formatting, no comments, no JSON — only pure HTML.\n\nPreserve structure and semantics.\nUse proper HTML tags (<h1>, <p>, <ul>, <table>, etc.) that accurately represent the Markdown input.\n\nEnsure compatibility with Google Docs API.\nProduce clean, minimal, valid HTML without inline scripts or unsupported elements.\n\nAlways include the provided cover page HTML exactly as given, placed at the top.\n\nYour sole function is to return the final combined HTML document.\n\n\nCover Page HTML:\n\n<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Praxisinstitut Naturmedizin</title>\n  <style>\n    * {\n      margin: 0;\n      padding: 0;\n      box-sizing: border-box;\n    }\n\n    body {\n      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;\n      overflow: hidden;\n    }\n\n    .cover-page {\n      width: 100%;\n      height: 100vh;\n      background: linear-gradient(135deg, #e8f5e3 0%, #f5f9f3 100%);\n      position: relative;\n      overflow: hidden;\n    }\n\n    /* Geometric shapes background */\n    .shape {\n      position: absolute;\n      background: linear-gradient(135deg, #6b9e3e 0%, #5a8934 100%);\n      opacity: 0.9;\n    }\n\n    .shape-1 {\n      width: 50%;\n      height: 60%;\n      top: -10%;\n      left: -15%;\n      transform: rotate(45deg);\n      clip-path: polygon(0 0, 100% 0, 100% 100%);\n    }\n\n    .shape-2 {\n      width: 60%;\n      height: 70%;\n      bottom: -20%;\n      right: -20%;\n      transform: rotate(45deg);\n      clip-path: polygon(100% 0, 100% 100%, 0 100%);\n    }\n\n    .shape-3 {\n      width: 40%;\n      height: 50%;\n      top: 30%;\n      right: -10%;\n      background: rgba(107, 158, 62, 0.15);\n      transform: rotate(-30deg);\n      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);\n    }\n\n    /* Content container */\n    .content {\n      position: relative;\n      z-index: 10;\n      height: 100%;\n      display: flex;\n      flex-direction: column;\n      justify-content: space-between;\n      padding: 60px 80px;\n    }\n\n    /* Logo section */\n    .logo-section {\n      display: flex;\n      align-items: center;\n      gap: 15px;\n    }\n\n    .logo-icon {\n      width: 80px;\n      height: 80px;\n      background: white;\n      border-radius: 50%;\n      display: flex;\n      align-items: center;\n      justify-content: center;\n      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);\n    }\n\n    .logo-icon svg {\n      width: 50px;\n      height: 50px;\n      fill: #6b9e3e;\n    }\n\n    .logo-text {\n      color: #2d5016;\n    }\n\n    .logo-text h1 {\n      font-size: 28px;\n      font-weight: 700;\n      margin-bottom: 5px;\n      letter-spacing: -0.5px;\n    }\n\n    .logo-text p {\n      font-size: 14px;\n      font-weight: 400;\n      color: #5a8934;\n    }\n\n    /* Main title section */\n    .title-section {\n      text-align: center;\n      padding: 80px 0;\n    }\n\n    .title-section h2 {\n      font-size: 56px;\n      font-weight: 700;\n      color: #2d5016;\n      margin-bottom: 20px;\n      line-height: 1.2;\n    }\n\n    .title-section p {\n      font-size: 22px;\n      color: #5a8934;\n      font-weight: 400;\n    }\n\n    /* Footer section */\n    .footer-section {\n      display: flex;\n      justify-content: space-between;\n      align-items: flex-end;\n      color: #5a8934;\n      font-size: 14px;\n    }\n\n    .footer-left {\n      flex: 1;\n    }\n\n    .footer-right {\n      text-align: right;\n    }\n\n    /* White accent line */\n    .accent-line {\n      position: absolute;\n      background: white;\n      opacity: 0.3;\n      z-index: 5;\n    }\n\n    .line-1 {\n      width: 3px;\n      height: 40%;\n      top: 20%;\n      right: 35%;\n      transform: rotate(30deg);\n    }\n\n    .line-2 {\n      width: 3px;\n      height: 50%;\n      bottom: 10%;\n      left: 30%;\n      transform: rotate(-35deg);\n    }\n\n    @media (max-width: 768px) {\n      .content {\n        padding: 40px 30px;\n      }\n\n      .title-section h2 {\n        font-size: 36px;\n      }\n\n      .title-section p {\n        font-size: 18px;\n      }\n\n      .logo-text h1 {\n        font-size: 22px;\n      }\n\n      .footer-section {\n        flex-direction: column;\n        gap: 20px;\n        align-items: flex-start;\n      }\n    }\n  </style>\n</head>\n\n<body>\n  <div class=\"cover-page\">\n    <!-- Geometric shapes -->\n    <div class=\"shape shape-1\"></div>\n    <div class=\"shape shape-2\"></div>\n    <div class=\"shape shape-3\"></div>\n\n    <!-- Accent lines -->\n    <div class=\"accent-line line-1\"></div>\n    <div class=\"accent-line line-2\"></div>\n\n    <!-- Main content -->\n    <div class=\"content\">\n      <!-- Logo header -->\n      <div class=\"logo-section\">\n        <div class=\"logo-icon\">\n          <svg viewBox=\"0 0 64 64\" xmlns=\"http://www.w3.org/2000/svg\">\n            <!-- Mortar bowl -->\n            <path\n              d=\"M32 45 C20 45, 15 40, 15 35 L15 30 C15 28, 16 27, 18 27 L46 27 C48 27, 49 28, 49 30 L49 35 C49 40, 44 45, 32 45 Z\" />\n\n            <!-- Pestle -->\n            <path d=\"M28 27 L28 15 C28 13, 29 12, 31 12 L33 12 C35 12, 36 13, 36 15 L36 27\" />\n\n            <!-- Leaves -->\n            <ellipse cx=\"25\" cy=\"15\" rx=\"6\" ry=\"3\" transform=\"rotate(-30 25 15)\" />\n            <ellipse cx=\"39\" cy=\"15\" rx=\"6\" ry=\"3\" transform=\"rotate(30 39 15)\" />\n            <ellipse cx=\"32\" cy=\"10\" rx=\"6\" ry=\"3\" />\n          </svg>\n        </div>\n        <div class=\"logo-text\">\n          <h1>Praxisinstitut</h1>\n          <h1>Naturmedizin</h1>\n          <p>Medizin zum Selbermachen</p>\n        </div>\n      </div>\n\n      <!-- Main title -->\n      <div class=\"title-section\">\n        <h2>Your Document Title</h2>\n        <p>Subtitle or Description</p>\n      </div>\n\n      <!-- Footer -->\n      <div class=\"footer-section\">\n        <div class=\"footer-left\">\n          <p>© 2024 Praxisinstitut Naturmedizin</p>\n        </div>\n        <div class=\"footer-right\">\n          <p>www.praxisinstitut-naturmedizin.com</p>\n        </div>\n      </div>\n    </div>\n  </div>\n</body>\n\n</html>\n"
+              "content": "=You are an expert Markdown-to-HTML conversion engine.\n\nYour task:\n\n1. Take the Markdown content (provided in the User Prompt).\n2. Convert it into clean, valid, semantic HTML.\n3. Prepend an EXACT, UNMODIFIED HTML cover page.\n4. Ensure the cover page style does NOT affect the rest of the document.\n5. Output ONLY raw HTML — no markdown, no explanations, no comments, no JSON.\n\nStrict rules:\n\n- The cover page HTML must appear at the very top.\n- The cover page must remain EXACTLY as provided — do not rewrite, modify, optimize, alter, or minify ANY part of it.  \n- After rendering the cover page, you MUST insert a CSS reset block to isolate the cover-page styles.\n- After the reset, append the converted Markdown-as-HTML.\n- Output must be valid HTML compatible with Google Docs API.\n- Do NOT wrap Markdown output inside <html> or <body> again. Only the cover page contains the HTML document root.\n\nImmediately after the closing </html> tag of the provided cover page, insert the following EXACT CSS reset:\n\n<style>\n  body {\n    overflow: visible !important;\n  }\n  * {\n    margin: initial !important;\n    padding: initial !important;\n    box-sizing: content-box !important;\n  }\n  body, p, h1, h2, h3, h4, h5, h6 {\n    font-family: Arial, sans-serif !important;\n  }\n</style>\n\nAfter inserting this reset, output the converted Markdown HTML.\n\nYour final output must follow this order:\n\n1. EXACT Cover Page HTML (unchanged)\n2. CSS Reset Block (exactly as given)\n3. Converted HTML from the Markdown input\n\nCover Page HTML (DO NOT MODIFY):\n\n<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Praxisinstitut Naturmedizin</title>\n  <style>\n    * {\n      margin: 0;\n      padding: 0;\n      box-sizing: border-box;\n    }\n\n    body {\n      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;\n      overflow: hidden;\n    }\n\n    .cover-page {\n      width: 100%;\n      height: 100vh;\n      background: linear-gradient(135deg, #e8f5e3 0%, #f5f9f3 100%);\n      position: relative;\n      overflow: hidden;\n    }\n\n    .shape {\n      position: absolute;\n      background: linear-gradient(135deg, #6b9e3e 0%, #5a8934 100%);\n      opacity: 0.9;\n    }\n\n    .shape-1 {\n      width: 50%;\n      height: 60%;\n      top: -10%;\n      left: -15%;\n      transform: rotate(45deg);\n      clip-path: polygon(0 0, 100% 0, 100% 100%);\n    }\n\n    .shape-2 {\n      width: 60%;\n      height: 70%;\n      bottom: -20%;\n      right: -20%;\n      transform: rotate(45deg);\n      clip-path: polygon(100% 0, 100% 100%, 0 100%);\n    }\n\n    .shape-3 {\n      width: 40%;\n      height: 50%;\n      top: 30%;\n      right: -10%;\n      background: rgba(107, 158, 62, 0.15);\n      transform: rotate(-30deg);\n      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);\n    }\n\n    .content {\n      position: relative;\n      z-index: 10;\n      height: 100%;\n      display: flex;\n      flex-direction: column;\n      justify-content: space-between;\n      padding: 60px 80px;\n    }\n\n    .logo-section {\n      display: flex;\n      align-items: center;\n      gap: 15px;\n    }\n\n    .logo-icon {\n      width: 80px;\n      height: 80px;\n      background: white;\n      border-radius: 50%;\n      display: flex;\n      align-items: center;\n      justify-content: center;\n      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);\n    }\n\n    .logo-icon svg {\n      width: 50px;\n      height: 50px;\n      fill: #6b9e3e;\n    }\n\n    .logo-text {\n      color: #2d5016;\n    }\n\n    .logo-text h1 {\n      font-size: 28px;\n      font-weight: 700;\n      margin-bottom: 5px;\n      letter-spacing: -0.5px;\n    }\n\n    .logo-text p {\n      font-size: 14px;\n      font-weight: 400;\n      color: #5a8934;\n    }\n\n    .title-section {\n      text-align: center;\n      padding: 80px 0;\n    }\n\n    .title-section h2 {\n      font-size: 56px;\n      font-weight: 700;\n      color: #2d5016;\n      margin-bottom: 20px;\n      line-height: 1.2;\n    }\n\n    .title-section p {\n      font-size: 22px;\n      color: #5a8934;\n      font-weight: 400;\n    }\n\n    .footer-section {\n      display: flex;\n      justify-content: space-between;\n      align-items: flex-end;\n      color: #5a8934;\n      font-size: 14px;\n    }\n\n    .footer-left {\n      flex: 1;\n    }\n\n    .footer-right {\n      text-align: right;\n    }\n\n    .accent-line {\n      position: absolute;\n      background: white;\n      opacity: 0.3;\n      z-index: 5;\n    }\n\n    .line-1 {\n      width: 3px;\n      height: 40%;\n      top: 20%;\n      right: 35%;\n      transform: rotate(30deg);\n    }\n\n    .line-2 {\n      width: 3px;\n      height: 50%;\n      bottom: 10%;\n      left: 30%;\n      transform: rotate(-35deg);\n    }\n\n    @media (max-width: 768px) {\n      .content {\n        padding: 40px 30px;\n      }\n\n      .title-section h2 {\n        font-size: 36px;\n      }\n\n      .title-section p {\n        font-size: 18px;\n      }\n\n      .logo-text h1 {\n        font-size: 22px;\n      }\n\n      .footer-section {\n        flex-direction: column;\n        gap: 20px;\n        align-items: flex-start;\n      }\n    }\n  </style>\n</head>\n\n<body>\n  <div class=\"cover-page\">\n    <div class=\"shape shape-1\"></div>\n    <div class=\"shape shape-2\"></div>\n    <div class=\"shape shape-3\"></div>\n\n    <div class=\"accent-line line-1\"></div>\n    <div class=\"accent-line line-2\"></div>\n\n    <div class=\"content\">\n      <div class=\"logo-section\">\n        <div class=\"logo-icon\">\n          <svg viewBox=\"0 0 64 64\" xmlns=\"http://www.w3.org/2000/svg\">\n            <path d=\"M32 45 C20 45, 15 40, 15 35 L15 30 C15 28, 16 27, 18 27 L46 27 C48 27, 49 28, 49 30 L49 35 C49 40, 44 45, 32 45 Z\" />\n            <path d=\"M28 27 L28 15 C28 13, 29 12, 31 12 L33 12 C35 12, 36 13, 36 15 L36 27\" />\n            <ellipse cx=\"25\" cy=\"15\" rx=\"6\" ry=\"3\" transform=\"rotate(-30 25 15)\" />\n            <ellipse cx=\"39\" cy=\"15\" rx=\"6\" ry=\"3\" transform=\"rotate(30 39 15)\" />\n            <ellipse cx=\"32\" cy=\"10\" rx=\"6\" ry=\"3\" />\n          </svg>\n        </div>\n        <div class=\"logo-text\">\n          <h1>Praxisinstitut</h1>\n          <h1>Naturmedizin</h1>\n          <p>Medizin zum Selbermachen</p>\n        </div>\n      </div>\n\n      <div class=\"title-section\">\n        <h2>Your Document Title</h2>\n        <p>Subtitle or Description</p>\n      </div>\n\n      <div class=\"footer-section\">\n        <div class=\"footer-left\">\n          <p>© 2024 Praxisinstitut Naturmedizin</p>\n        </div>\n        <div class=\"footer-right\">\n          <p>www.praxisinstitut-naturmedizin.com</p>\n        </div>\n      </div>\n    </div>\n  </div>\n<div>\n{ Markdown content here }\n</div>\n</body>\n\n</html> "
             },
             {
               "content": "=Markdown:  {{ $json.content }}"
@@ -616,8 +626,8 @@
       "type": "@n8n/n8n-nodes-langchain.openAi",
       "typeVersion": 2,
       "position": [
-        1552,
-        256
+        1376,
+        128
       ],
       "id": "7f72c036-1956-432b-8636-d24529cc4e03",
       "name": "Message a model",
@@ -627,6 +637,47 @@
           "name": "OpenAi account"
         }
       }
+    },
+    {
+      "parameters": {
+        "jsCode": "const md = $input.first().json.message.content;\n\n// very basic replacements\nlet html = md\n  .replace(/^### (.*$)/gim, '<h3>$1</h3>')\n  .replace(/^## (.*$)/gim, '<h2>$1</h2>')\n  .replace(/^# (.*$)/gim, '<h1>$1</h1>')\n  .replace(/\\*\\*(.*)\\*\\*/gim, '<b>$1</b>')\n  .replace(/\\*(.*)\\*/gim, '<i>$1</i>')\n  .replace(/\\n/g, '<br>');\n\nreturn [{ json: { htmlContent: html } }];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1040,
+        848
+      ],
+      "id": "44a80b14-548c-451b-b642-db60487b521a",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "mode": "markdownToHtml",
+        "markdown": "={{ $json.message.content }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.markdown",
+      "typeVersion": 1,
+      "position": [
+        1408,
+        448
+      ],
+      "id": "5ab3754a-37ae-42ad-a2b7-d3384a08ff8f",
+      "name": "Markdown"
+    },
+    {
+      "parameters": {
+        "title": "AI Document"
+      },
+      "type": "n8n-nodes-base.googleDocs",
+      "typeVersion": 2,
+      "position": [
+        2048,
+        816
+      ],
+      "id": "233e636d-63af-4d44-a460-8dc5477cc639",
+      "name": "Create a document"
     }
   ],
   "pinData": {},
@@ -645,6 +696,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-11-27T16:57:11.000Z",
-  "versionId": "88407ff2-3944-4900-b9c8-b582af5ac513"
+  "updatedAt": "2025-12-02T17:30:51.000Z",
+  "versionId": "e5f59b8b-98e4-4817-b90b-65145667598e"
 }
