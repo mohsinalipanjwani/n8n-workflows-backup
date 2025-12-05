@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "Webhook": {
       "main": [
@@ -67,16 +67,11 @@
       "main": [
         [
           {
-            "node": "Markdown",
+            "node": "Convert Markdown to HTML",
             "type": "main",
             "index": 0
           }
         ]
-      ]
-    },
-    "Configure Google Drive Folder": {
-      "main": [
-        []
       ]
     },
     "Create document file": {
@@ -133,29 +128,74 @@
         []
       ]
     },
-    "Code in JavaScript": {
-      "main": [
-        [
-          {
-            "node": "Configure Google Drive Folder",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Markdown": {
-      "main": [
-        [
-          {
-            "node": "HTML to PDF",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "HTML to PDF": {
+      "main": [
+        []
+      ]
+    },
+    "Convert Markdown to HTML": {
+      "main": [
+        [
+          {
+            "node": "HTML",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTML": {
+      "main": [
+        [
+          {
+            "node": "Convert to File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload file": {
+      "main": [
+        [
+          {
+            "node": "Create document file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File": {
+      "main": [
+        [
+          {
+            "node": "Convert to PDF with Gotenberg",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to PDF with Gotenberg": {
+      "main": [
+        [
+          {
+            "node": "Extract from File1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond to Webhook1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File1": {
       "main": [
         [
           {
@@ -173,7 +213,7 @@
   "meta": {
     "templateCredsSetupCompleted": true
   },
-  "name": "Generate Detailed Summary PDF Temp",
+  "name": "Generate Detailed Summary PDF",
   "nodes": [
     {
       "parameters": {
@@ -185,8 +225,8 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2.1,
       "position": [
-        32,
-        464
+        -80,
+        720
       ],
       "id": "13d95357-1ddc-403b-bf20-3b2867e3b46d",
       "name": "Webhook",
@@ -220,8 +260,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        240,
-        464
+        128,
+        720
       ],
       "id": "62c500bb-e0c3-4cea-92af-74c0d1acc8e0",
       "name": "If"
@@ -244,8 +284,8 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        544,
-        336
+        432,
+        592
       ],
       "id": "d369c3e7-5d08-4f2a-8973-254a42dbe2e4",
       "name": "Get Call Messages",
@@ -274,8 +314,8 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        544,
-        544
+        432,
+        800
       ],
       "id": "0772a0f7-385c-486c-93de-bbd16ceeaf2f",
       "name": "Get Chat Messages",
@@ -293,8 +333,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        816,
-        448
+        704,
+        704
       ],
       "id": "3772091e-8336-416c-afdc-1ee4de0156b0",
       "name": "Prettify Response"
@@ -323,8 +363,8 @@
       "type": "@n8n/n8n-nodes-langchain.openAi",
       "typeVersion": 1.8,
       "position": [
-        1024,
-        448
+        912,
+        704
       ],
       "id": "70632e6b-1fe3-45ec-b1de-bbc535ecad79",
       "name": "Generate Summary",
@@ -334,73 +374,6 @@
           "name": "OpenAi account"
         }
       }
-    },
-    {
-      "parameters": {
-        "resource": "folder",
-        "name": "Chat Summary PDFs",
-        "driveId": {
-          "__rl": true,
-          "mode": "list",
-          "value": "My Drive"
-        },
-        "folderId": {
-          "__rl": true,
-          "mode": "list",
-          "value": "root",
-          "cachedResultName": "/ (Root folder)"
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.googleDrive",
-      "typeVersion": 3,
-      "position": [
-        -544,
-        1040
-      ],
-      "id": "5cb11499-14d7-460d-924b-75a4640996ff",
-      "name": "Create folder",
-      "credentials": {
-        "googleDriveOAuth2Api": {
-          "id": "kxNQu76R5B6e3VyM",
-          "name": "Google Drive account 2"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "assignments": {
-          "assignments": [
-            {
-              "id": "1ff0b9a4-7d60-44ec-b047-e49252f1ace9",
-              "name": "Drive Folder ID",
-              "type": "string",
-              "value": "19mDoefi-nFelAwdYWwJNJRSuPDsVNyVb"
-            },
-            {
-              "id": "d64a1ac4-15db-4c84-a1db-fbd6b48084f5",
-              "name": "name",
-              "type": "string",
-              "value": "=Chat Detailed Summary"
-            },
-            {
-              "id": "d8354394-63f0-4fdb-be0e-f0322db0c52c",
-              "name": "content",
-              "value": "={{ $json.message.content }}",
-              "type": "string"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "5607d8c4-fbc0-41c0-8744-b03fa4450e4d",
-      "name": "Configure Google Drive Folder",
-      "type": "n8n-nodes-base.set",
-      "position": [
-        1280,
-        848
-      ],
-      "typeVersion": 3.4
     },
     {
       "parameters": {
@@ -440,7 +413,7 @@
       "name": "Create document file",
       "type": "n8n-nodes-base.httpRequest",
       "position": [
-        1696,
+        -320,
         -64
       ],
       "typeVersion": 4.2,
@@ -456,22 +429,16 @@
         "operation": "download",
         "fileId": {
           "__rl": true,
-          "mode": "id",
-          "value": "={{ $json.id }}"
+          "value": "={{ $json.pdf_url }}",
+          "mode": "url"
         },
-        "options": {
-          "googleFileConversion": {
-            "conversion": {
-              "docsToFormat": "application/pdf"
-            }
-          }
-        }
+        "options": {}
       },
       "id": "483af52b-5397-4494-8a90-7c061f6f380d",
       "name": "Convert document to PDF",
       "type": "n8n-nodes-base.googleDrive",
       "position": [
-        1936,
+        -96,
         -64
       ],
       "typeVersion": 3,
@@ -549,8 +516,8 @@
         "fieldsUi": {
           "fieldValues": [
             {
-              "fieldId": "pdf_link",
-              "fieldValue": "={{ $json.pdf_url }}"
+              "fieldId": "pdf_link_base64",
+              "fieldValue": "={{ $json.data }}"
             },
             {
               "fieldId": "type_id",
@@ -566,8 +533,8 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        1920,
-        448
+        2464,
+        688
       ],
       "id": "152b9992-7880-4c07-b43b-39b1a22dc49f",
       "name": "Add PDF Link in Detailed Summary Table",
@@ -585,8 +552,8 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.4,
       "position": [
-        2208,
-        448
+        2752,
+        688
       ],
       "id": "3c9f98ec-5df9-4e2b-9b54-c389ceefecc9",
       "name": "Respond to Webhook"
@@ -599,7 +566,7 @@
       "type": "n8n-nodes-base.extractFromFile",
       "typeVersion": 1,
       "position": [
-        2176,
+        144,
         -64
       ],
       "id": "de6b83b8-87da-42c1-8619-5c0d824b3721",
@@ -645,16 +612,22 @@
     },
     {
       "parameters": {
-        "jsCode": "const md = $input.first().json.message.content;\n\n// very basic replacements\nlet html = md\n  .replace(/^### (.*$)/gim, '<h3>$1</h3>')\n  .replace(/^## (.*$)/gim, '<h2>$1</h2>')\n  .replace(/^# (.*$)/gim, '<h1>$1</h1>')\n  .replace(/\\*\\*(.*)\\*\\*/gim, '<b>$1</b>')\n  .replace(/\\*(.*)\\*/gim, '<i>$1</i>')\n  .replace(/\\n/g, '<br>');\n\nreturn [{ json: { htmlContent: html } }];\n"
+        "html_content": "={{ $json.html }}"
       },
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
+      "type": "n8n-nodes-htmlcsstopdf.htmlcsstopdf",
+      "typeVersion": 1,
       "position": [
-        1040,
-        848
+        512,
+        -320
       ],
-      "id": "44a80b14-548c-451b-b642-db60487b521a",
-      "name": "Code in JavaScript"
+      "id": "8e5957f6-226e-407d-af3d-1a35154dff42",
+      "name": "HTML to PDF",
+      "credentials": {
+        "htmlcsstopdfApi": {
+          "id": "hB0XkDLPxicsTvMx",
+          "name": "HTML to PDF account"
+        }
+      }
     },
     {
       "parameters": {
@@ -668,59 +641,153 @@
       "type": "n8n-nodes-base.markdown",
       "typeVersion": 1,
       "position": [
-        1408,
-        448
+        1296,
+        704
       ],
       "id": "5ab3754a-37ae-42ad-a2b7-d3384a08ff8f",
-      "name": "Markdown"
+      "name": "Convert Markdown to HTML"
     },
     {
       "parameters": {
-        "title": "AI Document"
+        "html": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Praxisinstitut Naturmedizin</title>\n  <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n  <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\n  <link href=\"https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;500&display=swap\" rel=\"stylesheet\">\n  <style>\n    /* CUSTOM THEME COLORS */\n    :root {\n      --color-primary-green: #619030;\n      --color-primary-green-hover: #49701f;\n      --color-secondary-green: #A3B766;\n    }\n\n    /* PAGE SETUP FOR PDF */\n    @page {\n      margin: 60px 0px;\n      size: A4;\n    }\n\n    @page:first {\n      margin: 0;\n    }\n\n    body {\n      margin: 0;\n      padding: 0;\n    }\n\n    /* MODERN COVER PAGE */\n    .cover-page {\n      width: 100%;\n      height: 100vh;\n      position: relative;\n      overflow: hidden;\n      font-family: 'Source Sans 3', sans-serif;\n      page-break-after: always;\n      background: linear-gradient(135deg, #f8faf6 0%, #e8f0e0 30%, #e0e8d4 100%);\n      margin: 0;\n      display: flex;\n      flex-direction: column;\n    }\n\n    /* ORGANIC BACKGROUND ELEMENTS */\n    .background-elements {\n      position: absolute;\n      top: 0;\n      left: 0;\n      width: 100%;\n      height: 100%;\n      z-index: 1;\n      pointer-events: none;\n    }\n\n    .organic-shape {\n      position: absolute;\n      border-radius: 50%;\n      filter: blur(1px);\n      animation: float 20s infinite ease-in-out;\n    }\n\n    .shape-1 {\n      width: 400px;\n      height: 400px;\n      background: radial-gradient(circle, rgba(97, 144, 48, 0.12) 0%, rgba(97, 144, 48, 0.05) 70%);\n      top: -100px;\n      right: -100px;\n      animation-delay: 0s;\n    }\n\n    .shape-2 {\n      width: 300px;\n      height: 500px;\n      background: radial-gradient(ellipse, rgba(163, 183, 102, 0.08) 0%, rgba(163, 183, 102, 0.02) 70%);\n      bottom: -150px;\n      left: -80px;\n      border-radius: 60% 40% 30% 70%;\n      animation-delay: -10s;\n    }\n\n    .shape-3 {\n      width: 200px;\n      height: 200px;\n      background: radial-gradient(circle, rgba(73, 112, 31, 0.15) 0%, rgba(73, 112, 31, 0.03) 70%);\n      top: 40%;\n      left: 10%;\n      animation-delay: -5s;\n    }\n\n    @keyframes float {\n      0%, 100% { transform: translateY(0px) rotate(0deg); }\n      25% { transform: translateY(-20px) rotate(1deg); }\n      50% { transform: translateY(-10px) rotate(-1deg); }\n      75% { transform: translateY(-30px) rotate(0.5deg); }\n    }\n\n    /* CONTENT WRAPPER */\n    .content-wrapper {\n      position: relative;\n      z-index: 10;\n      display: flex;\n      flex-direction: column;\n      height: 100%;\n      padding: 80px 60px 60px;\n      box-sizing: border-box;\n    }\n\n    /* HEADER */\n    .header {\n      margin-bottom: 40px;\n    }\n\n    .logo-mark {\n      width: 80px;\n      height: 80px;\n      margin-bottom: 20px;\n      display: flex;\n      align-items: center;\n      justify-content: center;\n    }\n\n    .logo-mark img {\n      width: 100%;\n      height: 100%;\n      object-fit: contain;\n      filter: drop-shadow(0 4px 12px rgba(97, 144, 48, 0.2));\n    }\n\n    /* MAIN TITLE SECTION */\n    .main-content {\n      flex: 1;\n      display: flex;\n      flex-direction: column;\n      justify-content: center;\n      text-align: center;\n      margin: -80px 0;\n    }\n\n    .title-primary {\n      font-family: 'Playfair Display', serif;\n      font-size: 72px;\n      font-weight: 700;\n      line-height: 0.9;\n      color: var(--color-primary-green-hover);\n      margin: 0 0 16px 0;\n      letter-spacing: -2px;\n      text-shadow: 0 4px 16px rgba(73, 112, 31, 0.1);\n    }\n\n    .title-secondary {\n      font-family: 'Playfair Display', serif;\n      font-size: 72px;\n      font-weight: 400;\n      line-height: 0.9;\n      color: var(--color-primary-green);\n      margin: 0 0 40px 0;\n      letter-spacing: -1px;\n      font-style: italic;\n    }\n\n    .subtitle {\n      font-size: 24px;\n      font-weight: 300;\n      color: var(--color-primary-green);\n      letter-spacing: 4px;\n      text-transform: uppercase;\n      margin-bottom: 60px;\n      position: relative;\n    }\n\n    .subtitle::after {\n      content: '';\n      position: absolute;\n      bottom: -20px;\n      left: 50%;\n      transform: translateX(-50%);\n      width: 80px;\n      height: 2px;\n      background: linear-gradient(90deg, transparent, var(--color-secondary-green), transparent);\n    }\n\n    .tagline {\n      font-size: 18px;\n      color: var(--color-secondary-green);\n      font-weight: 400;\n      font-style: italic;\n      opacity: 0.9;\n    }\n\n    /* DECORATIVE ELEMENTS */\n    .decorative-border {\n      position: absolute;\n      top: 40px;\n      left: 40px;\n      right: 40px;\n      bottom: 40px;\n      border: 1px solid rgba(163, 183, 102, 0.3);\n      border-radius: 24px;\n      pointer-events: none;\n    }\n\n    .corner-elements {\n      position: absolute;\n      width: 40px;\n      height: 40px;\n      border: 2px solid var(--color-secondary-green);\n      opacity: 0.4;\n    }\n\n    .corner-tl { top: 60px; left: 60px; border-right: none; border-bottom: none; border-radius: 8px 0 0 0; }\n    .corner-tr { top: 60px; right: 60px; border-left: none; border-bottom: none; border-radius: 0 8px 0 0; }\n    .corner-bl { bottom: 60px; left: 60px; border-right: none; border-top: none; border-radius: 0 0 0 8px; }\n    .corner-br { bottom: 60px; right: 60px; border-left: none; border-top: none; border-radius: 0 0 8px 0; }\n\n    /* FOOTER */\n    .footer {\n      display: flex;\n      justify-content: space-between;\n      align-items: center;\n      font-size: 14px;\n      color: var(--color-primary-green);\n      margin-top: 40px;\n    }\n\n    .footer-left {\n      display: flex;\n      flex-direction: column;\n      gap: 4px;\n    }\n\n    .footer-right {\n      text-align: right;\n      font-weight: 500;\n      color: var(--color-primary-green-hover);\n    }\n\n    .year {\n      font-weight: 300;\n    }\n\n    /* DOCUMENT CONTENT STYLES */\n    .doc-content {\n      font-family: 'Source Sans 3', sans-serif;\n      margin: 0;\n      padding: 60px;\n      color: #333;\n      line-height: 1.7;\n      font-size: 16px;\n    }\n\n    .doc-content h1,\n    .doc-content h2,\n    .doc-content h3 {\n      font-family: 'Playfair Display', serif;\n      color: var(--color-primary-green-hover);\n      page-break-after: avoid;\n      page-break-inside: avoid;\n    }\n\n    .doc-content h1 {\n      font-size: 32px;\n      margin-bottom: 24px;\n      margin-top: 40px;\n      font-weight: 600;\n    }\n\n    .doc-content h1:first-child {\n      margin-top: 0;\n    }\n\n    .doc-content h2 {\n      font-size: 26px;\n      margin-bottom: 20px;\n      margin-top: 48px;\n      font-weight: 600;\n      color: var(--color-primary-green);\n    }\n\n    .doc-content h3 {\n      font-size: 22px;\n      margin-bottom: 18px;\n      margin-top: 32px;\n      font-weight: 500;\n      color: var(--color-secondary-green);\n    }\n\n    .doc-content p {\n      margin-bottom: 16px;\n      orphans: 3;\n      widows: 3;\n      color: #444;\n    }\n\n    .doc-content ul,\n    .doc-content ol {\n      margin-left: 24px;\n      margin-bottom: 16px;\n      page-break-inside: avoid;\n    }\n\n    .doc-content li {\n      margin-bottom: 8px;\n      color: #444;\n    }\n\n    /* RESPONSIVE DESIGN */\n    @media (max-width: 768px) {\n      .content-wrapper {\n        padding: 60px 40px 40px;\n      }\n\n      .title-primary,\n      .title-secondary {\n        font-size: 48px;\n      }\n\n      .subtitle {\n        font-size: 18px;\n        letter-spacing: 2px;\n      }\n\n      .tagline {\n        font-size: 16px;\n      }\n\n      .footer {\n        flex-direction: column;\n        gap: 12px;\n        align-items: flex-start;\n        text-align: left;\n      }\n\n      .corner-elements {\n        display: none;\n      }\n    }\n\n    @media (max-width: 480px) {\n      .title-primary,\n      .title-secondary {\n        font-size: 36px;\n      }\n\n      .subtitle {\n        font-size: 16px;\n        letter-spacing: 1px;\n      }\n    }\n  </style>\n</head>\n\n<body>\n  <!-- MODERN COVER PAGE -->\n  <div class=\"cover-page\">\n    <!-- Background Elements -->\n    <div class=\"background-elements\">\n      <div class=\"organic-shape shape-1\"></div>\n      <div class=\"organic-shape shape-2\"></div>\n      <div class=\"organic-shape shape-3\"></div>\n    </div>\n\n    <!-- Decorative Border -->\n    <div class=\"decorative-border\"></div>\n    \n    <!-- Corner Elements -->\n    <div class=\"corner-elements corner-tl\"></div>\n    <div class=\"corner-elements corner-tr\"></div>\n    <div class=\"corner-elements corner-bl\"></div>\n    <div class=\"corner-elements corner-br\"></div>\n\n    <!-- Content -->\n    <div class=\"content-wrapper\">\n      <!-- Header -->\n      <div class=\"header\">\n        <div class=\"logo-mark\">\n          <img src=\"https://dominik-ai-chatbot.vercel.app/logo.svg\" alt=\"Praxisinstitut Naturmedizin Logo\">\n        </div>\n      </div>\n\n      <!-- Main Content -->\n      <div class=\"main-content\">\n        <h1 class=\"title-primary\">Praxisinstitut</h1>\n        <h2 class=\"title-secondary\">Naturmedizin</h2>\n        <div class=\"subtitle\">Institut für Naturheilkunde</div>\n        <p class=\"tagline\">Medizin zum Selbermachen</p>\n      </div>\n\n      <!-- Footer -->\n      <div class=\"footer\">\n        <div class=\"footer-left\">\n          <div class=\"year\">© 2024 Praxisinstitut Naturmedizin</div>\n          <div>Natürliche Heilkunde & Wellness</div>\n        </div>\n        <div class=\"footer-right\">\n          www.praxisinstitut-naturmedizin.com\n        </div>\n      </div>\n    </div>\n  </div>\n\n  <!-- DOCUMENT CONTENT -->\n  <div class=\"doc-content\">\n    {{ $json.data }}\n  </div>\n</body>\n\n</html>"
       },
-      "type": "n8n-nodes-base.googleDocs",
-      "typeVersion": 2,
+      "type": "n8n-nodes-base.html",
+      "typeVersion": 1.2,
       "position": [
-        2896,
-        1360
+        1488,
+        704
       ],
-      "id": "233e636d-63af-4d44-a460-8dc5477cc639",
-      "name": "Create a document"
+      "id": "f50b8a41-7ffc-4e8d-afde-44f242d8f60e",
+      "name": "HTML"
     },
     {
       "parameters": {
-        "html_content": "=<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Praxisinstitut Naturmedizin</title>\n\n</head>\n\n<body>\n  <!-- COVER PAGE -->\n  <div class=\"cover-page\">\n    <div class=\"shape shape-1\"></div>\n    <div class=\"shape shape-2\"></div>\n    <div class=\"shape shape-3\"></div>\n    <div class=\"accent-line line-1\"></div>\n    <div class=\"accent-line line-2\"></div>\n\n    <div class=\"content\">\n      <!-- <div class=\"logo-section\">\n        <div class=\"logo-icon\">\n        </div>\n        <div class=\"logo-text\">\n          <h1>Praxisinstitut</h1>\n          <h1>Naturmedizin</h1>\n          <p>Medizin zum Selbermachen</p>\n        </div>\n      </div> -->\n\n      <div class=\"title-section\">\n        <h2>Praxisinstitut</h2>\n        <h2>Naturmedizin</h2>\n        <p>Medizin zum Selbermachen</p>\n      </div>\n\n      <div class=\"footer-section\">\n        <div class=\"footer-left\">\n          <p>© 2024 Praxisinstitut Naturmedizin</p>\n        </div>\n        <div class=\"footer-right\">\n          <p>www.praxisinstitut-naturmedizin.com</p>\n        </div>\n      </div>\n    </div>\n  </div>\n\n  <!-- DOCUMENT CONTENT -->\n  <div class=\"doc-content\">\n    {{ $json.data }}\n  </div>\n</body>\n\n</html>",
-        "css_content": "  <style>\n    /* PAGE SETUP FOR PDF */\n    @page {\n      margin: 60px;\n      size: A4;\n    }\n\n    @page: first {\n      margin: 0;\n      /* No margin for cover page */\n    }\n\n    body {\n      margin: 0;\n      padding: 0;\n    }\n\n    /* COVER PAGE STYLES ONLY */\n    .cover-page {\n      width: 100%;\n      height: 99vh;\n      background: \"green\";\n      position: relative;\n      overflow: hidden;\n      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;\n      page-break-after: always;\n      padding: 40px 60px;\n      box-sizing: border-box;\n      margin: 0;\n    }\n\n    .cover-page .shape {\n      position: absolute;\n      background: linear-gradient(135deg, #6b9e3e 0%, #5a8934 100%);\n      opacity: 0.9;\n    }\n\n    .shape-1 {\n      width: 40%;\n      height: 90%;\n      top: -10%;\n      left: -20%;\n      transform: rotate(-9deg);\n      clip-path: polygon(0 0, 100% 0, 100% 100%);\n    }\n\n    .shape-2 {\n      width: 70%;\n      height: 70%;\n      bottom: -20%;\n      right: -20%;\n      transform: rotate(40deg);\n      clip-path: polygon(100% 0, 100% 100%, 0 100%);\n    }\n\n    .shape-3 {\n      width: 40%;\n      height: 80%;\n      top: -10%;\n      right: -10%;\n      background: rgba(107, 158, 62, 0.15);\n      transform: rotate(-30deg);\n      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);\n    }\n\n    .cover-page .content {\n      position: relative;\n      z-index: 10;\n      height: 100%;\n      display: flex;\n      flex-direction: column;\n      justify-content: space-between;\n    }\n\n    .title-section {\n      height: -webkit-fill-available;\n      align-content: center;\n      text-align: center;\n      padding: 80px 0;\n    }\n\n    .title-section h2 {\n      font-size: 56px;\n      font-weight: 700;\n      color: #2d5016;\n      margin-bottom: 20px;\n      line-height: 1.2;\n    }\n\n    .title-section p {\n      font-size: 22px;\n      color: #5a8934;\n      font-weight: 400;\n    }\n\n    .footer-section {\n      display: flex;\n      justify-content: space-between;\n      align-items: flex-end;\n      color: #5a8934;\n      font-size: 14px;\n    }\n\n    .footer-left {\n      flex: 1;\n    }\n\n    .footer-right {\n      text-align: right;\n      color: white;\n    }\n\n    .accent-line {\n      position: absolute;\n      background: white;\n      opacity: 0.3;\n      z-index: 5;\n    }\n\n    .line-1 {\n      width: 3px;\n      height: 40%;\n      top: 20%;\n      right: 35%;\n      transform: rotate(30deg);\n    }\n\n    .line-2 {\n      width: 3px;\n      height: 50%;\n      bottom: 10%;\n      left: 30%;\n      transform: rotate(-35deg);\n    }\n\n    /* RESPONSIVE */\n    @media (max-width: 768px) {\n      .cover-page {\n        padding: 40px 30px;\n      }\n\n      .title-section h2 {\n        font-size: 36px;\n      }\n\n      .title-section p {\n        font-size: 18px;\n      }\n\n      .logo-text h1 {\n        font-size: 22px;\n      }\n\n      .footer-section {\n        flex-direction: column;\n        gap: 20px;\n        align-items: flex-start;\n      }\n\n    }\n\n    /* MARKDOWN/CONTENT STYLES */\n    .doc-content {\n      padding: 60px;\n      box-sizing: border-box;\n    }\n\n    .doc-content>* {\n      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;\n      color: #222;\n      line-height: 1.6;\n      margin-top: 40px;\n      /* default spacing */\n    }\n\n    /* Remove the margin for the very first element on page 2 */\n    .doc-content h1:first-child,\n    .doc-content p:first-child,\n    .doc-content *:first-child {\n      margin-top: 0 !important;\n    }\n\n    /* Ensure page breaks before headings still create margin */\n    .doc-content h1,\n    .doc-content h2,\n    .doc-content h3 {\n      page-break-after: avoid;\n      page-break-before: auto;\n    }\n\n    .doc-content h1 {\n      font-size: 28px;\n      /* margin-bottom: 20px;\n      margin-top: 30px; */\n    }\n\n    /* .doc-content h1:first-child {\n      margin-top: 0;\n    } */\n\n    .doc-content h2 {\n      font-size: 24px;\n      /* margin-bottom: 18px;\n      margin-top: 40px; */\n    }\n\n    .doc-content h3 {\n      font-size: 20px;\n      /* margin-bottom: 16px;\n      margin-top: 20px; */\n    }\n\n    .doc-content p {\n      margin-bottom: 14px;\n      orphans: 3;\n      widows: 3;\n    }\n\n    .doc-content ul,\n    .doc-content ol {\n      margin-left: 20px;\n      margin-top: 20px;\n      margin-bottom: 20px;\n      page-break-inside: avoid;\n    }\n  </style>"
+        "name": "={{ $('Prettify Response').item.json.id }}",
+        "driveId": {
+          "__rl": true,
+          "value": "0ABWcsHiXVUORUk9PVA",
+          "mode": "list",
+          "cachedResultName": "Chatbot - Wissensdatenbank (Knowledge database) - Gesundheitsschule",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/0ABWcsHiXVUORUk9PVA"
+        },
+        "folderId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "root",
+          "cachedResultName": "/ (Root folder)"
+        },
+        "options": {}
       },
-      "type": "n8n-nodes-htmlcsstopdf.htmlcsstopdf",
-      "typeVersion": 1,
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
       "position": [
-        1664,
-        448
+        -544,
+        -64
       ],
-      "id": "8e5957f6-226e-407d-af3d-1a35154dff42",
-      "name": "HTML to PDF",
+      "id": "7b3f991c-c9ba-4c5f-aeed-c6a1bb2ba283",
+      "name": "Upload file",
       "credentials": {
-        "htmlcsstopdfApi": {
-          "id": "hB0XkDLPxicsTvMx",
-          "name": "HTML to PDF account"
+        "googleDriveOAuth2Api": {
+          "id": "kxNQu76R5B6e3VyM",
+          "name": "Google Drive account 2"
         }
       }
     },
     {
       "parameters": {
-        "operation": "pdf",
+        "method": "POST",
+        "url": "http://gotenberg:3000/forms/chromium/convert/html",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Gotenberg-Output-Filename",
+              "value": "={{ $('Prettify Response').item.json.id }}-{{ $now.format('yyyy-MM-dd') }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "parameterType": "formBinaryData",
+              "name": "form file",
+              "inputDataFieldName": "data"
+            },
+            {
+              "name": "scale",
+              "value": "1"
+            },
+            {
+              "name": "metadata",
+              "value": "={\"Author\":\"IA2S\",\"Copyright\":\"IA2S\",\"CreateDate\":\"{{ $now.format('yyyy-MM-dd') }}\",\"Creator\":\"IA2S\",\"Keywords\":[],\"ModDate\":\"{{ $now.format('yyyy-MM-dd') }}\",\"PDFVersion\":1.7,\"Producer\":\"IA2S\",\"Subject\":\"PDF\",\"Title\":\"IA2S PDF\"}"
+            },
+            {
+              "name": "maxImageResolution",
+              "value": "300"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "3ba6a097-2f70-4ec4-b81e-f17929867314",
+      "name": "Convert to PDF with Gotenberg",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        1936,
+        704
+      ],
+      "typeVersion": 4.2,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "operation": "toText",
+        "sourceProperty": "html",
+        "options": {
+          "encoding": "utf8",
+          "fileName": "index.html"
+        }
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        1712,
+        704
+      ],
+      "id": "5340ddb4-d754-4839-8a26-c4ab56101168",
+      "name": "Convert to File"
+    },
+    {
+      "parameters": {
+        "operation": "binaryToPropery",
         "options": {}
       },
       "type": "n8n-nodes-base.extractFromFile",
       "typeVersion": 1,
       "position": [
-        2064,
-        880
+        2192,
+        688
       ],
-      "id": "41753980-9640-4480-b9cc-287a6a61b16a",
+      "id": "6e606608-0e2c-441c-9b68-2e3c961ca8ed",
       "name": "Extract from File1",
       "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\n  \"status\": 500,\n  \"error\": \"Unable to generate Detailed Summary\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        2240,
+        912
+      ],
+      "id": "696819a2-2de7-49dc-8215-6d61c90429f1",
+      "name": "Respond to Webhook1"
     }
   ],
   "pinData": {},
@@ -739,6 +806,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-12-03T14:30:01.000Z",
-  "versionId": "1d9ead0e-c554-46e0-bada-c2c662493d55"
+  "updatedAt": "2025-12-04T12:07:46.000Z",
+  "versionId": "e86a58aa-b3c4-4c5a-9981-e250072a01bf"
 }
