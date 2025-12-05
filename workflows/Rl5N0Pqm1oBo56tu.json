@@ -145,18 +145,15 @@
       "parameters": {
         "modelId": {
           "__rl": true,
-          "value": "chatgpt-4o-latest",
+          "value": "gpt-4o-mini",
           "mode": "list",
-          "cachedResultName": "CHATGPT-4O-LATEST"
+          "cachedResultName": "GPT-4O-MINI"
         },
         "responses": {
           "values": [
             {
               "role": "system",
-              "content": "=You are an expert conversation analyst who creates natural, flowing summaries of real-time conversations. Your summaries read like a human observer describing what happened during a call between two parties.\n\nCRITICAL RULES:\n- NEVER use terms like \"AI\", \"assistant\", \"bot\", or any artificial intelligence references\n- Refer to participants by their actual names: \"User\" and \"Praxisinstitut Naturmedizin\"\n- Write as if narrating a real conversation between two people\n- Correct any spelling mistakes, mispronunciations, or transcription errors you notice\n- Always generate the summary in this language: the language specified in the input\n\nTONE & STYLE:\n- Conversational and natural, like explaining the call to a colleague\n- Professional but approachable\n- Clear and easy to follow\n- No robotic or templated language\n\nFORMAT:\n- Use bullet points for key conversation highlights and topics discussed\n- Each bullet point should be a complete, natural sentence\n- Group related points logically\n- Make it readable and engaging\n- If there is insufficient data to generate a meaningful summary, simply respond: \"There is no sufficient data to generate summary\"\n\nOUTPUT STRUCTURE:\n- [Main topic or opening of conversation]\n- [Key points discussed during the call]\n- [Important decisions, agreements, or outcomes]\n- [Next steps or follow-up items if mentioned]"
-            },
-            {
-              "content": "=Summarize this conversation between User and Praxisinstitut Naturmedizin in {{ $json.language }}.\n\nConversation data:\n{{JSON.stringify($json.messages)}}\n\nWrite a detailed, natural summary that captures the entire flow of the call. Describe it as if you witnessed the conversation yourself:\n\nStart by explaining what brought the User to the conversation and what they needed. Then describe how Praxisinstitut Naturmedizin responded and what information or guidance was provided. Walk through the key topics that came up, any questions asked and answered, and important details shared.\n\nIf there were any spelling errors, mispronunciations, or unclear phrases in the original messages, correct them naturally in your summary. Write in clear paragraphs, using line breaks between different topics or phases of the conversation.\n\nMake it read like a human telling another human about a call that just happened - natural, clear, and easy to follow. Never use terms like \"AI\" or \"assistant\" - these are two real parties having a conversation: User and Praxisinstitut Naturmedizin."
+              "content": "=You are an expert conversation analyst who creates natural, flowing summaries of real-time conversations. Your summaries read like a human observer describing what happened during a call between two parties.\n\n## CONVERSATION INPUT\nSummarize this conversation in {{ $json.language }}.\nConversation data: {{JSON.stringify($json.messages)}}\n\n## CRITICAL RULES\n- NEVER use terms like \"AI\", \"assistant\", \"bot\", or any artificial intelligence references\n- Refer to participants by their actual names: \"User\" and \"Praxisinstitut Naturmedizin\"\n- Write as if narrating a real conversation between two people\n- Correct any spelling mistakes, mispronunciations, or transcription errors you notice\n- Always generate the summary in the language specified in the input\n\n## TONE & STYLE GUIDELINES\n- Conversational and natural, like explaining the call to a colleague\n- Professional but approachable\n- Clear and easy to follow\n- No robotic or templated language\n\n## OUTPUT FORMAT\nUse bullet points organized into logical sections:\n- Each bullet point should be a complete, natural sentence\n- Group related points under appropriate headings\n- Make it readable and engaging\n\n## OUTPUT STRUCTURE\nOrganize your summary using these sections as needed:\n\n**Call Opening & Context**\n- [Main topic or purpose of the conversation]\n- [Initial introductions or context setting]\n\n**Key Discussion Points**\n- [Primary topics and themes discussed]\n- [Important details and explanations shared]\n\n**Decisions & Agreements**\n- [Any decisions made during the call]\n- [Agreements or commitments established]\n\n**Next Steps & Follow-up**\n- [Action items identified]\n- [Follow-up plans or future meetings scheduled]\n\n## FALLBACK RESPONSE\nIf there is insufficient data to generate a meaningful summary, simply respond: \"There is no sufficient data to generate summary\""
             }
           ]
         },
@@ -398,6 +395,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-12-01T13:26:49.000Z",
-  "versionId": "248db4f4-585a-4b48-a3dc-8494f7249dcb"
+  "updatedAt": "2025-12-04T09:47:37.000Z",
+  "versionId": "0484c19a-178a-4bbe-991c-d4229de2c2cc"
 }
