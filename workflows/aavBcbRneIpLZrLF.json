@@ -1,79 +1,6 @@
 {
   "active": true,
   "connections": {
-    "Webhook": {
-      "main": [
-        [
-          {
-            "node": "If",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "If": {
-      "main": [
-        [
-          {
-            "node": "Get Call Messages",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Get Chat Messages",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Get Call Messages": {
-      "main": [
-        [
-          {
-            "node": "Prettify Response",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Get Chat Messages": {
-      "main": [
-        [
-          {
-            "node": "Prettify Response",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Prettify Response": {
-      "main": [
-        [
-          {
-            "node": "Generate Summary",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Generate Summary": {
-      "main": [
-        [
-          {
-            "node": "Convert Markdown to HTML",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Create document file": {
       "main": [
         [
@@ -107,17 +34,6 @@
         ]
       ]
     },
-    "Add PDF Link in Detailed Summary Table": {
-      "main": [
-        [
-          {
-            "node": "Respond to Webhook",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Extract from File": {
       "main": [
         []
@@ -133,28 +49,6 @@
         []
       ]
     },
-    "Convert Markdown to HTML": {
-      "main": [
-        [
-          {
-            "node": "HTML",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "HTML": {
-      "main": [
-        [
-          {
-            "node": "Convert to File",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Upload file": {
       "main": [
         [
@@ -166,40 +60,146 @@
         ]
       ]
     },
-    "Convert to File": {
+    "HTML": {
       "main": [
         [
           {
-            "node": "Convert to PDF with Gotenberg",
+            "node": "Convert to File1",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Convert to PDF with Gotenberg": {
+    "Webhook1": {
       "main": [
         [
           {
-            "node": "Extract from File1",
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Get Call Messages1",
             "type": "main",
             "index": 0
           }
         ],
         [
           {
-            "node": "Respond to Webhook1",
+            "node": "Get Chat Messages1",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Extract from File1": {
+    "Get Call Messages1": {
       "main": [
         [
           {
-            "node": "Add PDF Link in Detailed Summary Table",
+            "node": "Prettify Response1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Chat Messages1": {
+      "main": [
+        [
+          {
+            "node": "Prettify Response1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prettify Response1": {
+      "main": [
+        [
+          {
+            "node": "Generate Summary1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Summary1": {
+      "main": [
+        [
+          {
+            "node": "Convert Markdown to HTML1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Add PDF Link in Detailed Summary Table1": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert Markdown to HTML1": {
+      "main": [
+        [
+          {
+            "node": "HTML",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to PDF with Gotenberg1": {
+      "main": [
+        [
+          {
+            "node": "Extract from File3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond to Webhook3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File1": {
+      "main": [
+        [
+          {
+            "node": "Convert to PDF with Gotenberg1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File3": {
+      "main": [
+        [
+          {
+            "node": "Add PDF Link in Detailed Summary Table1",
             "type": "main",
             "index": 0
           }
@@ -215,166 +215,6 @@
   },
   "name": "Generate Detailed Summary PDF",
   "nodes": [
-    {
-      "parameters": {
-        "httpMethod": "POST",
-        "path": "generate-summary-pdf",
-        "responseMode": "responseNode",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.webhook",
-      "typeVersion": 2.1,
-      "position": [
-        -80,
-        720
-      ],
-      "id": "13d95357-1ddc-403b-bf20-3b2867e3b46d",
-      "name": "Webhook",
-      "webhookId": "b4968d44-164a-4b23-bb5b-d63c8bd26c31"
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "strict",
-            "version": 2
-          },
-          "conditions": [
-            {
-              "id": "7f039f08-cd17-492e-82b8-6500b5b44a89",
-              "leftValue": "={{ $json.body.call_id }}",
-              "rightValue": "",
-              "operator": {
-                "type": "string",
-                "operation": "exists",
-                "singleValue": true
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2.2,
-      "position": [
-        128,
-        720
-      ],
-      "id": "62c500bb-e0c3-4cea-92af-74c0d1acc8e0",
-      "name": "If"
-    },
-    {
-      "parameters": {
-        "operation": "getAll",
-        "tableId": "call_messages",
-        "limit": 100,
-        "filters": {
-          "conditions": [
-            {
-              "keyName": "call_id",
-              "condition": "eq",
-              "keyValue": "={{ $json.body.call_id }}"
-            }
-          ]
-        }
-      },
-      "type": "n8n-nodes-base.supabase",
-      "typeVersion": 1,
-      "position": [
-        432,
-        592
-      ],
-      "id": "d369c3e7-5d08-4f2a-8973-254a42dbe2e4",
-      "name": "Get Call Messages",
-      "credentials": {
-        "supabaseApi": {
-          "id": "fHIqf3ehxKRHCXZs",
-          "name": "Supabase account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "operation": "getAll",
-        "tableId": "messages",
-        "limit": 100,
-        "filters": {
-          "conditions": [
-            {
-              "keyName": "chat_id",
-              "condition": "eq",
-              "keyValue": "={{ $json.body.chat_id }}"
-            }
-          ]
-        }
-      },
-      "type": "n8n-nodes-base.supabase",
-      "typeVersion": 1,
-      "position": [
-        432,
-        800
-      ],
-      "id": "0772a0f7-385c-486c-93de-bbd16ceeaf2f",
-      "name": "Get Chat Messages",
-      "credentials": {
-        "supabaseApi": {
-          "id": "fHIqf3ehxKRHCXZs",
-          "name": "Supabase account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "jsCode": "// Get all incoming items from supbase\nconst items = $input.all();\n\n// Building a single object\nreturn [\n  {\n    json: {\n      id: items[0].json?.call_id || items[0].json?.chat_id,\n      messages: items.map(i => ({\n        msg: i.json.message || \"\",\n        sender: i.json.sender || \"\"\n      }))\n    }\n  }\n];\n"
-      },
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        704,
-        704
-      ],
-      "id": "3772091e-8336-416c-afdc-1ee4de0156b0",
-      "name": "Prettify Response"
-    },
-    {
-      "parameters": {
-        "modelId": {
-          "__rl": true,
-          "value": "gpt-4o-mini",
-          "mode": "list",
-          "cachedResultName": "GPT-4O-MINI"
-        },
-        "messages": {
-          "values": [
-            {
-              "content": "=Analyze the following messages and generate a detailed PDF-ready summary document:\\n\\n{{JSON.stringify($json.messages)}}\\n\\nStructure your output as follows:\\n\\n# [Generate appropriate title based on content]\\n\\n## Executive Summary\\n[2-3 paragraph overview of the entire conversation/content]\\n\\n## Detailed Analysis\\n[Break down the messages into logical sections with clear headings]\\n\\n## Key Points\\n[Bullet-pointed list of main takeaways]\\n\\n## Timeline/Chronology\\n[If applicable, provide chronological overview of events or discussion]\\n\\n## Conclusions & Next Steps\\n[Summarize outcomes and any action items]\\n\\nEnsure all content is professional, well-formatted, and ready for immediate PDF conversion."
-            },
-            {
-              "content": "You are a professional document generator that creates well-structured, formatted summaries for PDF conversion. Your output must be clean, organized, and ready for direct PDF rendering.\n\nFORMATTING RULES:\n- Use clear hierarchical headings (# for main title, ## for sections, ### for subsections)\n- Write in professional, concise language\n- Use proper paragraph spacing\n- Include bullet points or numbered lists where appropriate for clarity\n- Maintain consistent formatting throughout\n- Do not use excessive styling or unnecessary decorations\n\nOUTPUT STRUCTURE:\nYour summary should always include:\n1. A clear document title\n2. Executive summary or overview section\n3. Main content organized by logical sections\n4. Key takeaways or conclusions (if applicable)\n\nWrite content that is:\n- Clear and scannable\n- Well-organized with logical flow\n- Professional in tone\n- Ready for immediate PDF conversion without additional formatting\n",
-              "role": "system"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.openAi",
-      "typeVersion": 1.8,
-      "position": [
-        912,
-        704
-      ],
-      "id": "70632e6b-1fe3-45ec-b1de-bbc535ecad79",
-      "name": "Generate Summary",
-      "credentials": {
-        "openAiApi": {
-          "id": "Xfd0MFwxSjT9x3PY",
-          "name": "OpenAi account"
-        }
-      }
-    },
     {
       "parameters": {
         "method": "POST",
@@ -512,54 +352,6 @@
     },
     {
       "parameters": {
-        "tableId": "detailed_summary_pdf",
-        "fieldsUi": {
-          "fieldValues": [
-            {
-              "fieldId": "pdf_link_base64",
-              "fieldValue": "={{ $json.data }}"
-            },
-            {
-              "fieldId": "type_id",
-              "fieldValue": "={{ $('Prettify Response').item.json.id }}"
-            },
-            {
-              "fieldId": "type",
-              "fieldValue": "={{ $json[\"IF\"] === true ? \"Call\" : \"Chat\" }}"
-            }
-          ]
-        }
-      },
-      "type": "n8n-nodes-base.supabase",
-      "typeVersion": 1,
-      "position": [
-        2464,
-        688
-      ],
-      "id": "152b9992-7880-4c07-b43b-39b1a22dc49f",
-      "name": "Add PDF Link in Detailed Summary Table",
-      "credentials": {
-        "supabaseApi": {
-          "id": "fHIqf3ehxKRHCXZs",
-          "name": "Supabase account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "options": {}
-      },
-      "type": "n8n-nodes-base.respondToWebhook",
-      "typeVersion": 1.4,
-      "position": [
-        2752,
-        688
-      ],
-      "id": "3c9f98ec-5df9-4e2b-9b54-c389ceefecc9",
-      "name": "Respond to Webhook"
-    },
-    {
-      "parameters": {
         "operation": "binaryToPropery",
         "options": {}
       },
@@ -631,37 +423,6 @@
     },
     {
       "parameters": {
-        "mode": "markdownToHtml",
-        "markdown": "={{ $json.message.content }}",
-        "options": {
-          "prefixHeaderId": "section",
-          "smartIndentationFix": true
-        }
-      },
-      "type": "n8n-nodes-base.markdown",
-      "typeVersion": 1,
-      "position": [
-        1296,
-        704
-      ],
-      "id": "5ab3754a-37ae-42ad-a2b7-d3384a08ff8f",
-      "name": "Convert Markdown to HTML"
-    },
-    {
-      "parameters": {
-        "html": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Praxisinstitut Naturmedizin</title>\n  <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n  <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\n  <link href=\"https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;500&display=swap\" rel=\"stylesheet\">\n  <style>\n    /* CUSTOM THEME COLORS */\n    :root {\n      --color-primary-green: #619030;\n      --color-primary-green-hover: #49701f;\n      --color-secondary-green: #A3B766;\n    }\n\n    /* PAGE SETUP FOR PDF */\n    @page {\n      margin: 60px 0px;\n      size: A4;\n    }\n\n    @page:first {\n      margin: 0;\n    }\n\n    body {\n      margin: 0;\n      padding: 0;\n    }\n\n    /* MODERN COVER PAGE */\n    .cover-page {\n      width: 100%;\n      height: 100vh;\n      position: relative;\n      overflow: hidden;\n      font-family: 'Source Sans 3', sans-serif;\n      page-break-after: always;\n      background: linear-gradient(135deg, #f8faf6 0%, #e8f0e0 30%, #e0e8d4 100%);\n      margin: 0;\n      display: flex;\n      flex-direction: column;\n    }\n\n    /* ORGANIC BACKGROUND ELEMENTS */\n    .background-elements {\n      position: absolute;\n      top: 0;\n      left: 0;\n      width: 100%;\n      height: 100%;\n      z-index: 1;\n      pointer-events: none;\n    }\n\n    .organic-shape {\n      position: absolute;\n      border-radius: 50%;\n      filter: blur(1px);\n      animation: float 20s infinite ease-in-out;\n    }\n\n    .shape-1 {\n      width: 400px;\n      height: 400px;\n      background: radial-gradient(circle, rgba(97, 144, 48, 0.12) 0%, rgba(97, 144, 48, 0.05) 70%);\n      top: -100px;\n      right: -100px;\n      animation-delay: 0s;\n    }\n\n    .shape-2 {\n      width: 300px;\n      height: 500px;\n      background: radial-gradient(ellipse, rgba(163, 183, 102, 0.08) 0%, rgba(163, 183, 102, 0.02) 70%);\n      bottom: -150px;\n      left: -80px;\n      border-radius: 60% 40% 30% 70%;\n      animation-delay: -10s;\n    }\n\n    .shape-3 {\n      width: 200px;\n      height: 200px;\n      background: radial-gradient(circle, rgba(73, 112, 31, 0.15) 0%, rgba(73, 112, 31, 0.03) 70%);\n      top: 40%;\n      left: 10%;\n      animation-delay: -5s;\n    }\n\n    @keyframes float {\n      0%, 100% { transform: translateY(0px) rotate(0deg); }\n      25% { transform: translateY(-20px) rotate(1deg); }\n      50% { transform: translateY(-10px) rotate(-1deg); }\n      75% { transform: translateY(-30px) rotate(0.5deg); }\n    }\n\n    /* CONTENT WRAPPER */\n    .content-wrapper {\n      position: relative;\n      z-index: 10;\n      display: flex;\n      flex-direction: column;\n      height: 100%;\n      padding: 80px 60px 60px;\n      box-sizing: border-box;\n    }\n\n    /* HEADER */\n    .header {\n      margin-bottom: 40px;\n    }\n\n    .logo-mark {\n      width: 80px;\n      height: 80px;\n      margin-bottom: 20px;\n      display: flex;\n      align-items: center;\n      justify-content: center;\n    }\n\n    .logo-mark img {\n      width: 100%;\n      height: 100%;\n      object-fit: contain;\n      filter: drop-shadow(0 4px 12px rgba(97, 144, 48, 0.2));\n    }\n\n    /* MAIN TITLE SECTION */\n    .main-content {\n      flex: 1;\n      display: flex;\n      flex-direction: column;\n      justify-content: center;\n      text-align: center;\n      margin: -80px 0;\n    }\n\n    .title-primary {\n      font-family: 'Playfair Display', serif;\n      font-size: 72px;\n      font-weight: 700;\n      line-height: 0.9;\n      color: var(--color-primary-green-hover);\n      margin: 0 0 16px 0;\n      letter-spacing: -2px;\n      text-shadow: 0 4px 16px rgba(73, 112, 31, 0.1);\n    }\n\n    .title-secondary {\n      font-family: 'Playfair Display', serif;\n      font-size: 72px;\n      font-weight: 400;\n      line-height: 0.9;\n      color: var(--color-primary-green);\n      margin: 0 0 40px 0;\n      letter-spacing: -1px;\n      font-style: italic;\n    }\n\n    .subtitle {\n      font-size: 24px;\n      font-weight: 300;\n      color: var(--color-primary-green);\n      letter-spacing: 4px;\n      text-transform: uppercase;\n      margin-bottom: 60px;\n      position: relative;\n    }\n\n    .subtitle::after {\n      content: '';\n      position: absolute;\n      bottom: -20px;\n      left: 50%;\n      transform: translateX(-50%);\n      width: 80px;\n      height: 2px;\n      background: linear-gradient(90deg, transparent, var(--color-secondary-green), transparent);\n    }\n\n    .tagline {\n      font-size: 18px;\n      color: var(--color-secondary-green);\n      font-weight: 400;\n      font-style: italic;\n      opacity: 0.9;\n    }\n\n    /* DECORATIVE ELEMENTS */\n    .decorative-border {\n      position: absolute;\n      top: 40px;\n      left: 40px;\n      right: 40px;\n      bottom: 40px;\n      border: 1px solid rgba(163, 183, 102, 0.3);\n      border-radius: 24px;\n      pointer-events: none;\n    }\n\n    .corner-elements {\n      position: absolute;\n      width: 40px;\n      height: 40px;\n      border: 2px solid var(--color-secondary-green);\n      opacity: 0.4;\n    }\n\n    .corner-tl { top: 60px; left: 60px; border-right: none; border-bottom: none; border-radius: 8px 0 0 0; }\n    .corner-tr { top: 60px; right: 60px; border-left: none; border-bottom: none; border-radius: 0 8px 0 0; }\n    .corner-bl { bottom: 60px; left: 60px; border-right: none; border-top: none; border-radius: 0 0 0 8px; }\n    .corner-br { bottom: 60px; right: 60px; border-left: none; border-top: none; border-radius: 0 0 8px 0; }\n\n    /* FOOTER */\n    .footer {\n      display: flex;\n      justify-content: space-between;\n      align-items: center;\n      font-size: 14px;\n      color: var(--color-primary-green);\n      margin-top: 40px;\n    }\n\n    .footer-left {\n      display: flex;\n      flex-direction: column;\n      gap: 4px;\n    }\n\n    .footer-right {\n      text-align: right;\n      font-weight: 500;\n      color: var(--color-primary-green-hover);\n    }\n\n    .year {\n      font-weight: 300;\n    }\n\n    /* DOCUMENT CONTENT STYLES */\n    .doc-content {\n      font-family: 'Source Sans 3', sans-serif;\n      margin: 0;\n      padding: 60px;\n      color: #333;\n      line-height: 1.7;\n      font-size: 16px;\n    }\n\n    .doc-content h1,\n    .doc-content h2,\n    .doc-content h3 {\n      font-family: 'Playfair Display', serif;\n      color: var(--color-primary-green-hover);\n      page-break-after: avoid;\n      page-break-inside: avoid;\n    }\n\n    .doc-content h1 {\n      font-size: 32px;\n      margin-bottom: 24px;\n      margin-top: 40px;\n      font-weight: 600;\n    }\n\n    .doc-content h1:first-child {\n      margin-top: 0;\n    }\n\n    .doc-content h2 {\n      font-size: 26px;\n      margin-bottom: 20px;\n      margin-top: 48px;\n      font-weight: 600;\n      color: var(--color-primary-green);\n    }\n\n    .doc-content h3 {\n      font-size: 22px;\n      margin-bottom: 18px;\n      margin-top: 32px;\n      font-weight: 500;\n      color: var(--color-secondary-green);\n    }\n\n    .doc-content p {\n      margin-bottom: 16px;\n      orphans: 3;\n      widows: 3;\n      color: #444;\n    }\n\n    .doc-content ul,\n    .doc-content ol {\n      margin-left: 24px;\n      margin-bottom: 16px;\n      page-break-inside: avoid;\n    }\n\n    .doc-content li {\n      margin-bottom: 8px;\n      color: #444;\n    }\n\n    /* RESPONSIVE DESIGN */\n    @media (max-width: 768px) {\n      .content-wrapper {\n        padding: 60px 40px 40px;\n      }\n\n      .title-primary,\n      .title-secondary {\n        font-size: 48px;\n      }\n\n      .subtitle {\n        font-size: 18px;\n        letter-spacing: 2px;\n      }\n\n      .tagline {\n        font-size: 16px;\n      }\n\n      .footer {\n        flex-direction: column;\n        gap: 12px;\n        align-items: flex-start;\n        text-align: left;\n      }\n\n      .corner-elements {\n        display: none;\n      }\n    }\n\n    @media (max-width: 480px) {\n      .title-primary,\n      .title-secondary {\n        font-size: 36px;\n      }\n\n      .subtitle {\n        font-size: 16px;\n        letter-spacing: 1px;\n      }\n    }\n  </style>\n</head>\n\n<body>\n  <!-- MODERN COVER PAGE -->\n  <div class=\"cover-page\">\n    <!-- Background Elements -->\n    <div class=\"background-elements\">\n      <div class=\"organic-shape shape-1\"></div>\n      <div class=\"organic-shape shape-2\"></div>\n      <div class=\"organic-shape shape-3\"></div>\n    </div>\n\n    <!-- Decorative Border -->\n    <div class=\"decorative-border\"></div>\n    \n    <!-- Corner Elements -->\n    <div class=\"corner-elements corner-tl\"></div>\n    <div class=\"corner-elements corner-tr\"></div>\n    <div class=\"corner-elements corner-bl\"></div>\n    <div class=\"corner-elements corner-br\"></div>\n\n    <!-- Content -->\n    <div class=\"content-wrapper\">\n      <!-- Header -->\n      <div class=\"header\">\n        <div class=\"logo-mark\">\n          <img src=\"https://dominik-ai-chatbot.vercel.app/logo.svg\" alt=\"Praxisinstitut Naturmedizin Logo\">\n        </div>\n      </div>\n\n      <!-- Main Content -->\n      <div class=\"main-content\">\n        <h1 class=\"title-primary\">Praxisinstitut</h1>\n        <h2 class=\"title-secondary\">Naturmedizin</h2>\n        <div class=\"subtitle\">Institut für Naturheilkunde</div>\n        <p class=\"tagline\">Medizin zum Selbermachen</p>\n      </div>\n\n      <!-- Footer -->\n      <div class=\"footer\">\n        <div class=\"footer-left\">\n          <div class=\"year\">© 2024 Praxisinstitut Naturmedizin</div>\n          <div>Natürliche Heilkunde & Wellness</div>\n        </div>\n        <div class=\"footer-right\">\n          www.praxisinstitut-naturmedizin.com\n        </div>\n      </div>\n    </div>\n  </div>\n\n  <!-- DOCUMENT CONTENT -->\n  <div class=\"doc-content\">\n    {{ $json.data }}\n  </div>\n</body>\n\n</html>"
-      },
-      "type": "n8n-nodes-base.html",
-      "typeVersion": 1.2,
-      "position": [
-        1488,
-        704
-      ],
-      "id": "f50b8a41-7ffc-4e8d-afde-44f242d8f60e",
-      "name": "HTML"
-    },
-    {
-      "parameters": {
         "name": "={{ $('Prettify Response').item.json.id }}",
         "driveId": {
           "__rl": true,
@@ -695,6 +456,245 @@
     },
     {
       "parameters": {
+        "html": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Praxisinstitut Naturmedizin</title>\n  <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n  <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\n  <link href=\"https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;500&display=swap\" rel=\"stylesheet\">\n  <style>\n    /* CUSTOM THEME COLORS */\n    :root {\n      --color-primary-green: #619030;\n      --color-primary-green-hover: #49701f;\n      --color-secondary-green: #A3B766;\n    }\n\n    /* PAGE SETUP FOR PDF */\n    @page {\n      margin: 60px 0px;\n      size: A4;\n    }\n\n    @page:first {\n      margin: 0;\n    }\n\n    body {\n      margin: 0;\n      padding: 0;\n    }\n\n    /* MODERN COVER PAGE */\n    .cover-page {\n      width: 100%;\n      height: 100vh;\n      position: relative;\n      overflow: hidden;\n      font-family: 'Source Sans 3', sans-serif;\n      page-break-after: always;\n      background: linear-gradient(135deg, #f8faf6 0%, #e8f0e0 30%, #e0e8d4 100%);\n      margin: 0;\n      display: flex;\n      flex-direction: column;\n    }\n\n    /* ORGANIC BACKGROUND ELEMENTS */\n    .background-elements {\n      position: absolute;\n      top: 0;\n      left: 0;\n      width: 100%;\n      height: 100%;\n      z-index: 1;\n      pointer-events: none;\n    }\n\n    .organic-shape {\n      position: absolute;\n      border-radius: 50%;\n      filter: blur(1px);\n      animation: float 20s infinite ease-in-out;\n    }\n\n    .shape-1 {\n      width: 400px;\n      height: 400px;\n      background: radial-gradient(circle, rgba(97, 144, 48, 0.12) 0%, rgba(97, 144, 48, 0.05) 70%);\n      top: -100px;\n      right: -100px;\n      animation-delay: 0s;\n    }\n\n    .shape-2 {\n      width: 300px;\n      height: 500px;\n      background: radial-gradient(ellipse, rgba(163, 183, 102, 0.08) 0%, rgba(163, 183, 102, 0.02) 70%);\n      bottom: -150px;\n      left: -80px;\n      border-radius: 60% 40% 30% 70%;\n      animation-delay: -10s;\n    }\n\n    .shape-3 {\n      width: 200px;\n      height: 200px;\n      background: radial-gradient(circle, rgba(73, 112, 31, 0.15) 0%, rgba(73, 112, 31, 0.03) 70%);\n      top: 40%;\n      left: 10%;\n      animation-delay: -5s;\n    }\n\n    @keyframes float {\n      0%, 100% { transform: translateY(0px) rotate(0deg); }\n      25% { transform: translateY(-20px) rotate(1deg); }\n      50% { transform: translateY(-10px) rotate(-1deg); }\n      75% { transform: translateY(-30px) rotate(0.5deg); }\n    }\n\n    /* CONTENT WRAPPER */\n    .content-wrapper {\n      position: relative;\n      z-index: 10;\n      display: flex;\n      flex-direction: column;\n      height: 100%;\n      padding: 80px 60px 60px;\n      box-sizing: border-box;\n    }\n\n    /* HEADER */\n    .header {\n      margin-bottom: 40px;\n    }\n\n    .logo-mark {\n      width: 80px;\n      height: 80px;\n      margin-bottom: 20px;\n      display: flex;\n      align-items: center;\n      justify-content: center;\n    }\n\n    .logo-mark img {\n      width: 100%;\n      height: 100%;\n      object-fit: contain;\n      filter: drop-shadow(0 4px 12px rgba(97, 144, 48, 0.2));\n    }\n\n    /* MAIN TITLE SECTION */\n    .main-content {\n      flex: 1;\n      display: flex;\n      flex-direction: column;\n      justify-content: center;\n      text-align: center;\n      margin: -80px 0;\n    }\n\n    .title-primary {\n      font-family: 'Playfair Display', serif;\n      font-size: 72px;\n      font-weight: 700;\n      line-height: 0.9;\n      color: var(--color-primary-green-hover);\n      margin: 0 0 16px 0;\n      letter-spacing: -2px;\n      text-shadow: 0 4px 16px rgba(73, 112, 31, 0.1);\n    }\n\n    .title-secondary {\n      font-family: 'Playfair Display', serif;\n      font-size: 72px;\n      font-weight: 400;\n      line-height: 0.9;\n      color: var(--color-primary-green);\n      margin: 0 0 40px 0;\n      letter-spacing: -1px;\n      font-style: italic;\n    }\n\n    .subtitle {\n      font-size: 24px;\n      font-weight: 300;\n      color: var(--color-primary-green);\n      letter-spacing: 4px;\n      text-transform: uppercase;\n      margin-bottom: 60px;\n      position: relative;\n    }\n\n    .subtitle::after {\n      content: '';\n      position: absolute;\n      bottom: -20px;\n      left: 50%;\n      transform: translateX(-50%);\n      width: 80px;\n      height: 2px;\n      background: linear-gradient(90deg, transparent, var(--color-secondary-green), transparent);\n    }\n\n    .tagline {\n      font-size: 18px;\n      color: var(--color-secondary-green);\n      font-weight: 400;\n      font-style: italic;\n      opacity: 0.9;\n    }\n\n    /* DECORATIVE ELEMENTS */\n    .decorative-border {\n      position: absolute;\n      top: 40px;\n      left: 40px;\n      right: 40px;\n      bottom: 40px;\n      border: 1px solid rgba(163, 183, 102, 0.3);\n      border-radius: 24px;\n      pointer-events: none;\n    }\n\n    .corner-elements {\n      position: absolute;\n      width: 40px;\n      height: 40px;\n      border: 2px solid var(--color-secondary-green);\n      opacity: 0.4;\n    }\n\n    .corner-tl { top: 60px; left: 60px; border-right: none; border-bottom: none; border-radius: 8px 0 0 0; }\n    .corner-tr { top: 60px; right: 60px; border-left: none; border-bottom: none; border-radius: 0 8px 0 0; }\n    .corner-bl { bottom: 60px; left: 60px; border-right: none; border-top: none; border-radius: 0 0 0 8px; }\n    .corner-br { bottom: 60px; right: 60px; border-left: none; border-top: none; border-radius: 0 0 8px 0; }\n\n    /* FOOTER */\n    .footer {\n      display: flex;\n      justify-content: space-between;\n      align-items: center;\n      font-size: 14px;\n      color: var(--color-primary-green);\n      margin-top: 40px;\n    }\n\n    .footer-left {\n      display: flex;\n      flex-direction: column;\n      gap: 4px;\n    }\n\n    .footer-right {\n      text-align: right;\n      font-weight: 500;\n      color: var(--color-primary-green-hover);\n    }\n\n    .year {\n      font-weight: 300;\n    }\n\n    /* DOCUMENT CONTENT STYLES */\n    .doc-content {\n      font-family: 'Source Sans 3', sans-serif;\n      margin: 0;\n      padding: 60px;\n      color: #333;\n      line-height: 1.7;\n      font-size: 16px;\n    }\n\n    .doc-content h1,\n    .doc-content h2,\n    .doc-content h3 {\n      font-family: 'Playfair Display', serif;\n      color: var(--color-primary-green-hover);\n      page-break-after: avoid;\n      page-break-inside: avoid;\n    }\n\n    .doc-content h1 {\n      font-size: 32px;\n      margin-bottom: 24px;\n      margin-top: 40px;\n      font-weight: 600;\n    }\n\n    .doc-content h1:first-child {\n      margin-top: 0;\n    }\n\n    .doc-content h2 {\n      font-size: 26px;\n      margin-bottom: 20px;\n      margin-top: 48px;\n      font-weight: 600;\n      color: var(--color-primary-green);\n    }\n\n    .doc-content h3 {\n      font-size: 22px;\n      margin-bottom: 18px;\n      margin-top: 32px;\n      font-weight: 500;\n      color: var(--color-secondary-green);\n    }\n\n    .doc-content p {\n      margin-bottom: 16px;\n      orphans: 3;\n      widows: 3;\n      color: #444;\n    }\n\n    .doc-content ul,\n    .doc-content ol {\n      margin-left: 24px;\n      margin-bottom: 16px;\n      page-break-inside: avoid;\n    }\n\n    .doc-content li {\n      margin-bottom: 8px;\n      color: #444;\n    }\n\n    /* RESPONSIVE DESIGN */\n    @media (max-width: 768px) {\n      .content-wrapper {\n        padding: 60px 40px 40px;\n      }\n\n      .title-primary,\n      .title-secondary {\n        font-size: 48px;\n      }\n\n      .subtitle {\n        font-size: 18px;\n        letter-spacing: 2px;\n      }\n\n      .tagline {\n        font-size: 16px;\n      }\n\n      .footer {\n        flex-direction: column;\n        gap: 12px;\n        align-items: flex-start;\n        text-align: left;\n      }\n\n      .corner-elements {\n        display: none;\n      }\n    }\n\n    @media (max-width: 480px) {\n      .title-primary,\n      .title-secondary {\n        font-size: 36px;\n      }\n\n      .subtitle {\n        font-size: 16px;\n        letter-spacing: 1px;\n      }\n    }\n  </style>\n</head>\n\n<body>\n  <!-- MODERN COVER PAGE -->\n  <div class=\"cover-page\">\n    <!-- Background Elements -->\n    <div class=\"background-elements\">\n      <div class=\"organic-shape shape-1\"></div>\n      <div class=\"organic-shape shape-2\"></div>\n      <div class=\"organic-shape shape-3\"></div>\n    </div>\n\n    <!-- Decorative Border -->\n    <div class=\"decorative-border\"></div>\n    \n    <!-- Corner Elements -->\n    <div class=\"corner-elements corner-tl\"></div>\n    <div class=\"corner-elements corner-tr\"></div>\n    <div class=\"corner-elements corner-bl\"></div>\n    <div class=\"corner-elements corner-br\"></div>\n\n    <!-- Content -->\n    <div class=\"content-wrapper\">\n      <!-- Header -->\n      <div class=\"header\">\n        <div class=\"logo-mark\">\n          <img src=\"https://dominik-ai-chatbot.vercel.app/logo.svg\" alt=\"Praxisinstitut Naturmedizin Logo\">\n        </div>\n      </div>\n\n      <!-- Main Content -->\n      <div class=\"main-content\">\n        <h1 class=\"title-primary\">Praxisinstitut</h1>\n        <h2 class=\"title-secondary\">Naturmedizin</h2>\n        <div class=\"subtitle\">Institut für Naturheilkunde</div>\n        <p class=\"tagline\">Medizin zum Selbermachen</p>\n      </div>\n\n      <!-- Footer -->\n      <div class=\"footer\">\n        <div class=\"footer-left\">\n          <div class=\"year\">© 2024 Praxisinstitut Naturmedizin</div>\n          <div>Natürliche Heilkunde & Wellness</div>\n        </div>\n        <div class=\"footer-right\">\n          www.praxisinstitut-naturmedizin.com\n        </div>\n      </div>\n    </div>\n  </div>\n\n  <!-- DOCUMENT CONTENT -->\n  <div class=\"doc-content\">\n    {{ $json.data }}\n  </div>\n</body>\n\n</html>"
+      },
+      "type": "n8n-nodes-base.html",
+      "typeVersion": 1.2,
+      "position": [
+        1072,
+        768
+      ],
+      "id": "472b581b-a15d-40fc-9102-39e5649e7b86",
+      "name": "HTML"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "generate-summary-pdf",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -496,
+        784
+      ],
+      "id": "3067517f-1917-4980-89e6-f21c8928f7ca",
+      "name": "Webhook1",
+      "webhookId": "b4968d44-164a-4b23-bb5b-d63c8bd26c31"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "7f039f08-cd17-492e-82b8-6500b5b44a89",
+              "leftValue": "={{ $json.body.call_id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -288,
+        784
+      ],
+      "id": "6ccf8255-2261-47b6-b42d-1119c04368ae",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "call_messages",
+        "limit": 100,
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "call_id",
+              "condition": "eq",
+              "keyValue": "={{ $json.body.call_id }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        16,
+        656
+      ],
+      "id": "dada2f1a-40ac-40f4-972a-5a0e6577f75e",
+      "name": "Get Call Messages1",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "messages",
+        "limit": 100,
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "chat_id",
+              "condition": "eq",
+              "keyValue": "={{ $json.body.chat_id }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        16,
+        864
+      ],
+      "id": "e595209e-8863-455b-84aa-669c9273adba",
+      "name": "Get Chat Messages1",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Get all incoming items from supbase\nconst items = $input.all();\n\n// Building a single object\nreturn [\n  {\n    json: {\n      id: items[0].json?.call_id || items[0].json?.chat_id,\n      language:$input.first().json.language,\n      messages: items.map(i => ({\n        msg: i.json.message || \"\",\n        sender: i.json.sender || \"\"\n      }))\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        288,
+        768
+      ],
+      "id": "66a84287-17d0-4bf0-89ad-edff5a6d4437",
+      "name": "Prettify Response1"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4O-MINI"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=You are a personal conversation summarizer. Your task is to create clear, memorable summaries that help users quickly recall what they discussed and what was accomplished in their conversations.\n\n**CRITICAL LANGUAGE REQUIREMENT:**\n- First, identify the primary language used in the messages by examining the \"language\" field and the actual message content\n  \"selected langauge\": {{$json.language}}\n- Generate the ENTIRE document (including all headings, summaries, analyses, and formatting) in the SAME language as the input messages\n- If the language field indicates \"de\" (German), write everything in German\n- If the language field indicates \"en\" (English), write everything in English\n- If the language field indicates \"es\" (Spanish), write everything in Spanish\n- Apply this rule to ALL other languages accordingly\n- NEVER mix languages - maintain consistency throughout the entire document\n\n**INPUT DATA:**\n{{JSON.stringify($json.messages)}}\n\n**YOUR GOAL:**\nCreate a summary that helps the user quickly remember:\n- What they were trying to do\n- What help they received\n- What solutions, answers, or content was created\n- Any important details they might need later\n\n---\n\n# [Create a Clear, Descriptive Title]\n*Make this instantly recognizable so the user can find this conversation later*\n\n## What This Conversation Was About\n\nWrite a friendly, clear 2-3 paragraph summary in first-person perspective (as if reminding the user):\n\n**What you were working on:**\n[Describe what the user came to discuss, ask about, or accomplish]\n\n**What we figured out together:**\n[Describe the key solutions, answers, or progress made]\n\n**The result:**\n[What was accomplished, created, or decided by the end]\n\n## Quick Reference\n\n- **Date:** [If available]\n- **Main Topic:** [One-line description]\n- **Status:** [Completed / In Progress / Need to Continue]\n\n## Your Original Question/Request\n\n[Quote or clearly restate what the user originally asked for - this helps them remember exactly what they needed]\n\n## Key Things We Discussed\n\n### [Topic 1]\n- What you asked: [Brief description]\n- What you learned/received: [The answer, solution, or help provided]\n- Important details to remember: [Any specifics worth noting]\n\n### [Topic 2]\n*(Continue for each significant topic in the conversation)*\n\n## Solutions & Answers You Got\n\n[List out the main solutions, answers, or help provided in a clear, reusable format:]\n\n**[Question/Problem 1]:**\n[The answer or solution - written clearly so you can use it again]\n\n**[Question/Problem 2]:**\n[The answer or solution]\n\n*[Continue for all significant Q&As]*\n\n## Content Created\n*(If any content, code, text, or materials were generated)*\n\n### [Content Item 1]\n- **What it is:** [Description]\n- **What it does/What it's for:** [Purpose]\n- **Key details:** [Important specifics to remember]\n\n### [Content Item 2]\n*[Continue for all created content]*\n\n## Important Details to Remember\n\n[Bullet list of specific facts, numbers, names, recommendations, or details that might be useful later:]\n\n- [Detail 1]\n- [Detail 2]\n- [Detail 3]\n\n## Decisions Made\n\n*(If any choices or decisions were reached)*\n\n- **Decision:** [What was decided]\n  - **Why:** [Brief reasoning]\n\n## Things You Might Want to Do Next\n\n- [ ] [Action item 1]\n- [ ] [Action item 2]\n- [ ] [Any follow-up tasks identified]\n\n## Useful Resources Mentioned\n\n*(If any tools, links, references, or resources came up)*\n\n- [Resource 1]: [What it's for]\n- [Resource 2]: [What it's for]\n\n## Unfinished Items\n\n*(If anything was left incomplete or needs follow-up)*\n\n- [Item that needs more work]\n- [Question that wasn't fully answered]\n- [Topic to revisit later]\n\n## Quick Recap\n*(A 2-3 sentence summary you can scan in 10 seconds)*\n\n[Write a brief, friendly recap like: \"You asked about X. We solved it by doing Y. The main takeaway was Z.\"]\n\n---\n\n**FORMATTING REQUIREMENTS:**\n- Use clear hierarchical headings (# ## ###)\n- Maintain a friendly, personal tone (like notes to yourself)\n- Use bullet points for lists and key information\n- Ensure proper paragraph spacing for readability\n- Bold important terms or key information\n- Keep formatting clean and PDF-conversion ready\n- Use markdown formatting consistently\n\n**WRITING STYLE:**\n- Write as if helping the user remember their own conversation\n- Be warm and personal, not clinical or analytical\n- Focus on practical value - what can they use or reference later?\n- Highlight actionable information and concrete answers\n- Skip sections that don't apply rather than leaving them empty\n\n**ADAPTIVE APPROACH:**\n- **For short conversations:** Focus on Quick Recap, Your Original Question, and Solutions & Answers\n- **For technical discussions:** Emphasize Solutions, Content Created, and Important Details\n- **For creative work:** Highlight Content Created and the creative decisions made\n- **For research/learning:** Focus on Key Things Discussed and Important Details\n- **For problem-solving:** Emphasize the problem, solution journey, and final resolution\n\n**REMEMBER:** \n- This is for the USER to recall THEIR conversation - write it for them, not about them\n- The entire output must be in the SAME language as the input messages\n- Make it scannable - users should find what they need in seconds\n- Focus on what's useful to remember, not every detail of the exchange"
+            },
+            {
+              "content": "You are a professional document generator that creates well-structured, formatted summaries for PDF conversion. Your output must be clean, organized, and ready for direct PDF rendering.\n\nFORMATTING RULES:\n- Use clear hierarchical headings (# for main title, ## for sections, ### for subsections)\n- Write in professional, concise language\n- Use proper paragraph spacing\n- Include bullet points or numbered lists where appropriate for clarity\n- Maintain consistent formatting throughout\n- Do not use excessive styling or unnecessary decorations\n\nOUTPUT STRUCTURE:\nYour summary should always include:\n1. A clear document title\n2. Executive summary or overview section\n3. Main content organized by logical sections\n4. Key takeaways or conclusions (if applicable)\n\nWrite content that is:\n- Clear and scannable\n- Well-organized with logical flow\n- Professional in tone\n- Ready for immediate PDF conversion without additional formatting\n",
+              "role": "system"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        496,
+        768
+      ],
+      "id": "f3c8d9bf-eb73-4761-b03c-3bdc86d56aca",
+      "name": "Generate Summary1",
+      "credentials": {
+        "openAiApi": {
+          "id": "Xfd0MFwxSjT9x3PY",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "detailed_summary_pdf",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "pdf_link_base64",
+              "fieldValue": "={{ $json.data }}"
+            },
+            {
+              "fieldId": "type_id",
+              "fieldValue": "={{ $('Prettify Response1').item.json.id }}"
+            },
+            {
+              "fieldId": "type",
+              "fieldValue": "={{ $json[\"IF\"] === true ? \"Call\" : \"Chat\" }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        2048,
+        752
+      ],
+      "id": "899752d9-3415-4332-ac4c-cc0c966a0b69",
+      "name": "Add PDF Link in Detailed Summary Table1",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        2336,
+        752
+      ],
+      "id": "07eaf27e-4150-4b43-a7b0-8d170a73df42",
+      "name": "Respond to Webhook2"
+    },
+    {
+      "parameters": {
+        "mode": "markdownToHtml",
+        "markdown": "={{ $json.message.content }}",
+        "options": {
+          "prefixHeaderId": "section",
+          "smartIndentationFix": true
+        }
+      },
+      "type": "n8n-nodes-base.markdown",
+      "typeVersion": 1,
+      "position": [
+        880,
+        768
+      ],
+      "id": "7cc780fe-717b-4f77-9487-7d13bb4c8333",
+      "name": "Convert Markdown to HTML1"
+    },
+    {
+      "parameters": {
         "method": "POST",
         "url": "http://gotenberg:3000/forms/chromium/convert/html",
         "sendHeaders": true,
@@ -702,7 +702,7 @@
           "parameters": [
             {
               "name": "Gotenberg-Output-Filename",
-              "value": "={{ $('Prettify Response').item.json.id }}-{{ $now.format('yyyy-MM-dd') }}"
+              "value": "={{ $('Prettify Response1').item.json.id }}-{{ $now.format('yyyy-MM-dd') }}"
             }
           ]
         },
@@ -731,12 +731,12 @@
         },
         "options": {}
       },
-      "id": "3ba6a097-2f70-4ec4-b81e-f17929867314",
-      "name": "Convert to PDF with Gotenberg",
+      "id": "cc5c742a-1606-4658-9fad-cea408733215",
+      "name": "Convert to PDF with Gotenberg1",
       "type": "n8n-nodes-base.httpRequest",
       "position": [
-        1936,
-        704
+        1520,
+        768
       ],
       "typeVersion": 4.2,
       "onError": "continueErrorOutput"
@@ -753,11 +753,11 @@
       "type": "n8n-nodes-base.convertToFile",
       "typeVersion": 1.1,
       "position": [
-        1712,
-        704
+        1296,
+        768
       ],
-      "id": "5340ddb4-d754-4839-8a26-c4ab56101168",
-      "name": "Convert to File"
+      "id": "5d8d1585-01ee-400b-8f2f-2871a975d7c2",
+      "name": "Convert to File1"
     },
     {
       "parameters": {
@@ -767,11 +767,11 @@
       "type": "n8n-nodes-base.extractFromFile",
       "typeVersion": 1,
       "position": [
-        2192,
-        688
+        1776,
+        752
       ],
-      "id": "6e606608-0e2c-441c-9b68-2e3c961ca8ed",
-      "name": "Extract from File1",
+      "id": "64d93c53-ee9f-403e-98df-4304b8918f0b",
+      "name": "Extract from File3",
       "alwaysOutputData": false
     },
     {
@@ -783,11 +783,11 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.4,
       "position": [
-        2240,
-        912
+        1824,
+        976
       ],
-      "id": "696819a2-2de7-49dc-8215-6d61c90429f1",
-      "name": "Respond to Webhook1"
+      "id": "d953ef96-71f9-49ea-80da-1a5eb5c9d70b",
+      "name": "Respond to Webhook3"
     }
   ],
   "pinData": {},
@@ -806,6 +806,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-12-04T12:07:46.000Z",
-  "versionId": "e86a58aa-b3c4-4c5a-9981-e250072a01bf"
+  "updatedAt": "2025-12-05T15:16:44.000Z",
+  "versionId": "f7e179c6-cf0f-4f78-aa5c-fe5f4d90c0a3"
 }
