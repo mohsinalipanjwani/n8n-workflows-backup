@@ -1,70 +1,11 @@
 {
   "active": true,
   "connections": {
-    "Create document file": {
-      "main": [
-        [
-          {
-            "node": "Convert document to PDF",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Convert document to PDF": {
-      "main": [
-        [
-          {
-            "node": "Extract from File",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Archiving PDF File": {
-      "main": [
-        [
-          {
-            "node": "Make PDF File Public",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Extract from File": {
-      "main": [
-        []
-      ]
-    },
-    "Message a model": {
-      "main": [
-        []
-      ]
-    },
-    "HTML to PDF": {
-      "main": [
-        []
-      ]
-    },
-    "Upload file": {
-      "main": [
-        [
-          {
-            "node": "Create document file",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "HTML": {
       "main": [
         [
           {
-            "node": "Convert to File1",
+            "node": "Convert to File",
             "type": "main",
             "index": 0
           }
@@ -75,87 +16,47 @@
       "main": [
         [
           {
-            "node": "If1",
+            "node": "If",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "If1": {
+    "Get Call Messages": {
       "main": [
         [
           {
-            "node": "Get Call Messages1",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Get Chat Messages1",
+            "node": "Prettify Response",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Get Call Messages1": {
+    "Get Chat Messages": {
       "main": [
         [
           {
-            "node": "Prettify Response1",
+            "node": "Prettify Response",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Get Chat Messages1": {
+    "Generate Summary": {
       "main": [
         [
           {
-            "node": "Prettify Response1",
+            "node": "Convert Markdown to HTML",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Prettify Response1": {
-      "main": [
-        [
-          {
-            "node": "Generate Summary1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Generate Summary1": {
-      "main": [
-        [
-          {
-            "node": "Convert Markdown to HTML1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Add PDF Link in Detailed Summary Table1": {
-      "main": [
-        [
-          {
-            "node": "Respond to Webhook2",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Convert Markdown to HTML1": {
+    "Convert Markdown to HTML": {
       "main": [
         [
           {
@@ -166,40 +67,80 @@
         ]
       ]
     },
-    "Convert to PDF with Gotenberg1": {
+    "Convert to File": {
       "main": [
         [
           {
-            "node": "Extract from File3",
+            "node": "Convert to PDF with Gotenberg",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to PDF with Gotenberg": {
+      "main": [
+        [
+          {
+            "node": "Extract from File",
             "type": "main",
             "index": 0
           }
         ],
         [
           {
-            "node": "Respond to Webhook3",
+            "node": "Respond to Webhook (If error)",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Convert to File1": {
+    "Extract from File": {
       "main": [
         [
           {
-            "node": "Convert to PDF with Gotenberg1",
+            "node": "Add PDF Base64 in Detailed Summary Table",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Extract from File3": {
+    "Add PDF Base64 in Detailed Summary Table": {
       "main": [
         [
           {
-            "node": "Add PDF Link in Detailed Summary Table1",
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Get Call Messages",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get Chat Messages",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prettify Response": {
+      "main": [
+        [
+          {
+            "node": "Generate Summary",
             "type": "main",
             "index": 0
           }
@@ -217,246 +158,7 @@
   "nodes": [
     {
       "parameters": {
-        "method": "POST",
-        "url": "https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&supportsAllDrives=true",
-        "authentication": "predefinedCredentialType",
-        "nodeCredentialType": "googleDriveOAuth2Api",
-        "sendQuery": true,
-        "queryParameters": {
-          "parameters": [
-            {
-              "name": "uploadType",
-              "value": "multipart"
-            },
-            {
-              "name": "supportsAllDrives",
-              "value": "true"
-            }
-          ]
-        },
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "boundary",
-              "value": "foo_bar_baz"
-            }
-          ]
-        },
-        "sendBody": true,
-        "contentType": "raw",
-        "rawContentType": "multipart/related; boundary=foo_bar_baz",
-        "body": "=--foo_bar_baz\nContent-Type: application/json; charset=UTF-8\n\n{\n  \"name\": \"Detail Chat Summary\",\n  \"mimeType\": \"application/vnd.google-apps.document\"\n}\n\n--foo_bar_baz--\n",
-        "options": {}
-      },
-      "id": "6cff41f2-b4eb-4363-b04c-469f22831e24",
-      "name": "Create document file",
-      "type": "n8n-nodes-base.httpRequest",
-      "position": [
-        -320,
-        -64
-      ],
-      "typeVersion": 4.2,
-      "credentials": {
-        "googleDriveOAuth2Api": {
-          "id": "kxNQu76R5B6e3VyM",
-          "name": "Google Drive account 2"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "operation": "download",
-        "fileId": {
-          "__rl": true,
-          "value": "={{ $json.pdf_url }}",
-          "mode": "url"
-        },
-        "options": {}
-      },
-      "id": "483af52b-5397-4494-8a90-7c061f6f380d",
-      "name": "Convert document to PDF",
-      "type": "n8n-nodes-base.googleDrive",
-      "position": [
-        -96,
-        -64
-      ],
-      "typeVersion": 3,
-      "credentials": {
-        "googleDriveOAuth2Api": {
-          "id": "kxNQu76R5B6e3VyM",
-          "name": "Google Drive account 2"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "name": "={{ $json.name }}.pdf",
-        "driveId": {
-          "__rl": true,
-          "mode": "list",
-          "value": "My Drive"
-        },
-        "folderId": {
-          "__rl": true,
-          "value": "19mDoefi-nFelAwdYWwJNJRSuPDsVNyVb",
-          "mode": "id"
-        },
-        "options": {}
-      },
-      "id": "1fa88d66-34df-4ca5-af39-a62503c29dae",
-      "name": "Archiving PDF File",
-      "type": "n8n-nodes-base.googleDrive",
-      "position": [
-        -576,
-        -320
-      ],
-      "typeVersion": 3,
-      "credentials": {
-        "googleDriveOAuth2Api": {
-          "id": "kxNQu76R5B6e3VyM",
-          "name": "Google Drive account 2"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "operation": "share",
-        "fileId": {
-          "__rl": true,
-          "value": "={{ $json.id }}",
-          "mode": "id"
-        },
-        "permissionsUi": {
-          "permissionsValues": {
-            "role": "reader",
-            "type": "anyone"
-          }
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.googleDrive",
-      "typeVersion": 3,
-      "position": [
-        -400,
-        -320
-      ],
-      "id": "b44d7e18-b23e-4afc-b81a-49cdae990a78",
-      "name": "Make PDF File Public",
-      "credentials": {
-        "googleDriveOAuth2Api": {
-          "id": "kxNQu76R5B6e3VyM",
-          "name": "Google Drive account 2"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "operation": "binaryToPropery",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.extractFromFile",
-      "typeVersion": 1,
-      "position": [
-        144,
-        -64
-      ],
-      "id": "de6b83b8-87da-42c1-8619-5c0d824b3721",
-      "name": "Extract from File",
-      "alwaysOutputData": false
-    },
-    {
-      "parameters": {
-        "modelId": {
-          "__rl": true,
-          "value": "gpt-4o-mini",
-          "mode": "list",
-          "cachedResultName": "GPT-4O-MINI"
-        },
-        "responses": {
-          "values": [
-            {
-              "role": "system",
-              "content": "=You are an expert Markdown-to-HTML conversion engine.\n\nYour task:\n\n1. Take the Markdown content (provided in the User Prompt).\n2. Convert it into clean, valid, semantic HTML.\n3. Prepend an EXACT, UNMODIFIED HTML cover page.\n4. Ensure the cover page style does NOT affect the rest of the document.\n5. Output ONLY raw HTML — no markdown, no explanations, no comments, no JSON.\n\nStrict rules:\n\n- The cover page HTML must appear at the very top.\n- The cover page must remain EXACTLY as provided — do not rewrite, modify, optimize, alter, or minify ANY part of it.  \n- After rendering the cover page, you MUST insert a CSS reset block to isolate the cover-page styles.\n- After the reset, append the converted Markdown-as-HTML.\n- Output must be valid HTML compatible with Google Docs API.\n- Do NOT wrap Markdown output inside <html> or <body> again. Only the cover page contains the HTML document root.\n\nImmediately after the closing </html> tag of the provided cover page, insert the following EXACT CSS reset:\n\n<style>\n  body {\n    overflow: visible !important;\n  }\n  * {\n    margin: initial !important;\n    padding: initial !important;\n    box-sizing: content-box !important;\n  }\n  body, p, h1, h2, h3, h4, h5, h6 {\n    font-family: Arial, sans-serif !important;\n  }\n</style>\n\nAfter inserting this reset, output the converted Markdown HTML.\n\nYour final output must follow this order:\n\n1. EXACT Cover Page HTML (unchanged)\n2. CSS Reset Block (exactly as given)\n3. Converted HTML from the Markdown input\n\nCover Page HTML (DO NOT MODIFY):\n\n<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Praxisinstitut Naturmedizin</title>\n  <style>\n    * {\n      margin: 0;\n      padding: 0;\n      box-sizing: border-box;\n    }\n\n    body {\n      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;\n      overflow: hidden;\n    }\n\n    .cover-page {\n      width: 100%;\n      height: 100vh;\n      background: linear-gradient(135deg, #e8f5e3 0%, #f5f9f3 100%);\n      position: relative;\n      overflow: hidden;\n    }\n\n    .shape {\n      position: absolute;\n      background: linear-gradient(135deg, #6b9e3e 0%, #5a8934 100%);\n      opacity: 0.9;\n    }\n\n    .shape-1 {\n      width: 50%;\n      height: 60%;\n      top: -10%;\n      left: -15%;\n      transform: rotate(45deg);\n      clip-path: polygon(0 0, 100% 0, 100% 100%);\n    }\n\n    .shape-2 {\n      width: 60%;\n      height: 70%;\n      bottom: -20%;\n      right: -20%;\n      transform: rotate(45deg);\n      clip-path: polygon(100% 0, 100% 100%, 0 100%);\n    }\n\n    .shape-3 {\n      width: 40%;\n      height: 50%;\n      top: 30%;\n      right: -10%;\n      background: rgba(107, 158, 62, 0.15);\n      transform: rotate(-30deg);\n      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);\n    }\n\n    .content {\n      position: relative;\n      z-index: 10;\n      height: 100%;\n      display: flex;\n      flex-direction: column;\n      justify-content: space-between;\n      padding: 60px 80px;\n    }\n\n    .logo-section {\n      display: flex;\n      align-items: center;\n      gap: 15px;\n    }\n\n    .logo-icon {\n      width: 80px;\n      height: 80px;\n      background: white;\n      border-radius: 50%;\n      display: flex;\n      align-items: center;\n      justify-content: center;\n      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);\n    }\n\n    .logo-icon svg {\n      width: 50px;\n      height: 50px;\n      fill: #6b9e3e;\n    }\n\n    .logo-text {\n      color: #2d5016;\n    }\n\n    .logo-text h1 {\n      font-size: 28px;\n      font-weight: 700;\n      margin-bottom: 5px;\n      letter-spacing: -0.5px;\n    }\n\n    .logo-text p {\n      font-size: 14px;\n      font-weight: 400;\n      color: #5a8934;\n    }\n\n    .title-section {\n      text-align: center;\n      padding: 80px 0;\n    }\n\n    .title-section h2 {\n      font-size: 56px;\n      font-weight: 700;\n      color: #2d5016;\n      margin-bottom: 20px;\n      line-height: 1.2;\n    }\n\n    .title-section p {\n      font-size: 22px;\n      color: #5a8934;\n      font-weight: 400;\n    }\n\n    .footer-section {\n      display: flex;\n      justify-content: space-between;\n      align-items: flex-end;\n      color: #5a8934;\n      font-size: 14px;\n    }\n\n    .footer-left {\n      flex: 1;\n    }\n\n    .footer-right {\n      text-align: right;\n    }\n\n    .accent-line {\n      position: absolute;\n      background: white;\n      opacity: 0.3;\n      z-index: 5;\n    }\n\n    .line-1 {\n      width: 3px;\n      height: 40%;\n      top: 20%;\n      right: 35%;\n      transform: rotate(30deg);\n    }\n\n    .line-2 {\n      width: 3px;\n      height: 50%;\n      bottom: 10%;\n      left: 30%;\n      transform: rotate(-35deg);\n    }\n\n    @media (max-width: 768px) {\n      .content {\n        padding: 40px 30px;\n      }\n\n      .title-section h2 {\n        font-size: 36px;\n      }\n\n      .title-section p {\n        font-size: 18px;\n      }\n\n      .logo-text h1 {\n        font-size: 22px;\n      }\n\n      .footer-section {\n        flex-direction: column;\n        gap: 20px;\n        align-items: flex-start;\n      }\n    }\n  </style>\n</head>\n\n<body>\n  <div class=\"cover-page\">\n    <div class=\"shape shape-1\"></div>\n    <div class=\"shape shape-2\"></div>\n    <div class=\"shape shape-3\"></div>\n\n    <div class=\"accent-line line-1\"></div>\n    <div class=\"accent-line line-2\"></div>\n\n    <div class=\"content\">\n      <div class=\"logo-section\">\n        <div class=\"logo-icon\">\n          <svg viewBox=\"0 0 64 64\" xmlns=\"http://www.w3.org/2000/svg\">\n            <path d=\"M32 45 C20 45, 15 40, 15 35 L15 30 C15 28, 16 27, 18 27 L46 27 C48 27, 49 28, 49 30 L49 35 C49 40, 44 45, 32 45 Z\" />\n            <path d=\"M28 27 L28 15 C28 13, 29 12, 31 12 L33 12 C35 12, 36 13, 36 15 L36 27\" />\n            <ellipse cx=\"25\" cy=\"15\" rx=\"6\" ry=\"3\" transform=\"rotate(-30 25 15)\" />\n            <ellipse cx=\"39\" cy=\"15\" rx=\"6\" ry=\"3\" transform=\"rotate(30 39 15)\" />\n            <ellipse cx=\"32\" cy=\"10\" rx=\"6\" ry=\"3\" />\n          </svg>\n        </div>\n        <div class=\"logo-text\">\n          <h1>Praxisinstitut</h1>\n          <h1>Naturmedizin</h1>\n          <p>Medizin zum Selbermachen</p>\n        </div>\n      </div>\n\n      <div class=\"title-section\">\n        <h2>Your Document Title</h2>\n        <p>Subtitle or Description</p>\n      </div>\n\n      <div class=\"footer-section\">\n        <div class=\"footer-left\">\n          <p>© 2024 Praxisinstitut Naturmedizin</p>\n        </div>\n        <div class=\"footer-right\">\n          <p>www.praxisinstitut-naturmedizin.com</p>\n        </div>\n      </div>\n    </div>\n  </div>\n<div>\n{ Markdown content here }\n</div>\n</body>\n\n</html> "
-            },
-            {
-              "content": "=Markdown:  {{ $json.content }}"
-            }
-          ]
-        },
-        "builtInTools": {},
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.openAi",
-      "typeVersion": 2,
-      "position": [
-        -64,
-        -320
-      ],
-      "id": "7f72c036-1956-432b-8636-d24529cc4e03",
-      "name": "Message a model",
-      "credentials": {
-        "openAiApi": {
-          "id": "Xfd0MFwxSjT9x3PY",
-          "name": "OpenAi account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "html_content": "={{ $json.html }}"
-      },
-      "type": "n8n-nodes-htmlcsstopdf.htmlcsstopdf",
-      "typeVersion": 1,
-      "position": [
-        512,
-        -320
-      ],
-      "id": "8e5957f6-226e-407d-af3d-1a35154dff42",
-      "name": "HTML to PDF",
-      "credentials": {
-        "htmlcsstopdfApi": {
-          "id": "hB0XkDLPxicsTvMx",
-          "name": "HTML to PDF account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "name": "={{ $('Prettify Response').item.json.id }}",
-        "driveId": {
-          "__rl": true,
-          "value": "0ABWcsHiXVUORUk9PVA",
-          "mode": "list",
-          "cachedResultName": "Chatbot - Wissensdatenbank (Knowledge database) - Gesundheitsschule",
-          "cachedResultUrl": "https://drive.google.com/drive/folders/0ABWcsHiXVUORUk9PVA"
-        },
-        "folderId": {
-          "__rl": true,
-          "mode": "list",
-          "value": "root",
-          "cachedResultName": "/ (Root folder)"
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.googleDrive",
-      "typeVersion": 3,
-      "position": [
-        -544,
-        -64
-      ],
-      "id": "7b3f991c-c9ba-4c5f-aeed-c6a1bb2ba283",
-      "name": "Upload file",
-      "credentials": {
-        "googleDriveOAuth2Api": {
-          "id": "kxNQu76R5B6e3VyM",
-          "name": "Google Drive account 2"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "html": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Praxisinstitut Naturmedizin</title>\n  <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n  <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\n  <link href=\"https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;500&display=swap\" rel=\"stylesheet\">\n  <style>\n    /* CUSTOM THEME COLORS */\n    :root {\n      --color-primary-green: #619030;\n      --color-primary-green-hover: #49701f;\n      --color-secondary-green: #A3B766;\n    }\n\n    /* PAGE SETUP FOR PDF */\n    @page {\n      margin: 60px 0px;\n      size: A4;\n    }\n\n    @page:first {\n      margin: 0;\n    }\n\n    body {\n      margin: 0;\n      padding: 0;\n    }\n\n    /* MODERN COVER PAGE */\n    .cover-page {\n      width: 100%;\n      height: 100vh;\n      position: relative;\n      overflow: hidden;\n      font-family: 'Source Sans 3', sans-serif;\n      page-break-after: always;\n      background: linear-gradient(135deg, #f8faf6 0%, #e8f0e0 30%, #e0e8d4 100%);\n      margin: 0;\n      display: flex;\n      flex-direction: column;\n    }\n\n    /* ORGANIC BACKGROUND ELEMENTS */\n    .background-elements {\n      position: absolute;\n      top: 0;\n      left: 0;\n      width: 100%;\n      height: 100%;\n      z-index: 1;\n      pointer-events: none;\n    }\n\n    .organic-shape {\n      position: absolute;\n      border-radius: 50%;\n      filter: blur(1px);\n      animation: float 20s infinite ease-in-out;\n    }\n\n    .shape-1 {\n      width: 400px;\n      height: 400px;\n      background: radial-gradient(circle, rgba(97, 144, 48, 0.12) 0%, rgba(97, 144, 48, 0.05) 70%);\n      top: -100px;\n      right: -100px;\n      animation-delay: 0s;\n    }\n\n    .shape-2 {\n      width: 300px;\n      height: 500px;\n      background: radial-gradient(ellipse, rgba(163, 183, 102, 0.08) 0%, rgba(163, 183, 102, 0.02) 70%);\n      bottom: -150px;\n      left: -80px;\n      border-radius: 60% 40% 30% 70%;\n      animation-delay: -10s;\n    }\n\n    .shape-3 {\n      width: 200px;\n      height: 200px;\n      background: radial-gradient(circle, rgba(73, 112, 31, 0.15) 0%, rgba(73, 112, 31, 0.03) 70%);\n      top: 40%;\n      left: 10%;\n      animation-delay: -5s;\n    }\n\n    @keyframes float {\n      0%, 100% { transform: translateY(0px) rotate(0deg); }\n      25% { transform: translateY(-20px) rotate(1deg); }\n      50% { transform: translateY(-10px) rotate(-1deg); }\n      75% { transform: translateY(-30px) rotate(0.5deg); }\n    }\n\n    /* CONTENT WRAPPER */\n    .content-wrapper {\n      position: relative;\n      z-index: 10;\n      display: flex;\n      flex-direction: column;\n      height: 100%;\n      padding: 80px 60px 60px;\n      box-sizing: border-box;\n    }\n\n    /* HEADER */\n    .header {\n      margin-bottom: 40px;\n    }\n\n    .logo-mark {\n      width: 80px;\n      height: 80px;\n      margin-bottom: 20px;\n      display: flex;\n      align-items: center;\n      justify-content: center;\n    }\n\n    .logo-mark img {\n      width: 100%;\n      height: 100%;\n      object-fit: contain;\n      filter: drop-shadow(0 4px 12px rgba(97, 144, 48, 0.2));\n    }\n\n    /* MAIN TITLE SECTION */\n    .main-content {\n      flex: 1;\n      display: flex;\n      flex-direction: column;\n      justify-content: center;\n      text-align: center;\n      margin: -80px 0;\n    }\n\n    .title-primary {\n      font-family: 'Playfair Display', serif;\n      font-size: 72px;\n      font-weight: 700;\n      line-height: 0.9;\n      color: var(--color-primary-green-hover);\n      margin: 0 0 16px 0;\n      letter-spacing: -2px;\n      text-shadow: 0 4px 16px rgba(73, 112, 31, 0.1);\n    }\n\n    .title-secondary {\n      font-family: 'Playfair Display', serif;\n      font-size: 72px;\n      font-weight: 400;\n      line-height: 0.9;\n      color: var(--color-primary-green);\n      margin: 0 0 40px 0;\n      letter-spacing: -1px;\n      font-style: italic;\n    }\n\n    .subtitle {\n      font-size: 24px;\n      font-weight: 300;\n      color: var(--color-primary-green);\n      letter-spacing: 4px;\n      text-transform: uppercase;\n      margin-bottom: 60px;\n      position: relative;\n    }\n\n    .subtitle::after {\n      content: '';\n      position: absolute;\n      bottom: -20px;\n      left: 50%;\n      transform: translateX(-50%);\n      width: 80px;\n      height: 2px;\n      background: linear-gradient(90deg, transparent, var(--color-secondary-green), transparent);\n    }\n\n    .tagline {\n      font-size: 18px;\n      color: var(--color-secondary-green);\n      font-weight: 400;\n      font-style: italic;\n      opacity: 0.9;\n    }\n\n    /* DECORATIVE ELEMENTS */\n    .decorative-border {\n      position: absolute;\n      top: 40px;\n      left: 40px;\n      right: 40px;\n      bottom: 40px;\n      border: 1px solid rgba(163, 183, 102, 0.3);\n      border-radius: 24px;\n      pointer-events: none;\n    }\n\n    .corner-elements {\n      position: absolute;\n      width: 40px;\n      height: 40px;\n      border: 2px solid var(--color-secondary-green);\n      opacity: 0.4;\n    }\n\n    .corner-tl { top: 60px; left: 60px; border-right: none; border-bottom: none; border-radius: 8px 0 0 0; }\n    .corner-tr { top: 60px; right: 60px; border-left: none; border-bottom: none; border-radius: 0 8px 0 0; }\n    .corner-bl { bottom: 60px; left: 60px; border-right: none; border-top: none; border-radius: 0 0 0 8px; }\n    .corner-br { bottom: 60px; right: 60px; border-left: none; border-top: none; border-radius: 0 0 8px 0; }\n\n    /* FOOTER */\n    .footer {\n      display: flex;\n      justify-content: space-between;\n      align-items: center;\n      font-size: 14px;\n      color: var(--color-primary-green);\n      margin-top: 40px;\n    }\n\n    .footer-left {\n      display: flex;\n      flex-direction: column;\n      gap: 4px;\n    }\n\n    .footer-right {\n      text-align: right;\n      font-weight: 500;\n      color: var(--color-primary-green-hover);\n    }\n\n    .year {\n      font-weight: 300;\n    }\n\n    /* DOCUMENT CONTENT STYLES */\n    .doc-content {\n      font-family: 'Source Sans 3', sans-serif;\n      margin: 0;\n      padding: 60px;\n      color: #333;\n      line-height: 1.7;\n      font-size: 16px;\n    }\n\n    .doc-content h1,\n    .doc-content h2,\n    .doc-content h3 {\n      font-family: 'Playfair Display', serif;\n      color: var(--color-primary-green-hover);\n      page-break-after: avoid;\n      page-break-inside: avoid;\n    }\n\n    .doc-content h1 {\n      font-size: 32px;\n      margin-bottom: 24px;\n      margin-top: 40px;\n      font-weight: 600;\n    }\n\n    .doc-content h1:first-child {\n      margin-top: 0;\n    }\n\n    .doc-content h2 {\n      font-size: 26px;\n      margin-bottom: 20px;\n      margin-top: 48px;\n      font-weight: 600;\n      color: var(--color-primary-green);\n    }\n\n    .doc-content h3 {\n      font-size: 22px;\n      margin-bottom: 18px;\n      margin-top: 32px;\n      font-weight: 500;\n      color: var(--color-secondary-green);\n    }\n\n    .doc-content p {\n      margin-bottom: 16px;\n      orphans: 3;\n      widows: 3;\n      color: #444;\n    }\n\n    .doc-content ul,\n    .doc-content ol {\n      margin-left: 24px;\n      margin-bottom: 16px;\n      page-break-inside: avoid;\n    }\n\n    .doc-content li {\n      margin-bottom: 8px;\n      color: #444;\n    }\n\n    /* RESPONSIVE DESIGN */\n    @media (max-width: 768px) {\n      .content-wrapper {\n        padding: 60px 40px 40px;\n      }\n\n      .title-primary,\n      .title-secondary {\n        font-size: 48px;\n      }\n\n      .subtitle {\n        font-size: 18px;\n        letter-spacing: 2px;\n      }\n\n      .tagline {\n        font-size: 16px;\n      }\n\n      .footer {\n        flex-direction: column;\n        gap: 12px;\n        align-items: flex-start;\n        text-align: left;\n      }\n\n      .corner-elements {\n        display: none;\n      }\n    }\n\n    @media (max-width: 480px) {\n      .title-primary,\n      .title-secondary {\n        font-size: 36px;\n      }\n\n      .subtitle {\n        font-size: 16px;\n        letter-spacing: 1px;\n      }\n    }\n  </style>\n</head>\n\n<body>\n  <!-- MODERN COVER PAGE -->\n  <div class=\"cover-page\">\n    <!-- Background Elements -->\n    <div class=\"background-elements\">\n      <div class=\"organic-shape shape-1\"></div>\n      <div class=\"organic-shape shape-2\"></div>\n      <div class=\"organic-shape shape-3\"></div>\n    </div>\n\n    <!-- Decorative Border -->\n    <div class=\"decorative-border\"></div>\n    \n    <!-- Corner Elements -->\n    <div class=\"corner-elements corner-tl\"></div>\n    <div class=\"corner-elements corner-tr\"></div>\n    <div class=\"corner-elements corner-bl\"></div>\n    <div class=\"corner-elements corner-br\"></div>\n\n    <!-- Content -->\n    <div class=\"content-wrapper\">\n      <!-- Header -->\n      <div class=\"header\">\n        <div class=\"logo-mark\">\n          <img src=\"https://dominik-ai-chatbot.vercel.app/logo.svg\" alt=\"Praxisinstitut Naturmedizin Logo\">\n        </div>\n      </div>\n\n      <!-- Main Content -->\n      <div class=\"main-content\">\n        <h1 class=\"title-primary\">Praxisinstitut</h1>\n        <h2 class=\"title-secondary\">Naturmedizin</h2>\n        <div class=\"subtitle\">Institut für Naturheilkunde</div>\n        <p class=\"tagline\">Medizin zum Selbermachen</p>\n      </div>\n\n      <!-- Footer -->\n      <div class=\"footer\">\n        <div class=\"footer-left\">\n          <div class=\"year\">© 2024 Praxisinstitut Naturmedizin</div>\n          <div>Natürliche Heilkunde & Wellness</div>\n        </div>\n        <div class=\"footer-right\">\n          www.praxisinstitut-naturmedizin.com\n        </div>\n      </div>\n    </div>\n  </div>\n\n  <!-- DOCUMENT CONTENT -->\n  <div class=\"doc-content\">\n    {{ $json.data }}\n  </div>\n</body>\n\n</html>"
+        "html": "<!DOCTYPE html>\n<html lang=\"de\">\n\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Praxisinstitut Naturmedizin</title>\n  <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n  <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\n  <link\n    href=\"https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;500&display=swap\"\n    rel=\"stylesheet\">\n  <style>\n    /* CUSTOM THEME COLORS */\n    :root {\n      --color-primary-green: #619030;\n      --color-primary-green-hover: #49701f;\n      --color-secondary-green: #A3B766;\n      --color-dark-green: #2d5016;\n    }\n\n    /* PAGE SETUP FOR PDF - NO MARGINS */\n    @page {\n      margin: 60px 0px;\n      size: A4;\n    }\n\n    @page :first {\n      margin: 0px;\n    }\n\n    html,\n    body {\n      margin: 0;\n      padding: 0;\n      width: 100%;\n      height: 100%;\n    }\n\n    /* MODERN COVER PAGE */\n    .cover-page {\n      width: 100%;\n      height: 100vh;\n      position: relative;\n      overflow: hidden;\n      font-family: 'Source Sans 3', sans-serif;\n      page-break-after: always;\n      background: linear-gradient(135deg, #f8faf6 0%, #e8f0e0 30%, #e0e8d4 100%);\n      margin: 0;\n      display: flex;\n      flex-direction: column;\n    }\n\n    /* ORGANIC BACKGROUND ELEMENTS */\n    .background-elements {\n      position: absolute;\n      top: 0;\n      left: 0;\n      width: 100%;\n      height: 100%;\n      z-index: 1;\n      pointer-events: none;\n    }\n\n    .organic-shape {\n      position: absolute;\n      border-radius: 50%;\n      filter: blur(1px);\n      animation: float 20s infinite ease-in-out;\n    }\n\n    .shape-1 {\n      width: 400px;\n      height: 400px;\n      background: radial-gradient(circle, rgba(97, 144, 48, 0.12) 0%, rgba(97, 144, 48, 0.05) 70%);\n      top: -100px;\n      right: -100px;\n      animation-delay: 0s;\n    }\n\n    .shape-2 {\n      width: 300px;\n      height: 500px;\n      background: radial-gradient(ellipse, rgba(163, 183, 102, 0.08) 0%, rgba(163, 183, 102, 0.02) 70%);\n      bottom: -150px;\n      left: -80px;\n      border-radius: 60% 40% 30% 70%;\n      animation-delay: -10s;\n    }\n\n    .shape-3 {\n      width: 200px;\n      height: 200px;\n      background: radial-gradient(circle, rgba(73, 112, 31, 0.15) 0%, rgba(73, 112, 31, 0.03) 70%);\n      top: 40%;\n      left: 10%;\n      animation-delay: -5s;\n    }\n\n    @keyframes float {\n\n      0%,\n      100% {\n        transform: translateY(0px) rotate(0deg);\n      }\n\n      25% {\n        transform: translateY(-20px) rotate(1deg);\n      }\n\n      50% {\n        transform: translateY(-10px) rotate(-1deg);\n      }\n\n      75% {\n        transform: translateY(-30px) rotate(0.5deg);\n      }\n    }\n\n    /* CONTENT WRAPPER */\n    .content-wrapper {\n      position: relative;\n      z-index: 10;\n      display: flex;\n      flex-direction: column;\n      height: 100%;\n      padding: 80px 60px 60px;\n      box-sizing: border-box;\n    }\n\n    /* HEADER - LARGER LOGO */\n    .header {\n      margin-bottom: 40px;\n      padding-right: 20px;\n    }\n\n    .logo-mark {\n      width: 200px;\n      height: 200px;\n      margin-top: -40px;\n      margin-left: 20px;\n      display: flex;\n      align-items: center;\n      justify-content: center;\n    }\n\n    .logo-mark img {\n      width: 100%;\n      height: 100%;\n      object-fit: contain;\n      filter: drop-shadow(0 4px 12px rgba(97, 144, 48, 0.2));\n    }\n\n    /* MAIN TITLE SECTION */\n    .main-content {\n      flex: 1;\n      display: flex;\n      flex-direction: column;\n      justify-content: center;\n      text-align: center;\n      margin: -80px 0;\n    }\n\n    .title-main {\n      font-family: 'Playfair Display', serif;\n      font-size: 72px;\n      font-weight: 700;\n      line-height: 1.1;\n      color: var(--color-primary-green-hover);\n      margin: 0 0 32px 0;\n      letter-spacing: -2px;\n      text-shadow: 0 4px 16px rgba(73, 112, 31, 0.1);\n    }\n\n    .subtitle-caps {\n      font-size: 24px;\n      font-weight: 600;\n      color: var(--color-primary-green);\n      letter-spacing: 4px;\n      text-transform: uppercase;\n      margin-bottom: 50px;\n      position: relative;\n    }\n\n    /* DARK GREEN HORIZONTAL LINE */\n    .divider-line {\n      width: 200px;\n      height: 3px;\n      background: var(--color-dark-green);\n      margin: 0 auto 50px;\n      border-radius: 2px;\n    }\n\n    .tagline {\n      font-size: 20px;\n      color: var(--color-primary-green-hover);\n      font-weight: 400;\n      line-height: 1.6;\n      opacity: 0.95;\n      font-style: italic;\n      max-width: 600px;\n      margin: 0 auto;\n    }\n\n    /* DECORATIVE ELEMENTS */\n    .decorative-border {\n      position: absolute;\n      top: 40px;\n      left: 40px;\n      right: 40px;\n      bottom: 40px;\n      border: 1px solid rgba(163, 183, 102, 0.3);\n      border-radius: 24px;\n      pointer-events: none;\n    }\n\n    .corner-elements {\n      position: absolute;\n      width: 40px;\n      height: 40px;\n      border: 2px solid var(--color-secondary-green);\n      opacity: 0.4;\n    }\n\n    .corner-tl {\n      top: 60px;\n      left: 60px;\n      border-right: none;\n      border-bottom: none;\n      border-radius: 8px 0 0 0;\n    }\n\n    .corner-tr {\n      top: 60px;\n      right: 60px;\n      border-left: none;\n      border-bottom: none;\n      border-radius: 0 8px 0 0;\n    }\n\n    .corner-bl {\n      bottom: 60px;\n      left: 60px;\n      border-right: none;\n      border-top: none;\n      border-radius: 0 0 0 8px;\n    }\n\n    .corner-br {\n      bottom: 60px;\n      right: 60px;\n      border-left: none;\n      border-top: none;\n      border-radius: 0 0 8px 0;\n    }\n\n    /* FOOTER - UPDATED */\n    .footer {\n      display: flex;\n      justify-content: space-between;\n      align-items: flex-end;\n      font-size: 14px;\n      color: var(--color-primary-green);\n      margin-bottom: 10px;\n      margin-left: 10px;\n      padding-right: 20px;\n    }\n\n    .footer-left {\n      display: flex;\n      flex-direction: column;\n      gap: 6px;\n    }\n\n    .footer-copyright {\n      font-weight: 400;\n      color: var(--color-primary-green-hover);\n    }\n\n    .footer-tagline {\n      font-weight: 300;\n      color: var(--color-primary-green);\n    }\n\n    .footer-website {\n      font-weight: 300;\n      color: var(--color-primary-green);\n    }\n\n    .footer-right {\n      text-align: right;\n      font-weight: 500;\n      color: var(--color-primary-green-hover);\n    }\n\n    /* DOCUMENT CONTENT STYLES */\n    .doc-content {\n      font-family: 'Source Sans 3', sans-serif;\n      margin: 60px;\n      color: #333;\n      line-height: 1.7;\n      font-size: 16px;\n    }\n\n    .doc-content h1,\n    .doc-content h2,\n    .doc-content h3 {\n      font-family: 'Playfair Display', serif;\n      color: var(--color-primary-green-hover);\n      page-break-after: avoid;\n      page-break-inside: avoid;\n    }\n\n    .doc-content h1 {\n      font-size: 32px;\n      margin-bottom: 24px;\n      margin-top: 40px;\n      font-weight: 600;\n    }\n\n    .doc-content h1:first-child {\n      margin-top: -60px !important;\n      display: flex;\n      justify-content: center;\n    }\n\n    .doc-content h2 {\n      font-size: 26px;\n      margin-bottom: 20px;\n      margin-top: 48px;\n      font-weight: 600;\n      color: var(--color-primary-green);\n    }\n\n    .doc-content h3 {\n      font-size: 22px;\n      margin-bottom: 18px;\n      margin-top: 32px;\n      font-weight: 500;\n      color: var(--color-secondary-green);\n    }\n\n    .doc-content p {\n      margin-bottom: 16px;\n      orphans: 3;\n      widows: 3;\n      color: #444;\n    }\n\n    .doc-content ul,\n    .doc-content ol {\n      margin-left: 24px;\n      margin-bottom: 16px;\n      page-break-inside: avoid;\n    }\n\n    .doc-content li {\n      margin-bottom: 8px;\n      color: #444;\n    }\n\n    /* RESPONSIVE DESIGN */\n    @media (max-width: 768px) {\n      .content-wrapper {\n        padding: 60px 40px 40px;\n      }\n\n      .logo-mark {\n        width: 120px;\n        height: 120px;\n      }\n\n      .title-main {\n        font-size: 48px;\n      }\n\n      .subtitle-caps {\n        font-size: 18px;\n        letter-spacing: 2px;\n      }\n\n      .tagline {\n        font-size: 16px;\n      }\n\n      .footer {\n        flex-direction: column;\n        gap: 12px;\n        align-items: flex-start;\n        text-align: left;\n      }\n\n      .corner-elements {\n        display: none;\n      }\n    }\n\n    @media (max-width: 480px) {\n      .title-main {\n        font-size: 36px;\n      }\n\n      .subtitle-caps {\n        font-size: 16px;\n        letter-spacing: 1px;\n      }\n\n      .logo-mark {\n        width: 100px;\n        height: 100px;\n      }\n    }\n  </style>\n</head>\n\n<body>\n  <!-- MODERN COVER PAGE -->\n  <div class=\"cover-page\">\n    <!-- Background Elements -->\n    <div class=\"background-elements\">\n      <div class=\"organic-shape shape-1\"></div>\n      <div class=\"organic-shape shape-2\"></div>\n      <div class=\"organic-shape shape-3\"></div>\n    </div>\n\n    <!-- Decorative Border -->\n    <div class=\"decorative-border\"></div>\n\n    <!-- Corner Elements -->\n    <div class=\"corner-elements corner-tl\"></div>\n    <div class=\"corner-elements corner-tr\"></div>\n    <div class=\"corner-elements corner-bl\"></div>\n    <div class=\"corner-elements corner-br\"></div>\n\n    <!-- Content -->\n    <div class=\"content-wrapper\">\n      <!-- Header with Larger Logo -->\n      <div class=\"header\">\n        <div class=\"logo-mark\">\n          <img src=\"https://dominik-ai-chatbot.vercel.app/logo.svg\" alt=\"Praxisinstitut Naturmedizin Logo\">\n        </div>\n      </div>\n\n      <!-- Main Content -->\n      <div class=\"main-content\">\n        <h1 class=\"title-main\">Praxisinstitut Naturmedizin</h1>\n        <div class=\"subtitle-caps\">MEDIZIN ZUM SELBERMACHEN</div>\n\n        <!-- Dark Green Horizontal Line -->\n        <div class=\"divider-line\"></div>\n\n        <p class=\"tagline\">Die Medizin darf, soll und kann wieder zurück zu den Menschen kommen!</p>\n      </div>\n\n      <!-- Footer - Updated -->\n      <div class=\"footer\">\n        <div class=\"footer-left\">\n          <div class=\"footer-copyright\">© <span id=\"current-year\"></span> Praxisinstitut Naturmedizin</div>\n          <div class=\"footer-tagline\">Hilfe zur Selbsthilfe</div>\n          <div class=\"footer-website\">www.MedizinZumSelbermachen.de</div>\n        </div>\n      </div>\n    </div>\n  </div>\n\n  <!-- DOCUMENT CONTENT -->\n  <div class=\"doc-content\">\n    {{ $json.data }}\n  </div>\n\n  <!-- Dynamic Year Script -->\n  <script>\n    document.getElementById('current-year').textContent = new Date().getFullYear();\n  </script>\n</body>\n\n</html>"
       },
       "type": "n8n-nodes-base.html",
       "typeVersion": 1.2,
@@ -483,6 +185,257 @@
       "id": "3067517f-1917-4980-89e6-f21c8928f7ca",
       "name": "Webhook1",
       "webhookId": "b4968d44-164a-4b23-bb5b-d63c8bd26c31"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "call_messages",
+        "limit": 100,
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "call_id",
+              "condition": "eq",
+              "keyValue": "={{ $json.body.call_id }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        16,
+        656
+      ],
+      "id": "dada2f1a-40ac-40f4-972a-5a0e6577f75e",
+      "name": "Get Call Messages",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "messages",
+        "limit": 100,
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "chat_id",
+              "condition": "eq",
+              "keyValue": "={{ $json.body.chat_id }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        16,
+        864
+      ],
+      "id": "e595209e-8863-455b-84aa-669c9273adba",
+      "name": "Get Chat Messages",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4O-MINI"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=Analyze the conversation provided and create a comprehensive, structured summary document following all guidelines above. Focus on extracting and presenting the actual content discussed, not describing the conversation itself."
+            },
+            {
+              "content": "=You are a professional content summarizer that creates comprehensive, structured documents for PDF conversion. Your output must be content-rich, practical, and focused on the actual information discussed rather than meta-commentary about the conversation itself.\n\nCRITICAL LANGUAGE REQUIREMENT:\n- First, identify the primary language used in the messages by examining the \"language\" field and the actual message content\n  Selected Language: {{$json.language}}\n- Generate the ENTIRE document (including ALL headings, labels, summaries, analyses, and formatting) in the SAME language as the input messages\n- If the language field indicates \"de\" (German), write EVERYTHING in German including all section headings\n- If the language field indicates \"en\" (English), write EVERYTHING in English including all section headings\n- If the language field indicates \"es\" (Spanish), write EVERYTHING in Spanish including all section headings\n- Apply this rule to ALL other languages accordingly\n- CRITICAL: NEVER mix languages - maintain consistency throughout the entire document\n\nGERMAN LANGUAGE SPECIFIC REQUIREMENT:\n- When writing in German, ALWAYS capitalize the informal pronouns: Du, Dein, Deine, Deinen, Deinem, Dich, Dir\n- This applies throughout the entire document in all contexts\n\nDATE FORMATTING REQUIREMENT:\n- Whenever a date or timestamp is provided (e.g., \"2025-12-09T13:14:14.930218+00:00\"), convert it into the simplified format: YYYY-MM-DD HH:mm:ss\n- Example: 2025-12-09T13:14:14.930218+00:00 → 2025-12-09 13:14:14\n- Apply this formatting to ALL dates displayed in the document including the main date field, timestamps extracted from messages, or any other datetime values\n\nINPUT DATA:\n{{JSON.stringify($json.messages)}}\n\nYOUR GOAL:\nCreate a comprehensive, content-focused document that serves as a practical guide or reference material. The document should capture the SUBSTANCE of what was discussed, not just describe that a conversation happened.\n\n---\n\nDOCUMENT STRUCTURE:\n\n# [Create a Clear, Descriptive Title Based on the Main Topic - in Selected Language]\n\n## [Executive Summary / Kurze Zusammenfassung / Resumen Ejecutivo]\n\nWrite a brief 2-3 paragraph overview that:\n- Summarizes the main topic and context\n- Highlights the key areas covered\n- Indicates what practical value this document provides\n\nDO NOT use subsections like \"What you were working on\" / \"What we figured out\" / \"The result\"\nInstead, write flowing paragraphs that naturally cover the scope and outcomes.\n\n## [Quick Reference / Schnellübersicht / Referencia Rápida]\n\n- **[Date/Datum/Fecha]:** {{$json.created_at}} (formatted as YYYY-MM-DD HH:mm:ss)\n- **[Main Topic/Hauptthema/Tema Principal]:** [One-line description]\n- **[Document Type/Dokumenttyp/Tipo de Documento]:** [e.g., Treatment Guide, Technical Reference, Strategy Plan]\n\n---\n\n## [DYNAMIC CONTENT SECTIONS - Create based on actual conversation topics]\n\n**CRITICAL: The following sections should be DYNAMICALLY CREATED based on the actual content discussed. Use specific, descriptive headings that reflect the real topics covered.**\n\n### [Specific Topic 1 - Use actual topic name, e.g., \"Bewährte Heilpflanzen bei Borreliose\"]\n\n[1-2 sentence introduction to this topic]\n\n**[Content presentation - choose format based on content type:]**\n\n- **For lists (plants, tools, techniques, etc.):**\n  - **[Item 1 Name]:** Detailed description, properties, usage, benefits\n  - **[Item 2 Name]:** Detailed description, properties, usage, benefits\n  - [Continue with all relevant items from the conversation]\n\n- **For processes or programs:**\n  - **[Phase/Step 1]:** \n    - Purpose: [What it achieves]\n    - Method: [How it's done]\n    - Duration: [If applicable]\n    - Key points: [Important details]\n  - **[Phase/Step 2]:** [Same structure]\n\n- **For practical instructions:**\n  1. [Detailed step-by-step instructions]\n  2. [Include specific measurements, timing, techniques]\n  3. [Add warnings or important notes]\n\n### [Specific Topic 2 - Use actual topic name]\n\n[Follow same pattern - introduction + detailed content]\n\n### [Specific Topic 3 - Use actual topic name]\n\n[Continue for ALL significant topics discussed in the conversation]\n\n---\n\n## [Practical Application / Praktische Anwendung / Aplicación Práctica]\n*(Include this section if there are actionable steps, daily routines, or implementation guidance)*\n\n### [Daily Routine / Schedule / Protocol - if applicable]\n\n**[Morning/Morgens/Mañana:]**\n- [Specific actions with timing and details]\n\n**[Midday/Mittags/Mediodía:]**\n- [Specific actions with timing and details]\n\n**[Evening/Abends/Noche:]**\n- [Specific actions with timing and details]\n\n### [Important Guidelines / Wichtige Hinweise / Pautas Importantes]\n\n- [Specific practical tips, warnings, or considerations]\n- [Include details about timing, dosage, combinations, etc.]\n- [Add any troubleshooting or optimization tips]\n\n---\n\n## [Key Points to Remember / Wichtige Kernpunkte / Puntos Clave]\n\n[Bullet list of the most critical takeaways - focus on CONTENT, not conversation meta-data:]\n\n- [Specific fact, technique, or principle #1]\n- [Specific fact, technique, or principle #2]\n- [Specific fact, technique, or principle #3]\n- [Continue with all important points]\n\n---\n\n## [Comprehensive Conclusion / Umfassende Zusammenfassung / Conclusión Integral]\n\n[Write 3-5 detailed paragraphs that:\n- Synthesize all the information covered\n- Explain how different elements work together\n- Provide context for practical application\n- Offer final recommendations or considerations\n- Tie everything into a coherent whole\n\nThis should be substantive and content-rich, not meta-commentary about the conversation.]\n\n---\n\nFORMATTING REQUIREMENTS:\n- Use clear hierarchical headings (# ## ###)\n- Maintain professional, informative tone\n- Use bullet points and numbered lists for clarity\n- Ensure proper paragraph spacing for readability\n- Bold important terms, names, or key concepts\n- Keep formatting clean and PDF-conversion ready\n- Use markdown formatting consistently\n- Avoid excessive indentation or nested structures\n\nCONTENT PRINCIPLES:\n\n**DO:**\n- Extract and present ALL relevant information from the conversation\n- Use specific, descriptive headings that reflect actual topics\n- Include detailed explanations, not just brief mentions\n- Present lists with comprehensive details for each item\n- Include step-by-step instructions where applicable\n- Add practical examples, dosages, timing, measurements\n- Make the document feel like a standalone guide\n\n**DO NOT:**\n- Use meta-commentary sections like \"What you asked\" / \"What you learned\"\n- Include sections like \"Decisions Made\" or \"Next Steps\" unless specifically relevant\n- Write generic descriptions that just say \"we discussed X\"\n- Reduce rich content to 1-2 generic sentences\n- Create empty or placeholder sections\n- Use generic section names when specific ones are available\n\n**SECTIONS TO EXCLUDE:**\n- \"Your Original Question\" or equivalent\n- \"What you asked / What you learned / What we worked on\"\n- \"Decisions Made\" (unless critically important to the content)\n- \"Things You Might Want to Do Next\" (unless there are specific action items integral to the topic)\n- \"Useful Resources Mentioned\" (integrate resources into relevant sections instead)\n- \"Unfinished Items\"\n\n**DYNAMIC SECTION CREATION:**\n- Analyze the conversation to identify 3-6 major topic areas\n- Create specific section headings for each major topic\n- Under each heading, present the full depth of information discussed\n- If there are sub-topics, create subsections (###) with specific names\n- Prioritize content density over structural rigidity\n\n**ADAPTIVE APPROACH:**\n- **For technical/medical topics:** Include detailed lists, procedures, specifications\n- **For instructional content:** Provide step-by-step guidance with comprehensive details\n- **For strategic discussions:** Present frameworks, phases, and implementation details\n- **For creative work:** Document actual content, techniques, and specific elements\n\n**LENGTH GUIDANCE:**\n- The document can be 2-3 pages or longer if the content warrants it\n- Prioritize completeness and usefulness over brevity\n- Better to have substantial content than many headings with little beneath them\n- Each section should feel complete and valuable on its own\n\n**CRITICAL REMINDERS:** \n- This is a CONTENT SUMMARY, not a conversation recap\n- Focus on WHAT was discussed (the substance), not THAT it was discussed\n- **EVERY SINGLE WORD including all headings and labels MUST be in the SELECTED LANGUAGE**\n- Check the language field first: {{$json.language}}\n- In German (de), ALWAYS capitalize Du, Dein, Deine, Deinen, Deinem, Dich, Dir\n- Format ALL dates as YYYY-MM-DD HH:mm:ss (simplified from ISO format)\n- Extract maximum value from the conversation\n- Make it practical and immediately useful\n- **DO NOT MIX LANGUAGES**",
+              "role": "system"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        496,
+        768
+      ],
+      "id": "f3c8d9bf-eb73-4761-b03c-3bdc86d56aca",
+      "name": "Generate Summary",
+      "credentials": {
+        "openAiApi": {
+          "id": "Xfd0MFwxSjT9x3PY",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "markdownToHtml",
+        "markdown": "={{ $json.message.content }}",
+        "options": {
+          "prefixHeaderId": "section",
+          "smartIndentationFix": true
+        }
+      },
+      "type": "n8n-nodes-base.markdown",
+      "typeVersion": 1,
+      "position": [
+        880,
+        768
+      ],
+      "id": "7cc780fe-717b-4f77-9487-7d13bb4c8333",
+      "name": "Convert Markdown to HTML"
+    },
+    {
+      "parameters": {
+        "operation": "toText",
+        "sourceProperty": "html",
+        "options": {
+          "encoding": "utf8",
+          "fileName": "index.html"
+        }
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        1296,
+        768
+      ],
+      "id": "5d8d1585-01ee-400b-8f2f-2871a975d7c2",
+      "name": "Convert to File"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://gotenberg:3000/forms/chromium/convert/html",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Gotenberg-Output-Filename",
+              "value": "={{ $('Prettify Response').item.json.id }}-{{ $now.format('yyyy-MM-dd') }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "parameterType": "formBinaryData",
+              "name": "form file",
+              "inputDataFieldName": "data"
+            },
+            {
+              "name": "scale",
+              "value": "1"
+            },
+            {
+              "name": "metadata",
+              "value": "={\"Author\":\"IA2S\",\"Copyright\":\"IA2S\",\"CreateDate\":\"{{ $now.format('yyyy-MM-dd') }}\",\"Creator\":\"IA2S\",\"Keywords\":[],\"ModDate\":\"{{ $now.format('yyyy-MM-dd') }}\",\"PDFVersion\":1.7,\"Producer\":\"IA2S\",\"Subject\":\"PDF\",\"Title\":\"IA2S PDF\"}"
+            },
+            {
+              "name": "maxImageResolution",
+              "value": "300"
+            },
+            {
+              "name": "preferCssPageSize",
+              "value": "true"
+            },
+            {
+              "name": "printBackground",
+              "value": "true"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "cc5c742a-1606-4658-9fad-cea408733215",
+      "name": "Convert to PDF with Gotenberg",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        1520,
+        768
+      ],
+      "typeVersion": 4.2,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "operation": "binaryToPropery",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        1776,
+        752
+      ],
+      "id": "64d93c53-ee9f-403e-98df-4304b8918f0b",
+      "name": "Extract from File",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "tableId": "detailed_summary_pdf",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "pdf_link_base64",
+              "fieldValue": "={{ $json.data }}"
+            },
+            {
+              "fieldId": "type_id",
+              "fieldValue": "={{ $('Prettify Response').item.json.id }}"
+            },
+            {
+              "fieldId": "type",
+              "fieldValue": "={{ $json[\"IF\"] === true ? \"Call\" : \"Chat\" }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        2048,
+        752
+      ],
+      "id": "899752d9-3415-4332-ac4c-cc0c966a0b69",
+      "name": "Add PDF Base64 in Detailed Summary Table",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        2336,
+        752
+      ],
+      "id": "07eaf27e-4150-4b43-a7b0-8d170a73df42",
+      "name": "Respond to Webhook"
     },
     {
       "parameters": {
@@ -516,71 +469,11 @@
         784
       ],
       "id": "6ccf8255-2261-47b6-b42d-1119c04368ae",
-      "name": "If1"
+      "name": "If"
     },
     {
       "parameters": {
-        "operation": "getAll",
-        "tableId": "call_messages",
-        "limit": 100,
-        "filters": {
-          "conditions": [
-            {
-              "keyName": "call_id",
-              "condition": "eq",
-              "keyValue": "={{ $json.body.call_id }}"
-            }
-          ]
-        }
-      },
-      "type": "n8n-nodes-base.supabase",
-      "typeVersion": 1,
-      "position": [
-        16,
-        656
-      ],
-      "id": "dada2f1a-40ac-40f4-972a-5a0e6577f75e",
-      "name": "Get Call Messages1",
-      "credentials": {
-        "supabaseApi": {
-          "id": "fHIqf3ehxKRHCXZs",
-          "name": "Supabase account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "operation": "getAll",
-        "tableId": "messages",
-        "limit": 100,
-        "filters": {
-          "conditions": [
-            {
-              "keyName": "chat_id",
-              "condition": "eq",
-              "keyValue": "={{ $json.body.chat_id }}"
-            }
-          ]
-        }
-      },
-      "type": "n8n-nodes-base.supabase",
-      "typeVersion": 1,
-      "position": [
-        16,
-        864
-      ],
-      "id": "e595209e-8863-455b-84aa-669c9273adba",
-      "name": "Get Chat Messages1",
-      "credentials": {
-        "supabaseApi": {
-          "id": "fHIqf3ehxKRHCXZs",
-          "name": "Supabase account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "jsCode": "// Get all incoming items from supbase\nconst items = $input.all();\n\n// Building a single object\nreturn [\n  {\n    json: {\n      id: items[0].json?.call_id || items[0].json?.chat_id,\n      language:$input.first().json.language,\n      messages: items.map(i => ({\n        msg: i.json.message || \"\",\n        sender: i.json.sender || \"\"\n      }))\n    }\n  }\n];\n"
+        "jsCode": "// Get all incoming items from supbase\nconst items = $input.all();\n\n// Building a single object\nreturn [\n  {\n    json: {\n      id: items[0].json?.call_id || items[0].json?.chat_id,\n      language:$input.first().json.language,\n      created_at:$input.first().json.created_at,\n      messages: items.map(i => ({\n        msg: i.json.message || \"\",\n        sender: i.json.sender || \"\"\n      }))\n    }\n  }\n];\n"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -589,190 +482,7 @@
         768
       ],
       "id": "66a84287-17d0-4bf0-89ad-edff5a6d4437",
-      "name": "Prettify Response1"
-    },
-    {
-      "parameters": {
-        "modelId": {
-          "__rl": true,
-          "value": "gpt-4o-mini",
-          "mode": "list",
-          "cachedResultName": "GPT-4O-MINI"
-        },
-        "messages": {
-          "values": [
-            {
-              "content": "=You are a personal conversation summarizer. Your task is to create clear, memorable summaries that help users quickly recall what they discussed and what was accomplished in their conversations.\n\n**CRITICAL LANGUAGE REQUIREMENT:**\n- First, identify the primary language used in the messages by examining the \"language\" field and the actual message content\n  \"selected langauge\": {{$json.language}}\n- Generate the ENTIRE document (including all headings, summaries, analyses, and formatting) in the SAME language as the input messages\n- If the language field indicates \"de\" (German), write everything in German\n- If the language field indicates \"en\" (English), write everything in English\n- If the language field indicates \"es\" (Spanish), write everything in Spanish\n- Apply this rule to ALL other languages accordingly\n- NEVER mix languages - maintain consistency throughout the entire document\n\n**INPUT DATA:**\n{{JSON.stringify($json.messages)}}\n\n**YOUR GOAL:**\nCreate a summary that helps the user quickly remember:\n- What they were trying to do\n- What help they received\n- What solutions, answers, or content was created\n- Any important details they might need later\n\n---\n\n# [Create a Clear, Descriptive Title]\n*Make this instantly recognizable so the user can find this conversation later*\n\n## What This Conversation Was About\n\nWrite a friendly, clear 2-3 paragraph summary in first-person perspective (as if reminding the user):\n\n**What you were working on:**\n[Describe what the user came to discuss, ask about, or accomplish]\n\n**What we figured out together:**\n[Describe the key solutions, answers, or progress made]\n\n**The result:**\n[What was accomplished, created, or decided by the end]\n\n## Quick Reference\n\n- **Date:** [If available]\n- **Main Topic:** [One-line description]\n- **Status:** [Completed / In Progress / Need to Continue]\n\n## Your Original Question/Request\n\n[Quote or clearly restate what the user originally asked for - this helps them remember exactly what they needed]\n\n## Key Things We Discussed\n\n### [Topic 1]\n- What you asked: [Brief description]\n- What you learned/received: [The answer, solution, or help provided]\n- Important details to remember: [Any specifics worth noting]\n\n### [Topic 2]\n*(Continue for each significant topic in the conversation)*\n\n## Solutions & Answers You Got\n\n[List out the main solutions, answers, or help provided in a clear, reusable format:]\n\n**[Question/Problem 1]:**\n[The answer or solution - written clearly so you can use it again]\n\n**[Question/Problem 2]:**\n[The answer or solution]\n\n*[Continue for all significant Q&As]*\n\n## Content Created\n*(If any content, code, text, or materials were generated)*\n\n### [Content Item 1]\n- **What it is:** [Description]\n- **What it does/What it's for:** [Purpose]\n- **Key details:** [Important specifics to remember]\n\n### [Content Item 2]\n*[Continue for all created content]*\n\n## Important Details to Remember\n\n[Bullet list of specific facts, numbers, names, recommendations, or details that might be useful later:]\n\n- [Detail 1]\n- [Detail 2]\n- [Detail 3]\n\n## Decisions Made\n\n*(If any choices or decisions were reached)*\n\n- **Decision:** [What was decided]\n  - **Why:** [Brief reasoning]\n\n## Things You Might Want to Do Next\n\n- [ ] [Action item 1]\n- [ ] [Action item 2]\n- [ ] [Any follow-up tasks identified]\n\n## Useful Resources Mentioned\n\n*(If any tools, links, references, or resources came up)*\n\n- [Resource 1]: [What it's for]\n- [Resource 2]: [What it's for]\n\n## Unfinished Items\n\n*(If anything was left incomplete or needs follow-up)*\n\n- [Item that needs more work]\n- [Question that wasn't fully answered]\n- [Topic to revisit later]\n\n## Quick Recap\n*(A 2-3 sentence summary you can scan in 10 seconds)*\n\n[Write a brief, friendly recap like: \"You asked about X. We solved it by doing Y. The main takeaway was Z.\"]\n\n---\n\n**FORMATTING REQUIREMENTS:**\n- Use clear hierarchical headings (# ## ###)\n- Maintain a friendly, personal tone (like notes to yourself)\n- Use bullet points for lists and key information\n- Ensure proper paragraph spacing for readability\n- Bold important terms or key information\n- Keep formatting clean and PDF-conversion ready\n- Use markdown formatting consistently\n\n**WRITING STYLE:**\n- Write as if helping the user remember their own conversation\n- Be warm and personal, not clinical or analytical\n- Focus on practical value - what can they use or reference later?\n- Highlight actionable information and concrete answers\n- Skip sections that don't apply rather than leaving them empty\n\n**ADAPTIVE APPROACH:**\n- **For short conversations:** Focus on Quick Recap, Your Original Question, and Solutions & Answers\n- **For technical discussions:** Emphasize Solutions, Content Created, and Important Details\n- **For creative work:** Highlight Content Created and the creative decisions made\n- **For research/learning:** Focus on Key Things Discussed and Important Details\n- **For problem-solving:** Emphasize the problem, solution journey, and final resolution\n\n**REMEMBER:** \n- This is for the USER to recall THEIR conversation - write it for them, not about them\n- The entire output must be in the SAME language as the input messages\n- Make it scannable - users should find what they need in seconds\n- Focus on what's useful to remember, not every detail of the exchange"
-            },
-            {
-              "content": "You are a professional document generator that creates well-structured, formatted summaries for PDF conversion. Your output must be clean, organized, and ready for direct PDF rendering.\n\nFORMATTING RULES:\n- Use clear hierarchical headings (# for main title, ## for sections, ### for subsections)\n- Write in professional, concise language\n- Use proper paragraph spacing\n- Include bullet points or numbered lists where appropriate for clarity\n- Maintain consistent formatting throughout\n- Do not use excessive styling or unnecessary decorations\n\nOUTPUT STRUCTURE:\nYour summary should always include:\n1. A clear document title\n2. Executive summary or overview section\n3. Main content organized by logical sections\n4. Key takeaways or conclusions (if applicable)\n\nWrite content that is:\n- Clear and scannable\n- Well-organized with logical flow\n- Professional in tone\n- Ready for immediate PDF conversion without additional formatting\n",
-              "role": "system"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.openAi",
-      "typeVersion": 1.8,
-      "position": [
-        496,
-        768
-      ],
-      "id": "f3c8d9bf-eb73-4761-b03c-3bdc86d56aca",
-      "name": "Generate Summary1",
-      "credentials": {
-        "openAiApi": {
-          "id": "Xfd0MFwxSjT9x3PY",
-          "name": "OpenAi account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "tableId": "detailed_summary_pdf",
-        "fieldsUi": {
-          "fieldValues": [
-            {
-              "fieldId": "pdf_link_base64",
-              "fieldValue": "={{ $json.data }}"
-            },
-            {
-              "fieldId": "type_id",
-              "fieldValue": "={{ $('Prettify Response1').item.json.id }}"
-            },
-            {
-              "fieldId": "type",
-              "fieldValue": "={{ $json[\"IF\"] === true ? \"Call\" : \"Chat\" }}"
-            }
-          ]
-        }
-      },
-      "type": "n8n-nodes-base.supabase",
-      "typeVersion": 1,
-      "position": [
-        2048,
-        752
-      ],
-      "id": "899752d9-3415-4332-ac4c-cc0c966a0b69",
-      "name": "Add PDF Link in Detailed Summary Table1",
-      "credentials": {
-        "supabaseApi": {
-          "id": "fHIqf3ehxKRHCXZs",
-          "name": "Supabase account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "options": {}
-      },
-      "type": "n8n-nodes-base.respondToWebhook",
-      "typeVersion": 1.4,
-      "position": [
-        2336,
-        752
-      ],
-      "id": "07eaf27e-4150-4b43-a7b0-8d170a73df42",
-      "name": "Respond to Webhook2"
-    },
-    {
-      "parameters": {
-        "mode": "markdownToHtml",
-        "markdown": "={{ $json.message.content }}",
-        "options": {
-          "prefixHeaderId": "section",
-          "smartIndentationFix": true
-        }
-      },
-      "type": "n8n-nodes-base.markdown",
-      "typeVersion": 1,
-      "position": [
-        880,
-        768
-      ],
-      "id": "7cc780fe-717b-4f77-9487-7d13bb4c8333",
-      "name": "Convert Markdown to HTML1"
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "http://gotenberg:3000/forms/chromium/convert/html",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "Gotenberg-Output-Filename",
-              "value": "={{ $('Prettify Response1').item.json.id }}-{{ $now.format('yyyy-MM-dd') }}"
-            }
-          ]
-        },
-        "sendBody": true,
-        "contentType": "multipart-form-data",
-        "bodyParameters": {
-          "parameters": [
-            {
-              "parameterType": "formBinaryData",
-              "name": "form file",
-              "inputDataFieldName": "data"
-            },
-            {
-              "name": "scale",
-              "value": "1"
-            },
-            {
-              "name": "metadata",
-              "value": "={\"Author\":\"IA2S\",\"Copyright\":\"IA2S\",\"CreateDate\":\"{{ $now.format('yyyy-MM-dd') }}\",\"Creator\":\"IA2S\",\"Keywords\":[],\"ModDate\":\"{{ $now.format('yyyy-MM-dd') }}\",\"PDFVersion\":1.7,\"Producer\":\"IA2S\",\"Subject\":\"PDF\",\"Title\":\"IA2S PDF\"}"
-            },
-            {
-              "name": "maxImageResolution",
-              "value": "300"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "cc5c742a-1606-4658-9fad-cea408733215",
-      "name": "Convert to PDF with Gotenberg1",
-      "type": "n8n-nodes-base.httpRequest",
-      "position": [
-        1520,
-        768
-      ],
-      "typeVersion": 4.2,
-      "onError": "continueErrorOutput"
-    },
-    {
-      "parameters": {
-        "operation": "toText",
-        "sourceProperty": "html",
-        "options": {
-          "encoding": "utf8",
-          "fileName": "index.html"
-        }
-      },
-      "type": "n8n-nodes-base.convertToFile",
-      "typeVersion": 1.1,
-      "position": [
-        1296,
-        768
-      ],
-      "id": "5d8d1585-01ee-400b-8f2f-2871a975d7c2",
-      "name": "Convert to File1"
-    },
-    {
-      "parameters": {
-        "operation": "binaryToPropery",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.extractFromFile",
-      "typeVersion": 1,
-      "position": [
-        1776,
-        752
-      ],
-      "id": "64d93c53-ee9f-403e-98df-4304b8918f0b",
-      "name": "Extract from File3",
-      "alwaysOutputData": false
+      "name": "Prettify Response"
     },
     {
       "parameters": {
@@ -787,7 +497,7 @@
         976
       ],
       "id": "d953ef96-71f9-49ea-80da-1a5eb5c9d70b",
-      "name": "Respond to Webhook3"
+      "name": "Respond to Webhook (If error)"
     }
   ],
   "pinData": {},
@@ -806,6 +516,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-12-05T15:16:44.000Z",
-  "versionId": "f7e179c6-cf0f-4f78-aa5c-fe5f4d90c0a3"
+  "updatedAt": "2025-12-10T00:01:49.000Z",
+  "versionId": "bd57937b-6d9b-4a0a-9caf-2e461dd7440a"
 }
