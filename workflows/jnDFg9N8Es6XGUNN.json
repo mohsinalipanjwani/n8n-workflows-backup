@@ -578,9 +578,9 @@
         "toolDescription": "Provide as detail answer as you can",
         "qdrantCollection": {
           "__rl": true,
-          "value": "medizin-zum-selbermachen",
+          "value": "medizin-zum-selbermachen-production",
           "mode": "list",
-          "cachedResultName": "medizin-zum-selbermachen"
+          "cachedResultName": "medizin-zum-selbermachen-production"
         },
         "topK": 15,
         "useReranker": true,
@@ -1351,6 +1351,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-11-26T09:26:01.000Z",
-  "versionId": "c9263cc4-58ef-4cde-849e-61feaf9004e7"
+  "updatedAt": "2025-12-30T14:00:38.000Z",
+  "versionId": "f5540ea2-0268-4f19-ac1c-ce86cd22633e"
 }
