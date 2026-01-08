@@ -233,7 +233,7 @@
       "main": [
         [
           {
-            "node": "Get user quota1",
+            "node": "Reset Rating",
             "type": "main",
             "index": 0
           }
@@ -389,6 +389,17 @@
     "Structured Output Parser1": {
       "ai_outputParser": [
         []
+      ]
+    },
+    "Reset Rating": {
+      "main": [
+        [
+          {
+            "node": "Get user quota1",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     }
   },
@@ -889,7 +900,7 @@
     },
     {
       "parameters": {
-        "jsCode": "let updateMessageNode = null;\nlet newMessageNode = null;\n\n\ntry {\n  updateMessageNode =  $('Update the content of previous message1').first().json\n} catch (e) {\n\n}\n\ntry {\n  newMessageNode  = $('Save message in db along with/without mediaID1').first().json\n} catch (e) {\n}\n\n\n\nconst data = {\n  \"success\": true,\n  \"message_id\": updateMessageNode?.id || newMessageNode?.id || null,\n  \"chat_id\": updateMessageNode?.chat_id || newMessageNode?.chat_id || null,\n  \"response_request\": updateMessageNode?.response_request || newMessageNode?.response_request || null,\n  \"media_id\": updateMessageNode?.media_id || newMessageNode?.media_id || null,\n  \"output\": updateMessageNode?.message || newMessageNode?.message || null,\n  \"language\": updateMessageNode?.language || newMessageNode?.language || null,\n  \"timestamp\": updateMessageNode?.created_at || newMessageNode?.created_at || null,  \n  \"remaining_quota\": $('Update user quota1').first().json.quota,\n  \"is_regenerate\": updateMessageNode? true: false\n}\n\nreturn data"
+        "jsCode": "let updateMessageNode = null;\nlet newMessageNode = null;\nlet rating =  null;\n\ntry {\n  rating = $('Reset Rating').first().json.rating \n} catch (error) {\n  \n}\n\ntry {\n  updateMessageNode =  $('Update the content of previous message1').first().json\n} catch (e) {\n\n}\n\ntry {\n  newMessageNode  = $('Save message in db along with/without mediaID1').first().json\n} catch (e) {\n}\n\n\n\nconst data = {\n  \"success\": true,\n  \"message_id\": updateMessageNode?.id || newMessageNode?.id || null,\n  \"chat_id\": updateMessageNode?.chat_id || newMessageNode?.chat_id || null,\n  \"response_request\": updateMessageNode?.response_request || newMessageNode?.response_request || null,\n  \"media_id\": updateMessageNode?.media_id || newMessageNode?.media_id || null,\n  \"output\": updateMessageNode?.message || newMessageNode?.message || null,\n  \"language\": updateMessageNode?.language || newMessageNode?.language || null,\n  \"timestamp\": updateMessageNode?.created_at || newMessageNode?.created_at || null,  \n  \"remaining_quota\": $('Update user quota1').first().json.quota,\n  \"is_regenerate\": updateMessageNode? true: false,\n  \"user_feedback\": {\n    \"rating\": rating\n  }\n}\n\nreturn data"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -1033,8 +1044,8 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        7952,
-        -32
+        7840,
+        -128
       ],
       "id": "14881404-1ad0-4a42-ae58-0d471a00a87a",
       "name": "Update the content of previous message1",
@@ -1333,6 +1344,52 @@
           "name": "CohereApi account 2"
         }
       }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "feedback",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "message_id",
+              "condition": "eq",
+              "keyValue": "={{ $('Update the content of previous message1').item.json.id }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "rating",
+              "fieldValue": "={{ null }}"
+            },
+            {
+              "fieldId": "reason",
+              "fieldValue": "={{ null }}"
+            },
+            {
+              "fieldId": "reason_category",
+              "fieldValue": "={{ null }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        8080,
+        -128
+      ],
+      "id": "712efde3-7c9d-450c-a018-a4c0e8cab3c7",
+      "name": "Reset Rating",
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -1351,6 +1408,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-12-30T14:00:38.000Z",
-  "versionId": "f5540ea2-0268-4f19-ac1c-ce86cd22633e"
+  "updatedAt": "2026-01-07T11:25:21.000Z",
+  "versionId": "ec10f318-f485-4291-ad79-4aea9872c943"
 }
