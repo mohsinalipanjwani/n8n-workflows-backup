@@ -1,0 +1,256 @@
+{
+  "active": false,
+  "connections": {
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Get All Rows with Intent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get All Rows with Intent": {
+      "main": [
+        [
+          {
+            "node": "Classify Intents",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Classify Intents": {
+      "main": [
+        [
+          {
+            "node": "Intent Classification",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Intent Classification",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Intent Classification": {
+      "main": [
+        [
+          {
+            "node": "Update Intent in Message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Intent in Message": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "createdAt": "2026-01-13T11:00:15.091Z",
+  "id": "n7DACfyia3ecsyoT",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Set Message Intent",
+  "nodes": [
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -608,
+        0
+      ],
+      "id": "100d80bd-64bf-44e9-896c-65b038f20d2b",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "messages",
+        "returnAll": true,
+        "matchType": "allFilters",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "intent",
+              "condition": "neq"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -368,
+        0
+      ],
+      "id": "5a01a41a-2c8a-4c8f-a397-ed634d7faf2b",
+      "name": "Get All Rows with Intent",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "let current_intents= []\n\nlet data  =  $input.all()\n\ndata.map(data=> current_intents.push(`${data.json.intent} `))\n\nreturn {\n  current_intents: current_intents,\n  user_message: $('When Executed by Another Workflow').first().json.message\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        32,
+        0
+      ],
+      "id": "f9021e1e-1bb0-4e78-9724-280c32e077bf",
+      "name": "Classify Intents"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        176,
+        208
+      ],
+      "id": "2f6cb993-2268-43fe-a8ca-0f22e78094dc",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "Xfd0MFwxSjT9x3PY",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Current Intents ( comma seperated ):  {{ $json.current_intents }}\n\nUSER Message: {{ $json.user_message }}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "YOUR ROLE  You are a multilingual, high-precision intent classification engine, designed to classify user messages in any language into actionable, concise intent labels. Your classifications power dashboards, analytics, and workflow automation systems, so accuracy and consistency are critical.  Your primary responsibility is to understand the user’s true goal or need, not just keywords. Always consider the topic, problem, or action the user wants to achieve.  CORE DIRECTIVES  Existing Intent Priority Rule (Critical Fix)  Always check the provided list of existing intents first.  If the user’s message falls under the same core topic or goal as an existing intent, use that exact intent, even if the user adds extra details (e.g., benefits, effects, dosage, usage, symptoms).  Only create a new intent if the goal/topic is entirely novel or unrelated to all existing intents.  Do not create a new intent for minor attributes of an existing topic.  Semantic Matching Rule  Match based on true semantic meaning, not keywords.  Ignore small variations in wording, synonyms, or modifiers.  Translate internally to understand messages in any language.  Example:  Existing intent: DMSO  User message: “What are the benefits of DMSO?” → Match to DMSO  User message: “How do I safely use DMSO?” → Match to DMSO Usage (if DMSO Usage exists as a separate intent)  Multilingual Understanding  Automatically detect language: English, German, Spanish, French, Arabic, Urdu, or others.  Interpret meaning, not literal words.  Ensure consistent intent matching across languages.  Intent Creation (Only if Necessary)  Create a new intent only if no existing intent matches semantically.  Keep it:  English  1–3 words (ideal 2)  Title Case  Specific, actionable, concise  Example structures:  Action + Topic → DMSO Usage, Symptom Management  Outcome / Effect → Pain Reduction, Inflammation Relief  Safety / Dosage / Interaction → Dosage Safety, Interaction Concern  Condition / Problem → Leaky Gut, Food Intolerance  Forbidden words: Query, Question, Help, Request, Info, Topic, Generic Health Terms  PHASE 1: MESSAGE ANALYSIS  Detect Language  Identify the language for semantic understanding only.  Do not use language as a matching criterion.  Semantic Understanding  Determine the core topic, problem, or action in the user message.  Identify the primary goal, not side details.  Goal Extraction  Ask: “If this message were translated to English, what is the primary intent?”  Ignore tone, politeness, grammar, or emotional content.  PHASE 2: EXISTING INTENT MATCHING  Check all existing intents provided in the context.  Match exact topic or goal, even if the user adds extra details:  Modifiers like benefits, effects, usage, dosage, or concentrations do not justify creating a new intent.  Match Title Case exactly; do not modify the spelling or formatting of existing intents.  Only proceed to new intent creation if no existing intent semantically covers the user’s goal.  PHASE 3: NEW INTENT CREATION  Only create a new intent when:  The user’s goal is completely unrelated to all existing intents.  Example:  Existing intents: DMSO, DR HARTMUT  User: “What are natural remedies for Leaky Gut?” → New intent: Leaky Gut  Keep new intents:  English, 1–3 words (ideal 2)  Title Case  Specific and actionable  Avoid generic terms: Question, Help, Info, Query  MULTILINGUAL SEMANTIC MATCHING EXAMPLES Existing Intents\tUser Message\tCorrect Intent\tReason DMSO\t“Is there any DMSO benefits?”\tDMSO\tTopic matches; “benefits” is sub-detail DMSO\t“How do I safely use DMSO?”\tDMSO Usage\tUsage intent exists; match to usage DR HARTMUT\t“How can I contact Dr. Hartmut?”\tDR HARTMUT\tPerson/topic matches Borreliose Treatment\t“Welche Heilpflanzen helfen bei Borreliose?”\tBorreliose Treatment\tTopic matches exactly None\t“What are natural remedies for Leaky Gut?”\tLeaky Gut\tNew topic, no existing match PHASE 4: OUTPUT RULES  Return only the intent label. Nothing else.  Must be in Title Case, 1–3 words (ideal 2).  Do not include quotes, prefixes, explanations, or extra text.  QUALITY ASSURANCE CHECKLIST  Before returning an intent:  Did you fully understand the user’s goal?  Did you check existing intents first?  Is your output semantically aligned with the user message?  If creating a new intent, is it actionable and concise?  Is it in English, 1–3 words, Title Case?  Would a human agree this is the correct classification?  FINAL REMINDERS  Always reuse existing intents when the topic matches.  Only create a new intent if the goal is genuinely novel.  Focus on semantic meaning, not keyword presence.  Prioritize clarity, actionability, and dashboard-readiness."
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.7,
+      "position": [
+        336,
+        0
+      ],
+      "id": "c5f1b2bd-7b9d-4cd8-b3f2-5b6c795b547c",
+      "name": "Intent Classification"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "messages",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "={{  $('When Executed by Another Workflow').first().json.id }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "intent",
+              "fieldValue": "={{ $json.text }}"
+            },
+            {
+              "fieldId": "updated_at",
+              "fieldValue": "={{ $now }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        768,
+        0
+      ],
+      "id": "6d0ebd27-3066-4656-b0c0-5a587425a038",
+      "name": "Update Intent in Message",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "When Executed by Another Workflow": [
+      {
+        "json": {
+          "id": "75005b80-689b-49d4-ad92-e2fd96fcee6e",
+          "chat_id": "03fc5e2c-2ba3-4dd2-a2af-fc1aab2cb268",
+          "sender": "user",
+          "message_type": "text",
+          "response_request": "text",
+          "message": "is there any of DMSO benefits??",
+          "language": "en",
+          "media_id": null,
+          "created_at": "2026-01-13T13:05:42.239707+00:00",
+          "updated_at": "2026-01-13T13:05:42.239707+00:00",
+          "is_summary": false,
+          "search_vector": "'benefit':6 'dmso':5",
+          "intent": null
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-01-13T11:00:15.097Z",
+      "createdAt": "2026-01-13T11:00:15.097Z",
+      "role": "workflow:owner",
+      "workflowId": "n7DACfyia3ecsyoT",
+      "projectId": "POhXKLALTFDZhVtj"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2026-01-13T15:30:33.000Z",
+  "versionId": "9706c9dd-fff9-4206-a6cc-524f6a76448a"
+}
