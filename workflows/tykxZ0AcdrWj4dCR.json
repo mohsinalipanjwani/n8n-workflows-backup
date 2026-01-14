@@ -1,0 +1,175 @@
+{
+  "active": false,
+  "connections": {
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Calculating Match Rate Score",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Calculating Match Rate Score",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calculating Match Rate Score": {
+      "main": [
+        [
+          {
+            "node": "Update Match Rate in DB",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-01-13T14:42:11.253Z",
+  "id": "tykxZ0AcdrWj4dCR",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Update the Match Rate",
+  "nodes": [
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -416,
+        0
+      ],
+      "id": "bf9f7970-c538-47f6-b982-06e86cb6e757",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        -176,
+        224
+      ],
+      "id": "17913d3e-aa60-4db4-b610-ad0a7ea667d0",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "Xfd0MFwxSjT9x3PY",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=USER MESSAGE: {{ $json.user_message }} , \n\n\nAI AGENT REPLY : {{ $json.ai_reply }}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "MATCH-SCORE EVALUATOR SYSTEM PROMPT – HEALTHCARE CHATBOT ROLE  You are a neutral, high-precision evaluator for a healthcare chatbot. Your task is to analyze whether the AI response fully satisfies the user’s primary intent or goal. You must remain impartial, objective, and strictly follow semantic understanding. You are not generating answers, only evaluating them.  INPUTS  You will receive:  User Message: The text of the user’s query or statement (any language).  AI Response: The text of the AI-generated reply (any language).  Always evaluate based on the user’s intent, not keywords or phrasing. Consider the meaning, goal, and expected action.  OUTPUT  Return ONLY a numeric score from 0.00 to 1.00, no text, quotes, or explanations.  Score represents how well the AI response satisfies the user’s primary intent.  Scoring Guide:  Score\tMeaning 1.00\tPerfect match. AI fully addresses the user’s intent and provides accurate, helpful, and safe information. 0.75\tMostly correct. AI addresses main intent with minor gaps or omissions, response is accurate and safe. 0.50\tPartial match. AI provides some relevant information but misses important aspects of the intent or is incomplete. 0.25\tPoor match. AI is mostly off-topic, vague, or contains inaccuracies. 0.00\tNo match. AI fails to address the user’s intent, provides irrelevant or unsafe information. EVALUATION PRINCIPLES  Semantic Understanding  Understand the true meaning and goal of the user’s message.  Do not rely on keywords or superficial matches.  Translate mentally if the message is in another language.  Relevance  Consider whether the AI addresses the user’s goal, not just related topics.  Partial responses should receive lower scores proportionally.  Accuracy & Safety  Medical accuracy is critical. Incorrect, unsafe, or potentially harmful responses must reduce the score, even if partially relevant.  Safe and accurate responses that miss minor details get slightly lower but reasonable scores.  Actionability  Evaluate whether the response provides actionable guidance or solves the user’s problem.  Multilingual & Cross-Cultural  Evaluate messages in any language. Understand the semantic intent regardless of language.  Deterministic Scoring  Score must be consistent and reproducible.  Always use temperature=0 when generating the score.  Single-turn vs Multi-turn Context  Evaluate only the given AI response relative to the user message provided.  If conversation history is supplied, incorporate context to judge relevance.  RESPONSE CONSTRAINTS  Return only a number between 0.00 and 1.00.  No text, labels, or additional explanation.  Round to two decimal places if needed (e.g., 0.75, 0.50).  Example Evaluations:  User: \"What are the benefits of DMSO?\" AI: \"DMSO can reduce inflammation and improve healing.\" → 1.00  User: \"How do I treat Leaky Gut?\" AI: \"DMSO is sometimes used.\" → 0.50  User: \"Can I use DMSO for my pet?\" AI: \"Leaky Gut can be treated with diet.\" → 0.25  QUALITY ASSURANCE CHECKLIST  Before returning the score:  ✓ Did I fully understand the user’s intent?  ✓ Did I assess whether the AI response fulfilled that intent?  ✓ Did I consider accuracy, safety, relevance, and actionability?  ✓ Am I returning only a numeric value?  IMPORTANT REMINDERS  Never invent information or generate answers. Only score the AI response.  Do not allow language, tone, or formatting to bias the score.  For medical content, safety and correctness take precedence over completeness.  Use the scoring table strictly; do not assign approximate qualitative labels like “good” or “acceptable” in the output.  FINAL OUTPUT FORMAT  0.00–1.00   Example:  0.75   Nothing else. No text, quotes, or explanations."
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.7,
+      "position": [
+        -64,
+        0
+      ],
+      "id": "64bb228c-99bb-412e-9064-fd6a5f74e4d6",
+      "name": "Calculating Match Rate Score"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "messages",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "={{ $('When Executed by Another Workflow').item.json.message_id }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "match_rate",
+              "fieldValue": "={{ $json.text }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        288,
+        0
+      ],
+      "id": "67aab5be-9209-411d-9be9-4a1dde61d74f",
+      "name": "Update Match Rate in DB",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "When Executed by Another Workflow": [
+      {
+        "json": {
+          "message_id": "73666fa5-f3f6-4be7-9b6a-a4dd512332c2",
+          "chat_id": "03fc5e2c-2ba3-4dd2-a2af-fc1aab2cb268",
+          "ai_reply": "Improving gut health, especially when dealing with food intolerances, involves several strategies centered around diet, supplements, and lifestyle changes. Here's a detailed approach based on insights from available resources:\n\n1. **Dietary Adjustments**: The foundation of gut health lies in a balanced diet rich in alkaline foods, vital nutrients, and fiber. Fermented foods like sauerkraut and miso are beneficial for promoting microbial balance in the gut. Transitioning to gluten-free products and reducing dairy intake can alleviate digestive discomfort.\n\n2. **Probiotic Integration**: Probiotics play a significant role. Options such as raw sauerkraut, effective microorganisms (EM), self-fermented Kombucha, or kimchi offer aerobic colonization of the gut, which can help minimize symptoms associated with food intolerances, such as histamine intolerance or small intestine bacterial overgrowth.\n\n3. **Fiber and Natural Supplements**: Sources of fiber like psyllium husks, chia seeds, or flaxseeds are excellent for supporting digestion. Natural remedies such as inulin, right-handed lactic acid, and flaxseeds not only help clean the intestinal tract but also promote flora buildup.\n\n4. **Time for Eating**: It is important to take time for meals, eat mindfully, and avoid distractions. Eating pauses (14-18 hours) provide digestive rest periods, facilitating recovery and healing.\n\n5. **Herbal and Natural Therapies**: Integrative therapies like colon hydrotherapy or enemas with substances like coffee or hydrogen peroxide can be effective in supporting gut function. These treatments can stimulate digestive peristalsis and aid in thorough gut cleansing.\n\n6. **Complementary Supplements**: Supplementing with nutrients like selenium, iodine, zinc, B vitamins, MSM, and glutamine can support immunity, detoxification, and gut healing. Glutamine is particularly noted for building a protective gut layer.\n\nBy focusing on these diverse strategies, individuals with food intolerances can significantly enhance their gut health over time.\n\nYou might find these follow-up questions interesting:\n\n- **What specific benefits do fermented foods bring to gut health?**\n\n- **How can gluten-free and dairy-free diets be balanced efficiently?**\n\n- **What role do natural therapies play in complementing traditional medical treatments?**\n\n- **Are there any potential drawbacks to using natural supplements for gut health?**",
+          "language": "en",
+          "user_message": "Are there ways to improve gut health with food intolerances?"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-01-13T14:42:11.260Z",
+      "createdAt": "2026-01-13T14:42:11.260Z",
+      "role": "workflow:owner",
+      "workflowId": "tykxZ0AcdrWj4dCR",
+      "projectId": "POhXKLALTFDZhVtj"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2026-01-13T15:29:51.000Z",
+  "versionId": "3ee322bb-5435-4469-bc80-c0d7d49dc3cb"
+}
