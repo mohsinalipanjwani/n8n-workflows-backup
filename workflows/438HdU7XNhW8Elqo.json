@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "Set Fields for Logs": {
       "main": [
@@ -103,6 +103,11 @@
             "node": "Message Input Fields",
             "type": "main",
             "index": 0
+          },
+          {
+            "node": "Set Message Intent Workflow",
+            "type": "main",
+            "index": 0
           }
         ]
       ]
@@ -167,6 +172,11 @@
         [
           {
             "node": "Send response back to user1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Set Fields for Match Rate",
             "type": "main",
             "index": 0
           }
@@ -396,11 +406,27 @@
           }
         ]
       ]
+    },
+    "Send response back to user1": {
+      "main": [
+        []
+      ]
+    },
+    "Set Fields for Match Rate": {
+      "main": [
+        [
+          {
+            "node": "Update the Match Rate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2026-01-07T09:02:45.975Z",
   "id": "438HdU7XNhW8Elqo",
-  "isArchived": true,
+  "isArchived": false,
   "meta": {
     "templateCredsSetupCompleted": true
   },
@@ -441,8 +467,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        3040,
-        -144
+        2416,
+        -528
       ],
       "id": "fec0768b-90d2-4ec4-a77a-32e3ab61e46b",
       "name": "Set Fields for Logs",
@@ -471,8 +497,8 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1.2,
       "position": [
-        3456,
-        -144
+        2560,
+        -528
       ],
       "id": "8729d52c-8b30-4719-a77f-1f666c532563",
       "name": "Execute Q/A Logs in Sheet",
@@ -484,6 +510,7 @@
           "__rl": true,
           "value": "w0dB34qZZ432RjUI",
           "mode": "list",
+          "cachedResultUrl": "/workflow/w0dB34qZZ432RjUI",
           "cachedResultName": "Update message count in chat"
         },
         "workflowInputs": {
@@ -501,8 +528,8 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1.2,
       "position": [
-        6880,
-        -96
+        7024,
+        -48
       ],
       "id": "12ab60b0-08df-400b-950b-30e3bd7601b8",
       "name": "Execute Message count subworkflow"
@@ -632,8 +659,8 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.4,
       "position": [
-        8320,
-        304
+        8496,
+        224
       ],
       "id": "16d7a3c3-6448-4b2d-b259-b27c66af47ec",
       "name": "Send response back to user1"
@@ -777,6 +804,7 @@
         "operation": "upload",
         "bucketName": "dmso",
         "fileName": "=user-uploads/{{ $('Received user query from chatbot1').item.json.body.userId }}/{{ $json.audioFileKey }}",
+        "binaryPropertyName": "something",
         "additionalFields": {
           "acl": "publicRead"
         }
@@ -872,6 +900,10 @@
             {
               "fieldId": "media_id",
               "fieldValue": "={{ $json.media_id }}"
+            },
+            {
+              "fieldId": "completion",
+              "fieldValue": "TRUE"
             }
           ]
         }
@@ -1030,6 +1062,10 @@
             {
               "fieldId": "response_request",
               "fieldValue": "={{ $json.response_request }}"
+            },
+            {
+              "fieldId": "completion",
+              "fieldValue": "TRUE"
             }
           ]
         }
@@ -1037,8 +1073,8 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        6016,
-        -48
+        6048,
+        -128
       ],
       "id": "a4b3e83b-238f-40f1-83f9-17eb3c4089dd",
       "name": "Update the content of previous message1",
@@ -1372,8 +1408,8 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        6256,
-        -48
+        6336,
+        -128
       ],
       "id": "48c8c9be-9779-4b9f-99b0-3f990282a61f",
       "name": "Reset Rating",
@@ -1384,11 +1420,152 @@
           "name": "Supabase account"
         }
       }
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "n7DACfyia3ecsyoT",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/n7DACfyia3ecsyoT",
+          "cachedResultName": "Set Message Intent"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {}
+        },
+        "options": {
+          "waitForSubWorkflow": false
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        2592,
+        -192
+      ],
+      "id": "9da9a7c1-8b2d-4d96-ac56-09cb9cbfa902",
+      "name": "Set Message Intent Workflow"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "tykxZ0AcdrWj4dCR",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/tykxZ0AcdrWj4dCR",
+          "cachedResultName": "Update the Match Rate"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {}
+        },
+        "options": {
+          "waitForSubWorkflow": false
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        8496,
+        -96
+      ],
+      "id": "09016172-43bc-4204-954b-fab41c567c00",
+      "name": "Update the Match Rate"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "0c792438-1e18-4803-81db-2a1067cf8ab8",
+              "name": "message_id",
+              "value": "={{ $json.message_id }}",
+              "type": "string"
+            },
+            {
+              "id": "2def8031-6d24-43ce-97bf-151515f4df37",
+              "name": "chat_id",
+              "value": "={{ $json.chat_id }}",
+              "type": "string"
+            },
+            {
+              "id": "167bf4cb-b57d-4040-a483-1169a53dbe16",
+              "name": "ai_reply",
+              "value": "={{ $json.output }}",
+              "type": "string"
+            },
+            {
+              "id": "f626675f-1691-4bf8-88a4-8c7e847d11c8",
+              "name": "language",
+              "value": "={{ $json.language }}",
+              "type": "string"
+            },
+            {
+              "id": "dd60345c-016d-416e-9330-a2b40a7bd0d4",
+              "name": "user_message",
+              "value": "={{ $('Save user message in db1').item.json.message }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        8112,
+        -96
+      ],
+      "id": "8a0419a9-349c-40a8-a900-fc838c09c9eb",
+      "name": "Set Fields for Match Rate"
     }
   ],
-  "pinData": {},
+  "pinData": {
+    "Received user query from chatbot1": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.app.medizinzumselbermachen.de",
+            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36",
+            "content-length": "235",
+            "accept": "*/*",
+            "accept-encoding": "gzip, deflate, br",
+            "content-type": "application/json",
+            "postman-token": "aadaa872-b340-499c-8558-aba0c2a6ee72",
+            "referer": "https://dominik-ai-chatbot.vercel.app/",
+            "sec-ch-ua": "\"Google Chrome\";v=\"143\", \"Chromium\";v=\"143\", \"Not A(Brand\";v=\"24\"",
+            "sec-ch-ua-mobile": "?0",
+            "sec-ch-ua-platform": "\"Windows\"",
+            "x-forwarded-for": "119.63.128.115",
+            "x-forwarded-host": "n8n.app.medizinzumselbermachen.de",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "caf3c9da6002",
+            "x-real-ip": "119.63.128.115"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "message": "Are there ways to improve gut health with food intolerances?",
+            "requestType": "text",
+            "responseType": "text",
+            "language": "en",
+            "chatId": "03fc5e2c-2ba3-4dd2-a2af-fc1aab2cb268",
+            "userId": "9876",
+            "messageId": null,
+            "isRegenerate": false
+          },
+          "webhookUrl": "https://n8n.app.medizinzumselbermachen.de/webhook-test/d396f3c0-4169-4f6c-aab6-2a362907936d",
+          "executionMode": "test"
+        }
+      }
+    ]
+  },
   "settings": {
-    "executionOrder": "v1"
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
   },
   "shared": [
     {
@@ -1402,6 +1579,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2026-01-07T11:23:58.000Z",
-  "versionId": "b0244080-2398-48e4-8459-c0a77bea897c"
+  "updatedAt": "2026-01-13T15:29:35.000Z",
+  "versionId": "05d8cc6c-0229-41ef-88b0-d0d26971b73e"
 }
