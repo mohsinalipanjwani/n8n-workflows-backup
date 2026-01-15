@@ -250,6 +250,14 @@
             {
               "fieldId": "is_summary",
               "fieldValue": "TRUE"
+            },
+            {
+              "fieldId": "call_id",
+              "fieldValue": "={{ $('Get Call Msgs').item.json.body.call_id }}"
+            },
+            {
+              "fieldId": "message_mode",
+              "fieldValue": "INTERACTIVE"
             }
           ]
         }
@@ -379,7 +387,46 @@
       }
     }
   ],
-  "pinData": {},
+  "pinData": {
+    "Get Call Msgs": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.app.medizinzumselbermachen.de",
+            "user-agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Mobile Safari/537.36",
+            "content-length": "63",
+            "accept": "application/json, text/plain, */*",
+            "accept-encoding": "gzip, deflate, br, zstd",
+            "accept-language": "de-DE,de;q=0.9,en;q=0.8,pt;q=0.7",
+            "content-type": "application/json",
+            "origin": "https://dominik-ai-chatbot.vercel.app",
+            "priority": "u=1, i",
+            "referer": "https://dominik-ai-chatbot.vercel.app/",
+            "sec-ch-ua": "\"Google Chrome\";v=\"143\", \"Chromium\";v=\"143\", \"Not A(Brand\";v=\"24\"",
+            "sec-ch-ua-mobile": "?1",
+            "sec-ch-ua-platform": "\"Android\"",
+            "sec-fetch-dest": "empty",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-site": "cross-site",
+            "x-forwarded-for": "169.155.237.251",
+            "x-forwarded-host": "n8n.app.medizinzumselbermachen.de",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "caf3c9da6002",
+            "x-real-ip": "169.155.237.251"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "language": "de",
+            "call_id": "conv_8601keq6c9h6fde9m0en0tb0vpsc"
+          },
+          "webhookUrl": "https://n8n.app.medizinzumselbermachen.de/webhook/get-call-msgs",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
   "settings": {
     "executionOrder": "v1"
   },
@@ -395,6 +442,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-12-16T12:54:43.000Z",
-  "versionId": "262b53e7-e46f-4448-a5c2-6e92f2b4c4f1"
+  "updatedAt": "2026-01-14T15:29:02.000Z",
+  "versionId": "f9766e5a-9dc7-4294-869d-654864a7355e"
 }
