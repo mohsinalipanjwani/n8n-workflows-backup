@@ -744,6 +744,10 @@
             {
               "fieldId": "media_id",
               "fieldValue": "={{ $json.body.mediaId }}"
+            },
+            {
+              "fieldId": "message_mode",
+              "fieldValue": "RESEARCH"
             }
           ]
         }
@@ -879,6 +883,10 @@
             {
               "fieldId": "media_id",
               "fieldValue": "={{ $json.media_id }}"
+            },
+            {
+              "fieldId": "message_mode",
+              "fieldValue": "RESEARCH"
             }
           ]
         }
@@ -1408,6 +1416,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2026-01-07T11:25:21.000Z",
-  "versionId": "ec10f318-f485-4291-ad79-4aea9872c943"
+  "updatedAt": "2026-01-14T15:02:46.000Z",
+  "versionId": "cb89633f-a62b-4221-b4df-1cc05ca81af5"
 }
