@@ -1,0 +1,323 @@
+{
+  "active": false,
+  "connections": {
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Split Sources",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Sources": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Get document by File ID",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get document by File ID": {
+      "main": [
+        [
+          {
+            "node": "Check if document already queried",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check if document already queried": {
+      "main": [
+        [
+          {
+            "node": "Create new entry",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Update existing media with File ID",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create new entry": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update existing media with File ID": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-01-15T07:38:20.705Z",
+  "id": "v9redZmE5HUCCraX",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Record Queried Document in the Database",
+  "nodes": [
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -224,
+        -32
+      ],
+      "id": "cb2062f2-d084-4b95-ac45-fab8b3f744f1",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "jsCode": "return $input.first().json.output.source.map(item => ({\n  json: {\n    source: item\n  }\n}));\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -16,
+        -32
+      ],
+      "id": "2469116b-b5c9-4a20-9d09-bef5aaa3e21e",
+      "name": "Split Sources"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        272,
+        -32
+      ],
+      "id": "edc761e4-cbe8-4dd0-8bf5-f60c74136281",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "query_documents",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "file_id",
+              "keyValue": "={{ $json.source.file_id }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        560,
+        -16
+      ],
+      "id": "fedc20ba-eda4-47d6-b8fe-8ebf731bcec6",
+      "name": "Get document by File ID",
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "33167779-66ca-459f-8cea-4525eca6b90e",
+              "leftValue": "={{ $json }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        896,
+        -16
+      ],
+      "id": "2cb138ec-1727-489a-a504-2ee395c8da1e",
+      "name": "Check if document already queried"
+    },
+    {
+      "parameters": {
+        "tableId": "query_documents",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "name",
+              "fieldValue": "={{ $('Loop Over Items').item.json.source.name }}"
+            },
+            {
+              "fieldId": "file_id",
+              "fieldValue": "={{ $('Loop Over Items').item.json.source.file_id }}"
+            },
+            {
+              "fieldId": "retrieval_count",
+              "fieldValue": "1"
+            },
+            {
+              "fieldId": "updated_at",
+              "fieldValue": "={{ $now }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1360,
+        -144
+      ],
+      "id": "dffe7056-ceab-4fe8-9d10-e1deaa8b01c8",
+      "name": "Create new entry",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "query_documents",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "file_id",
+              "condition": "eq",
+              "keyValue": "={{ $json.file_id }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "retrieval_count",
+              "fieldValue": "={{ $json.retrieval_count }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1360,
+        0
+      ],
+      "id": "45818060-0c40-4ec6-8a75-06dc317aa8c9",
+      "name": "Update existing media with File ID",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "When Executed by Another Workflow": [
+      {
+        "json": {
+          "output": {
+            "source": [
+              {
+                "name": "E-Book-DMSO-Co.-Antworten-auf-Ihre-Fragen_dritte-Auflage_Einzelseiten.pdf",
+                "file_id": "dd946140-1749-48da-b69c-8c1b1a7b2a8e"
+              },
+              {
+                "name": "DMSO & Co - ATH Training - 2-24 ｜ Modul 2： Fortgeschrittenen Themen ⧸ Video 20： Praktische.mp4",
+                "file_id": "0153e80d-ce73-4c6b-a185-bd88c39f36e8"
+              },
+              {
+                "name": "E-Book-DMSO-Co.-Medizin-zum-Selbermachen_dritte-Auflage_Einzelseiten.pdf",
+                "file_id": "d97b9dec-9c91-48c0-b169-675d2fd8eede"
+              },
+              {
+                "name": "DMSO & Co - ATH Training - 7-12 ｜ DMSO & Co Professional Videos ⧸ Professional Video 12： I.mp4",
+                "file_id": "cf27afb6-6b7a-40a0-a5af-e4b7f428ad71"
+              }
+            ],
+            "answer": "Ich habe einige interessante Informationen über die verschiedenen Konzentrationen von DMSO (Dimethylsulfoxid) gefunden, die möglicherweise nützlich für Dich sein könnten.\n\n\n**Gängige Anwendungen und Konzentrationen von DMSO**\n\n\nIn der Welt der medizinischen und kosmetischen Anwendungen kann DMSO in verschiedenen Konzentrationen verwendet werden, je nach spezifischen Einsatzgebieten. Hier sind einige Beispiele:\n\n\n1. **1 % Konzentration:** Wird oft in Inhalationslösungen verwendet.\n\n2. **3 % Konzentration:** Üblich in Augentropfen und Infusionslösungen. Für Infusionen findet man häufig eine Konzentration zwischen 1,5 % und 3 %, was aus der Mischung von DMSO in größeren Flüssigkeitsvolumina resultiert.\n\n3. **10 % Konzentration:** Zu kosmetischen Zwecken, wie in Gesichtswassern, genutzt.\n\n4. **15 % Konzentration:** Häufig für Einläufe, Ohren- und Nasentropfen, wie auch für Mundspülungen und zur Behandlung von frischen Operationsnarben verwendet. Auch kommen solche Konzentrationen in steriler Form für Injektionen (intramuskulär oder subkutan) zum Einsatz.\n\n5. **30 % Konzentration:** Für äußerliche Anwendungen auf empfindlicher Haut, wie Rumpf, Hals und Kopf.\n\n6. **50 % Konzentration:** Verwendet für Blasenspülungen.\n\n7. **60 % Konzentration:** Wird bei äußerlichen Anwendungen gegen Schmerzen am Bewegungsapparat, für Füße, Hände, Beine, bei Verbrennungen und Blutergüssen eingesetzt.\n\n8. **100 % Konzentration:** In reiner Form oder als Applikation bei Aphthen, Herpesbläschen, Nagelpilz und Warzen (direktes Betupfen mit Holzwattestäbchen).\n\n\n**Spezielle Anmerkungen zur Sicherheit und Verwendung**\n\n\nDMSO ist nicht krebserregend, mutagen oder ein Reproduktionstoxin. Es ist zudem gut untersucht und dokumentiert in Bezug auf seine Absorption, Verteilung, seinen Metabolismus und die Ausscheidung im Körper.\n\n\n• **Möchtest Du mehr darüber erfahren, wie man DMSO sicher anwendet?**\n\n\n• **Interessiert Dich, welche Vorteile DMSO im kosmetischen Bereich hat?**\n\n\n• **Möchtest Du mehr über mögliche Nebenwirkungen von DMSO wissen?**\n\n\n• **Bist Du neugierig darauf, wie DMSO in der modernen Medizin eingesetzt wird?**"
+          }
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-01-15T07:38:20.712Z",
+      "createdAt": "2026-01-15T07:38:20.712Z",
+      "role": "workflow:owner",
+      "workflowId": "v9redZmE5HUCCraX",
+      "projectId": "POhXKLALTFDZhVtj"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2026-01-15T13:43:57.000Z",
+  "versionId": "40ba299c-29d1-49ef-a877-16fd794f5378"
+}
