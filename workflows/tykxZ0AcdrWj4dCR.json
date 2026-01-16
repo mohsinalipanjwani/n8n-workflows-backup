@@ -120,7 +120,7 @@
         "fieldsUi": {
           "fieldValues": [
             {
-              "fieldId": "match_rate",
+              "fieldId": "match_score",
               "fieldValue": "={{ $json.text }}"
             }
           ]
@@ -146,11 +146,11 @@
     "When Executed by Another Workflow": [
       {
         "json": {
-          "message_id": "73666fa5-f3f6-4be7-9b6a-a4dd512332c2",
-          "chat_id": "03fc5e2c-2ba3-4dd2-a2af-fc1aab2cb268",
-          "ai_reply": "Improving gut health, especially when dealing with food intolerances, involves several strategies centered around diet, supplements, and lifestyle changes. Here's a detailed approach based on insights from available resources:\n\n1. **Dietary Adjustments**: The foundation of gut health lies in a balanced diet rich in alkaline foods, vital nutrients, and fiber. Fermented foods like sauerkraut and miso are beneficial for promoting microbial balance in the gut. Transitioning to gluten-free products and reducing dairy intake can alleviate digestive discomfort.\n\n2. **Probiotic Integration**: Probiotics play a significant role. Options such as raw sauerkraut, effective microorganisms (EM), self-fermented Kombucha, or kimchi offer aerobic colonization of the gut, which can help minimize symptoms associated with food intolerances, such as histamine intolerance or small intestine bacterial overgrowth.\n\n3. **Fiber and Natural Supplements**: Sources of fiber like psyllium husks, chia seeds, or flaxseeds are excellent for supporting digestion. Natural remedies such as inulin, right-handed lactic acid, and flaxseeds not only help clean the intestinal tract but also promote flora buildup.\n\n4. **Time for Eating**: It is important to take time for meals, eat mindfully, and avoid distractions. Eating pauses (14-18 hours) provide digestive rest periods, facilitating recovery and healing.\n\n5. **Herbal and Natural Therapies**: Integrative therapies like colon hydrotherapy or enemas with substances like coffee or hydrogen peroxide can be effective in supporting gut function. These treatments can stimulate digestive peristalsis and aid in thorough gut cleansing.\n\n6. **Complementary Supplements**: Supplementing with nutrients like selenium, iodine, zinc, B vitamins, MSM, and glutamine can support immunity, detoxification, and gut healing. Glutamine is particularly noted for building a protective gut layer.\n\nBy focusing on these diverse strategies, individuals with food intolerances can significantly enhance their gut health over time.\n\nYou might find these follow-up questions interesting:\n\n- **What specific benefits do fermented foods bring to gut health?**\n\n- **How can gluten-free and dairy-free diets be balanced efficiently?**\n\n- **What role do natural therapies play in complementing traditional medical treatments?**\n\n- **Are there any potential drawbacks to using natural supplements for gut health?**",
-          "language": "en",
-          "user_message": "Are there ways to improve gut health with food intolerances?"
+          "message_id": "2290b911-7129-4f3c-bbc6-b9b558b457b9",
+          "chat_id": "13d137ce-3545-47c1-ae29-a5f304018257",
+          "ai_reply": "Ich habe einige interessante Informationen über die verschiedenen Konzentrationen von DMSO (Dimethylsulfoxid) gefunden, die möglicherweise nützlich für Dich sein könnten.\n\n\n**Gängige Anwendungen und Konzentrationen von DMSO**\n\n\nIn der Welt der medizinischen und kosmetischen Anwendungen kann DMSO in verschiedenen Konzentrationen verwendet werden, je nach spezifischen Einsatzgebieten. Hier sind einige Beispiele:\n\n\n1. **1 % Konzentration:** Wird oft in Inhalationslösungen verwendet.\n\n2. **3 % Konzentration:** Üblich in Augentropfen und Infusionslösungen. Für Infusionen findet man häufig eine Konzentration zwischen 1,5 % und 3 %, was aus der Mischung von DMSO in größeren Flüssigkeitsvolumina resultiert.\n\n3. **10 % Konzentration:** Zu kosmetischen Zwecken, wie in Gesichtswassern, genutzt.\n\n4. **15 % Konzentration:** Häufig für Einläufe, Ohren- und Nasentropfen, wie auch für Mundspülungen und zur Behandlung von frischen Operationsnarben verwendet. Auch kommen solche Konzentrationen in steriler Form für Injektionen (intramuskulär oder subkutan) zum Einsatz.\n\n5. **30 % Konzentration:** Für äußerliche Anwendungen auf empfindlicher Haut, wie Rumpf, Hals und Kopf.\n\n6. **50 % Konzentration:** Verwendet für Blasenspülungen.\n\n7. **60 % Konzentration:** Wird bei äußerlichen Anwendungen gegen Schmerzen am Bewegungsapparat, für Füße, Hände, Beine, bei Verbrennungen und Blutergüssen eingesetzt.\n\n8. **100 % Konzentration:** In reiner Form oder als Applikation bei Aphthen, Herpesbläschen, Nagelpilz und Warzen (direktes Betupfen mit Holzwattestäbchen).\n\n\n**Spezielle Anmerkungen zur Sicherheit und Verwendung**\n\n\nDMSO ist nicht krebserregend, mutagen oder ein Reproduktionstoxin. Es ist zudem gut untersucht und dokumentiert in Bezug auf seine Absorption, Verteilung, seinen Metabolismus und die Ausscheidung im Körper.\n\n\n• **Möchtest Du mehr darüber erfahren, wie man DMSO sicher anwendet?**\n\n\n• **Interessiert Dich, welche Vorteile DMSO im kosmetischen Bereich hat?**\n\n\n• **Möchtest Du mehr über mögliche Nebenwirkungen von DMSO wissen?**\n\n\n• **Bist Du neugierig darauf, wie DMSO in der modernen Medizin eingesetzt wird?**",
+          "language": "de",
+          "user_message": "concentrations of dmso? \n"
         }
       }
     ]
@@ -170,6 +170,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2026-01-13T15:29:51.000Z",
-  "versionId": "3ee322bb-5435-4469-bc80-c0d7d49dc3cb"
+  "updatedAt": "2026-01-15T13:45:07.000Z",
+  "versionId": "65ac054e-5408-489a-a519-38051eed86c4"
 }
