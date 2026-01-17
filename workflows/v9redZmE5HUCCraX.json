@@ -110,7 +110,7 @@
     },
     {
       "parameters": {
-        "jsCode": "return $input.first().json.output.source.map(item => ({\n  json: {\n    source: item\n  }\n}));\n"
+        "jsCode": "return  $input.first().json.output.sources.map(item => ({\n  json: {\n    source: item\n  }\n}));\n"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -279,25 +279,25 @@
       {
         "json": {
           "output": {
-            "source": [
+            "sources": [
               {
-                "name": "E-Book-DMSO-Co.-Antworten-auf-Ihre-Fragen_dritte-Auflage_Einzelseiten.pdf",
+                "file_name": "DMSO & Co - ATH Training - 7-12 ｜ DMSO & Co Professional Videos ⧸ Professional Video 12： I.mp4",
+                "file_id": "cf27afb6-6b7a-40a0-a5af-e4b7f428ad71"
+              },
+              {
+                "file_name": "DMSO & Co - ATH Training - 2-10 ｜ Modul 2： Fortgeschrittenen Themen ⧸ Video 8： Konzentrati.mp4",
+                "file_id": "2b8121db-82a6-4a58-9aaf-1ba1e50fffd9"
+              },
+              {
+                "file_name": "E-Book-DMSO-Co.-Antworten-auf-Ihre-Fragen_dritte-Auflage_Einzelseiten.pdf",
                 "file_id": "dd946140-1749-48da-b69c-8c1b1a7b2a8e"
               },
               {
-                "name": "DMSO & Co - ATH Training - 2-24 ｜ Modul 2： Fortgeschrittenen Themen ⧸ Video 20： Praktische.mp4",
-                "file_id": "0153e80d-ce73-4c6b-a185-bd88c39f36e8"
-              },
-              {
-                "name": "E-Book-DMSO-Co.-Medizin-zum-Selbermachen_dritte-Auflage_Einzelseiten.pdf",
+                "file_name": "E-Book-DMSO-Co.-Medizin-zum-Selbermachen_dritte-Auflage_Einzelseiten.pdf",
                 "file_id": "d97b9dec-9c91-48c0-b169-675d2fd8eede"
-              },
-              {
-                "name": "DMSO & Co - ATH Training - 7-12 ｜ DMSO & Co Professional Videos ⧸ Professional Video 12： I.mp4",
-                "file_id": "cf27afb6-6b7a-40a0-a5af-e4b7f428ad71"
               }
             ],
-            "answer": "Ich habe einige interessante Informationen über die verschiedenen Konzentrationen von DMSO (Dimethylsulfoxid) gefunden, die möglicherweise nützlich für Dich sein könnten.\n\n\n**Gängige Anwendungen und Konzentrationen von DMSO**\n\n\nIn der Welt der medizinischen und kosmetischen Anwendungen kann DMSO in verschiedenen Konzentrationen verwendet werden, je nach spezifischen Einsatzgebieten. Hier sind einige Beispiele:\n\n\n1. **1 % Konzentration:** Wird oft in Inhalationslösungen verwendet.\n\n2. **3 % Konzentration:** Üblich in Augentropfen und Infusionslösungen. Für Infusionen findet man häufig eine Konzentration zwischen 1,5 % und 3 %, was aus der Mischung von DMSO in größeren Flüssigkeitsvolumina resultiert.\n\n3. **10 % Konzentration:** Zu kosmetischen Zwecken, wie in Gesichtswassern, genutzt.\n\n4. **15 % Konzentration:** Häufig für Einläufe, Ohren- und Nasentropfen, wie auch für Mundspülungen und zur Behandlung von frischen Operationsnarben verwendet. Auch kommen solche Konzentrationen in steriler Form für Injektionen (intramuskulär oder subkutan) zum Einsatz.\n\n5. **30 % Konzentration:** Für äußerliche Anwendungen auf empfindlicher Haut, wie Rumpf, Hals und Kopf.\n\n6. **50 % Konzentration:** Verwendet für Blasenspülungen.\n\n7. **60 % Konzentration:** Wird bei äußerlichen Anwendungen gegen Schmerzen am Bewegungsapparat, für Füße, Hände, Beine, bei Verbrennungen und Blutergüssen eingesetzt.\n\n8. **100 % Konzentration:** In reiner Form oder als Applikation bei Aphthen, Herpesbläschen, Nagelpilz und Warzen (direktes Betupfen mit Holzwattestäbchen).\n\n\n**Spezielle Anmerkungen zur Sicherheit und Verwendung**\n\n\nDMSO ist nicht krebserregend, mutagen oder ein Reproduktionstoxin. Es ist zudem gut untersucht und dokumentiert in Bezug auf seine Absorption, Verteilung, seinen Metabolismus und die Ausscheidung im Körper.\n\n\n• **Möchtest Du mehr darüber erfahren, wie man DMSO sicher anwendet?**\n\n\n• **Interessiert Dich, welche Vorteile DMSO im kosmetischen Bereich hat?**\n\n\n• **Möchtest Du mehr über mögliche Nebenwirkungen von DMSO wissen?**\n\n\n• **Bist Du neugierig darauf, wie DMSO in der modernen Medizin eingesetzt wird?**"
+            "answer": "DMSO wird in verschiedenen Konzentrationen für unterschiedliche Anwendungen verwendet. Hier sind einige typische Anwendungen und die dazugehörigen Konzentrationen:\n\n1. **1%**: Wird häufig in Inhalationslösungen eingesetzt.\n2. **3%**: Verwendung in Augentropfen und Infusionen.\n3. **10%**: Findet Anwendung in kosmetischen Zwecken, wie Gesichtswässer.\n4. **15%**: Genutzt für Einläufe, Ohren- und Nasentropfen, Scheidenspülungen, Mundspülungen, sowie frische Operationsnarben und sterile Injektionen.\n5. **30%**: Äußerliche lokale Anwendungen, insbesondere auf empfindlicher Haut, Rumpf, Hals und Kopf.\n6. **50%** und darüber: Wird für Blasenspülungen oder äußere Anwendungen bei Schmerzen am Bewegungsapparat, Füßen, Händen, Beinen, Verbrennungen und Blutergüssen verwendet.\n7. **100%**: Wird gezielt auf Aphthen, Herpesbläschen, Nagelpilz und Warzen mittels Holzwattestäbchen aufgetragen.\n\nDie genaue Konzentration ist oft abhängig vom spezifischen Einsatz und der gewünschten Wirkung. Wichtig ist, dass das DMSO für therapeutische Zwecke eine pharmazeutische Zertifizierung hat."
           }
         }
       }
@@ -318,6 +318,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2026-01-15T13:43:57.000Z",
-  "versionId": "40ba299c-29d1-49ef-a877-16fd794f5378"
+  "updatedAt": "2026-01-16T20:27:47.000Z",
+  "versionId": "1e963cc6-eeed-44cd-8503-9d191bbcdc3a"
 }
