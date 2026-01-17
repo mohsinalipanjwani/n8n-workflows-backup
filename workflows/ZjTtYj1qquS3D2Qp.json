@@ -1452,9 +1452,10 @@
     },
     {
       "parameters": {
-        "jsonSchemaExample": "\n\n{\n  \"source\":  [{\"name\": \"source.pdf | video | mp3\" , \"file_id\": \"dd946140-1749-48da-b69xxxxxxxxxxxxxxxx\"}] ,\n  \"answer\": \"Agent final response .......\"\n}",
+        "jsonSchemaExample": "{\n  \"sources\":  [{\"file_name\": \"source.pdf\" , \"file_id\": \"dd946140-1749-48da-b69xxxxxxxxxxxxxxxx\"}],\n  \"answer\": \"Agent final respons\"\n}",
         "autoFix": true,
-        "customizeRetryPrompt": true
+        "customizeRetryPrompt": true,
+        "prompt": "Instructions:\n--------------\n{instructions}\n--------------\n\nCompletion:\n--------------\n{completion}\n--------------\n\nThe above Completion did not satisfy the constraints.\nError:\n--------------\n{error}\n--------------\n\nYou must try again and return ONLY a valid JSON object.\n\nThe response MUST strictly follow this schema:\n\n{{\n  \"sources\": [\n    {{\n      \"file_name\": \"source.pdf | video | mp3\",\n      \"file_id\": \"dd946140-1749-48da-b69xxxxxxxxxxxxxxxx\"\n    }}\n  ],\n  \"answer\": \"Agent final response\"\n}}\n\nStrict Rules:\n- Output ONLY raw JSON (no markdown, no explanations, no comments).\n- The top-level response must be a JSON object.\n- \"sources\" must ALWAYS be an array.\n- Each item in \"sources\" must include BOTH \"file_name\" and \"file_id\" as strings.\n- If no sources exist, return: \"sources\": [].\n- \"answer\" must be a single plain string.\n- Do NOT add extra fields.\n- Do NOT return null values.\n- Do NOT wrap the JSON in code blocks.\n"
       },
       "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
       "typeVersion": 1.3,
@@ -1522,7 +1523,7 @@
             {
               "id": "dd60345c-016d-416e-9330-a2b40a7bd0d4",
               "name": "user_message",
-              "value": "={{ $('Save user message in db1').item.json.message }}",
+              "value": "={{ $('Received user query from chatbot1').item.json.body.message }}",
               "type": "string"
             }
           ]
@@ -1570,7 +1571,7 @@
           "headers": {
             "host": "n8n.app.medizinzumselbermachen.de",
             "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36",
-            "content-length": "199",
+            "content-length": "300",
             "accept": "*/*",
             "accept-encoding": "gzip, deflate, br, zstd",
             "accept-language": "en-US,en;q=0.9",
@@ -1584,24 +1585,24 @@
             "sec-fetch-dest": "empty",
             "sec-fetch-mode": "cors",
             "sec-fetch-site": "cross-site",
-            "x-forwarded-for": "119.63.128.115",
+            "x-forwarded-for": "103.244.174.49",
             "x-forwarded-host": "n8n.app.medizinzumselbermachen.de",
             "x-forwarded-port": "443",
             "x-forwarded-proto": "https",
             "x-forwarded-server": "caf3c9da6002",
-            "x-real-ip": "119.63.128.115"
+            "x-real-ip": "103.244.174.49"
           },
           "params": {},
           "query": {},
           "body": {
-            "message": "concentrations of dmso? ",
+            "message": "Wie kann ein ganzheitliches, naturheilkundliches Behandlungskonzept bei Borreliose aussehen?",
             "requestType": "text",
             "responseType": "text",
             "language": "de",
-            "chatId": "13d137ce-3545-47c1-ae29-a5f304018257",
+            "chatId": "92e6f582-1a83-473e-a20b-edacf8f8864f",
             "userId": "9876",
-            "messageId": null,
-            "isRegenerate": false
+            "messageId": "638e3abd-3c56-4665-8542-e0854d59a2dc",
+            "isRegenerate": true
           },
           "webhookUrl": "https://n8n.app.medizinzumselbermachen.de/webhook/ask-query",
           "executionMode": "production"
@@ -1624,6 +1625,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2026-01-15T13:42:22.000Z",
-  "versionId": "5613cbda-7734-461e-acfd-952b417dfc49"
+  "updatedAt": "2026-01-16T20:51:10.000Z",
+  "versionId": "8230b48e-1616-40dd-916c-18148941593d"
 }
