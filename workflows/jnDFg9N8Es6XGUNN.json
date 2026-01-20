@@ -744,10 +744,6 @@
             {
               "fieldId": "media_id",
               "fieldValue": "={{ $json.body.mediaId }}"
-            },
-            {
-              "fieldId": "message_mode",
-              "fieldValue": "RESEARCH"
             }
           ]
         }
@@ -840,7 +836,7 @@
     },
     {
       "parameters": {
-        "jsCode": "let mediaId = null \ntry {\n  mediaId = $('Save media with MinIO File Path in DB1').first().json.id;\n\n} catch (error) {\n  //\n}\n  \n\nconst data = {\n  \"chat_id\": $('Received user query from chatbot1').first().json.body.chatId,\n  \"response_request\": $('Received user query from chatbot1').first().json.body.responseType,\n  \"media_id\": mediaId,\n  \"message_type\": $('Received user query from chatbot1').first().json.body.requestType,\n  \"sender\": \"ai\",\n  \"user_id\": $('Received user query from chatbot1').first().json.body.userId,\n  \"output\": $('AI Agent to Process the Chat1').first().json.output || null,\n  \"language\": $('Received user query from chatbot1').first().json.body.language\n}\n\nreturn data"
+        "jsCode": "let mediaId = null \ntry {\n  mediaId = $('Save media with MinIO File Path in DB1').first().json.id;\n\n} catch (error) {\n  //\n}\n  \n\nconst data = {\n  \"chat_id\": $('Received user query from chatbot1').first().json.body.chatId,\n  \"response_request\": $('Received user query from chatbot1').first().json.body.responseType,\n  \"media_id\": mediaId,\n  \"message_type\": $('Received user query from chatbot1').first().json.body.requestType,\n  \"sender\": \"ai\",\n  \"user_id\": $('Received user query from chatbot1').first().json.body.userId,\n  \"output\": $('AI Agent to Process the Chat1').first().json.output || null,\n  \"language\": $('Received user query from chatbot1').first().json.body.language,\n  \"message_mode\": mediaId ? \"AUDIO\" : \"TEXT\"\n}\n\nreturn data"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -886,7 +882,11 @@
             },
             {
               "fieldId": "message_mode",
-              "fieldValue": "RESEARCH"
+              "fieldValue": "={{ $json.message_mode }}"
+            },
+            {
+              "fieldId": "completion",
+              "fieldValue": "TRUE"
             }
           ]
         }
@@ -1400,7 +1400,50 @@
       }
     }
   ],
-  "pinData": {},
+  "pinData": {
+    "Received user query from chatbot1": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.app.medizinzumselbermachen.de",
+            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:146.0) Gecko/20100101 Firefox/146.0",
+            "content-length": "273",
+            "accept": "*/*",
+            "accept-encoding": "gzip, deflate, br, zstd",
+            "accept-language": "de,en-US;q=0.7,en;q=0.3",
+            "content-type": "application/json",
+            "origin": "https://dominik-ai-chatbot.vercel.app",
+            "priority": "u=0",
+            "referer": "https://dominik-ai-chatbot.vercel.app/",
+            "sec-fetch-dest": "empty",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-site": "cross-site",
+            "te": "trailers",
+            "x-forwarded-for": "185.68.159.146",
+            "x-forwarded-host": "n8n.app.medizinzumselbermachen.de",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "caf3c9da6002",
+            "x-real-ip": "185.68.159.146"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "message": "ok wie nehme ich es genau innerlich als Trinklösung ein, gebe mir hierfür eine genaue Anleitung.",
+            "requestType": "text",
+            "responseType": "text",
+            "language": "de",
+            "chatId": "13d137ce-3545-47c1-ae29-a5f304018257",
+            "userId": "9876",
+            "messageId": null,
+            "isRegenerate": false
+          },
+          "webhookUrl": "https://n8n.app.medizinzumselbermachen.de/webhook/deep-ask-query",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
   "settings": {
     "executionOrder": "v1"
   },
@@ -1416,6 +1459,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2026-01-14T15:02:46.000Z",
-  "versionId": "cb89633f-a62b-4221-b4df-1cc05ca81af5"
+  "updatedAt": "2026-01-19T10:56:54.000Z",
+  "versionId": "e077336a-f5d9-483e-af48-b4e162eef8ab"
 }
