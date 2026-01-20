@@ -717,7 +717,7 @@
           "value": "zzRPO9PbmOK5aH4yTrmb",
           "mode": "id"
         },
-        "text": "={{ $json.output.answer }}",
+        "text": "={{ $json.output.answer || $json.output }}",
         "additionalOptions": {
           "model": {
             "mode": "list",
@@ -775,10 +775,6 @@
             {
               "fieldId": "media_id",
               "fieldValue": "={{ $json.body.mediaId }}"
-            },
-            {
-              "fieldId": "message_mode",
-              "fieldValue": "DIRECT"
             }
           ]
         }
@@ -871,7 +867,7 @@
     },
     {
       "parameters": {
-        "jsCode": "let mediaId = null \ntry {\n  mediaId = $('Save media with MinIO File Path in DB1').first().json.id;\n\n} catch (error) {\n  //\n}\n  \n\nconst data = {\n  \"chat_id\": $('Received user query from chatbot1').first().json.body.chatId,\n  \"response_request\": $('Received user query from chatbot1').first().json.body.responseType,\n  \"media_id\": mediaId,\n  \"message_type\": $('Received user query from chatbot1').first().json.body.requestType,\n  \"sender\": \"ai\",\n  \"user_id\": $('Received user query from chatbot1').first().json.body.userId,\n  \"output\": $('AI Agent to Process the Chat1').first().json.output.answer || null,\n  \"language\": $('Received user query from chatbot1').first().json.body.language\n}\n\nreturn data"
+        "jsCode": "let mediaId = null \ntry {\n  mediaId = $('Save media with MinIO File Path in DB1').first().json.id;\n\n} catch (error) {\n  //\n}\n  \n\nconst data = {\n  \"chat_id\": $('Received user query from chatbot1').first().json.body.chatId,\n  \"response_request\": $('Received user query from chatbot1').first().json.body.responseType,\n  \"media_id\": mediaId,\n  \"message_type\": $('Received user query from chatbot1').first().json.body.requestType,\n  \"sender\": \"ai\",\n  \"user_id\": $('Received user query from chatbot1').first().json.body.userId,\n  \"output\": $('AI Agent to Process the Chat1').first().json.output.answer || $('AI Agent to Process the Chat1').first().json.output || null,\n  \"language\": $('Received user query from chatbot1').first().json.body.language,\n   \"message_mode\": mediaId ? \"AUDIO\": \"TEXT\"\n}\n\nreturn data"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -917,7 +913,7 @@
             },
             {
               "fieldId": "message_mode",
-              "fieldValue": "DIRECT"
+              "fieldValue": "={{ $json.message_mode }}"
             },
             {
               "fieldId": "completion",
@@ -1084,6 +1080,10 @@
             {
               "fieldId": "completion",
               "fieldValue": "TRUE"
+            },
+            {
+              "fieldId": "message_mode",
+              "fieldValue": "={{ $json.message_mode }}"
             }
           ]
         }
@@ -1452,7 +1452,8 @@
     },
     {
       "parameters": {
-        "jsonSchemaExample": "{\n  \"sources\":  [{\"file_name\": \"source.pdf\" , \"file_id\": \"dd946140-1749-48da-b69xxxxxxxxxxxxxxxx\"}],\n  \"answer\": \"Agent final respons\"\n}",
+        "schemaType": "manual",
+        "inputSchema": "{\n  \"sources\":  [{\"file_name\": \"source.pdf\" , \"file_id\": \"dd946140-1749-48da-b69xxxxxxxxxxxxxxxx\"}],\n  \"answer\": \"Agent final respons\"\n}",
         "autoFix": true,
         "customizeRetryPrompt": true,
         "prompt": "Instructions:\n--------------\n{instructions}\n--------------\n\nCompletion:\n--------------\n{completion}\n--------------\n\nThe above Completion did not satisfy the constraints.\nError:\n--------------\n{error}\n--------------\n\nYou must try again and return ONLY a valid JSON object.\n\nThe response MUST strictly follow this schema:\n\n{{\n  \"sources\": [\n    {{\n      \"file_name\": \"source.pdf | video | mp3\",\n      \"file_id\": \"dd946140-1749-48da-b69xxxxxxxxxxxxxxxx\"\n    }}\n  ],\n  \"answer\": \"Agent final response\"\n}}\n\nStrict Rules:\n- Output ONLY raw JSON (no markdown, no explanations, no comments).\n- The top-level response must be a JSON object.\n- \"sources\" must ALWAYS be an array.\n- Each item in \"sources\" must include BOTH \"file_name\" and \"file_id\" as strings.\n- If no sources exist, return: \"sources\": [].\n- \"answer\" must be a single plain string.\n- Do NOT add extra fields.\n- Do NOT return null values.\n- Do NOT wrap the JSON in code blocks.\n"
@@ -1571,7 +1572,7 @@
           "headers": {
             "host": "n8n.app.medizinzumselbermachen.de",
             "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36",
-            "content-length": "300",
+            "content-length": "215",
             "accept": "*/*",
             "accept-encoding": "gzip, deflate, br, zstd",
             "accept-language": "en-US,en;q=0.9",
@@ -1585,24 +1586,24 @@
             "sec-fetch-dest": "empty",
             "sec-fetch-mode": "cors",
             "sec-fetch-site": "cross-site",
-            "x-forwarded-for": "103.244.174.49",
+            "x-forwarded-for": "39.48.220.33",
             "x-forwarded-host": "n8n.app.medizinzumselbermachen.de",
             "x-forwarded-port": "443",
             "x-forwarded-proto": "https",
             "x-forwarded-server": "caf3c9da6002",
-            "x-real-ip": "103.244.174.49"
+            "x-real-ip": "39.48.220.33"
           },
           "params": {},
           "query": {},
           "body": {
-            "message": "Wie kann ein ganzheitliches, naturheilkundliches Behandlungskonzept bei Borreliose aussehen?",
+            "message": "Can you share the details about Bitcoin?",
             "requestType": "text",
             "responseType": "text",
             "language": "de",
-            "chatId": "92e6f582-1a83-473e-a20b-edacf8f8864f",
+            "chatId": "a387fb62-fb09-45fc-b13c-6220eded98b6",
             "userId": "9876",
-            "messageId": "638e3abd-3c56-4665-8542-e0854d59a2dc",
-            "isRegenerate": true
+            "messageId": null,
+            "isRegenerate": false
           },
           "webhookUrl": "https://n8n.app.medizinzumselbermachen.de/webhook/ask-query",
           "executionMode": "production"
@@ -1625,6 +1626,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2026-01-16T20:51:10.000Z",
-  "versionId": "8230b48e-1616-40dd-916c-18148941593d"
+  "updatedAt": "2026-01-19T14:58:26.000Z",
+  "versionId": "8059166f-9ae0-498d-8d5f-8ecbb0f7bf77"
 }
