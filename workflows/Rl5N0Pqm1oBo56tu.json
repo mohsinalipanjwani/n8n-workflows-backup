@@ -257,7 +257,7 @@
             },
             {
               "fieldId": "message_mode",
-              "fieldValue": "INTERACTIVE"
+              "fieldValue": "CONVERSATION"
             }
           ]
         }
@@ -442,6 +442,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2026-01-14T15:29:02.000Z",
-  "versionId": "f9766e5a-9dc7-4294-869d-654864a7355e"
+  "updatedAt": "2026-01-19T10:48:53.000Z",
+  "versionId": "11eba4de-4649-4a5a-a3f7-c39531b72091"
 }
