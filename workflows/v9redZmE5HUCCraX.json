@@ -110,7 +110,7 @@
     },
     {
       "parameters": {
-        "jsCode": "return  $input.first().json.output.sources.map(item => ({\n  json: {\n    source: item\n  }\n}));\n"
+        "jsCode": "let data = [];\n\ntry {\n    const input = $input?.first()?.json?.output?.sources;\n\n    if (input && Array.isArray(input)) {\n        data = input.map(item => ({\n            json: { source: item }\n        }));\n    }\n} catch (error) {\n    console.error(\"Error in processing sources:\", error);\n}\n\nreturn data;\n"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -318,6 +318,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2026-01-16T20:27:47.000Z",
-  "versionId": "1e963cc6-eeed-44cd-8503-9d191bbcdc3a"
+  "updatedAt": "2026-01-19T14:57:54.000Z",
+  "versionId": "cc125901-c18f-42ea-808e-fbe44ec1252f"
 }
