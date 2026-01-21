@@ -253,7 +253,7 @@
           "fieldValues": [
             {
               "fieldId": "retrieval_count",
-              "fieldValue": "={{ $json.retrieval_count }}"
+              "fieldValue": "={{ $json.retrieval_count + 1 }}"
             }
           ]
         }
@@ -281,23 +281,11 @@
           "output": {
             "sources": [
               {
-                "file_name": "DMSO & Co - ATH Training - 7-12 ｜ DMSO & Co Professional Videos ⧸ Professional Video 12： I.mp4",
-                "file_id": "cf27afb6-6b7a-40a0-a5af-e4b7f428ad71"
-              },
-              {
-                "file_name": "DMSO & Co - ATH Training - 2-10 ｜ Modul 2： Fortgeschrittenen Themen ⧸ Video 8： Konzentrati.mp4",
-                "file_id": "2b8121db-82a6-4a58-9aaf-1ba1e50fffd9"
-              },
-              {
-                "file_name": "E-Book-DMSO-Co.-Antworten-auf-Ihre-Fragen_dritte-Auflage_Einzelseiten.pdf",
-                "file_id": "dd946140-1749-48da-b69c-8c1b1a7b2a8e"
-              },
-              {
                 "file_name": "E-Book-DMSO-Co.-Medizin-zum-Selbermachen_dritte-Auflage_Einzelseiten.pdf",
                 "file_id": "d97b9dec-9c91-48c0-b169-675d2fd8eede"
               }
             ],
-            "answer": "DMSO wird in verschiedenen Konzentrationen für unterschiedliche Anwendungen verwendet. Hier sind einige typische Anwendungen und die dazugehörigen Konzentrationen:\n\n1. **1%**: Wird häufig in Inhalationslösungen eingesetzt.\n2. **3%**: Verwendung in Augentropfen und Infusionen.\n3. **10%**: Findet Anwendung in kosmetischen Zwecken, wie Gesichtswässer.\n4. **15%**: Genutzt für Einläufe, Ohren- und Nasentropfen, Scheidenspülungen, Mundspülungen, sowie frische Operationsnarben und sterile Injektionen.\n5. **30%**: Äußerliche lokale Anwendungen, insbesondere auf empfindlicher Haut, Rumpf, Hals und Kopf.\n6. **50%** und darüber: Wird für Blasenspülungen oder äußere Anwendungen bei Schmerzen am Bewegungsapparat, Füßen, Händen, Beinen, Verbrennungen und Blutergüssen verwendet.\n7. **100%**: Wird gezielt auf Aphthen, Herpesbläschen, Nagelpilz und Warzen mittels Holzwattestäbchen aufgetragen.\n\nDie genaue Konzentration ist oft abhängig vom spezifischen Einsatz und der gewünschten Wirkung. Wichtig ist, dass das DMSO für therapeutische Zwecke eine pharmazeutische Zertifizierung hat."
+            "answer": "Dr. Hartmut Fischer has extensively discussed the use of DMSO in his work \"Medizin zum Selbermachen mit DMSO & Co.\" In his protocols, Dr. Fischer provides guidance on the practical applications and dosing of DMSO for both internal and external use.\n\n\n**Key Aspects of Dr. Fischer's DMSO Protocols:**\n\n1. **Internal/Oral Application:** Dr. Fischer's recommendations include specific dosages and application forms when DMSO is used internally. He advises on a structured approach to dosing, often referred to as a \"kurmäßige\" (cure-like) regimen, which is common in treatments aiming for long-term benefits.\n\n2. **External Local Application:** For external use, Dr. Fischer provides detailed dosage instructions to maximize the anti-inflammatory effects of DMSO. This application is particularly emphasized for its efficacy in localized treatment of inflammation, making it a popular choice in sports medicine and personal health routines.\n\n3. **Holistic Use and Benefits:** Dr. Fischer advocates for the integration of DMSO into more comprehensive health approaches, especially for those engaged in active or demanding lifestyles. It supports overall cellular health, further strengthening its role in alternative medicine practices.\n\n\nThese insights illustrate the structured and holistic methodology Dr. Fischer employs in advocating for DMSO's use, ensuring it is both safe and effective for various therapeutic applications."
           }
         }
       }
@@ -318,6 +306,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2026-01-19T14:57:54.000Z",
-  "versionId": "cc125901-c18f-42ea-808e-fbe44ec1252f"
+  "updatedAt": "2026-01-20T15:28:31.000Z",
+  "versionId": "ed57a066-fd52-4f92-a9bb-33dd37a57534"
 }
