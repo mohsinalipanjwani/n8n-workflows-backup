@@ -1453,10 +1453,8 @@
     {
       "parameters": {
         "schemaType": "manual",
-        "inputSchema": "{\n  \"sources\":  [{\"file_name\": \"source.pdf\" , \"file_id\": \"dd946140-1749-48da-b69xxxxxxxxxxxxxxxx\"}],\n  \"answer\": \"Agent final respons\"\n}",
-        "autoFix": true,
-        "customizeRetryPrompt": true,
-        "prompt": "Instructions:\n--------------\n{instructions}\n--------------\n\nCompletion:\n--------------\n{completion}\n--------------\n\nThe above Completion did not satisfy the constraints.\nError:\n--------------\n{error}\n--------------\n\nYou must try again and return ONLY a valid JSON object.\n\nThe response MUST strictly follow this schema:\n\n{{\n  \"sources\": [\n    {{\n      \"file_name\": \"source.pdf | video | mp3\",\n      \"file_id\": \"dd946140-1749-48da-b69xxxxxxxxxxxxxxxx\"\n    }}\n  ],\n  \"answer\": \"Agent final response\"\n}}\n\nStrict Rules:\n- Output ONLY raw JSON (no markdown, no explanations, no comments).\n- The top-level response must be a JSON object.\n- \"sources\" must ALWAYS be an array.\n- Each item in \"sources\" must include BOTH \"file_name\" and \"file_id\" as strings.\n- If no sources exist, return: \"sources\": [].\n- \"answer\" must be a single plain string.\n- Do NOT add extra fields.\n- Do NOT return null values.\n- Do NOT wrap the JSON in code blocks.\n"
+        "inputSchema": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"sources\": {\n      \"type\": \"array\",\n      \"items\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"file_name\": {\n            \"type\": \"string\",\n            \"description\": \"Name of the source file\"\n          },\n          \"file_id\": {\n            \"type\": \"string\",\n            \"description\": \"Unique identifier of the source file\"\n          }\n        },\n        \"required\": [\"file_name\", \"file_id\"]\n      },\n      \"description\": \"List of source documents used to generate the answer\"\n    },\n    \"answer\": {\n      \"type\": \"string\",\n      \"description\": \"The agent's final response to the user's question\"\n    }\n  },\n  \"required\": [\"sources\", \"answer\"]\n}",
+        "autoFix": true
       },
       "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
       "typeVersion": 1.3,
@@ -1572,7 +1570,7 @@
           "headers": {
             "host": "n8n.app.medizinzumselbermachen.de",
             "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36",
-            "content-length": "215",
+            "content-length": "242",
             "accept": "*/*",
             "accept-encoding": "gzip, deflate, br, zstd",
             "accept-language": "en-US,en;q=0.9",
@@ -1586,21 +1584,21 @@
             "sec-fetch-dest": "empty",
             "sec-fetch-mode": "cors",
             "sec-fetch-site": "cross-site",
-            "x-forwarded-for": "39.48.220.33",
+            "x-forwarded-for": "119.63.128.115",
             "x-forwarded-host": "n8n.app.medizinzumselbermachen.de",
             "x-forwarded-port": "443",
             "x-forwarded-proto": "https",
             "x-forwarded-server": "caf3c9da6002",
-            "x-real-ip": "39.48.220.33"
+            "x-real-ip": "119.63.128.115"
           },
           "params": {},
           "query": {},
           "body": {
-            "message": "Can you share the details about Bitcoin?",
+            "message": "Can you explain Dr. Hartmut Fischer’s recommended DMSO protocols?",
             "requestType": "text",
             "responseType": "text",
-            "language": "de",
-            "chatId": "a387fb62-fb09-45fc-b13c-6220eded98b6",
+            "language": "en",
+            "chatId": "336ceb3a-eaa4-486d-9e53-1cbef44dd7ac",
             "userId": "9876",
             "messageId": null,
             "isRegenerate": false
@@ -1626,6 +1624,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2026-01-19T14:58:26.000Z",
-  "versionId": "8059166f-9ae0-498d-8d5f-8ecbb0f7bf77"
+  "updatedAt": "2026-01-20T15:31:58.000Z",
+  "versionId": "5bc3f11f-a23d-4721-8c8b-e4587bb0c798"
 }
