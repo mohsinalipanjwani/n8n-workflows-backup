@@ -1570,7 +1570,7 @@
           "headers": {
             "host": "n8n.app.medizinzumselbermachen.de",
             "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36",
-            "content-length": "242",
+            "content-length": "237",
             "accept": "*/*",
             "accept-encoding": "gzip, deflate, br, zstd",
             "accept-language": "en-US,en;q=0.9",
@@ -1594,11 +1594,11 @@
           "params": {},
           "query": {},
           "body": {
-            "message": "Can you explain Dr. Hartmut Fischer’s recommended DMSO protocols?",
+            "message": "hi , can you share career advice by your own not from database",
             "requestType": "text",
             "responseType": "text",
-            "language": "en",
-            "chatId": "336ceb3a-eaa4-486d-9e53-1cbef44dd7ac",
+            "language": "de",
+            "chatId": "fc54bd8a-a0b7-459b-8b75-7f6b2570948f",
             "userId": "9876",
             "messageId": null,
             "isRegenerate": false
@@ -1610,7 +1610,10 @@
     ]
   },
   "settings": {
-    "executionOrder": "v1"
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false,
+    "errorWorkflow": "xtC4cCAr6af1uJPf"
   },
   "shared": [
     {
@@ -1624,6 +1627,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2026-01-20T15:31:58.000Z",
-  "versionId": "5bc3f11f-a23d-4721-8c8b-e4587bb0c798"
+  "updatedAt": "2026-01-22T09:11:03.000Z",
+  "versionId": "4ce39bf4-044c-493f-b541-12897e9048b5"
 }
