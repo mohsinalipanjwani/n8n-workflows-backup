@@ -47,6 +47,7 @@
       "parameters": {
         "httpMethod": "POST",
         "path": "get-new-signup",
+        "authentication": "headerAuth",
         "options": {}
       },
       "type": "n8n-nodes-base.webhook",
@@ -57,7 +58,13 @@
       ],
       "id": "7f2dfdad-25e9-43e2-b6eb-eb7b182a70a7",
       "name": "Receive newsignup from Ezycourse",
-      "webhookId": "fff3dc85-3ba8-4454-b7fa-b80194e410cd"
+      "webhookId": "fff3dc85-3ba8-4454-b7fa-b80194e410cd",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "waaAwfOZusltfsER",
+          "name": "EzyCourse"
+        }
+      }
     },
     {
       "parameters": {
@@ -205,6 +212,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 2,
-  "updatedAt": "2025-09-05T15:24:38.000Z",
-  "versionId": "3771134b-d382-434e-8e95-e2f5a7db6722"
+  "updatedAt": "2026-01-22T15:06:55.000Z",
+  "versionId": "2cc906fb-af07-4ea8-9516-2d4d244588d2"
 }
