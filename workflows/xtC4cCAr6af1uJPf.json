@@ -1,0 +1,65 @@
+{
+  "active": false,
+  "connections": {
+    "Error Trigger": {
+      "main": [
+        [
+          {
+            "node": "Execution Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-01-22T08:45:58.068Z",
+  "id": "xtC4cCAr6af1uJPf",
+  "isArchived": false,
+  "meta": null,
+  "name": "Error Trigger",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "038aa454-e26a-498c-9918-17fbf395c21c",
+      "name": "Error Trigger"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.executionData",
+      "typeVersion": 1.1,
+      "position": [
+        208,
+        0
+      ],
+      "id": "1e6a089c-617e-403e-aa1c-905bf121ba3b",
+      "name": "Execution Data"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-01-22T08:45:58.078Z",
+      "createdAt": "2026-01-22T08:45:58.078Z",
+      "role": "workflow:owner",
+      "workflowId": "xtC4cCAr6af1uJPf",
+      "projectId": "POhXKLALTFDZhVtj"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2026-01-22T08:48:28.000Z",
+  "versionId": "a50ebfdc-1ab6-4f94-b6ec-7b39c7142090"
+}
