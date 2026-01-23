@@ -73,8 +73,8 @@
       "webhookId": "6d36a4c9-373b-4aa7-9d68-dcff2947f8a9",
       "credentials": {
         "httpHeaderAuth": {
-          "id": "waaAwfOZusltfsER",
-          "name": "Whisper Auth"
+          "id": "ln1w96jJwSTaUQpL",
+          "name": "Whisper API"
         }
       }
     },
@@ -109,6 +109,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-11-17T16:20:14.000Z",
-  "versionId": "22e77c7a-9b49-459f-826b-f847e46c6bbb"
+  "updatedAt": "2026-01-22T15:30:48.000Z",
+  "versionId": "d24b2e6f-e37d-40a0-97b2-9405e973d19a"
 }
