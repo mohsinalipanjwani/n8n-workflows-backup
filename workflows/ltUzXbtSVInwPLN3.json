@@ -74,7 +74,7 @@
       "credentials": {
         "httpHeaderAuth": {
           "id": "ln1w96jJwSTaUQpL",
-          "name": "Whisper API"
+          "name": "Whisper API Auth"
         }
       }
     },
@@ -109,6 +109,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2026-01-22T15:30:48.000Z",
-  "versionId": "d24b2e6f-e37d-40a0-97b2-9405e973d19a"
+  "updatedAt": "2026-01-23T10:50:19.000Z",
+  "versionId": "f363cfaa-9bb1-45df-a443-2da204e65d8f"
 }
