@@ -243,7 +243,7 @@
               "rightValue": "None",
               "operator": {
                 "type": "string",
-                "operation": "notEquals"
+                "operation": "equals"
               }
             }
           ],
@@ -276,18 +276,18 @@
     "When Executed by Another Workflow": [
       {
         "json": {
-          "id": "cbbf821b-86e9-47ed-816e-179c822ee9b3",
-          "chat_id": "57a2811c-da67-442f-bf11-e1bb1b3a06ff",
+          "id": "c7c8fc21-2b9d-4995-9241-79745a7514b3",
+          "chat_id": "6451b19a-9825-4d05-8fa1-81073a5dad61",
           "sender": "user",
           "message_type": "text",
           "response_request": "text",
-          "message": "Alright no worries, share your general idea about bticoin",
+          "message": "Erkläre bitte auf englisch was DMSO ist und wie es verwendet werden kann und auch kurze Warnhinweise",
           "language": "de",
           "media_id": null,
-          "created_at": "2026-01-20T15:32:52.851145+00:00",
-          "updated_at": "2026-01-20T15:32:52.851145+00:00",
+          "created_at": "2026-01-29T21:13:46.674755+00:00",
+          "updated_at": "2026-01-29T21:13:46.674755+00:00",
           "is_summary": false,
-          "search_vector": "'alright':1 'bticoin':9 'general':6 'idea':7 'share':4 'worri':3",
+          "search_vector": "'auch':15 'auf':3 'bitt':2 'dmso':6 'englisch':4 'erklär':1 'es':10 'ist':7 'kann':13 'kurz':16 'und':8,14 'verwendet':11 'warnhinweis':17 'werden':12 'wie':9",
           "intent": null,
           "completion": true,
           "match_score": null,
@@ -312,6 +312,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2026-01-21T13:54:52.000Z",
-  "versionId": "f9261fe7-2b76-4cd1-8a52-f59863242382"
+  "updatedAt": "2026-02-02T14:32:36.000Z",
+  "versionId": "e0424cab-0991-4683-8c8c-a7f4a259076c"
 }
