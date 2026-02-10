@@ -25,7 +25,13 @@
     },
     "Loop Over Items": {
       "main": [
-        [],
+        [
+          {
+            "node": "Execution Data",
+            "type": "main",
+            "index": 0
+          }
+        ],
         [
           {
             "node": "Get document by File ID",
@@ -204,7 +210,7 @@
           "fieldValues": [
             {
               "fieldId": "name",
-              "fieldValue": "={{ $('Loop Over Items').item.json.source.name }}"
+              "fieldValue": "={{ $('Loop Over Items').item.json.source.file_name }}"
             },
             {
               "fieldId": "file_id",
@@ -254,6 +260,10 @@
             {
               "fieldId": "retrieval_count",
               "fieldValue": "={{ $json.retrieval_count + 1 }}"
+            },
+            {
+              "fieldId": "name",
+              "fieldValue": "={{ $('Loop Over Items').item.json.source.file_name }}"
             }
           ]
         }
@@ -272,6 +282,17 @@
           "name": "Supabase account"
         }
       }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.executionData",
+      "typeVersion": 1.1,
+      "position": [
+        576,
+        -208
+      ],
+      "id": "ece33365-8b60-4303-8135-4e6e8536e5bc",
+      "name": "Execution Data"
     }
   ],
   "pinData": {
@@ -281,11 +302,15 @@
           "output": {
             "sources": [
               {
+                "file_name": "DMSO & Co - Practitioner - 7-XX | Bonus ⧸ PDF mit DMSO & Co Einsatzbereichen ⧸ DMSO Einsatzbereiche-01-23.pdf",
+                "file_id": "295478b0-b0a2-46d4-a72f-2bdb2596ece9"
+              },
+              {
                 "file_name": "E-Book-DMSO-Co.-Medizin-zum-Selbermachen_dritte-Auflage_Einzelseiten.pdf",
                 "file_id": "d97b9dec-9c91-48c0-b169-675d2fd8eede"
               }
             ],
-            "answer": "Dr. Hartmut Fischer has extensively discussed the use of DMSO in his work \"Medizin zum Selbermachen mit DMSO & Co.\" In his protocols, Dr. Fischer provides guidance on the practical applications and dosing of DMSO for both internal and external use.\n\n\n**Key Aspects of Dr. Fischer's DMSO Protocols:**\n\n1. **Internal/Oral Application:** Dr. Fischer's recommendations include specific dosages and application forms when DMSO is used internally. He advises on a structured approach to dosing, often referred to as a \"kurmäßige\" (cure-like) regimen, which is common in treatments aiming for long-term benefits.\n\n2. **External Local Application:** For external use, Dr. Fischer provides detailed dosage instructions to maximize the anti-inflammatory effects of DMSO. This application is particularly emphasized for its efficacy in localized treatment of inflammation, making it a popular choice in sports medicine and personal health routines.\n\n3. **Holistic Use and Benefits:** Dr. Fischer advocates for the integration of DMSO into more comprehensive health approaches, especially for those engaged in active or demanding lifestyles. It supports overall cellular health, further strengthening its role in alternative medicine practices.\n\n\nThese insights illustrate the structured and holistic methodology Dr. Fischer employs in advocating for DMSO's use, ensuring it is both safe and effective for various therapeutic applications."
+            "answer": "Hier sind einige interessante Informationen über DMSO aus den verfügbaren Dokumenten.\n\n\n**Einsatzbereiche von DMSO**\n\n\nDMSO (Dimethylsulfoxid) wird in verschiedenen Einsatzbereichen genutzt, die sowohl medizinische als auch nicht-medizinische Anwendungen umfassen können. In den Dokumenten wird beschrieben, dass DMSO-Mischungen vielseitig verwendet werden können. Eines der Dokumente hebt hervor, dass es in der alternativen Medizin verwendet wird und verschiedene Anwendungen zur Selbstmedikation unterstützt.\n\n\n**DMSO in der Alternativmedizin**\n\n\nDie Mischungen von DMSO werden oft für ihren angeblichen gesundheitlichen Nutzen hervorgehoben. Dabei gibt es jedoch auch Abgrenzungen zwischen DMSO selbst und \"DMSO Emulsionen\", die spezifische Anwendungsfälle betreffen. Diese Emulsionen bieten möglicherweise einen anderen Nutzen oder ein anderes Profil als das reine DMSO.\n\n\n\\-\\-\\-\n\nDie genannten Anwendungen zeigen, dass DMSO in unterschiedlichen Bereichen seinen Einsatz findet. Wenn Du mehr über spezifische Anwendungsbereiche oder Dosierungen erfahren möchtest, lass es mich wissen!\n\n\n- **Möchtest Du mehr über die gesundheitlichen Vorteile von DMSO erfahren?**\n\n\n- **Interessierst Du Dich für die genaue Herstellung von DMSO-Mischungen?**\n\n\n- **Möchtest Du die Unterschiede zwischen DMSO und anderen Substanzen kennenlernen?**\n\n\n- **Hast Du Fragen zu spezifischen Anwendungen von DMSO in der alternativen Medizin?**"
           }
         }
       }
@@ -306,6 +331,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2026-01-20T15:28:31.000Z",
-  "versionId": "ed57a066-fd52-4f92-a9bb-33dd37a57534"
+  "updatedAt": "2026-02-09T08:08:00.000Z",
+  "versionId": "fc5e2130-e4cf-4f10-84e8-077f908f1719"
 }
