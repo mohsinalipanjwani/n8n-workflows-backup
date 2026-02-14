@@ -253,7 +253,7 @@
             },
             {
               "fieldId": "call_id",
-              "fieldValue": "={{ $('Get Call Msgs').item.json.body.call_id }}"
+              "fieldValue": "={{ $('Get Call Msgs').first().json.body.call_id }}"
             },
             {
               "fieldId": "message_mode",
@@ -393,33 +393,33 @@
         "json": {
           "headers": {
             "host": "n8n.app.medizinzumselbermachen.de",
-            "user-agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Mobile Safari/537.36",
+            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36",
             "content-length": "63",
             "accept": "application/json, text/plain, */*",
             "accept-encoding": "gzip, deflate, br, zstd",
-            "accept-language": "de-DE,de;q=0.9,en;q=0.8,pt;q=0.7",
+            "accept-language": "en-US,en;q=0.9",
             "content-type": "application/json",
-            "origin": "https://dominik-ai-chatbot.vercel.app",
+            "origin": "http://localhost:3000",
             "priority": "u=1, i",
-            "referer": "https://dominik-ai-chatbot.vercel.app/",
-            "sec-ch-ua": "\"Google Chrome\";v=\"143\", \"Chromium\";v=\"143\", \"Not A(Brand\";v=\"24\"",
-            "sec-ch-ua-mobile": "?1",
-            "sec-ch-ua-platform": "\"Android\"",
+            "referer": "http://localhost:3000/",
+            "sec-ch-ua": "\"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"144\", \"Google Chrome\";v=\"144\"",
+            "sec-ch-ua-mobile": "?0",
+            "sec-ch-ua-platform": "\"Windows\"",
             "sec-fetch-dest": "empty",
             "sec-fetch-mode": "cors",
             "sec-fetch-site": "cross-site",
-            "x-forwarded-for": "169.155.237.251",
+            "x-forwarded-for": "119.63.128.115",
             "x-forwarded-host": "n8n.app.medizinzumselbermachen.de",
             "x-forwarded-port": "443",
             "x-forwarded-proto": "https",
             "x-forwarded-server": "caf3c9da6002",
-            "x-real-ip": "169.155.237.251"
+            "x-real-ip": "119.63.128.115"
           },
           "params": {},
           "query": {},
           "body": {
             "language": "de",
-            "call_id": "conv_8601keq6c9h6fde9m0en0tb0vpsc"
+            "call_id": "conv_5501khb86nqqft4as2n215shatcn"
           },
           "webhookUrl": "https://n8n.app.medizinzumselbermachen.de/webhook/get-call-msgs",
           "executionMode": "production"
@@ -442,6 +442,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2026-01-19T10:48:53.000Z",
-  "versionId": "11eba4de-4649-4a5a-a3f7-c39531b72091"
+  "updatedAt": "2026-02-13T11:16:56.000Z",
+  "versionId": "8e1b9c11-2dcd-45d0-bec2-5fc6c8c14371"
 }
