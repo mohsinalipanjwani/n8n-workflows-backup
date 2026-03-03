@@ -1,15 +1,9 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "Received IPN Event From Digistore": {
       "main": [
-        [
-          {
-            "node": "Route By Event",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "Route By Event": {
@@ -822,6 +816,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 2,
-  "updatedAt": "2026-02-27T12:00:33.000Z",
-  "versionId": "4e511131-321c-4b37-a213-62340ccc21cd"
+  "updatedAt": "2026-03-02T12:50:52.000Z",
+  "versionId": "5824ae73-7b72-4d4b-a257-c394a8e3adba"
 }
