@@ -1,0 +1,253 @@
+{
+  "active": false,
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get All Scheduled Subscriptions",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get All Scheduled Subscriptions": {
+      "main": [
+        [
+          {
+            "node": "Consolidate Delivery Date & RecID",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Consolidate Delivery Date & RecID": {
+      "main": [
+        [
+          {
+            "node": "Check if DD < Today",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check if DD < Today": {
+      "main": [
+        [
+          {
+            "node": "Update Status of Subscription",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Status of Subscription": {
+      "main": [
+        [
+          {
+            "node": "Enroll Student into Product",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-03-02T13:03:47.889Z",
+  "id": "x4JhMLC45VMEfBLl",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Delivery Date Activation - CRON",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 2
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -320,
+        -16
+      ],
+      "id": "014559b8-ef90-4d0c-b14c-657ebfed1fb4",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "subscriptions",
+        "returnAll": true,
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "status",
+              "condition": "eq",
+              "keyValue": "scheduled"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        80,
+        -16
+      ],
+      "id": "7e93530e-27f9-48c6-bc1f-d4cb2bf95b19",
+      "name": "Get All Scheduled Subscriptions",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "subscriptions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "={{ $json.recId }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "status",
+              "fieldValue": "active"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1232,
+        -32
+      ],
+      "id": "6279f463-55f1-48f2-9fb1-3fd1bd7420e7",
+      "name": "Update Status of Subscription",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "let deliveryDateStr = $('Get All Scheduled Subscriptions').first().json.delivery_date; \n\nlet todayStr = new Date().toISOString().slice(0, 10);\nlet status = deliveryDateStr <= todayStr;\nlet recId = $('Get All Scheduled Subscriptions').first().json.id\n\nreturn [\n  {\n    json: {\n      status,\n      recId\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        368,
+        -16
+      ],
+      "id": "1d3d3bca-ad34-471c-aabf-4fd7030a2c0e",
+      "name": "Consolidate Delivery Date & RecID"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "bbc27c1c-2ecc-474e-b827-adf7c430aa97",
+              "leftValue": "={{ $json.status }}",
+              "rightValue": "=",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        816,
+        -16
+      ],
+      "id": "b8d75136-d43c-45d9-86a5-971052df19f9",
+      "name": "Check if DD < Today"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://www.deinegesundheitsschule.de/api/ezycourse/webhooks/create-product-enrollment/f9uMoaS61pMZw9F6bhOmvN-98TODvjqR",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "email",
+              "value": "={{ $json.email }}"
+            },
+            {
+              "name": "product_id",
+              "value": "={{ $json.ezycourse_product_id }}"
+            },
+            {
+              "name": "product_type",
+              "value": "membership"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        1600,
+        -32
+      ],
+      "id": "ef1c7135-7625-4155-ab60-7d4395914193",
+      "name": "Enroll Student into Product"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-03-02T13:03:47.899Z",
+      "createdAt": "2026-03-02T13:03:47.899Z",
+      "role": "workflow:owner",
+      "workflowId": "x4JhMLC45VMEfBLl",
+      "projectId": "POhXKLALTFDZhVtj"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2026-03-02T14:10:44.000Z",
+  "versionId": "f412df57-bebe-4cf5-b32a-6effc70a6d35"
+}
