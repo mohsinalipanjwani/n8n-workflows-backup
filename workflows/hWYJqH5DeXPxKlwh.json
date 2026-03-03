@@ -1,0 +1,200 @@
+{
+  "active": false,
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get All Users",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get All Users": {
+      "main": [
+        [
+          {
+            "node": "Aggregate List",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate List": {
+      "main": [
+        [
+          {
+            "node": "Calculate Monthly Credit Reset",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calculate Monthly Credit Reset": {
+      "main": [
+        [
+          {
+            "node": "Update Credit + Reset Date",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-03-02T15:29:35.072Z",
+  "id": "hWYJqH5DeXPxKlwh",
+  "isArchived": false,
+  "meta": null,
+  "name": "Monthly Credit Reset - CRON",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 2
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -960,
+        16
+      ],
+      "id": "02f46f44-936b-43a2-a7c8-1859efd7a936",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "users",
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -560,
+        16
+      ],
+      "id": "19525cbe-1109-4dba-9c14-e7bc9a500df0",
+      "name": "Get All Users",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "users",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "={{ $json.id }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "quota",
+              "fieldValue": "={{ $json.newQuota }}"
+            },
+            {
+              "fieldId": "quota_reset_date",
+              "fieldValue": "={{ $json.newQuotaResetDate }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1056,
+        16
+      ],
+      "id": "38eeb770-132a-41a4-a0f0-c2d9fdda4ac7",
+      "name": "Update Credit + Reset Date",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        0,
+        16
+      ],
+      "id": "99d8e078-9a07-4351-a090-8e7842cd8246",
+      "name": "Aggregate List"
+    },
+    {
+      "parameters": {
+        "jsCode": "const todayStr = new Date().toISOString().slice(0, 10); return $input.first().json.data.map(user => { const quotaResetDateStr = user.quota_reset_date; const shouldReset = quotaResetDateStr <= todayStr; const today = new Date(); const nextMonthFirstDay = new Date(today.getFullYear(), today.getMonth() + 1, 1) .toISOString().slice(0,10); return { json: { id: user.id, shouldReset, newQuota: shouldReset ? 0 : user.quota, newQuotaResetDate: shouldReset ? nextMonthFirstDay : quotaResetDateStr } }; })"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        640,
+        16
+      ],
+      "id": "807777d7-2363-4a96-9480-c7d3226285b9",
+      "name": "Calculate Monthly Credit Reset"
+    }
+  ],
+  "pinData": {
+    "Schedule Trigger": [
+      {
+        "json": {
+          "timestamp": "2026-03-02T16:27:48.198+01:00",
+          "Readable date": "March 2nd 2026, 4:27:48 pm",
+          "Readable time": "4:27:48 pm",
+          "Day of week": "Monday",
+          "Year": "2026",
+          "Month": "March",
+          "Day of month": "02",
+          "Hour": "16",
+          "Minute": "27",
+          "Second": "48",
+          "Timezone": "Europe/Berlin (UTC+01:00)"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-03-02T15:29:35.075Z",
+      "createdAt": "2026-03-02T15:29:35.075Z",
+      "role": "workflow:owner",
+      "workflowId": "hWYJqH5DeXPxKlwh",
+      "projectId": "POhXKLALTFDZhVtj"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2026-03-02T15:30:27.000Z",
+  "versionId": "0970200f-9881-4931-a661-d627cf41f2a8"
+}
