@@ -1,0 +1,269 @@
+{
+  "active": false,
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get All Past Due Subscriptions",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Status of Subscription": {
+      "main": [
+        [
+          {
+            "node": "Un-Enroll Student into Product",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get All Past Due Subscriptions": {
+      "main": [
+        [
+          {
+            "node": "Consolidate Payment Missed Date",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Consolidate Payment Missed Date": {
+      "main": [
+        [
+          {
+            "node": "Check if Expired is TRUE",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check if Expired is TRUE": {
+      "main": [
+        [
+          {
+            "node": "Update Status of Subscription",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No Operation, do nothing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-03-02T14:11:30.405Z",
+  "id": "OoVZOafDzJqQCqBK",
+  "isArchived": false,
+  "meta": null,
+  "name": "Grace Period Expiry - CRON",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 2
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -1536,
+        -128
+      ],
+      "id": "4098ee11-a452-45c9-83c8-f7d41a0354dc",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "subscriptions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "={{ $json.recId }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "status",
+              "fieldValue": "suspended"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        16,
+        -144
+      ],
+      "id": "471508c7-b4ea-4210-a2a1-87e612e591ea",
+      "name": "Update Status of Subscription",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "subscriptions",
+        "returnAll": true,
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "status",
+              "condition": "eq",
+              "keyValue": "past_due"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -1136,
+        -128
+      ],
+      "id": "5352f5c6-a733-4d9f-be3f-beca04b81301",
+      "name": "Get All Past Due Subscriptions",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "let paymentMissedAtStr = $('Get All Past Due Subscriptions').first().json.payment_missed_at;\nlet recId = $('Get All Past Due Subscriptions').first().json.id;\n\nlet paymentMissedAt = new Date(paymentMissedAtStr);\n\nlet threeDaysAgo = new Date();\nthreeDaysAgo.setDate(threeDaysAgo.getDate() - 3);\n\nlet expired = paymentMissedAt < threeDaysAgo;\n\nreturn [\n  {\n    json: {\n      expired,\n      recId\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -848,
+        -128
+      ],
+      "id": "17b29969-6c5c-4931-9395-9832286d1b5d",
+      "name": "Consolidate Payment Missed Date"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "bbc27c1c-2ecc-474e-b827-adf7c430aa97",
+              "leftValue": "={{ $json.expired }}",
+              "rightValue": "=",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -400,
+        -128
+      ],
+      "id": "8e35b378-69d1-49eb-96ee-4f268bcf58d7",
+      "name": "Check if Expired is TRUE"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        0,
+        112
+      ],
+      "id": "48500967-c76a-4e48-acd7-743b77997bb6",
+      "name": "No Operation, do nothing"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://www.deinegesundheitsschule.de/api/ezycourse/webhooks/delete-product-enrollment/f9uMoaS61pMZw9F6bhOmvN-98TODvjqR",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "email",
+              "value": "={{ $json.email }}"
+            },
+            {
+              "name": "product_id",
+              "value": "={{ $json.ezycourse_product_id }}"
+            },
+            {
+              "name": "product_type",
+              "value": "membership"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        544,
+        -144
+      ],
+      "id": "eead1f11-1c47-40ac-b5df-115514614656",
+      "name": "Un-Enroll Student into Product"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-03-02T14:11:30.412Z",
+      "createdAt": "2026-03-02T14:11:30.412Z",
+      "role": "workflow:owner",
+      "workflowId": "OoVZOafDzJqQCqBK",
+      "projectId": "POhXKLALTFDZhVtj"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2026-03-02T14:31:09.000Z",
+  "versionId": "9c754101-e7c6-4506-b063-452f85a58eae"
+}
