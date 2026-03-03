@@ -1,0 +1,269 @@
+{
+  "active": false,
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get All Expired - Cancel Subscription",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Status of Subscription": {
+      "main": [
+        [
+          {
+            "node": "Un-Enroll Student into Product",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Consolidate Payment Missed Date": {
+      "main": [
+        [
+          {
+            "node": "Check if Expired is TRUE",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check if Expired is TRUE": {
+      "main": [
+        [
+          {
+            "node": "Update Status of Subscription",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No Operation, do nothing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get All Expired - Cancel Subscription": {
+      "main": [
+        [
+          {
+            "node": "Consolidate Payment Missed Date",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-03-02T14:53:41.071Z",
+  "id": "CGGx2KlVmHULQVOC",
+  "isArchived": false,
+  "meta": null,
+  "name": "Expired Subscriptions - CRON",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 2
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -1552,
+        16
+      ],
+      "id": "878cd342-5b42-45e7-9e22-45576663628f",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "subscriptions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "={{ $json.recId }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "status",
+              "fieldValue": "suspended"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "9b4cc395-dcf2-49f2-bd50-d5b9d0830d84",
+      "name": "Update Status of Subscription",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "let paymentMissedAtStr = $('Get All Expired - Cancel Subscription').first().json.payment_missed_at;\nlet recId = $('Get All Expired - Cancel Subscription').first().json.id;\n\nlet paymentMissedAt = new Date(paymentMissedAtStr);\n\nlet threeDaysAgo = new Date();\nthreeDaysAgo.setDate(threeDaysAgo.getDate() - 3);\n\nlet expired = paymentMissedAt < threeDaysAgo;\n\nreturn [\n  {\n    json: {\n      expired,\n      recId\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -864,
+        16
+      ],
+      "id": "6503704a-3e0a-4812-acbf-4549f138df7c",
+      "name": "Consolidate Payment Missed Date"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "bbc27c1c-2ecc-474e-b827-adf7c430aa97",
+              "leftValue": "={{ $json.expired }}",
+              "rightValue": "=",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -416,
+        16
+      ],
+      "id": "2d679571-f38f-4fda-9c4e-f1ab17a0b271",
+      "name": "Check if Expired is TRUE"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        -16,
+        256
+      ],
+      "id": "fbaee21e-a7f6-4230-bb1c-dea9591301aa",
+      "name": "No Operation, do nothing"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://www.deinegesundheitsschule.de/api/ezycourse/webhooks/delete-product-enrollment/f9uMoaS61pMZw9F6bhOmvN-98TODvjqR",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "email",
+              "value": "={{ $json.email }}"
+            },
+            {
+              "name": "product_id",
+              "value": "={{ $json.ezycourse_product_id }}"
+            },
+            {
+              "name": "product_type",
+              "value": "membership"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        528,
+        0
+      ],
+      "id": "0b6dfeb1-9afd-4bed-a546-930ae0a7bfad",
+      "name": "Un-Enroll Student into Product"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "subscriptions",
+        "returnAll": true,
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "status",
+              "condition": "eq",
+              "keyValue": "past_due"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -1152,
+        16
+      ],
+      "id": "5cd8554b-cf60-4e95-b71b-092f5966d66b",
+      "name": "Get All Expired - Cancel Subscription",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-03-02T14:53:41.075Z",
+      "createdAt": "2026-03-02T14:53:41.075Z",
+      "role": "workflow:owner",
+      "workflowId": "CGGx2KlVmHULQVOC",
+      "projectId": "POhXKLALTFDZhVtj"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2026-03-02T15:32:29.000Z",
+  "versionId": "0d1cd971-fa4a-4a50-a2ef-1c97ccd2dde8"
+}
