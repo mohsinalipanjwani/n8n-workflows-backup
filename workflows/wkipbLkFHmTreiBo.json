@@ -3,7 +3,13 @@
   "connections": {
     "Received IPN Event From Digistore": {
       "main": [
-        []
+        [
+          {
+            "node": "Route By Event",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     },
     "Route By Event": {
@@ -619,8 +625,8 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        1984,
-        80
+        1600,
+        96
       ],
       "id": "5507bcd7-8b88-45be-8184-146ee3f0cfd5",
       "name": "Update Credits",
@@ -816,6 +822,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 2,
-  "updatedAt": "2026-03-02T12:50:52.000Z",
-  "versionId": "5824ae73-7b72-4d4b-a257-c394a8e3adba"
+  "updatedAt": "2026-03-03T09:01:38.000Z",
+  "versionId": "9f12ee63-59d3-4756-8780-750215bc7947"
 }
