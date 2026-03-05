@@ -638,8 +638,8 @@
       "name": "Qdrant vector store to fetch embeddings1",
       "credentials": {
         "qdrantApi": {
-          "id": "Zt0fgW0XUcHXkstn",
-          "name": "QdrantApi account"
+          "id": "1n1p85FNRyJa3UvL",
+          "name": "QdrantApi account - PROD"
         }
       }
     },
@@ -1569,37 +1569,37 @@
         "json": {
           "headers": {
             "host": "n8n.app.medizinzumselbermachen.de",
-            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36",
-            "content-length": "237",
+            "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36",
+            "content-length": "266",
             "accept": "*/*",
             "accept-encoding": "gzip, deflate, br, zstd",
-            "accept-language": "en-US,en;q=0.9",
+            "accept-language": "de-DE,de;q=0.9,en-US;q=0.8,en;q=0.7",
             "content-type": "application/json",
             "origin": "https://dominik-ai-chatbot.vercel.app",
             "priority": "u=1, i",
             "referer": "https://dominik-ai-chatbot.vercel.app/",
-            "sec-ch-ua": "\"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"144\", \"Google Chrome\";v=\"144\"",
+            "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"Google Chrome\";v=\"145\", \"Chromium\";v=\"145\"",
             "sec-ch-ua-mobile": "?0",
-            "sec-ch-ua-platform": "\"Windows\"",
+            "sec-ch-ua-platform": "\"macOS\"",
             "sec-fetch-dest": "empty",
             "sec-fetch-mode": "cors",
             "sec-fetch-site": "cross-site",
-            "x-forwarded-for": "119.63.128.115",
+            "x-forwarded-for": "45.141.152.73",
             "x-forwarded-host": "n8n.app.medizinzumselbermachen.de",
             "x-forwarded-port": "443",
             "x-forwarded-proto": "https",
             "x-forwarded-server": "caf3c9da6002",
-            "x-real-ip": "119.63.128.115"
+            "x-real-ip": "45.141.152.73"
           },
           "params": {},
           "query": {},
           "body": {
-            "message": "hi , can you share career advice by your own not from database",
+            "message": "Was ist DMSO genau, wie wirkt es im Körper und in welchen Bereichen wird es eingesetzt?",
             "requestType": "text",
             "responseType": "text",
             "language": "de",
-            "chatId": "fc54bd8a-a0b7-459b-8b75-7f6b2570948f",
-            "userId": "9876",
+            "chatId": "35e47d7a-a734-4b79-818d-bf94c6d6b340",
+            "userId": "1609885",
             "messageId": null,
             "isRegenerate": false
           },
@@ -1627,6 +1627,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2026-01-22T09:11:03.000Z",
-  "versionId": "4ce39bf4-044c-493f-b541-12897e9048b5"
+  "updatedAt": "2026-03-05T05:46:02.000Z",
+  "versionId": "bda306a9-07a4-4978-ae08-cc659553460d"
 }
