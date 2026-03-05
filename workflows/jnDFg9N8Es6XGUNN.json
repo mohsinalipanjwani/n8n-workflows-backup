@@ -607,8 +607,8 @@
       "name": "Qdrant vector store to fetch embeddings1",
       "credentials": {
         "qdrantApi": {
-          "id": "Zt0fgW0XUcHXkstn",
-          "name": "QdrantApi account"
+          "id": "1n1p85FNRyJa3UvL",
+          "name": "QdrantApi account - PROD"
         }
       }
     },
@@ -1459,6 +1459,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2026-01-19T10:56:54.000Z",
-  "versionId": "e077336a-f5d9-483e-af48-b4e162eef8ab"
+  "updatedAt": "2026-03-05T05:45:02.000Z",
+  "versionId": "38752ede-3e93-4125-8e56-054c6f83f42c"
 }
