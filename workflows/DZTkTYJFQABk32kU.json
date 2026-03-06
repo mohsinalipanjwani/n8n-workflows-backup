@@ -1,0 +1,28 @@
+{
+  "active": false,
+  "connections": {},
+  "createdAt": "2026-03-05T07:20:27.288Z",
+  "id": "DZTkTYJFQABk32kU",
+  "isArchived": true,
+  "meta": null,
+  "name": "Test Migrate",
+  "nodes": [],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-03-05T07:20:27.294Z",
+      "createdAt": "2026-03-05T07:20:27.294Z",
+      "role": "workflow:owner",
+      "workflowId": "DZTkTYJFQABk32kU",
+      "projectId": "POhXKLALTFDZhVtj"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2026-03-05T07:31:56.000Z",
+  "versionId": "ef34fda0-ffe1-4510-88a1-096bdd6e61ed"
+}
