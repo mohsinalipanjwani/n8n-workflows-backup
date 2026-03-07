@@ -1,0 +1,58 @@
+{
+  "active": false,
+  "connections": {},
+  "createdAt": "2026-03-06T11:05:21.946Z",
+  "id": "oHk1VbS0o8uREi2s",
+  "isArchived": false,
+  "meta": null,
+  "name": "Remote Authentication - Test",
+  "nodes": [
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://www.deinegesundheitsschule.de/api/ezycourse/webhooks/remote-user-authentication/f9uMoaS61pMZw9F6bhOmvN-98TODvjqR",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "email",
+              "value": "=testing@webruder.de"
+            },
+            {
+              "name": "user_id",
+              "value": "=1610800"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        -128,
+        -80
+      ],
+      "id": "b1fa3082-6963-49b9-8a68-e48fd2422394",
+      "name": "Remote Authentication",
+      "onError": "continueRegularOutput"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-03-06T11:05:21.961Z",
+      "createdAt": "2026-03-06T11:05:21.961Z",
+      "role": "workflow:owner",
+      "workflowId": "oHk1VbS0o8uREi2s",
+      "projectId": "POhXKLALTFDZhVtj"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2026-03-06T11:10:59.000Z",
+  "versionId": "fc0303f5-e257-449d-99d5-bbc2834f09d3"
+}
