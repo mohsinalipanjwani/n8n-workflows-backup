@@ -16,7 +16,7 @@
       "main": [
         [
           {
-            "node": "Aggregate List",
+            "node": "Loop Over Items",
             "type": "main",
             "index": 0
           }
@@ -44,12 +44,54 @@
           }
         ]
       ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "Aggregate List",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Find Subscription",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Find Subscription": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2026-03-02T15:29:35.072Z",
   "id": "hWYJqH5DeXPxKlwh",
   "isArchived": false,
-  "meta": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
   "name": "Monthly Credit Reset - CRON",
   "nodes": [
     {
@@ -121,8 +163,8 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        1056,
-        16
+        1184,
+        -160
       ],
       "id": "38eeb770-132a-41a4-a0f0-c2d9fdda4ac7",
       "name": "Update Credit + Reset Date",
@@ -141,24 +183,129 @@
       "type": "n8n-nodes-base.aggregate",
       "typeVersion": 1,
       "position": [
-        0,
-        16
+        112,
+        -160
       ],
       "id": "99d8e078-9a07-4351-a090-8e7842cd8246",
       "name": "Aggregate List"
     },
     {
       "parameters": {
-        "jsCode": "const todayStr = new Date().toISOString().slice(0, 10); return $input.first().json.data.map(user => { const quotaResetDateStr = user.quota_reset_date; const shouldReset = quotaResetDateStr <= todayStr; const today = new Date(); const nextMonthFirstDay = new Date(today.getFullYear(), today.getMonth() + 1, 1) .toISOString().slice(0,10); return { json: { id: user.id, shouldReset, newQuota: shouldReset ? 0 : user.quota, newQuotaResetDate: shouldReset ? nextMonthFirstDay : quotaResetDateStr } }; })"
+        "jsCode": "const todayStr = new Date().toISOString().slice(0, 10);\nreturn $input.first().json.data.map(user => {\n    const quotaResetDateStr = user.quota_reset_date;\n    const shouldReset = quotaResetDateStr <= todayStr;\n    const today = new Date();\n    const nextMonthFirstDay = new Date(today.getFullYear(), today.getMonth() + 1, 1).toISOString().slice(0, 10);\n\n  let  newQuota =  0\n\n  if (user?.subscription?.ezycourse_product_id === 4047) {\n    newQuota  = 20\n  } else if(user?.subscription?.ezycourse_product_id === 4690) {\n    newQuota  = 60    \n  }\n  \n    return {\n        json: {\n            id: user.user_id,\n            shouldReset,\n            newQuota: shouldReset ? newQuota : user.credits,\n            newQuotaResetDate: shouldReset ? nextMonthFirstDay : quotaResetDateStr\n        }\n    };\n})"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        640,
-        16
+        624,
+        -160
       ],
       "id": "807777d7-2363-4a96-9480-c7d3226285b9",
       "name": "Calculate Monthly Credit Reset"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -352,
+        16
+      ],
+      "id": "cdb2565c-a688-4867-8283-16fffe25ff3f",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "4305a577-2cd3-4a95-8d58-8a3c3a69a749",
+              "name": "user_id",
+              "value": "={{ $('Loop Over Items').item.json.id }}",
+              "type": "string"
+            },
+            {
+              "id": "92b9db46-730d-42e1-9e21-321d48fc4be4",
+              "name": "name",
+              "value": "={{ $('Loop Over Items').item.json.name }}",
+              "type": "string"
+            },
+            {
+              "id": "4631e37e-0e21-4162-83e2-9971fa0eabe6",
+              "name": "email",
+              "value": "={{ $('Loop Over Items').item.json.email }}",
+              "type": "string"
+            },
+            {
+              "id": "34a94c7e-6ec6-40f1-b640-393927114798",
+              "name": "credits",
+              "value": "={{ $('Loop Over Items').item.json.quota }}",
+              "type": "string"
+            },
+            {
+              "id": "35548f9e-84ed-423b-a36a-48bd2f3edff4",
+              "name": "ezycourse_id",
+              "value": "={{ $('Loop Over Items').item.json.ezycourse_id }}",
+              "type": "string"
+            },
+            {
+              "id": "d105ec06-7bc5-463b-8903-5e232089434e",
+              "name": "quota_reset_date",
+              "value": "={{ $('Loop Over Items').item.json.quota_reset_date }}",
+              "type": "string"
+            },
+            {
+              "id": "43deed6d-2580-4dce-b3fe-c172932921db",
+              "name": "subscription",
+              "value": "={{ $json }}",
+              "type": "object"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        640,
+        32
+      ],
+      "id": "fc1e2ff0-156e-486e-b74f-8f178c186930",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "subscriptions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "user_id",
+              "keyValue": "={{ $json.id }}"
+            },
+            {
+              "keyName": "status",
+              "keyValue": "active"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        112,
+        32
+      ],
+      "id": "3a2e5772-0b8f-4b0b-87c0-ecfc27d93ba4",
+      "name": "Find Subscription",
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
     }
   ],
   "pinData": {
@@ -178,6 +325,184 @@
           "Timezone": "Europe/Berlin (UTC+01:00)"
         }
       }
+    ],
+    "Get All Users": [
+      {
+        "json": {
+          "id": "5aa1b588-12f4-4e80-ab71-5ae5f6e887b9",
+          "name": "Niko",
+          "email": "niko.kupper@zohomail.eu",
+          "quota": 948,
+          "subscription": "free",
+          "created_at": "2026-01-28T12:45:58.233334+00:00",
+          "updated_at": "2026-01-28T12:45:58.233334+00:00",
+          "role": "user",
+          "role_level": 20,
+          "ezycourse_id": "7878",
+          "privacy_accepted": false,
+          "quota_reset_date": null
+        }
+      },
+      {
+        "json": {
+          "id": "8a6f771f-e555-40c1-9110-c8d51a90be27",
+          "name": "Inga Prince",
+          "email": "gicyka@gmail.com",
+          "quota": 0,
+          "subscription": "free",
+          "created_at": "2026-02-27T11:13:56.485008+00:00",
+          "updated_at": "2026-02-27T11:13:56.485008+00:00",
+          "role": "user",
+          "role_level": 20,
+          "ezycourse_id": "57098",
+          "privacy_accepted": false,
+          "quota_reset_date": "2026-04-01"
+        }
+      },
+      {
+        "json": {
+          "id": "c627ec1a-2aab-429b-9e38-371d60e998ec",
+          "name": "new",
+          "email": "new@gmail.com",
+          "quota": 100,
+          "subscription": "free",
+          "created_at": "2025-09-04T15:51:30.189341+00:00",
+          "updated_at": "2025-09-04T15:51:30.189341+00:00",
+          "role": "user",
+          "role_level": 20,
+          "ezycourse_id": "83939",
+          "privacy_accepted": true,
+          "quota_reset_date": null
+        }
+      },
+      {
+        "json": {
+          "id": "9354df0d-16b0-47eb-81d1-d0c3009d237f",
+          "name": "Rushan",
+          "email": "rushan.khan@kodertal.com",
+          "quota": 21,
+          "subscription": "free",
+          "created_at": "2025-09-04T09:18:48.067064+00:00",
+          "updated_at": "2025-09-04T09:18:48.067064+00:00",
+          "role": "user",
+          "role_level": 20,
+          "ezycourse_id": "1301281",
+          "privacy_accepted": true,
+          "quota_reset_date": null
+        }
+      },
+      {
+        "json": {
+          "id": "906198ef-1ec4-4972-b63a-dc1be7be15d6",
+          "name": "Mirko",
+          "email": "mirko@designshift.de",
+          "quota": 100,
+          "subscription": "free",
+          "created_at": "2026-01-28T14:50:19.166643+00:00",
+          "updated_at": "2026-01-28T14:50:19.166643+00:00",
+          "role": "user",
+          "role_level": 20,
+          "ezycourse_id": "9089",
+          "privacy_accepted": false,
+          "quota_reset_date": null
+        }
+      },
+      {
+        "json": {
+          "id": "400895f8-7b68-4b72-aa09-4769c7140359",
+          "name": "Workflow",
+          "email": "sualeh@gmail.com",
+          "quota": 98,
+          "subscription": "free",
+          "created_at": "2025-09-04T12:16:21.702981+00:00",
+          "updated_at": "2025-09-04T12:16:21.702981+00:00",
+          "role": "user",
+          "role_level": 20,
+          "ezycourse_id": "94948",
+          "privacy_accepted": true,
+          "quota_reset_date": null
+        }
+      },
+      {
+        "json": {
+          "id": "56f0abe5-beaf-44b3-9c45-2c9b4d714f44",
+          "name": "Dr. Fischer",
+          "email": "info@pranatu.de",
+          "quota": 150,
+          "subscription": "free",
+          "created_at": "2026-01-29T10:05:58.376161+00:00",
+          "updated_at": "2026-01-29T10:05:58.376161+00:00",
+          "role": "user",
+          "role_level": 20,
+          "ezycourse_id": "8977",
+          "privacy_accepted": false,
+          "quota_reset_date": null
+        }
+      },
+      {
+        "json": {
+          "id": "51dcf5df-cba2-40d5-a3cd-877feead1863",
+          "name": "Dominik",
+          "email": "dominikdietz@gmx.net",
+          "quota": 20,
+          "subscription": "free",
+          "created_at": "2025-09-01T07:46:44.403939+00:00",
+          "updated_at": "2025-09-01T07:46:44.403939+00:00",
+          "role": "admin",
+          "role_level": 10,
+          "ezycourse_id": "94949",
+          "privacy_accepted": true,
+          "quota_reset_date": null
+        }
+      },
+      {
+        "json": {
+          "id": "ba488b1f-73e3-4515-852b-22c9137137b6",
+          "name": "Paul Mark",
+          "email": "paulmark@gmail.com",
+          "quota": 270,
+          "subscription": "free",
+          "created_at": "2025-09-04T12:02:47.247363+00:00",
+          "updated_at": "2025-09-04T12:02:47.247363+00:00",
+          "role": "user",
+          "role_level": 20,
+          "ezycourse_id": "12345",
+          "privacy_accepted": true,
+          "quota_reset_date": null
+        }
+      },
+      {
+        "json": {
+          "id": "38de4059-7534-42b4-b0da-2ceba281da1b",
+          "name": "Dr. Fischer",
+          "email": "mohsin.ali@koderlabs.com",
+          "quota": 8579,
+          "subscription": "free",
+          "created_at": "2025-08-21T10:10:22.479054+00:00",
+          "updated_at": "2025-08-21T10:10:22.479054+00:00",
+          "role": "user",
+          "role_level": 20,
+          "ezycourse_id": "9876",
+          "privacy_accepted": true,
+          "quota_reset_date": null
+        }
+      },
+      {
+        "json": {
+          "id": "2621d828-8f56-4b93-854b-71fe3f59404f",
+          "name": "osama",
+          "email": "osama@gmail.com",
+          "quota": 514,
+          "subscription": "free",
+          "created_at": "2025-09-05T07:22:35.432489+00:00",
+          "updated_at": "2025-09-05T07:22:35.432489+00:00",
+          "role": "user",
+          "role_level": 20,
+          "ezycourse_id": "378484",
+          "privacy_accepted": true,
+          "quota_reset_date": null
+        }
+      }
     ]
   },
   "settings": {
@@ -195,6 +520,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2026-03-02T15:30:27.000Z",
-  "versionId": "0970200f-9881-4931-a661-d627cf41f2a8"
+  "updatedAt": "2026-03-11T09:02:58.000Z",
+  "versionId": "225554f8-6c84-4ffe-aea1-9df1a6560ff2"
 }
