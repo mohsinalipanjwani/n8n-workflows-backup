@@ -41,6 +41,20 @@
             "type": "main",
             "index": 0
           }
+        ],
+        [
+          {
+            "node": "Find Subscription for Chargeback",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Find Subscription for Refund",
+            "type": "main",
+            "index": 0
+          }
         ]
       ]
     },
@@ -514,6 +528,83 @@
           }
         ]
       ]
+    },
+    "Find Subscription for Refund": {
+      "main": [
+        [
+          {
+            "node": "Update Subscription Refund & Valid Until",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Subscription Refund & Valid Until": {
+      "main": [
+        [
+          {
+            "node": "Un-Enroll Student into Product1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Un-Enroll Student into Product1": {
+      "main": [
+        [
+          {
+            "node": "Record Transaction of Refund",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Valid Date for User to Access": {
+      "main": [
+        [
+          {
+            "node": "Record Transaction.",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Find Subscription for Chargeback": {
+      "main": [
+        [
+          {
+            "node": "Update Subscription Chrargeback ",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Subscription Chrargeback ": {
+      "main": [
+        [
+          {
+            "node": "Un-Enroll Student ",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Un-Enroll Student ": {
+      "main": [
+        [
+          {
+            "node": "Record Transaction of Chargeback",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2026-03-24T12:08:28.707Z",
@@ -533,8 +624,8 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2.1,
       "position": [
-        -2912,
-        416
+        -3376,
+        432
       ],
       "id": "8f95edc4-2ea4-4ab5-b1e3-2fe41e65f18b",
       "name": "Received IPN Event From Digistore",
@@ -642,6 +733,56 @@
               },
               "renameOutput": true,
               "outputKey": "Rebill Resume"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "0020521f-b304-4bf9-899b-0d905f5162a4",
+                    "leftValue": "={{ $json.body.event }}",
+                    "rightValue": "on_chargeback",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "On Chargeback"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "7406bef6-7611-44f0-87b8-43f9852f3c47",
+                    "leftValue": "={{ $json.body.event }}",
+                    "rightValue": "on_refund",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "On Refund"
             }
           ]
         },
@@ -650,8 +791,8 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.3,
       "position": [
-        -2160,
-        400
+        -2992,
+        368
       ],
       "id": "4f280d09-69c6-4217-84b0-687c132a048c",
       "name": "Route By Event"
@@ -854,7 +995,7 @@
     },
     {
       "parameters": {
-        "jsCode": "const ipn = $input.first().json.body;\n\nconst productTags = {\n  651441: { monthly: \"BASIS_M_001\", annual: \"BASIS_J_002\", ezycourse_id: { monthly: 4047, annual: 4047 } },\n  670519: { monthly: \"voll_m_001\", annual: \"voll_j_002\", ezycourse_id: { monthly: 4690, annual: 4690 } },\n  671094: { monthly: \"live-seminar-1\", annual: \"live-seminar-2\", ezycourse_id: { monthly: 4690, annual: 4690 } },\n};\n\nconst tags = ipn.tags ? ipn.tags.toLowerCase().split(\",\") : [];\nlet billing_interval = \"unknown\";\nlet ezycourse_product_id;\n\nconst tagMap = productTags[ipn.product_id];\nif (tagMap) {\n    if (tags.includes(tagMap.monthly.toLowerCase())) {\n        billing_interval = \"monthly\";\n        ezycourse_product_id = tagMap.ezycourse_id.monthly;\n    } else if (tags.includes(tagMap.annual.toLowerCase())) {\n        billing_interval = \"annual\";\n        ezycourse_product_id = tagMap.ezycourse_id.annual;\n    }\n}\n\n// Calculate dates\nconst today = new Date();\nconst valid_until = new Date(today);\n\n// Special trial condition for live-seminar-1 (4 days trial)\nif (tags.includes(\"live-seminar-1\") && Number(ipn.amount_brutto) === 0) {\n    valid_until.setDate(valid_until.getDate() + 4); // 4 days trial\n} else {\n    if (billing_interval === \"monthly\") valid_until.setMonth(valid_until.getMonth() + 1);\n    if (billing_interval === \"annual\") valid_until.setFullYear(valid_until.getFullYear() + 1);\n}\n\n// Format date\nconst formatDate = (d) => d.toISOString().split(\"T\")[0];\n\n// Build output\nconst output = {\n  email: ipn.email,\n  first_name: ipn.first_name,\n  last_name: ipn.last_name,\n  order_id: ipn.order_id,\n  transaction_id: ipn.transaction_id,\n  product_id: ipn.product_id,\n  product_name: ipn.product_name,\n  amount_brutto: Number(ipn.amount_brutto),\n  currency: ipn.currency,\n  billing_interval: billing_interval,\n  valid_until: formatDate(valid_until),\n  next_payment_at: formatDate(valid_until),\n  amount_credited: Number(ipn.amount_brutto),\n  ezycourse_product_id,\n  quota_reset_date: formatDate(valid_until) // Set quota reset for trial users\n};\n\n// Optional fields\nif (ipn.upgraded_order_id) output.upgraded_order_id = ipn.upgraded_order_id;\nif (ipn.delivery_date) output.delivery_date = ipn.delivery_date;\nif (ipn.upgrade_type) output.upgrade_type = ipn.upgrade_type;\n\n// Determine subscription status\nif (Number(ipn.amount_brutto) === 0) {\n    output.status = \"trial\"; // Free trial\n} else if (ipn.delivery_date && new Date(ipn.delivery_date) > today) {\n    output.status = \"scheduled\";\n} else {\n    output.status = \"active\";\n}\n\nreturn [{ json: output }];"
+        "jsCode": "const ipn = $input.first().json.body;\n\n\nconst productTags = {\n  651441: { \n    monthly: \"BASIS_M_001\", \n    annual: \"BASIS_J_002\", \n    ezycourse_id: { monthly: 4047, annual: 4047 } \n  },\n  670519: { \n    monthly: \"voll_m_001\", \n    annual: \"voll_j_002\",\n    trial: \"voll_m_trial_005\", \n    ezycourse_id: { monthly: 4690, annual: 4690 } \n  }\n};\n\nconst tags = ipn.tags ? ipn.tags.toLowerCase().split(\",\") : [];\n\nlet billing_interval = \"unknown\";\nlet ezycourse_product_id;\n\nconst tagMap = productTags[ipn.product_id];\n\nif (tagMap) {\n    if (tagMap.trial && tags.includes(tagMap.trial.toLowerCase()) && Number(ipn.amount_brutto) === 0) {\n        billing_interval = \"monthly\"; // trial treated as monthly internally\n        ezycourse_product_id = tagMap.ezycourse_id.monthly;\n    } else if (tags.includes(tagMap.monthly.toLowerCase())) {\n        billing_interval = \"monthly\";\n        ezycourse_product_id = tagMap.ezycourse_id.monthly;\n    } else if (tags.includes(tagMap.annual.toLowerCase())) {\n        billing_interval = \"annual\";\n        ezycourse_product_id = tagMap.ezycourse_id.annual;\n    }\n}\n\nconst today = new Date();\nconst valid_until = new Date(today);\n\nif (tagMap?.trial && tags.includes(tagMap.trial.toLowerCase()) && Number(ipn.amount_brutto) === 0) {\n    valid_until.setDate(valid_until.getDate() + 14); // 14 days trial\n} else {\n    if (billing_interval === \"monthly\") valid_until.setMonth(valid_until.getMonth() + 1);\n    if (billing_interval === \"annual\") valid_until.setFullYear(valid_until.getFullYear() + 1);\n}\n\n// Format date helper\nconst formatDate = (d) => d.toISOString().split(\"T\")[0];\n\n// Build output object\nconst output = {\n    email: ipn.email,\n    first_name: ipn.first_name,\n    last_name: ipn.last_name,\n    order_id: ipn.order_id,\n    transaction_id: ipn.transaction_id,\n    product_id: ipn.product_id,\n    product_name: ipn.product_name,\n    amount_brutto: Number(ipn.amount_brutto),\n    currency: ipn.currency,\n    billing_interval,\n    valid_until: formatDate(valid_until),\n    next_payment_at: formatDate(valid_until),\n    amount_credited: Number(ipn.amount_brutto),\n    ezycourse_product_id,\n    quota_reset_date: formatDate(valid_until) // reset quota for trial users\n};\n\nif (ipn.upgraded_order_id) output.upgraded_order_id = ipn.upgraded_order_id;\nif (ipn.delivery_date) output.delivery_date = ipn.delivery_date;\nif (ipn.upgrade_type) output.upgrade_type = ipn.upgrade_type;\n\nif (tagMap?.trial && tags.includes(tagMap.trial.toLowerCase()) && Number(ipn.amount_brutto) === 0) {\n    output.status = \"trial\"; // free trial\n} else if (ipn.delivery_date && new Date(ipn.delivery_date) > today) {\n    output.status = \"scheduled\";\n} else {\n    output.status = \"active\";\n}\n\nreturn [{ json: output }];"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -1860,7 +2001,7 @@
     },
     {
       "parameters": {
-        "jsCode": "const ipn = $input.first().json.body;\n\nconst productTags = {\n  651441: { monthly: \"BASIS_M_001\", annual: \"BASIS_J_002\", ezycourse_id: { monthly: 4047, annual: 4047 } },\n  670519: { monthly: \"voll_m_001\", annual: \"voll_j_002\", ezycourse_id: { monthly: 4690, annual: 4690 } },\n  671094: { monthly: \"live-seminar-1\", annual: \"live-seminar-2\", ezycourse_id: { monthly: 4690, annual: 4690 } },\n};\n\nconst tags = ipn.tags ? ipn.tags.toLowerCase().split(\",\") : [];\nlet billing_interval = \"unknown\";\nlet ezycourse_product_id;\n\nconst tagMap = productTags[ipn.product_id];\nif (tagMap) {\n    if (tags.includes(tagMap.monthly.toLowerCase())) {\n        billing_interval = \"monthly\";\n        ezycourse_product_id = tagMap.ezycourse_id.monthly;\n    } else if (tags.includes(tagMap.annual.toLowerCase())) {\n        billing_interval = \"annual\";\n        ezycourse_product_id = tagMap.ezycourse_id.annual;\n    }\n}\n\n// Calculate dates\nconst today = new Date();\nconst valid_until = new Date(today);\n\n// Special trial condition for live-seminar-1 (4 days trial)\nif (tags.includes(\"live-seminar-1\") && Number(ipn.amount_brutto) === 0) {\n    valid_until.setDate(valid_until.getDate() + 4); // 4 days trial\n} else {\n    if (billing_interval === \"monthly\") valid_until.setMonth(valid_until.getMonth() + 1);\n    if (billing_interval === \"annual\") valid_until.setFullYear(valid_until.getFullYear() + 1);\n}\n\n// Format date\nconst formatDate = (d) => d.toISOString().split(\"T\")[0];\n\n// Build output\nconst output = {\n  email: ipn.email,\n  first_name: ipn.first_name,\n  last_name: ipn.last_name,\n  order_id: ipn.order_id,\n  transaction_id: ipn.transaction_id,\n  product_id: ipn.product_id,\n  product_name: ipn.product_name,\n  amount_brutto: Number(ipn.amount_brutto),\n  currency: ipn.currency,\n  billing_interval: billing_interval,\n  valid_until: formatDate(valid_until),\n  next_payment_at: formatDate(valid_until),\n  amount_credited: Number(ipn.amount_brutto),\n  ezycourse_product_id,\n  quota_reset_date: formatDate(valid_until) // Set quota reset for trial users\n};\n\n// Optional fields\nif (ipn.upgraded_order_id) output.upgraded_order_id = ipn.upgraded_order_id;\nif (ipn.delivery_date) output.delivery_date = ipn.delivery_date;\nif (ipn.upgrade_type) output.upgrade_type = ipn.upgrade_type;\n\n// Determine subscription status\nif (Number(ipn.amount_brutto) === 0) {\n    output.status = \"trial\"; // Free trial\n} else if (ipn.delivery_date && new Date(ipn.delivery_date) > today) {\n    output.status = \"scheduled\";\n} else {\n    output.status = \"active\";\n}\n\nreturn [{ json: output }];"
+        "jsCode": "const ipn = $input.first().json.body;\n\n// Product tag mapping\nconst productTags = {\n  651441: { \n    monthly: \"BASIS_M_001\", \n    annual: \"BASIS_J_002\", \n    ezycourse_id: { monthly: 4047, annual: 4047 } \n  },\n  670519: { \n    monthly: \"voll_m_001\", \n    annual: \"voll_j_002\",\n    trial: \"voll_m_trial_005\", // free trial\n    ezycourse_id: { monthly: 4690, annual: 4690 } \n  }\n};\n\n// Get tags from IPN\nconst tags = ipn.tags ? ipn.tags.toLowerCase().split(\",\") : [];\n\nlet billing_interval = \"unknown\";\nlet ezycourse_product_id;\n\n// Map product ID to intervals\nconst tagMap = productTags[ipn.product_id];\n\nif (tagMap) {\n    if (tagMap.trial && tags.includes(tagMap.trial.toLowerCase()) && Number(ipn.amount_brutto) === 0) {\n        billing_interval = \"monthly\"; // trial treated as monthly internally\n        ezycourse_product_id = tagMap.ezycourse_id.monthly;\n    } else if (tags.includes(tagMap.monthly.toLowerCase())) {\n        billing_interval = \"monthly\";\n        ezycourse_product_id = tagMap.ezycourse_id.monthly;\n    } else if (tags.includes(tagMap.annual.toLowerCase())) {\n        billing_interval = \"annual\";\n        ezycourse_product_id = tagMap.ezycourse_id.annual;\n    }\n}\n\n// Calculate dates\nconst today = new Date();\nconst valid_until = new Date(today);\n\n// Set valid_until for trial or regular subscription\nif (tagMap?.trial && tags.includes(tagMap.trial.toLowerCase()) && Number(ipn.amount_brutto) === 0) {\n    valid_until.setDate(valid_until.getDate() + 14); // 4 days trial\n} else {\n    if (billing_interval === \"monthly\") valid_until.setMonth(valid_until.getMonth() + 1);\n    if (billing_interval === \"annual\") valid_until.setFullYear(valid_until.getFullYear() + 1);\n}\n\n// Format date helper\nconst formatDate = (d) => d.toISOString().split(\"T\")[0];\n\n// Build output object\nconst output = {\n    email: ipn.email,\n    first_name: ipn.first_name,\n    last_name: ipn.last_name,\n    order_id: ipn.order_id,\n    transaction_id: ipn.transaction_id,\n    product_id: ipn.product_id,\n    product_name: ipn.product_name,\n    amount_brutto: Number(ipn.amount_brutto),\n    currency: ipn.currency,\n    billing_interval,\n    valid_until: formatDate(valid_until),\n    next_payment_at: formatDate(valid_until),\n    amount_credited: Number(ipn.amount_brutto),\n    ezycourse_product_id,\n    quota_reset_date: formatDate(valid_until) // reset quota for trial users\n};\n\n// Optional fields\nif (ipn.upgraded_order_id) output.upgraded_order_id = ipn.upgraded_order_id;\nif (ipn.delivery_date) output.delivery_date = ipn.delivery_date;\nif (ipn.upgrade_type) output.upgrade_type = ipn.upgrade_type;\n\n// Determine subscription status\nif (tagMap?.trial && tags.includes(tagMap.trial.toLowerCase()) && Number(ipn.amount_brutto) === 0) {\n    output.status = \"trial\"; // free trial\n} else if (ipn.delivery_date && new Date(ipn.delivery_date) > today) {\n    output.status = \"scheduled\";\n} else {\n    output.status = \"active\";\n}\n\nreturn [{ json: output }];"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -2249,6 +2390,351 @@
           "name": "Supabase account"
         }
       }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "subscriptions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "order_id",
+              "keyValue": "={{ $json.body.order_id }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -1472,
+        2432
+      ],
+      "id": "06893ae3-2176-4044-9d2a-84763820c5cb",
+      "name": "Find Subscription for Refund",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "subscriptions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "={{ $json.id }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "status",
+              "fieldValue": "refunded"
+            },
+            {
+              "fieldId": "valid_until",
+              "fieldValue": "={{ new Date($now).toDateTime().format('yyyy-MM-dd') }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -1104,
+        2432
+      ],
+      "id": "b2adc536-3c81-41ef-9578-e8703d7ace02",
+      "name": "Update Subscription Refund & Valid Until",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://www.deinegesundheitsschule.de/api/ezycourse/webhooks/delete-product-enrollment/f9uMoaS61pMZw9F6bhOmvN-98TODvjqR",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "email",
+              "value": "={{ $json.email }}"
+            },
+            {
+              "name": "product_id",
+              "value": "={{ $json.ezycourse_product_id }}"
+            },
+            {
+              "name": "product_type",
+              "value": "membership"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        -672,
+        2432
+      ],
+      "id": "9d6789bd-e156-470e-bb80-f5e25b291224",
+      "name": "Un-Enroll Student into Product1",
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "tableId": "transactions",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "transaction_id",
+              "fieldValue": "={{ $('Received IPN Event From Digistore').item.json.body.transaction_id }}"
+            },
+            {
+              "fieldId": "currency",
+              "fieldValue": "={{ $('Received IPN Event From Digistore').item.json.body.currency }}"
+            },
+            {
+              "fieldId": "amount",
+              "fieldValue": "={{ $('Received IPN Event From Digistore').item.json.body.amount_brutto }}"
+            },
+            {
+              "fieldId": "event",
+              "fieldValue": "={{ $('Received IPN Event From Digistore').item.json.body.event }}"
+            },
+            {
+              "fieldId": "order_id",
+              "fieldValue": "={{ $('Received IPN Event From Digistore').item.json.body.order_id }}"
+            },
+            {
+              "fieldId": "ipn_payload",
+              "fieldValue": "={{ $('Received IPN Event From Digistore').item.json.body }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -624,
+        912
+      ],
+      "id": "074024d4-c472-45eb-a687-1d57de7fa3f2",
+      "name": "Record Transaction.",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "subscriptions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "order_id",
+              "keyValue": "={{ $json.body.order_id }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -1456,
+        1968
+      ],
+      "id": "d8de82f1-d256-426c-9c2e-021a5096d998",
+      "name": "Find Subscription for Chargeback",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "subscriptions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "={{ $json.id }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "status",
+              "fieldValue": "chargeback"
+            },
+            {
+              "fieldId": "valid_until",
+              "fieldValue": "={{ new Date($now).toDateTime().format('yyyy-MM-dd') }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -1088,
+        1968
+      ],
+      "id": "da17e252-5334-4bb2-a20a-7d1e918b1ae7",
+      "name": "Update Subscription Chrargeback ",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://www.deinegesundheitsschule.de/api/ezycourse/webhooks/delete-product-enrollment/f9uMoaS61pMZw9F6bhOmvN-98TODvjqR",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "email",
+              "value": "={{ $json.email }}"
+            },
+            {
+              "name": "product_id",
+              "value": "={{ $json.ezycourse_product_id }}"
+            },
+            {
+              "name": "product_type",
+              "value": "membership"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        -656,
+        1968
+      ],
+      "id": "a9d3333c-57d4-49f1-969f-cdd6a56427f7",
+      "name": "Un-Enroll Student ",
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "tableId": "transactions",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "transaction_id",
+              "fieldValue": "={{ $('Received IPN Event From Digistore').item.json.body.transaction_id }}"
+            },
+            {
+              "fieldId": "currency",
+              "fieldValue": "={{ $('Received IPN Event From Digistore').item.json.body.currency }}"
+            },
+            {
+              "fieldId": "amount",
+              "fieldValue": "={{ $('Received IPN Event From Digistore').item.json.body.amount_brutto }}"
+            },
+            {
+              "fieldId": "event",
+              "fieldValue": "={{ $('Received IPN Event From Digistore').item.json.body.event }}"
+            },
+            {
+              "fieldId": "order_id",
+              "fieldValue": "={{ $('Received IPN Event From Digistore').item.json.body.order_id }}"
+            },
+            {
+              "fieldId": "ipn_payload",
+              "fieldValue": "={{ $('Received IPN Event From Digistore').item.json.body }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -272,
+        1968
+      ],
+      "id": "29db62e3-fbe9-4812-aabe-d645f0db4388",
+      "name": "Record Transaction of Chargeback",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "transactions",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "transaction_id",
+              "fieldValue": "={{ $('Received IPN Event From Digistore').item.json.body.transaction_id }}"
+            },
+            {
+              "fieldId": "currency",
+              "fieldValue": "={{ $('Received IPN Event From Digistore').item.json.body.currency }}"
+            },
+            {
+              "fieldId": "amount",
+              "fieldValue": "={{ $('Received IPN Event From Digistore').item.json.body.amount_brutto }}"
+            },
+            {
+              "fieldId": "event",
+              "fieldValue": "={{ $('Received IPN Event From Digistore').item.json.body.event }}"
+            },
+            {
+              "fieldId": "order_id",
+              "fieldValue": "={{ $('Received IPN Event From Digistore').item.json.body.order_id }}"
+            },
+            {
+              "fieldId": "ipn_payload",
+              "fieldValue": "={{ $('Received IPN Event From Digistore').item.json.body }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -288,
+        2432
+      ],
+      "id": "5bda71f2-3977-4430-83c6-ad439b97ff67",
+      "name": "Record Transaction of Refund",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
     }
   ],
   "pinData": {
@@ -2280,11 +2766,11 @@
           "headers": {
             "host": "n8n.app.medizinzumselbermachen.de",
             "user-agent": "PostmanRuntime/7.51.1",
-            "content-length": "1159",
+            "content-length": "1155",
             "accept": "*/*",
             "accept-encoding": "gzip, deflate, br",
             "content-type": "application/json",
-            "postman-token": "a6f988d2-571d-4ca0-bc1b-f567475192bf",
+            "postman-token": "412c0f62-a1b2-44bf-8951-dc0adbcfbfda",
             "x-forwarded-for": "119.63.128.115",
             "x-forwarded-host": "n8n.app.medizinzumselbermachen.de",
             "x-forwarded-port": "443",
@@ -2319,7 +2805,7 @@
             "eticket_url": "",
             "custom": "",
             "tags": "live-seminar-1",
-            "event": "on_rebill_resumed",
+            "event": "on_chargeback",
             "is_cancelled_for": "2026-04-28",
             "amount_brutto": "27.00",
             "amount_netto": "27.00",
@@ -2349,6 +2835,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2026-03-24T16:05:52.000Z",
-  "versionId": "4c79491f-0a71-4096-9474-3e3026de83f0"
+  "updatedAt": "2026-03-25T10:03:07.000Z",
+  "versionId": "c74ba3a5-f645-47be-817d-ee225454b0d9"
 }
