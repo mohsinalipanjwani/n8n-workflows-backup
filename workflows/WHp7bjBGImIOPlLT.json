@@ -1,0 +1,3451 @@
+{
+  "active": false,
+  "connections": {
+    "Route By Event": {
+      "main": [
+        [
+          {
+            "node": "Calculate Billing Interval with Product Mapped",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Find Subscription of Missed Payment",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Update Valid Date for User to Access1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Calculate Billing Interval with Product Mapped1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Find Subscription for Chargeback",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Find Subscription for Refund",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Add User Record": {
+      "main": [
+        [
+          {
+            "node": "Return User",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Data-out Webhook Ezycourse - SIGNUP": {
+      "main": [
+        [
+          {
+            "node": "Verify Signature",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Verify Signature": {
+      "main": [
+        [
+          {
+            "node": "Find User1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No Operation, do nothing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Ezycourse ID": {
+      "main": [
+        [
+          {
+            "node": "Find the Purchased Product ID",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enroll Student into Product": {
+      "main": [
+        [
+          {
+            "node": "Get User Quota",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get User Quota": {
+      "main": [
+        [
+          {
+            "node": "Map Credit Based on Product",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Map Credit Based on Product": {
+      "main": [
+        [
+          {
+            "node": "Update Credits",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If Old Subscription Exist": {
+      "main": [
+        [
+          {
+            "node": "Find Old Subscription",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Check User in DB",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calculate Billing Interval with Product Mapped": {
+      "main": [
+        [
+          {
+            "node": "If Old Subscription Exist",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Find Old Subscription": {
+      "main": [
+        [
+          {
+            "node": "Update Old Subscription",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Old Subscription": {
+      "main": [
+        [
+          {
+            "node": "Un-Enroll Student into Product",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Un-Enroll Student into Product": {
+      "main": [
+        [
+          {
+            "node": "Find User",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "New Subscription": {
+      "main": [
+        [
+          {
+            "node": "Enroll Student into Product1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Find User": {
+      "main": [
+        [
+          {
+            "node": "New Subscription",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enroll Student into Product1": {
+      "main": [
+        [
+          {
+            "node": "Record Transaction Log for This",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Record Transaction Log for This": {
+      "main": [
+        [
+          {
+            "node": "Map Credit Based on Product2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check User in DB": {
+      "main": [
+        [
+          {
+            "node": "If User Exist",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If User Exist": {
+      "main": [
+        [
+          {
+            "node": "Return User",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Add User Record",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Return User": {
+      "main": [
+        [
+          {
+            "node": "Find Subscription - To Check Rebill",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Find Subscription - To Check Rebill": {
+      "main": [
+        [
+          {
+            "node": "If Exist",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If Exist": {
+      "main": [
+        [
+          {
+            "node": "Update Existing Subscription",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Add Subscription",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Find Subscription of Missed Payment": {
+      "main": [
+        [
+          {
+            "node": "Update Payment Status & Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Payment Status & Status": {
+      "main": [
+        [
+          {
+            "node": "Record Transaction of Missed Payment",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Find User1": {
+      "main": [
+        [
+          {
+            "node": "Check If User Exist",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check If User Exist": {
+      "main": [
+        [
+          {
+            "node": "Update Ezycourse ID",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Add User in DB",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Map Credit Based on Product2": {
+      "main": [
+        [
+          {
+            "node": "Update Credits2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Valid Date for User to Access1": {
+      "main": [
+        [
+          {
+            "node": "Record Transaction of Rebill Cancel",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calculate Billing Interval with Product Mapped1": {
+      "main": [
+        [
+          {
+            "node": "Get Current Subscription",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Subscription Status": {
+      "main": [
+        [
+          {
+            "node": "Calculate Expired",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Current Subscription": {
+      "main": [
+        [
+          {
+            "node": "Update Subscription Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calculate Expired": {
+      "main": [
+        [
+          {
+            "node": "IF Expired",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF Expired": {
+      "main": [
+        [
+          {
+            "node": "Enroll Student into Product3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get User Quota2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get User Quota2": {
+      "main": [
+        [
+          {
+            "node": "Map Credit Based on Product3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Map Credit Based on Product3": {
+      "main": [
+        [
+          {
+            "node": "Update Credits3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Credits3": {
+      "main": [
+        [
+          {
+            "node": "Record Transaction of Rebill Resume",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enroll Student into Product3": {
+      "main": [
+        [
+          {
+            "node": "Get User Quota3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get User Quota3": {
+      "main": [
+        [
+          {
+            "node": "Map Credit Based on Product4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Map Credit Based on Product4": {
+      "main": [
+        [
+          {
+            "node": "Update Credits4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Credits4": {
+      "main": [
+        [
+          {
+            "node": "Record Transaction of Rebill Resume",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Find Subscription for Refund": {
+      "main": [
+        [
+          {
+            "node": "Update Subscription Refund & Valid Until",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Subscription Refund & Valid Until": {
+      "main": [
+        [
+          {
+            "node": "Un-Enroll Student into Product1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Un-Enroll Student into Product1": {
+      "main": [
+        [
+          {
+            "node": "Record Transaction of Refund",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Find Subscription for Chargeback": {
+      "main": [
+        [
+          {
+            "node": "Update Subscription Chrargeback ",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Subscription Chrargeback ": {
+      "main": [
+        [
+          {
+            "node": "Un-Enroll Student ",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Un-Enroll Student ": {
+      "main": [
+        [
+          {
+            "node": "Record Transaction of Chargeback",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Record Transaction of Chargeback": {
+      "main": [
+        [
+          {
+            "node": "Update User1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Record Transaction of Refund": {
+      "main": [
+        [
+          {
+            "node": "Update User",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Process the Input For Switch": {
+      "main": [
+        [
+          {
+            "node": "If Subscription Active",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enroll Student into Product4": {
+      "main": [
+        [
+          {
+            "node": "Get User Quota1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Record Transaction Log": {
+      "main": [
+        [
+          {
+            "node": "Process the Input For Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If Subscription Active": {
+      "main": [
+        [
+          {
+            "node": "Enroll Student into Product4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get User Quota1": {
+      "main": [
+        [
+          {
+            "node": "Map Credit Based on Product1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Map Credit Based on Product1": {
+      "main": [
+        [
+          {
+            "node": "Update Credits1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Add Subscription": {
+      "main": [
+        [
+          {
+            "node": "Record Transaction Log",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Existing Subscription": {
+      "main": [
+        [
+          {
+            "node": "Record Transaction Log",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Received IPN Event From Digistore": {
+      "main": [
+        [
+          {
+            "node": "Filter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter": {
+      "main": [
+        [
+          {
+            "node": "Route By Event",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-04-07T14:23:16.088Z",
+  "id": "WHp7bjBGImIOPlLT",
+  "isArchived": false,
+  "meta": null,
+  "name": "Digistore Product Automation - DEV",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "get-digistore-info-dev",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -3200,
+        608
+      ],
+      "id": "b9410ba4-acd4-4a64-a1d3-e5bbc10cda5d",
+      "name": "Received IPN Event From Digistore",
+      "webhookId": "4031a140-541e-47c3-bda4-57d9732bf95f"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.body.event }}",
+                    "rightValue": "payment",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "baced0e0-53ea-4073-bf9a-fd0547cfa5db"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Payment Created"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "ef1dc464-e919-4fb5-8028-ba6d716e303c",
+                    "leftValue": "={{ $json.body.event }}",
+                    "rightValue": "missed recurring payment",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Payment Missed"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "01a19be0-87e9-46d3-8d46-3855de22aa8e",
+                    "leftValue": "={{ $json.body.event }}",
+                    "rightValue": "rebilling canceled",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Rebill Cancel"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "6358ffb5-31d2-4770-893c-24cec4b5b818",
+                    "leftValue": "={{ $json.body.event }}",
+                    "rightValue": "rebilling resumed",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Rebill Resume"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "5d7c97d0-4e6f-4f32-a092-dfa3bb479b69",
+                    "leftValue": "={{ $json.body.event }}",
+                    "rightValue": "chargeback",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "On Chargeback"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "a29370f0-6e82-47bf-8d0b-e779ec8040e2",
+                    "leftValue": "={{ $json.body.event }}",
+                    "rightValue": "refund",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "On Refund"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.3,
+      "position": [
+        -2336,
+        528
+      ],
+      "id": "c1065e78-dfbd-482a-8fa3-3ce3dfe8af27",
+      "name": "Route By Event"
+    },
+    {
+      "parameters": {
+        "tableId": "users",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "email",
+              "fieldValue": "={{ $('Calculate Billing Interval with Product Mapped').item.json.email.toLowerCase() }}"
+            },
+            {
+              "fieldId": "name",
+              "fieldValue": "={{ $('Calculate Billing Interval with Product Mapped').item.json.first_name }} {{ $('Calculate Billing Interval with Product Mapped').item.json.last_name }}"
+            },
+            {
+              "fieldId": "role",
+              "fieldValue": "user"
+            },
+            {
+              "fieldId": "role_level",
+              "fieldValue": "20"
+            },
+            {
+              "fieldId": "active",
+              "fieldValue": "true"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        128,
+        688
+      ],
+      "id": "120158da-9f0f-4cf4-896d-13336deb280c",
+      "name": "Add User Record",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "get-new-signup",
+        "authentication": "headerAuth",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -3344,
+        4096
+      ],
+      "id": "78fb5a5d-356d-497a-8adc-a5513edde7a4",
+      "name": "Data-out Webhook Ezycourse - SIGNUP",
+      "webhookId": "fff3dc85-3ba8-4454-b7fa-b80194e410cd"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "5baea4e3-9bd3-4e8b-a4db-159b67a205e6",
+              "leftValue": "={{ $json.headers['x-ezycourse-signature'] }}",
+              "rightValue": "OCdwCyQttoyGXYaWIuffJ1LnEM9lsUNg",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -2848,
+        4096
+      ],
+      "id": "cd953ed7-3af2-412f-b0d9-3eec6320ce00",
+      "name": "Verify Signature"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        -2336,
+        4624
+      ],
+      "id": "e30f46f5-9a3e-4221-84b2-2b1ba4a817c6",
+      "name": "No Operation, do nothing"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "users",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "email",
+              "condition": "eq",
+              "keyValue": "={{ $('Data-out Webhook Ezycourse - SIGNUP').item.json.body.email }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "ezycourse_id",
+              "fieldValue": "={{ $('Data-out Webhook Ezycourse - SIGNUP').item.json.body.id }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -1856,
+        3888
+      ],
+      "id": "22c9f300-5b41-4bfc-9e9e-949d4da64838",
+      "name": "Update Ezycourse ID",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "subscriptions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "user_id",
+              "keyValue": "={{ $json.id }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -1296,
+        3888
+      ],
+      "id": "e7532ea8-4a2d-453b-8783-b7103fba8602",
+      "name": "Find the Purchased Product ID",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://www.deinegesundheitsschule.de/api/ezycourse/webhooks/create-product-enrollment/f9uMoaS61pMZw9F6bhOmvN-98TODvjqR",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "email",
+              "value": "={{ $('Update Ezycourse ID').item.json.email }}"
+            },
+            {
+              "name": "product_id",
+              "value": "={{ $json.ezycourse_product_id }}"
+            },
+            {
+              "name": "product_type",
+              "value": "membership"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        -880,
+        3888
+      ],
+      "id": "98d0fe7a-e56d-4569-a7aa-dc24e731510a",
+      "name": "Enroll Student into Product",
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "users",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "keyValue": "={{ $('Update Ezycourse ID').first().json.id }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -576,
+        3888
+      ],
+      "id": "4a5dbf0a-ed71-4adf-9716-8fda03a7d3f8",
+      "name": "Get User Quota",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "let ez_product_id = $('Find the Purchased Product ID').first().json.ezycourse_product_id\n\nlet quota = 0\n\nif(ez_product_id == 4047) {\n  quota = 20\n} else if (ez_product_id == 4690) {\n  quota = \t60\n}\n\n\n\nreturn {\n  quota\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -112,
+        3888
+      ],
+      "id": "0534ca68-e80c-4b61-a467-f16e50340c38",
+      "name": "Map Credit Based on Product"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "users",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "={{ $('Update Ezycourse ID').first().json.id }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "quota",
+              "fieldValue": "={{ $('Map Credit Based on Product').item.json.quota }}"
+            },
+            {
+              "fieldId": "quota_reset_date",
+              "fieldValue": "={{ new Date(new Date($now).getFullYear(), new Date($now).getMonth() + 1, 1).toLocaleDateString('en-CA') }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        112,
+        3888
+      ],
+      "id": "84188c6c-80d8-4be9-a0f9-8e2595c10269",
+      "name": "Update Credits",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "cb11ca5c-e884-4991-8a01-c552b4a867bd",
+              "leftValue": "={{ $json.upgraded_order_id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -1184,
+        304
+      ],
+      "id": "07874dd0-0a26-4917-9c7b-3aba6ab323bf",
+      "name": "If Old Subscription Exist"
+    },
+    {
+      "parameters": {
+        "jsCode": "const ipn = $input.first().json.body;\n\n\nconst productTags = {\n  \n  670519: { \n    monthly: \"voll_m_001\", \n    annual: \"voll_j_002\",\n    trial: \"voll_m_trial_005\", \n    ezycourse_id: { monthly: 4690, annual: 4690 } \n  }\n};\n\nconst tags = ipn.tags ? ipn.tags.toLowerCase().split(\",\") : [];\n\nlet billing_interval = \"unknown\";\nlet ezycourse_product_id;\n\nconst tagMap = productTags[ipn.product_id];\n\nif (tagMap) {\n    if (tagMap.trial && tags.includes(tagMap.trial.toLowerCase())) {\n        if (Number(ipn.amount_brutto) === 0) {\n            billing_interval = \"monthly\"; // free trial\n        } else {\n            billing_interval = \"monthly\"; // trial converted to paid\n        }\n        ezycourse_product_id = tagMap.ezycourse_id.monthly;\n    } \n    else if (tags.includes(tagMap.monthly.toLowerCase())) {\n        billing_interval = \"monthly\";\n        ezycourse_product_id = tagMap.ezycourse_id.monthly;\n    } \n    else if (tags.includes(tagMap.annual.toLowerCase())) {\n        billing_interval = \"annual\";\n        ezycourse_product_id = tagMap.ezycourse_id.annual;\n    }\n}\n\nconst today = new Date();\nconst valid_until = new Date(today);\n\nif (tagMap?.trial && tags.includes(tagMap.trial.toLowerCase())) {\n    if (Number(ipn.amount_brutto) === 0) {\n        // Free trial\n        valid_until.setDate(valid_until.getDate() + 14);\n    } else {\n        valid_until.setMonth(valid_until.getMonth() + 1);\n    }\n} else {\n    if (billing_interval === \"monthly\") valid_until.setMonth(valid_until.getMonth() + 1);\n    if (billing_interval === \"annual\") valid_until.setFullYear(valid_until.getFullYear() + 1);\n}\n\n// Format date helper\nconst formatDate = (d) => d.toISOString().split(\"T\")[0];\n\n// Build output object\nconst output = {\n    email: ipn.email,\n    first_name: ipn.first_name,\n    last_name: ipn.last_name,\n    order_id: ipn.order_id,\n    transaction_id: ipn.transaction_id,\n    product_id: ipn.product_id,\n    product_name: ipn.product_name,\n    amount_brutto: Number(ipn.amount_brutto),\n    currency: ipn.currency,\n    billing_interval,\n    valid_until: formatDate(valid_until),\n    next_payment_at: formatDate(valid_until),\n    amount_credited: Number(ipn.amount_brutto),\n    ezycourse_product_id,\n    quota_reset_date: formatDate(valid_until) // reset quota for trial users\n};\n\nif (ipn.upgraded_order_id) output.upgraded_order_id = ipn.upgraded_order_id;\nif (ipn.delivery_date) output.delivery_date = ipn.delivery_date;\nif (ipn.upgrade_type) output.upgrade_type = ipn.upgrade_type;\n\nif (tagMap?.trial && tags.includes(tagMap.trial.toLowerCase()) && Number(ipn.amount_brutto) === 0) {\n    output.status = \"trial\";\n} else if (ipn.delivery_date && new Date(ipn.delivery_date) > today) {\n    output.status = \"scheduled\";\n} else {\n    output.status = \"active\";\n}\n\nreturn [{ json: output }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1520,
+        304
+      ],
+      "id": "f6f973e9-c3b9-4931-8802-c1add1e31b5f",
+      "name": "Calculate Billing Interval with Product Mapped"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "subscriptions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "order_id",
+              "keyValue": "={{ $json.upgraded_order_id }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -560,
+        -96
+      ],
+      "id": "fe60fec2-eea9-4b60-8c44-91edb3cc205d",
+      "name": "Find Old Subscription",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "subscriptions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "={{ $json.id }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "upgrade_type",
+              "fieldValue": "={{ $('If Old Subscription Exist').item.json.upgrade_type }}"
+            },
+            {
+              "fieldId": "status",
+              "fieldValue": "cancelled"
+            },
+            {
+              "fieldId": "upgraded_order_id",
+              "fieldValue": "={{ $('Calculate Billing Interval with Product Mapped').item.json.upgraded_order_id }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -272,
+        -96
+      ],
+      "id": "097b71b0-ce6b-41a2-a6d3-909737828bd1",
+      "name": "Update Old Subscription",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://www.deinegesundheitsschule.de/api/ezycourse/webhooks/delete-product-enrollment/f9uMoaS61pMZw9F6bhOmvN-98TODvjqR",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "email",
+              "value": "={{ $json.email }}"
+            },
+            {
+              "name": "product_id",
+              "value": "={{ $json.ezycourse_product_id }}"
+            },
+            {
+              "name": "product_type",
+              "value": "membership"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        0,
+        -96
+      ],
+      "id": "e96f0ce6-9b38-47d9-82f3-1296eb01aa51",
+      "name": "Un-Enroll Student into Product",
+      "alwaysOutputData": false,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "tableId": "subscriptions",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "order_id",
+              "fieldValue": "={{ $('Calculate Billing Interval with Product Mapped').item.json.order_id }}"
+            },
+            {
+              "fieldId": "created_at",
+              "fieldValue": "={{ $now }}"
+            },
+            {
+              "fieldId": "product_id",
+              "fieldValue": "={{ $('Calculate Billing Interval with Product Mapped').item.json.product_id }}"
+            },
+            {
+              "fieldId": "status",
+              "fieldValue": "={{ $('Calculate Billing Interval with Product Mapped').item.json.status }}"
+            },
+            {
+              "fieldId": "email",
+              "fieldValue": "={{ $('Calculate Billing Interval with Product Mapped').item.json.email }}"
+            },
+            {
+              "fieldId": "ezycourse_product_id",
+              "fieldValue": "={{ $('Calculate Billing Interval with Product Mapped').item.json.ezycourse_product_id }}"
+            },
+            {
+              "fieldId": "billing_interval",
+              "fieldValue": "={{ $('Calculate Billing Interval with Product Mapped').item.json.billing_interval }}"
+            },
+            {
+              "fieldId": "valid_until",
+              "fieldValue": "={{ $('Calculate Billing Interval with Product Mapped').item.json.valid_until }}"
+            },
+            {
+              "fieldId": "delivery_date",
+              "fieldValue": "={{ $('Calculate Billing Interval with Product Mapped').item.json.delivery_date || null }}"
+            },
+            {
+              "fieldId": "amount_credited",
+              "fieldValue": "={{ $('Calculate Billing Interval with Product Mapped').item.json.amount_credited }}"
+            },
+            {
+              "fieldId": "next_payment_at",
+              "fieldValue": "={{ $('Calculate Billing Interval with Product Mapped').item.json.next_payment_at }}"
+            },
+            {
+              "fieldId": "user_id",
+              "fieldValue": "={{ $json.id }}"
+            },
+            {
+              "fieldId": "upgraded_order_id",
+              "fieldValue": "={{ $('Calculate Billing Interval with Product Mapped').item.json.upgraded_order_id }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        848,
+        -96
+      ],
+      "id": "2894d7a9-916c-457c-aaca-e8d6c80a3778",
+      "name": "New Subscription",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "users",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "email",
+              "keyValue": "={{ $('Calculate Billing Interval with Product Mapped').item.json.email }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        464,
+        -96
+      ],
+      "id": "b33ba825-5f1f-47b3-878b-2c1088e0b4df",
+      "name": "Find User",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://www.deinegesundheitsschule.de/api/ezycourse/webhooks/create-product-enrollment/f9uMoaS61pMZw9F6bhOmvN-98TODvjqR",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "email",
+              "value": "={{ $json.email }}"
+            },
+            {
+              "name": "product_id",
+              "value": "={{ $json.ezycourse_product_id }}"
+            },
+            {
+              "name": "product_type",
+              "value": "membership"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        1216,
+        -96
+      ],
+      "id": "a95ce467-be93-47ea-90b9-b28a54fa7ba0",
+      "name": "Enroll Student into Product1"
+    },
+    {
+      "parameters": {
+        "tableId": "transactions",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "transaction_id",
+              "fieldValue": "={{ $('Calculate Billing Interval with Product Mapped').item.json.transaction_id }}"
+            },
+            {
+              "fieldId": "order_id",
+              "fieldValue": "={{ $('New Subscription').item.json.order_id }}"
+            },
+            {
+              "fieldId": "user_id",
+              "fieldValue": "={{ $('New Subscription').item.json.user_id }}"
+            },
+            {
+              "fieldId": "ipn_payload",
+              "fieldValue": "={{ $('Received IPN Event From Digistore').first().json.body }}"
+            },
+            {
+              "fieldId": "amount",
+              "fieldValue": "={{ $('New Subscription').item.json.amount_credited }}"
+            },
+            {
+              "fieldId": "event",
+              "fieldValue": "={{ $('Received IPN Event From Digistore').first().json.body.event }}"
+            },
+            {
+              "fieldId": "currency",
+              "fieldValue": "={{ $('Received IPN Event From Digistore').first().json.body.currency }}"
+            },
+            {
+              "fieldId": "ipn_payload",
+              "fieldValue": "={{ $('Received IPN Event From Digistore').first().json.body }}"
+            },
+            {
+              "fieldId": "currency",
+              "fieldValue": "={{ $('Received IPN Event From Digistore').first().json.body.currency }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1488,
+        -96
+      ],
+      "id": "ace5c427-75ca-4876-8b27-19b3ae15be8a",
+      "name": "Record Transaction Log for This",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "users",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "email",
+              "keyValue": "={{ $('Calculate Billing Interval with Product Mapped').item.json.email.toLowerCase() }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -560,
+        560
+      ],
+      "id": "4ad5993b-1db7-4969-b98c-c4e60e9942df",
+      "name": "Check User in DB",
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "96022c55-4064-40f4-a419-b5bf6a8d6a3a",
+              "leftValue": "={{ $json }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -272,
+        560
+      ],
+      "id": "2a2fa05e-cf52-4e78-9472-d30a6486331c",
+      "name": "If User Exist"
+    },
+    {
+      "parameters": {
+        "jsCode": "const user = $input.first().json\n\nreturn {\n  user\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        832,
+        544
+      ],
+      "id": "aa90b654-de92-4a0c-ab02-85e6b9da5d57",
+      "name": "Return User"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "subscriptions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "order_id",
+              "keyValue": "={{ $('Calculate Billing Interval with Product Mapped').item.json.order_id }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1232,
+        544
+      ],
+      "id": "44f30453-7f8c-4c84-8886-7bf80219f6e9",
+      "name": "Find Subscription - To Check Rebill",
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "7007c698-1fca-48b0-a385-514a3351d0e9",
+              "leftValue": "={{ $json }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1520,
+        544
+      ],
+      "id": "9aed4161-da98-4def-9af3-85fea3ccfbe8",
+      "name": "If Exist"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "subscriptions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "order_id",
+              "keyValue": "={{ $json.body.order_id }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -1552,
+        736
+      ],
+      "id": "b329f698-f9a4-4b09-bb04-98b0c59bbdcb",
+      "name": "Find Subscription of Missed Payment",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "subscriptions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "={{ $json.id }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "payment_missed_at",
+              "fieldValue": "={{ new Date($now).toDateTime().format('yyyy-MM-dd') }}"
+            },
+            {
+              "fieldId": "status",
+              "fieldValue": "past_due"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -1216,
+        736
+      ],
+      "id": "2fcb6519-f82f-43e1-87a5-242dba3cb93f",
+      "name": "Update Payment Status & Status",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "transactions",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "transaction_id",
+              "fieldValue": "={{ $('Received IPN Event From Digistore').item.json.body.transaction_id }}"
+            },
+            {
+              "fieldId": "currency",
+              "fieldValue": "={{ $('Received IPN Event From Digistore').item.json.body.currency }}"
+            },
+            {
+              "fieldId": "amount",
+              "fieldValue": "={{ $('Received IPN Event From Digistore').item.json.body.amount_brutto }}"
+            },
+            {
+              "fieldId": "event",
+              "fieldValue": "={{ $('Received IPN Event From Digistore').item.json.body.event }}"
+            },
+            {
+              "fieldId": "order_id",
+              "fieldValue": "={{ $('Received IPN Event From Digistore').item.json.body.order_id }}"
+            },
+            {
+              "fieldId": "ipn_payload",
+              "fieldValue": "={{ $('Received IPN Event From Digistore').item.json.body }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -880,
+        736
+      ],
+      "id": "cd7958f8-5647-420c-81e5-51f4a1ae3934",
+      "name": "Record Transaction of Missed Payment",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "users",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "email",
+              "keyValue": "={{ $json.body.email }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -2432,
+        4080
+      ],
+      "id": "231a7019-0ff0-4dac-9faa-97b43bae0459",
+      "name": "Find User1",
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "5a8f3d8a-efce-4e15-b103-00781e4805fc",
+              "leftValue": "={{ $json }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -2144,
+        4080
+      ],
+      "id": "496af246-e1d8-4d66-baf5-9117bf1ecff0",
+      "name": "Check If User Exist"
+    },
+    {
+      "parameters": {
+        "tableId": "users",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "email",
+              "fieldValue": "={{ $('Data-out Webhook Ezycourse - SIGNUP').item.json.body.email }}"
+            },
+            {
+              "fieldId": "name",
+              "fieldValue": "={{ $('Data-out Webhook Ezycourse - SIGNUP').item.json.body.name }}"
+            },
+            {
+              "fieldId": "role",
+              "fieldValue": "user"
+            },
+            {
+              "fieldId": "role_level",
+              "fieldValue": "20"
+            },
+            {
+              "fieldId": "ezycourse_id",
+              "fieldValue": "={{ $('Data-out Webhook Ezycourse - SIGNUP').item.json.body.id || '' }}"
+            },
+            {
+              "fieldId": "active",
+              "fieldValue": "true"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -1840,
+        4272
+      ],
+      "id": "b3485f99-5f69-43bf-bca8-2c904cea3380",
+      "name": "Add User in DB",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "let ez_product_id = $('Calculate Billing Interval with Product Mapped').item.json.ezycourse_product_id\n\nlet quota = 0\n\nif(ez_product_id == 4047) {\n  quota = 20\n} else if (ez_product_id == 4690) {\n  quota = \t60\n}\n\n\n\nreturn {\n  quota\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1872,
+        -96
+      ],
+      "id": "3a69bb6d-ac8f-4a24-a8e2-82fd368e2c40",
+      "name": "Map Credit Based on Product2"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "users",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "={{ $('Find User').item.json.id }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "quota",
+              "fieldValue": "={{ $('Map Credit Based on Product2').item.json.quota }}"
+            },
+            {
+              "fieldId": "quota_reset_date",
+              "fieldValue": "={{ new Date(new Date($now).getFullYear(), new Date($now).getMonth() + 1, 1).toLocaleDateString('en-CA') }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        2320,
+        -96
+      ],
+      "id": "b0309c69-c0f2-45e0-b14b-dd8cc29bfa5c",
+      "name": "Update Credits2",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "subscriptions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "order_id",
+              "condition": "eq",
+              "keyValue": "={{ $json.body.order_id }}"
+            },
+            {
+              "keyName": "status",
+              "condition": "eq",
+              "keyValue": "active"
+            },
+            {
+              "keyName": "status",
+              "condition": "eq",
+              "keyValue": "trial"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "valid_until",
+              "fieldValue": "={{ $json.body.is_cancelled_for }}"
+            },
+            {
+              "fieldId": "status",
+              "fieldValue": "cancelled"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -1552,
+        1040
+      ],
+      "id": "24d13113-f346-4eea-850a-2278ef124cd0",
+      "name": "Update Valid Date for User to Access1",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const ipn = $input.first().json.body;\n\n\nconst productTags = {\n  651441: { \n    monthly: \"BASIS_M_001\", \n    annual: \"BASIS_J_002\", \n    ezycourse_id: { monthly: 4047, annual: 4047 } \n  },\n  670519: { \n    monthly: \"voll_m_001\", \n    annual: \"voll_j_002\",\n    trial: \"voll_m_trial_005\", \n    ezycourse_id: { monthly: 4690, annual: 4690 } \n  }\n};\n\nconst tags = ipn.tags ? ipn.tags.toLowerCase().split(\",\") : [];\n\nlet billing_interval = \"unknown\";\nlet ezycourse_product_id;\n\nconst tagMap = productTags[ipn.product_id];\n\nif (tagMap) {\n    if (tagMap.trial && tags.includes(tagMap.trial.toLowerCase())) {\n        if (Number(ipn.amount_brutto) === 0) {\n            billing_interval = \"monthly\"; // free trial\n        } else {\n            billing_interval = \"monthly\"; // trial converted to paid\n        }\n        ezycourse_product_id = tagMap.ezycourse_id.monthly;\n    } \n    else if (tags.includes(tagMap.monthly.toLowerCase())) {\n        billing_interval = \"monthly\";\n        ezycourse_product_id = tagMap.ezycourse_id.monthly;\n    } \n    else if (tags.includes(tagMap.annual.toLowerCase())) {\n        billing_interval = \"annual\";\n        ezycourse_product_id = tagMap.ezycourse_id.annual;\n    }\n}\n\nconst today = new Date();\nconst valid_until = new Date(today);\n\nif (tagMap?.trial && tags.includes(tagMap.trial.toLowerCase())) {\n    if (Number(ipn.amount_brutto) === 0) {\n        // Free trial\n        valid_until.setDate(valid_until.getDate() + 14);\n    } else {\n        valid_until.setMonth(valid_until.getMonth() + 1);\n    }\n} else {\n    if (billing_interval === \"monthly\") valid_until.setMonth(valid_until.getMonth() + 1);\n    if (billing_interval === \"annual\") valid_until.setFullYear(valid_until.getFullYear() + 1);\n}\n\n// Format date helper\nconst formatDate = (d) => d.toISOString().split(\"T\")[0];\n\n// Build output object\nconst output = {\n    email: ipn.email,\n    first_name: ipn.first_name,\n    last_name: ipn.last_name,\n    order_id: ipn.order_id,\n    transaction_id: ipn.transaction_id,\n    product_id: ipn.product_id,\n    product_name: ipn.product_name,\n    amount_brutto: Number(ipn.amount_brutto),\n    currency: ipn.currency,\n    billing_interval,\n    valid_until: formatDate(valid_until),\n    next_payment_at: formatDate(valid_until),\n    amount_credited: Number(ipn.amount_brutto),\n    ezycourse_product_id,\n    quota_reset_date: formatDate(valid_until) // reset quota for trial users\n};\n\nif (ipn.upgraded_order_id) output.upgraded_order_id = ipn.upgraded_order_id;\nif (ipn.delivery_date) output.delivery_date = ipn.delivery_date;\nif (ipn.upgrade_type) output.upgrade_type = ipn.upgrade_type;\n\nif (tagMap?.trial && tags.includes(tagMap.trial.toLowerCase()) && Number(ipn.amount_brutto) === 0) {\n    output.status = \"trial\";\n} else if (ipn.delivery_date && new Date(ipn.delivery_date) > today) {\n    output.status = \"scheduled\";\n} else {\n    output.status = \"active\";\n}\n\nreturn [{ json: output }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1600,
+        1408
+      ],
+      "id": "3f153193-4360-4ecc-bfc5-53fa125def13",
+      "name": "Calculate Billing Interval with Product Mapped1"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "subscriptions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "={{ $json.id }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "valid_until",
+              "fieldValue": "={{ $json.valid_until }}"
+            },
+            {
+              "fieldId": "status",
+              "fieldValue": "active"
+            },
+            {
+              "fieldId": "order_id",
+              "fieldValue": "={{ $json.order_id }}"
+            },
+            {
+              "fieldId": "ezycourse_product_id",
+              "fieldValue": "={{ $json.ezycourse_product_id }}"
+            },
+            {
+              "fieldId": "billing_interval",
+              "fieldValue": "={{ $json.billing_interval }}"
+            },
+            {
+              "fieldId": "next_payment_at",
+              "fieldValue": "={{ $json.next_payment_at }}"
+            },
+            {
+              "fieldId": "payment_missed_at",
+              "fieldValue": "={{ null }}"
+            },
+            {
+              "fieldId": "amount_credited",
+              "fieldValue": "={{ $json.amount_brutto }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -768,
+        1408
+      ],
+      "id": "9054f804-19d9-4ded-a54a-c469bb037f5e",
+      "name": "Update Subscription Status",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "subscriptions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "order_id",
+              "keyValue": "={{ $json.order_id }}"
+            },
+            {
+              "keyName": "status",
+              "keyValue": "cancelled"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -1216,
+        1408
+      ],
+      "id": "098388f0-e228-4d5a-900b-d0e5502dbd1b",
+      "name": "Get Current Subscription",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "let currentSubscription = $('Get Current Subscription').first().json;\n\nif (\n  (currentSubscription.status === \"suspended\" || currentSubscription.status === \"cancelled\") &&\n  new Date(currentSubscription.valid_until) < new Date()\n) {\n  return {\n    isExpired: true\n  };\n} else {\n  return {\n    isExpired: false\n  };\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -416,
+        1408
+      ],
+      "id": "38393117-8da0-48e6-a0c1-747aa6673602",
+      "name": "Calculate Expired"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "1b715bb2-2df2-4cb8-89ad-ef500dc31f8f",
+              "leftValue": "={{ $json.isExpired }}",
+              "rightValue": "=true",
+              "operator": {
+                "type": "boolean",
+                "operation": "false",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -160,
+        1408
+      ],
+      "id": "f29ad946-ca70-413a-aa14-3081ff3c121b",
+      "name": "IF Expired"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "users",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "email",
+              "keyValue": "={{ $('Update Subscription Status').item.json.email }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        304,
+        1632
+      ],
+      "id": "47ac5278-8595-4f2f-ab17-ead5d7cf35de",
+      "name": "Get User Quota2",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "let ez_product_id = $('Update Subscription Status').first().json.ezycourse_product_id\n\nlet quota = 0\n\nif(ez_product_id == 4047) {\n  quota = 20\n} else if (ez_product_id == 4690) {\n  quota = \t60\n}\n\n\n\nreturn {\n  quota\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        544,
+        1632
+      ],
+      "id": "2441ea28-176a-4eb9-8d33-5f8fe866c744",
+      "name": "Map Credit Based on Product3"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "users",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "={{ $('Get User Quota2').item.json.id }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "quota",
+              "fieldValue": "={{ $('Map Credit Based on Product3').item.json.quota }}"
+            },
+            {
+              "fieldId": "quota_reset_date",
+              "fieldValue": "={{ new Date(new Date($now).getFullYear(), new Date($now).getMonth() + 1, 1).toLocaleDateString('en-CA') }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1072,
+        1632
+      ],
+      "id": "2618e948-74e9-4e7c-a473-b05ad3db2968",
+      "name": "Update Credits3",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://www.deinegesundheitsschule.de/api/ezycourse/webhooks/create-product-enrollment/f9uMoaS61pMZw9F6bhOmvN-98TODvjqR",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "email",
+              "value": "={{ $json.email }}"
+            },
+            {
+              "name": "product_id",
+              "value": "={{ $json.product_id }}"
+            },
+            {
+              "name": "product_type",
+              "value": "membership"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        272,
+        1392
+      ],
+      "id": "5036bcac-1163-4acc-b11e-c40a9115781e",
+      "name": "Enroll Student into Product3",
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "users",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "email",
+              "keyValue": "={{ $('Update Subscription Status').item.json.email }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        512,
+        1392
+      ],
+      "id": "e2af1e92-0124-4762-b447-8a22641b95f3",
+      "name": "Get User Quota3",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "let ez_product_id = $('Update Subscription Status').first().json.ezycourse_product_id\n\nlet quota = 0\n\nif(ez_product_id == 4047) {\n  quota = 20\n} else if (ez_product_id == 4690) {\n  quota = \t60\n}\n\n\n\nreturn {\n  quota\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        816,
+        1392
+      ],
+      "id": "33f2e194-9650-48c7-ac59-1e2ca25d1dee",
+      "name": "Map Credit Based on Product4"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "users",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "={{ $('Get User Quota3').item.json.id }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "quota",
+              "fieldValue": "={{ $('Map Credit Based on Product4').item.json.quota }}"
+            },
+            {
+              "fieldId": "quota_reset_date",
+              "fieldValue": "={{ new Date(new Date($now).getFullYear(), new Date($now).getMonth() + 1, 1).toLocaleDateString('en-CA') }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1040,
+        1392
+      ],
+      "id": "4f756ff0-101a-4e54-b63e-d618ef3556fe",
+      "name": "Update Credits4",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "subscriptions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "order_id",
+              "keyValue": "={{ $json.body.order_id }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -1632,
+        2128
+      ],
+      "id": "8c09fb3d-9c0e-41f3-9d7d-0086ac3c4586",
+      "name": "Find Subscription for Refund",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "subscriptions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "={{ $json.id }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "status",
+              "fieldValue": "refunded"
+            },
+            {
+              "fieldId": "valid_until",
+              "fieldValue": "={{ new Date($now).toDateTime().format('yyyy-MM-dd') }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -1264,
+        2128
+      ],
+      "id": "bcd98316-dca1-4191-a3b8-32d7394a522b",
+      "name": "Update Subscription Refund & Valid Until",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://www.deinegesundheitsschule.de/api/ezycourse/webhooks/delete-product-enrollment/f9uMoaS61pMZw9F6bhOmvN-98TODvjqR",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "email",
+              "value": "={{ $json.email }}"
+            },
+            {
+              "name": "product_id",
+              "value": "={{ $json.ezycourse_product_id }}"
+            },
+            {
+              "name": "product_type",
+              "value": "membership"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        -832,
+        2128
+      ],
+      "id": "29458262-8387-4400-b232-b48adec93048",
+      "name": "Un-Enroll Student into Product1",
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "subscriptions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "order_id",
+              "keyValue": "={{ $json.body.order_id }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -1616,
+        1664
+      ],
+      "id": "05870ff4-fe57-4081-b3c1-043725dcb82e",
+      "name": "Find Subscription for Chargeback",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "subscriptions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "={{ $json.id }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "status",
+              "fieldValue": "chargeback"
+            },
+            {
+              "fieldId": "valid_until",
+              "fieldValue": "={{ new Date($now).toDateTime().format('yyyy-MM-dd') }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -1248,
+        1664
+      ],
+      "id": "00a310c0-272c-4ee8-9a8a-b10fda7a2695",
+      "name": "Update Subscription Chrargeback ",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://www.deinegesundheitsschule.de/api/ezycourse/webhooks/delete-product-enrollment/f9uMoaS61pMZw9F6bhOmvN-98TODvjqR",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "email",
+              "value": "={{ $json.email }}"
+            },
+            {
+              "name": "product_id",
+              "value": "={{ $json.ezycourse_product_id }}"
+            },
+            {
+              "name": "product_type",
+              "value": "membership"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        -816,
+        1664
+      ],
+      "id": "7ea0ff22-d398-4e69-8112-73d3a0607814",
+      "name": "Un-Enroll Student ",
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "tableId": "transactions",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "transaction_id",
+              "fieldValue": "={{ $('Received IPN Event From Digistore').item.json.body.transaction_id }}"
+            },
+            {
+              "fieldId": "currency",
+              "fieldValue": "={{ $('Received IPN Event From Digistore').item.json.body.currency }}"
+            },
+            {
+              "fieldId": "amount",
+              "fieldValue": "={{ $('Received IPN Event From Digistore').item.json.body.amount_brutto }}"
+            },
+            {
+              "fieldId": "event",
+              "fieldValue": "={{ $('Received IPN Event From Digistore').item.json.body.event }}"
+            },
+            {
+              "fieldId": "order_id",
+              "fieldValue": "={{ $('Received IPN Event From Digistore').item.json.body.order_id }}"
+            },
+            {
+              "fieldId": "ipn_payload",
+              "fieldValue": "={{ $('Received IPN Event From Digistore').item.json.body }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -432,
+        1664
+      ],
+      "id": "9b771901-7273-4e8b-9ff8-f6fd1404078c",
+      "name": "Record Transaction of Chargeback",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "transactions",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "transaction_id",
+              "fieldValue": "={{ $('Received IPN Event From Digistore').item.json.body.transaction_id }}"
+            },
+            {
+              "fieldId": "currency",
+              "fieldValue": "={{ $('Received IPN Event From Digistore').item.json.body.currency }}"
+            },
+            {
+              "fieldId": "amount",
+              "fieldValue": "={{ $('Received IPN Event From Digistore').item.json.body.amount_brutto }}"
+            },
+            {
+              "fieldId": "event",
+              "fieldValue": "={{ $('Received IPN Event From Digistore').item.json.body.event }}"
+            },
+            {
+              "fieldId": "order_id",
+              "fieldValue": "={{ $('Received IPN Event From Digistore').item.json.body.order_id }}"
+            },
+            {
+              "fieldId": "ipn_payload",
+              "fieldValue": "={{ $('Received IPN Event From Digistore').item.json.body }}"
+            },
+            {
+              "fieldId": "user_id",
+              "fieldValue": "={{ $('Find Subscription for Refund').item.json.user_id }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -448,
+        2128
+      ],
+      "id": "5dd3bc85-4a2c-4cab-919a-877656c460c3",
+      "name": "Record Transaction of Refund",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "transactions",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "transaction_id",
+              "fieldValue": "={{ $('Received IPN Event From Digistore').item.json.body.transaction_id }}"
+            },
+            {
+              "fieldId": "currency",
+              "fieldValue": "={{ $('Received IPN Event From Digistore').item.json.body.currency }}"
+            },
+            {
+              "fieldId": "amount",
+              "fieldValue": "={{ $('Received IPN Event From Digistore').item.json.body.amount_brutto }}"
+            },
+            {
+              "fieldId": "event",
+              "fieldValue": "={{ $('Received IPN Event From Digistore').item.json.body.event }}"
+            },
+            {
+              "fieldId": "order_id",
+              "fieldValue": "={{ $('Received IPN Event From Digistore').item.json.body.order_id }}"
+            },
+            {
+              "fieldId": "ipn_payload",
+              "fieldValue": "={{ $('Received IPN Event From Digistore').item.json.body }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -864,
+        1040
+      ],
+      "id": "bc154ba4-7700-4245-91b8-674b42cda025",
+      "name": "Record Transaction of Rebill Cancel",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "transactions",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "transaction_id",
+              "fieldValue": "={{ $('Received IPN Event From Digistore').item.json.body.transaction_id }}"
+            },
+            {
+              "fieldId": "currency",
+              "fieldValue": "={{ $('Received IPN Event From Digistore').item.json.body.currency }}"
+            },
+            {
+              "fieldId": "amount",
+              "fieldValue": "={{ $('Received IPN Event From Digistore').item.json.body.amount_brutto }}"
+            },
+            {
+              "fieldId": "event",
+              "fieldValue": "={{ $('Received IPN Event From Digistore').item.json.body.event }}"
+            },
+            {
+              "fieldId": "order_id",
+              "fieldValue": "={{ $('Received IPN Event From Digistore').item.json.body.order_id }}"
+            },
+            {
+              "fieldId": "ipn_payload",
+              "fieldValue": "={{ $('Received IPN Event From Digistore').item.json.body }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1456,
+        1392
+      ],
+      "id": "22ca61b4-428d-4279-a698-eb6aff3c0dbb",
+      "name": "Record Transaction of Rebill Resume",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "let updateNode = null;\nlet addNode = null;\n\n\ntry {\n  updateNode = $('Update Existing Subscription').first().json\n} catch (e) {\n\n}\n\ntry {\n  addNode  = $('Add Subscription').first().json\n} catch (e) {\n}\n\n\n\nconst subscription = updateNode || addNode || null\n\nreturn  {\n  subscription\n}\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4304,
+        960
+      ],
+      "id": "70f4889a-3eb8-4578-bf50-9db2d694b8cc",
+      "name": "Process the Input For Switch",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://www.deinegesundheitsschule.de/api/ezycourse/webhooks/create-product-enrollment/f9uMoaS61pMZw9F6bhOmvN-98TODvjqR",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "email",
+              "value": "={{ $json.subscription.email }}"
+            },
+            {
+              "name": "product_id",
+              "value": "={{ $json.subscription.ezycourse_product_id }}"
+            },
+            {
+              "name": "product_type",
+              "value": "membership"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        4896,
+        944
+      ],
+      "id": "58d18835-335a-4fec-b799-bd0bb395af8f",
+      "name": "Enroll Student into Product4",
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "tableId": "transactions",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "transaction_id",
+              "fieldValue": "={{ $('Calculate Billing Interval with Product Mapped').item.json.transaction_id }}"
+            },
+            {
+              "fieldId": "order_id",
+              "fieldValue": "={{ $json.order_id }}"
+            },
+            {
+              "fieldId": "user_id",
+              "fieldValue": "={{ $json.user_id }}"
+            },
+            {
+              "fieldId": "ipn_payload",
+              "fieldValue": "={{ $('Received IPN Event From Digistore').first().json.body }}"
+            },
+            {
+              "fieldId": "amount",
+              "fieldValue": "={{ $json.amount_credited }}"
+            },
+            {
+              "fieldId": "event",
+              "fieldValue": "={{ $('Received IPN Event From Digistore').first().json.body.event }}"
+            },
+            {
+              "fieldId": "currency",
+              "fieldValue": "={{ $('Received IPN Event From Digistore').first().json.body.currency }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        4032,
+        960
+      ],
+      "id": "cf1e2866-181b-4948-8fc5-90c6e1acd0cd",
+      "name": "Record Transaction Log",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "b2b51c38-1d19-47bc-8a50-d33638f8568d",
+              "leftValue": "={{ $json.subscription.status }}",
+              "rightValue": "active",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "c65570bd-8960-4a92-9dfd-a29927572235",
+              "leftValue": "={{ $json.subscription.status }}",
+              "rightValue": "trial",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        4560,
+        960
+      ],
+      "id": "40584abf-4c3d-4d10-b389-c66993a4497a",
+      "name": "If Subscription Active"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "users",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "email",
+              "keyValue": "={{ $('Process the Input For Switch').item.json.subscription.email }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        5216,
+        944
+      ],
+      "id": "5f7657bf-4a9d-4b04-970a-805540b8f4eb",
+      "name": "Get User Quota1",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "let ez_product_id = $('Process the Input For Switch').first().json.subscription.ezycourse_product_id\n\nlet quota = 0\n\nif(ez_product_id == 4047) {\n  quota = 20\n} else if (ez_product_id == 4690) {\n  quota = \t60\n}\n\n\n\nreturn {\n  quota\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        5536,
+        944
+      ],
+      "id": "b54fdc05-6648-49b1-a374-74964fe3ed32",
+      "name": "Map Credit Based on Product1"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "users",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "={{ $('Get User Quota1').item.json.id }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "quota",
+              "fieldValue": "={{ $('Map Credit Based on Product1').item.json.quota }}"
+            },
+            {
+              "fieldId": "quota_reset_date",
+              "fieldValue": "={{ new Date(new Date($now).getFullYear(), new Date($now).getMonth() + 1, 1).toLocaleDateString('en-CA') }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        5904,
+        944
+      ],
+      "id": "2556a409-c947-4513-ba20-5046a9fd9ec6",
+      "name": "Update Credits1",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "subscriptions",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "order_id",
+              "fieldValue": "={{ $('Calculate Billing Interval with Product Mapped').item.json.order_id }}"
+            },
+            {
+              "fieldId": "created_at",
+              "fieldValue": "={{ $now }}"
+            },
+            {
+              "fieldId": "product_id",
+              "fieldValue": "={{ $('Calculate Billing Interval with Product Mapped').item.json.product_id }}"
+            },
+            {
+              "fieldId": "status",
+              "fieldValue": "={{ $('Calculate Billing Interval with Product Mapped').item.json.status }}"
+            },
+            {
+              "fieldId": "email",
+              "fieldValue": "={{ $('Calculate Billing Interval with Product Mapped').item.json.email}}"
+            },
+            {
+              "fieldId": "ezycourse_product_id",
+              "fieldValue": "={{ $('Calculate Billing Interval with Product Mapped').item.json.ezycourse_product_id }}"
+            },
+            {
+              "fieldId": "user_id",
+              "fieldValue": "={{ $('Return User').item.json.user.id }}"
+            },
+            {
+              "fieldId": "billing_interval",
+              "fieldValue": "={{ $('Calculate Billing Interval with Product Mapped').item.json.billing_interval }}"
+            },
+            {
+              "fieldId": "valid_until",
+              "fieldValue": "={{ $('Calculate Billing Interval with Product Mapped').item.json.valid_until }}"
+            },
+            {
+              "fieldId": "delivery_date",
+              "fieldValue": "={{ $('Calculate Billing Interval with Product Mapped').item.json.delivery_date || null }}"
+            },
+            {
+              "fieldId": "amount_credited",
+              "fieldValue": "={{ $('Calculate Billing Interval with Product Mapped').item.json.amount_credited }}"
+            },
+            {
+              "fieldId": "next_payment_at",
+              "fieldValue": "={{ $('Calculate Billing Interval with Product Mapped').item.json.next_payment_at }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        2752,
+        1392
+      ],
+      "id": "25533d2b-db8e-45a6-907f-0b702fa56d51",
+      "name": "Add Subscription",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "subscriptions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "={{ $json.id }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "status",
+              "fieldValue": "={{ $('Calculate Billing Interval with Product Mapped').item.json.status }}"
+            },
+            {
+              "fieldId": "next_payment_at",
+              "fieldValue": "={{ $('Calculate Billing Interval with Product Mapped').item.json.next_payment_at }}"
+            },
+            {
+              "fieldId": "valid_until",
+              "fieldValue": "={{ $('Calculate Billing Interval with Product Mapped').item.json.valid_until }}"
+            },
+            {
+              "fieldId": "billing_interval",
+              "fieldValue": "={{ $('Calculate Billing Interval with Product Mapped').item.json.billing_interval }}"
+            },
+            {
+              "fieldId": "amount_credited",
+              "fieldValue": "={{ $('Calculate Billing Interval with Product Mapped').item.json.amount_brutto }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        2800,
+        528
+      ],
+      "id": "2bb3f323-d69b-4e41-af16-3d746c1cb042",
+      "name": "Update Existing Subscription",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.3,
+      "position": [
+        -1088,
+        3888
+      ],
+      "id": "853620e8-4d09-4bf3-ab3b-1df794b493c7",
+      "name": "Filter Active or Trial"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "users",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "={{ $('Update Subscription Refund & Valid Until').item.json.user_id }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "active",
+              "fieldValue": "false"
+            },
+            {
+              "fieldId": "quota",
+              "fieldValue": "0"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -144,
+        2128
+      ],
+      "id": "60b27e15-00c8-4a62-96e2-c169bf89887f",
+      "name": "Update User",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "users",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "={{ $('Update Subscription Chrargeback ').item.json.user_id }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "quota",
+              "fieldValue": "0"
+            },
+            {
+              "fieldId": "active",
+              "fieldValue": "false"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -96,
+        1664
+      ],
+      "id": "67466837-e930-44a3-84c7-d0ef5650cf7a",
+      "name": "Update User1",
+      "credentials": {
+        "supabaseApi": {
+          "id": "fHIqf3ehxKRHCXZs",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "17449fbe-00e8-4386-a81e-bb7993491de7",
+              "leftValue": "={{ $json.body.product_id }}",
+              "rightValue": "670519",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        -2800,
+        608
+      ],
+      "id": "8f1de184-371d-45ac-bfd6-da1537513889",
+      "name": "Filter"
+    }
+  ],
+  "pinData": {
+    "Received IPN Event From Digistore": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n-prod.app.medizinzumselbermachen.de",
+            "user-agent": "DigiStore-API/1.0 (Linux; en-US; rv:1.0.0.0) php/20130430 curl/20130430",
+            "content-length": "759",
+            "accept": "*/*",
+            "accept-charset": "utf-8",
+            "accept-encoding": "deflate, gzip, br, zstd",
+            "cache-control": "no-cache",
+            "content-type": "application/x-www-form-urlencoded; charset=utf-8",
+            "x-forwarded-for": "35.203.65.62",
+            "x-forwarded-host": "n8n-prod.app.medizinzumselbermachen.de",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "caf3c9da6002",
+            "x-real-ip": "35.203.65.62"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "email": "dorit.goessner@icloud.com",
+            "first_name": "Dorit",
+            "last_name": "Gössner",
+            "title": "",
+            "salutation": "Frau",
+            "company": "",
+            "street": "",
+            "city": "",
+            "zipcode": "",
+            "state": "",
+            "country_code": "DE",
+            "country_name": "Deutschland",
+            "phone_no": "",
+            "order_id": "A26DALWA",
+            "transaction_id": "113930648",
+            "product_name": "Mitgliedschaft – Deine Gesundheitsschule",
+            "product_name_intern": "Mitgliedschaft – Deine Gesundheitsschule",
+            "product_id": "670519",
+            "quantity": "1",
+            "receipt_url": "https://www.checkout-ds24.com/receipt/670519/A26DALWA/TFDHVS4C",
+            "invoice_url": "https://www.digistore24.com/invoice/A26DALWA/113930648/U9XXQXQK.pdf",
+            "eticket_url": "",
+            "custom": "",
+            "tags": "vollmitgliedschaft,voll_m_trial_005",
+            "event": "payment",
+            "amount_brutto": "0.00",
+            "amount_netto": "0.00",
+            "amount_vendor": "0.00",
+            "amount_affiliate": "0.00",
+            "currency": "EUR",
+            "is_gdpr_country": "Y"
+          },
+          "webhookUrl": "https://n8n-prod.app.medizinzumselbermachen.de/webhook/get-digistore-info",
+          "executionMode": "production"
+        }
+      }
+    ],
+    "Data-out Webhook Ezycourse - SIGNUP": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n-prod.app.medizinzumselbermachen.de",
+            "user-agent": "axios/1.13.6",
+            "content-length": "112",
+            "accept": "application/json, text/plain, */*",
+            "accept-encoding": "gzip, compress, deflate, br",
+            "content-type": "application/json",
+            "x-ezycourse-signature": "OCdwCyQttoyGXYaWIuffJ1LnEM9lsUNg",
+            "x-forwarded-for": "3.67.173.219",
+            "x-forwarded-host": "n8n-prod.app.medizinzumselbermachen.de",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "caf3c9da6002",
+            "x-real-ip": "3.67.173.219"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "id": 1627056,
+            "fist_name": "Niko",
+            "last_name": "Testerone",
+            "name": "Niko Testerone",
+            "email": "testing1@webruder.de"
+          },
+          "webhookUrl": "https://n8n-prod.app.medizinzumselbermachen.de/webhook/get-new-signup",
+          "executionMode": "production"
+        }
+      }
+    ],
+    "Find Subscription for Refund": [
+      {
+        "json": {
+          "id": "c41ef619-ee96-4699-a940-f8c66f36bc44",
+          "order_id": "SLJDYZ4T",
+          "upgraded_order_id": null,
+          "email": "testing2@webruder.de",
+          "product_id": "670519",
+          "ezycourse_product_id": 4690,
+          "payplan_id": null,
+          "billing_interval": "monthly",
+          "status": "active",
+          "valid_until": "2026-04-27",
+          "delivery_date": null,
+          "payment_missed_at": null,
+          "amount_credited": 37.9,
+          "created_at": "2026-03-27T16:50:59.579+00:00",
+          "updated_at": "2026-03-27T16:50:59.634715+00:00",
+          "user_id": "a8bc3814-e80c-46d2-afbf-545f7c12ee4c",
+          "next_payment_at": "2026-04-27T00:00:00+00:00",
+          "upgrade_type": null
+        }
+      }
+    ],
+    "Update Subscription Refund & Valid Until": [
+      {
+        "json": {
+          "id": "c41ef619-ee96-4699-a940-f8c66f36bc44",
+          "order_id": "SLJDYZ4T",
+          "upgraded_order_id": null,
+          "email": "testing2@webruder.de",
+          "product_id": "670519",
+          "ezycourse_product_id": 4690,
+          "payplan_id": null,
+          "billing_interval": "monthly",
+          "status": "refunded",
+          "valid_until": "2026-03-30",
+          "delivery_date": null,
+          "payment_missed_at": null,
+          "amount_credited": 37.9,
+          "created_at": "2026-03-27T16:50:59.579+00:00",
+          "updated_at": "2026-03-27T16:50:59.634715+00:00",
+          "user_id": "a8bc3814-e80c-46d2-afbf-545f7c12ee4c",
+          "next_payment_at": "2026-04-27T00:00:00+00:00",
+          "upgrade_type": null
+        }
+      }
+    ],
+    "Un-Enroll Student into Product1": [
+      {
+        "json": {
+          "message": "Enrollment deleted successfully"
+        }
+      }
+    ],
+    "Record Transaction of Refund": [
+      {
+        "json": {
+          "id": "e1534041-8d8e-4c34-867d-c606ccdfca52",
+          "transaction_id": "113664634",
+          "order_id": "SLJDYZ4T",
+          "user_id": null,
+          "event": "refund",
+          "amount": -37.9,
+          "currency": "EUR",
+          "ipn_payload": {
+            "city": "",
+            "tags": "vollmitgliedschaft,voll_m_001",
+            "email": "testing2@webruder.de",
+            "event": "refund",
+            "state": "",
+            "title": "",
+            "custom": "",
+            "street": "",
+            "company": "",
+            "zipcode": "",
+            "currency": "EUR",
+            "order_id": "SLJDYZ4T",
+            "phone_no": "",
+            "quantity": "1",
+            "last_name": "TestingTwoMonatlich",
+            "first_name": "Jens",
+            "product_id": "670519",
+            "salutation": "Herr",
+            "eticket_url": "",
+            "invoice_url": "https://www.digistore24.com/invoice/SLJDYZ4T/113664634/HQ6MSX9X.pdf",
+            "receipt_url": "https://www.checkout-ds24.com/receipt/670519/SLJDYZ4T/Y3NK4A7Y",
+            "amount_netto": "-31.85",
+            "country_code": "DE",
+            "country_name": "Deutschland",
+            "product_name": "Mitgliedschaft – Deine Gesundheitsschule",
+            "amount_brutto": "-37.90",
+            "amount_vendor": "-13.93",
+            "transaction_id": "113664634",
+            "is_gdpr_country": "Y",
+            "amount_affiliate": "0.00",
+            "product_name_intern": "Mitgliedschaft – Deine Gesundheitsschule"
+          },
+          "created_at": "2026-03-30T19:26:06.176054+00:00"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-04-07T14:23:16.097Z",
+      "createdAt": "2026-04-07T14:23:16.097Z",
+      "role": "workflow:owner",
+      "workflowId": "WHp7bjBGImIOPlLT",
+      "projectId": "POhXKLALTFDZhVtj"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2026-04-07T14:29:44.000Z",
+  "versionId": "cbc6e0c0-ce33-4aaa-9803-ed8d49f41a4c"
+}
